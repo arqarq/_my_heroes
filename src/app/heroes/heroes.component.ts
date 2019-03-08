@@ -10,14 +10,15 @@ import {HeroService} from '../hero.service';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-  selectedHero: Hero;
+  // selectedHero: Hero;
+  // heroTemp: Hero;
   // hero: Hero = {
   //   id: 1,
   //   name: 'Windstorm'
   // };
   // heroes = HEROES;
   heroes: Hero[];
-  heroTemp: Hero;
+
 
   constructor(private heroService: HeroService) {
   }
@@ -29,15 +30,15 @@ export class HeroesComponent implements OnInit {
       .subscribe(heroeS => this.heroes = heroeS);
   }
 
-  onSelect(hero: Hero): void {
-    if (hero !== this.heroTemp) {
-      this.heroTemp = hero;
-      this.selectedHero = hero;
-    } else {
-      this.heroTemp = null;
-      this.selectedHero = null;
-    }
-  }
+  // onSelect(hero: Hero): void {
+  //   if (hero !== this.heroTemp) {
+  //     this.heroTemp = hero;
+  //     this.selectedHero = hero;
+  //   } else {
+  //     this.heroTemp = null;
+  //     this.selectedHero = null;
+  //   }
+  // }
 
   ngOnInit() {
     this.getHeroes();
