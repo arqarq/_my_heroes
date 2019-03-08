@@ -3,7 +3,6 @@ import {Hero} from '../hero';
 // import {HEROES} from '../mock-heroes';
 import {HeroService} from '../hero.service';
 
-
 @Component({
   styles: [],
   selector: 'app-heroes',
@@ -35,6 +34,7 @@ export class HeroesComponent implements OnInit {
       this.heroTemp = hero;
       this.selectedHero = hero;
     } else {
+      this.heroTemp = null;
       this.selectedHero = null;
     }
   }
