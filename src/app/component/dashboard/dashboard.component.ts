@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
   getHeroes(): void {
     this.heroService
       .getHeroes()
-      .subscribe(heroeS => this.heroes = heroeS.slice(1, 5));
+      .subscribe(heroeS => this.heroes = heroeS.slice(0, 4));
   }
 
   ngOnInit() {
