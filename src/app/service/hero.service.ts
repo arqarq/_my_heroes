@@ -3,7 +3,7 @@ import {Hero} from '../model/hero';
 import {Observable, of} from 'rxjs';
 import {MessageService} from './message.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {catchError, tap} from 'rxjs/operators';
+import {catchError, map, tap} from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -36,8 +36,22 @@ export class HeroService {
     // return of(HEROES);
     return this.http.get<Hero[]>(this.heroesUrl)
       .pipe(
-        tap(_ => this.log('fetched heroes (tap)')),
+        tap(() => this.log('fetched heroes (tap)')),
         catchError(this.handleError<Hero[]>('getHeroes', []))
+      );
+  }
+
+  getHeroNo404<Data>(id: number): Observable<Hero> {
+    const url = `${this.heroesUrl}/?id=${id}`;
+    console.log(url);
+    return this.http.get<Hero[]>(url)
+      .pipe(
+        map(heroes => heroes[0]),
+        tap(h => {
+          const outcome = h ? `fetched` : `did not find`;
+          this.log(`${outcome} hero id=${id}`);
+        }),
+        catchError(this.handleError<Hero>(`getHeroNo404 id=${id}`))
       );
   }
 
@@ -52,7 +66,7 @@ export class HeroService {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.get<Hero>(url)
       .pipe(
-        tap(_ => this.log(`fetched hero (tap) id=${id}`)),
+        tap(() => this.log(`fetched hero (tap) id=${id}`)),
         catchError(this.handleError<Hero>(`getHero id=${id}`/*, this.hero*/))
       );
   }
@@ -60,7 +74,7 @@ export class HeroService {
   updateHero(hero: Hero): Observable<any> {
     return this.http.put(this.heroesUrl, hero, httpOptions)
       .pipe(
-        tap(_ => this.log(`updated hero (tap) id=${hero.id}`)),
+        tap(() => this.log(`updated hero (tap) id=${hero.id}`)),
         catchError(this.handleError<any>('updateHero'))
       );
   }
@@ -78,7 +92,7 @@ export class HeroService {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.delete<Hero>(url, httpOptions)
       .pipe(
-        tap(_ => this.log(`deleted hero (tap) id=${id}`)),
+        tap(() => this.log(`deleted hero (tap) id=${id}`)),
         catchError(this.handleError<Hero>('deleteHero'))
       );
   }
