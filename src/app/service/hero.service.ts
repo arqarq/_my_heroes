@@ -15,7 +15,6 @@ const httpOptions = {
 export class HeroService {
   // hero: Hero = new Hero();
   private heroesUrl = 'api/HEROES';
-
   // hero2: Hero = new Hero();
   // heroTab: Hero[];
 
