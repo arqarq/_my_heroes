@@ -9,8 +9,21 @@ import {HeroService} from '../../service/hero.service';
 })
 export class DashboardComponent implements OnInit {
   heroes: Hero[] = [];
+  // czyPrzejeta?: boolean;
+  czyPrzejeta?: boolean;
+  pozycje: string[] = ['WSZYSTKIE', 'TAK', 'NIE'];
+  pozycja: string;
 
   constructor(private heroService: HeroService) {
+  }
+
+  setCzyPrzejeta(pp: string): void {
+    if (pp === this.pozycje[0]) {
+      this.czyPrzejeta = null;
+    } else {
+      this.czyPrzejeta = (pp === this.pozycje[1]);
+    }
+    alert(this.czyPrzejeta);
   }
 
   getHeroes(): void {
@@ -22,5 +35,4 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.getHeroes();
   }
-
 }

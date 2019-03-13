@@ -1,6 +1,19 @@
 <!--<p>-->
-  <!--dashboard works!-->
+<!--dashboard works!-->
 <!--</p>-->
+<form>
+  <label>Czy przejęta?
+    <!--{{myModel}}--><!--[(ngModel)]="myModel"-->
+    <!--<select (change)="setCzyPrzejeta(pozycja)" [(ngModel)]="pozycja" [multiple]=false name="pozycja">-->
+    <select #selectElement (change)="setCzyPrzejeta(selectElement.value)" [multiple]=false>
+      <option *ngFor="let i of pozycje" [value]="i">{{i}}</option>
+      <!--<option [ngValue]="pozycje[0]">{{pozycje[0]}}</option>-->
+      <!--<option [ngValue]="pozycje[1]">{{pozycje[1]}}</option>-->
+      <!--<option [ngValue]="pozycje[2]">{{pozycje[2]}}</option>-->
+    </select>
+  </label>
+</form>
+
 <h3>Top Heroes</h3>
 <div class="grid grid-pad">
   <a *ngFor="let hero of heroes" class="col-1-4" routerLink="/detail/{{hero.id}}">
