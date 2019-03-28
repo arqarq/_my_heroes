@@ -1,18 +1,13 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {HeroesComponent} from './component/heroes/heroes.component';
-import {DashboardComponent} from './component/dashboard/dashboard.component';
-import {HeroDetailComponent} from './component/hero-detail/hero-detail.component';
+import {AppComponent} from './app.component';
 
-const ROUTES: Routes = [
-  {path: 'heroes', component: HeroesComponent},
-  {path: 'dashboard', component: DashboardComponent},
-  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
-  {path: 'detail/:id', component: HeroDetailComponent}
+const routes: Routes = [
+  {path: '', component: AppComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(ROUTES)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

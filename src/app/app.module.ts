@@ -1,4 +1,4 @@
-import {BrowserModule} from '@angular/platform-browser';
+import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {AppComponent} from './app.component';
@@ -22,7 +22,7 @@ import {HeroSearchComponent} from './component/hero-search/hero-search.component
     HeroSearchComponent
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
@@ -30,7 +30,8 @@ import {HeroSearchComponent} from './component/hero-search/hero-search.component
       InMemoryDataService, {dataEncapsulation: false}
     )
   ],
-  providers: [],
+  // providers: [],
+  // exports: []
   bootstrap: [AppComponent]
 })
 export class AppModule {
