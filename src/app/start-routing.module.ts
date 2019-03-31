@@ -6,11 +6,11 @@ import {ChooserComponent} from './chooser.component';
 const ROUTES: Routes = [
   {
     path: 'forms',
-    loadChildren: './app2.module#App2Module'
+    loadChildren: './module/forms/app2.module#App2Module'
   },
   {
     path: 'heroes',
-    loadChildren: './app.module#AppModule'
+    loadChildren: './module/heroes/app.module#AppModule'
   },
   {
     path: 'choose',
