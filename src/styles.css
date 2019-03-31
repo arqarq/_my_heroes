@@ -25,3 +25,9 @@ body, input[type="text"], button {
 * {
   font-family: Arial, Helvetica, sans-serif;
 }
+
+div.bottom-right {
+  position: fixed;
+  bottom: 0;
+  right: 0
+}

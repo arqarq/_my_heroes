@@ -1,19 +1,15 @@
 import {NgModule} from '@angular/core';
-import {AppRoot2Component} from './app-root2.component';
-import {BrowserModule, Title} from '@angular/platform-browser';
-import {AppRouting2Module} from './app-routing2.module';
+import {App2Component} from './app2.component';
+import {Title} from '@angular/platform-browser';
+import {CommonModule} from '@angular/common';
+import {App2RoutingModule} from './app2-routing.module';
 
 @NgModule({
-  declarations: [
-    AppRoot2Component
-  ],
   imports: [
-    BrowserModule,
-    AppRouting2Module
+    CommonModule,
+    App2RoutingModule
   ],
-  bootstrap: [
-    AppRoot2Component
-  ],
+  declarations: [App2Component],
   providers: [Title]
 })
 export class App2Module {

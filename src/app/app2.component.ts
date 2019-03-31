@@ -3,10 +3,10 @@ import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root2',
-  templateUrl: './app-root2.component.html',
-  styleUrls: ['./app-root2.component.css']
+  templateUrl: './app2.component.html',
+  styleUrls: ['./app2.component.css']
 })
-export class AppRoot2Component implements OnInit {
+export class App2Component implements OnInit {
   title = 'Formularze';
 
   constructor(private titleService: Title) {

@@ -30,9 +30,7 @@ import {HeroSearchComponent} from './component/hero-search/hero-search.component
       InMemoryDataService, {dataEncapsulation: false}
     )
   ],
-  // providers: [],
-  // exports: []
-  bootstrap: [AppComponent]
+  providers: []
 })
 export class AppModule {
 }
