@@ -4,8 +4,13 @@ import {App2Component} from './app2.component';
 
 const ROUTES: Routes = [
   {
-    path: '',
+    path: 'ng-forms',
     component: App2Component
+  },
+  {
+    path: '',
+    redirectTo: 'ng-forms',
+    pathMatch: 'full'
   }
 ];
 

@@ -9,13 +9,13 @@ const ROUTES: Routes = [
     loadChildren: './module/forms/app2.module#App2Module'
   },
   {
-    path: 'heroes',
+    path: 'ng-heroes',
     loadChildren: './module/heroes/app.module#AppModule'
   },
   {
     path: 'choose',
-    component: ChooserComponent,
-    data: {value: 'AAAAA'}
+    component: ChooserComponent
+    // data: {value: 'AAAAA'}
   },
   {
     path: '',

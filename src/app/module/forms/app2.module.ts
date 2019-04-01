@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {App2Component} from './app2.component';
-import {Title} from '@angular/platform-browser';
 import {CommonModule} from '@angular/common';
 import {App2RoutingModule} from './app2-routing.module';
 
@@ -10,7 +9,7 @@ import {App2RoutingModule} from './app2-routing.module';
     App2RoutingModule
   ],
   declarations: [App2Component],
-  providers: [Title]
+  providers: []
 })
 export class App2Module {
 }

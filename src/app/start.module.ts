@@ -18,7 +18,7 @@ import {ChooserComponent} from './chooser.component';
     StartRoutingModule
   ],
   bootstrap: [StartComponent],
-  providers: [Title]
+  providers: []
 })
 export class StartModule {
 }
