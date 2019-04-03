@@ -2,16 +2,20 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AppComponent} from './app.component';
 import {DashboardComponent} from '../../component/dashboard/dashboard.component';
+import {HeroesComponent} from '../../component/heroes/heroes.component';
 
 const routes: Routes = [
   {
-    path: 'heroes',
-    component: AppComponent
+    path: 'dashboard',
+    component: DashboardComponent
   },
   {
-    path: 'dashboard',
-    component: DashboardComponent,
-    outlet: 'secondary'
+    path: 'details',
+    component: HeroesComponent
+  },
+  {
+    path: 'heroes',
+    component: AppComponent
   },
   {
     path: '',

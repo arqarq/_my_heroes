@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {Notfound404Component} from './notfound404.component';
-import {ChooserComponent} from './chooser.component';
+import {Notfound404Component} from './component/notfound404/notfound404.component';
+import {ChooserComponent} from './component/chooser/chooser.component';
 
 const ROUTES: Routes = [
   {
@@ -29,7 +29,7 @@ const ROUTES: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(ROUTES, {enableTracing: false})],
+  imports: [RouterModule.forRoot(ROUTES, {enableTracing: false, useHash: true})],
   exports: [RouterModule]
 })
 export class StartRoutingModule {
