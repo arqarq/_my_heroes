@@ -20,7 +20,7 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'heroes',
-    pathMatch: 'full'
+    pathMatch: 'prefix'
   }
   // {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   // {

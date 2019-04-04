@@ -8,9 +8,9 @@ const ROUTES: Routes = [
     component: App2Component
   },
   {
-    path: '',
+    path: 'forms',
     redirectTo: 'ng-forms',
-    pathMatch: 'full'
+    pathMatch: 'prefix'
   }
 ];
 
