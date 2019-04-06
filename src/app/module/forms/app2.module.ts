@@ -8,8 +8,7 @@ import { App2RoutingModule } from './app2-routing.module';
     CommonModule,
     App2RoutingModule
   ],
-  declarations: [App2Component],
-  providers: []
+  declarations: [App2Component]
 })
 export class App2Module {
 }

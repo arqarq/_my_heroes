@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from '../../component/dashboard/dashboard.component';
 import { HeroesComponent } from '../../component/heroes/heroes.component';
+import { HeroDetailComponent } from '../../component/hero-detail/hero-detail.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,15 @@ const routes: Routes = [
       {
         path: 'details',
         component: HeroesComponent
+      },
+      {
+        path: 'detail/:id',
+        component: HeroDetailComponent
+      },
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full'
       }
     ]
   },
@@ -24,23 +34,6 @@ const routes: Routes = [
     redirectTo: 'heroes',
     pathMatch: 'full'
   }
-  // {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
-  // {
-  // path: 'app', component: AppComponent, children:
-  //   [
-  //     {path: 'heroes', component: HeroesComponent},
-  //     {path: 'dashboard', component: DashboardComponent},
-  //     {path: '', redirectTo: '/dashboard', pathMatch: 'full'}
-  //   ]
-  // },
-  // {path: '', redirectTo: '/app', pathMatch: 'full'},
-  // {path: 'detail/:id', component: HeroDetailComponent},
-  // {path: '', component: App2Component}
-  // {
-  //   path: '',
-  //   redirectTo: '/app2',
-  //   pathMatch: 'full'
-  // },
 ];
 
 @NgModule({

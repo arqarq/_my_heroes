@@ -30,8 +30,7 @@ import { HeroSearchComponent } from '../../component/hero-search/hero-search.com
     MessagesComponent,
     DashboardComponent,
     HeroSearchComponent
-  ],
-  providers: []
+  ]
 })
 export class AppModule {
 }

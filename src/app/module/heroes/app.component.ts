@@ -7,7 +7,7 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = '_my heroes';
+  title = '_my_heroes';
 
   constructor(private titleService: Title) {
   }
