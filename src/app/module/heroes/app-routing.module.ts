@@ -1,26 +1,28 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {AppComponent} from './app.component';
-import {DashboardComponent} from '../../component/dashboard/dashboard.component';
-import {HeroesComponent} from '../../component/heroes/heroes.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AppComponent } from './app.component';
+import { DashboardComponent } from '../../component/dashboard/dashboard.component';
+import { HeroesComponent } from '../../component/heroes/heroes.component';
 
 const routes: Routes = [
   {
-    path: 'dashboard',
-    component: DashboardComponent
-  },
-  {
-    path: 'details',
-    component: HeroesComponent
-  },
-  {
     path: 'heroes',
-    component: AppComponent
+    component: AppComponent,
+    children: [
+      {
+        path: 'dashboard',
+        component: DashboardComponent
+      },
+      {
+        path: 'details',
+        component: HeroesComponent
+      }
+    ]
   },
   {
     path: '',
     redirectTo: 'heroes',
-    pathMatch: 'prefix'
+    pathMatch: 'full'
   }
   // {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   // {

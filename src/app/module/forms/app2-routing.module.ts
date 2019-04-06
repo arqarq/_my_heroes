@@ -1,6 +1,6 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {App2Component} from './app2.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { App2Component } from './app2.component';
 
 const ROUTES: Routes = [
   {
@@ -8,9 +8,9 @@ const ROUTES: Routes = [
     component: App2Component
   },
   {
-    path: 'forms',
+    path: '',
     redirectTo: 'ng-forms',
-    pathMatch: 'prefix'
+    pathMatch: 'full'
   }
 ];
 
