@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { StartRoutingModule } from './start-routing.module';
 import { StartComponent } from './start.component';
 import { ChooserComponent } from './component/chooser/chooser.component';
-import { Notfound404Component } from './component/notfound404/notfound404.component';
+import { NotFound404Component } from './component/notfound404/notfound404.component';
 import { AppModule } from './module/heroes/app.module';
 
 @NgModule({
@@ -15,7 +15,7 @@ import { AppModule } from './module/heroes/app.module';
   declarations: [
     StartComponent,
     ChooserComponent,
-    Notfound404Component
+    NotFound404Component
   ],
   bootstrap: [StartComponent]
 })

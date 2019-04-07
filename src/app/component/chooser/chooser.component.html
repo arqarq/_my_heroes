@@ -1,7 +1,15 @@
 <p>Wybierz:</p>
 <div>
   <nav>
-    <a routerLink="/forms">Formularze</a><br><a routerLink="/ng-heroes">Heroes</a><br><a routerLink="/crisis">Crisis
-    Center</a>
+    <a routerLink="/forms">Formularze</a>
+    <br>
+    <a routerLink="/ng-heroes">Heroes</a>
+    <br>
+    <a routerLink="/crisis">Crisis Center</a>
+  </nav>
+</div>
+<div class="bottom-right">
+  <nav>
+    <a routerLink="/choose" [routerLinkActive]="'activated activated-color'">Do choice</a>
   </nav>
 </div>

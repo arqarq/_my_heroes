@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Notfound404Component } from './component/notfound404/notfound404.component';
+import { NotFound404Component } from './component/notfound404/notfound404.component';
 import { ChooserComponent } from './component/chooser/chooser.component';
 
 const ROUTES: Routes = [
@@ -27,7 +27,7 @@ const ROUTES: Routes = [
   },
   {
     path: '**',
-    component: Notfound404Component
+    component: NotFound404Component
   }
 ];
 
