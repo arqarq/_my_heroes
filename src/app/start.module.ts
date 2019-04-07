@@ -10,7 +10,7 @@ import { AppModule } from './module/heroes/app.module';
   imports: [
     BrowserModule,
     StartRoutingModule,
-    AppModule
+    AppModule // App2Module nie ma żadnego routera, a jest typu "children", więc psuje jak jest tu umieszczony
   ],
   declarations: [
     StartComponent,

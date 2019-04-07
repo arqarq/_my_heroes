@@ -10,7 +10,7 @@ const ROUTES: Routes = [
   {
     path: '',
     redirectTo: 'ng-forms',
-    pathMatch: 'prefix'
+    pathMatch: 'full'
   }
 ];
 
