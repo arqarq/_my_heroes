@@ -13,6 +13,10 @@ const ROUTES: Routes = [
     loadChildren: './module/heroes/app.module#AppModule'
   },
   {
+    path: 'crisis',
+    loadChildren: './module/crisis/crisis.module#CrisisModule'
+  },
+  {
     path: 'choose',
     component: ChooserComponent
   },
