@@ -1,6 +1,10 @@
-<p>
-  crisis-center works!
-</p>
+<h1>Angular Router</h1>
+<nav>
+  <a [routerLinkActive]="'activated activated-color'" routerLink="crisis-center">Crisis Center</a>
+  &nbsp;
+  <a [routerLinkActive]="'activated activated-color'" routerLink="heroes">Heroes</a>
+</nav>
+<router-outlet></router-outlet>
 <div class="bottom-right">
   <nav>
     <a routerLink="/choose">Back to choice</a>
