@@ -3,17 +3,17 @@ import { CommonModule } from '@angular/common';
 import { CrisisCenterComponent } from './crisis-center.component';
 import { CrisisRoutingModule } from './crisis-routing.module';
 import { CrisisListComponent } from './crisis-list/crisis-list.component';
-import { HeroListComponent } from './hero-list/hero-list.component';
+import { HeroesModule } from './heroes/heroes.module';
 
 @NgModule({
-  declarations: [
-    CrisisCenterComponent,
-    CrisisListComponent,
-    HeroListComponent
-  ],
   imports: [
     CommonModule,
-    CrisisRoutingModule
+    CrisisRoutingModule,
+    HeroesModule
+  ],
+  declarations: [
+    CrisisCenterComponent,
+    CrisisListComponent
   ]
 })
 export class CrisisModule {
