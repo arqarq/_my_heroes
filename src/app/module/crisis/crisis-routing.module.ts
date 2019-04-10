@@ -5,6 +5,11 @@ import { CrisisListComponent } from './crisis-list/crisis-list.component';
 
 const ROUTES: Routes = [
   {
+    path: 'heroes',
+    redirectTo: 'heroess',
+    pathMatch: 'prefix' // domyślne
+  },
+  {
     path: '',
     component: CrisisCenterComponent,
     pathMatch: 'prefix',

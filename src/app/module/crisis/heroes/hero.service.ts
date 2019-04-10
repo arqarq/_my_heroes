@@ -41,7 +41,7 @@ export class HeroService {
       );
   }
 
-  getHero(id: number): Observable<Hero> {
+  getHero(id: number | string): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.get<Hero>(url)
       .pipe(

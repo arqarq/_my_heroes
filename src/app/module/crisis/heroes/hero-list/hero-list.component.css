@@ -72,3 +72,12 @@ button.delete {
   background-color: gray !important;
   color: white;
 }
+
+.heroes li.selected {
+  background-color: #bdbfdc;
+  color: white;
+}
+
+.heroes li.selected:hover {
+  background-color: #a9a0dc;
+}

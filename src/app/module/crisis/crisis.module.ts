@@ -8,8 +8,8 @@ import { HeroesModule } from './heroes/heroes.module';
 @NgModule({
   imports: [
     CommonModule,
-    CrisisRoutingModule,
-    HeroesModule
+    HeroesModule,
+    CrisisRoutingModule
   ],
   declarations: [
     CrisisCenterComponent,
