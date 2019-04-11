@@ -46,8 +46,8 @@ export class HeroListComponent implements OnInit, OnDestroy {
     this.subscription = this.route.paramMap
       .pipe(switchMap(params => { // trzeba użyć zasubskrybować zmienną Observable, aby wykonało lambdę
         this.selectedId = +params.get('id');
-        console.log(this.selectedId);
-        setTimeout(() => console.log('time'), 50);
+        // console.log(this.selectedId);
+        // setTimeout(() => console.log('time'), 50);
         this.subscription = this.heroService.getHeroes()
           .subscribe(heroTable => {
             this.heroes = heroTable;

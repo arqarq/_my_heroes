@@ -4,7 +4,9 @@
   &nbsp;
   <a [routerLinkActive]="'activated activated-color'" routerLink="heroes">Heroes</a>
 </nav>
-<router-outlet></router-outlet>
+<div [@routeAnimation]="getAnimationData(routerOutlet)">
+  <router-outlet #routerOutlet="outlet"></router-outlet>
+</div>
 <app-messages-crisis></app-messages-crisis>
 <div class="bottom-right">
   <nav>

@@ -23,9 +23,9 @@ import { HeroSearchComponent } from '../../component/hero-search/hero-search.com
       {dataEncapsulation: false}
     )
   ],
-  exports: [
-    MessagesComponent
-  ],
+  // exports: [
+  //   MessagesComponent
+  // ],
   declarations: [
     AppComponent,
     HeroesComponent,
