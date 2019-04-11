@@ -14,6 +14,7 @@ export class HeroListComponent implements OnInit {
   heroes: Hero[];
   heroes$: Observable<Hero[]>;
   selectedId: number;
+  qty: number;
 
   constructor(
     private heroService: HeroService,
@@ -24,7 +25,10 @@ export class HeroListComponent implements OnInit {
   getHeroes(): void {
     this.heroService
       .getHeroes()
-      .subscribe(heroeS => this.heroes = heroeS);
+      .subscribe(heroeS => {
+        this.heroes = heroeS;
+        this.qty = this.heroes.length;
+      });
   }
 
   add(name: string): void {
@@ -35,20 +39,22 @@ export class HeroListComponent implements OnInit {
     this.heroService.addHero({name} as Hero)
       .subscribe(heroO => {
         this.heroes.push(heroO);
+        this.qty = this.heroes.length;
       });
   }
 
   delete(hero: Hero): void {
     this.heroes = this.heroes.filter(h => h !== hero);
+    this.qty = this.heroes.length;
     this.heroService.deleteHero(hero).subscribe();
   }
 
   ngOnInit() {
-    this.getHeroes();
-    this.heroes$ = this.route.paramMap.pipe(
+    this.heroes$ = this.route.paramMap.pipe( // trzeba użyć w komponencie zmiennej z Observable, aby tu weszło
       switchMap(params => {
         this.selectedId = +params.get('id');
         return this.heroService.getHeroes();
       }));
+    this.getHeroes();
   }
 }
