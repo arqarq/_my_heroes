@@ -9,7 +9,9 @@ import { Title } from '@angular/platform-browser';
 export class CrisisCenterComponent implements OnInit {
   title = 'Crisis Center';
 
-  constructor(private titleService: Title) {
+  constructor(
+    private titleService: Title
+  ) {
   }
 
   ngOnInit() {

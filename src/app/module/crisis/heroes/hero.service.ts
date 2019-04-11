@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Hero } from './hero';
 import { Observable, of } from 'rxjs';
-import { MessageService } from '../message.service';
+import { MessageService2 } from '../service/message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
@@ -16,7 +16,7 @@ export class HeroService {
   private heroesUrl = 'api/HEROES';
 
   constructor(private http: HttpClient,
-              private messageService: MessageService) {
+              private messageService: MessageService2) {
   }
 
   getHeroes(): Observable<Hero[]> {

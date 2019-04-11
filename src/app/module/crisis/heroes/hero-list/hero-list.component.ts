@@ -1,20 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-hero-list',
   templateUrl: './hero-list.component.html',
   styleUrls: ['./hero-list.component.css']
 })
-export class HeroListComponent implements OnInit {
-  heroes: Hero[];
-  heroes$: Observable<Hero[]>;
-  selectedId: number;
-  qty: number;
+export class HeroListComponent implements OnInit, OnDestroy {
+  private heroes: Hero[];
+  private selectedId: number;
+  private qty: number;
+  private subscription: Subscription;
 
   constructor(
     private heroService: HeroService,
@@ -22,45 +22,42 @@ export class HeroListComponent implements OnInit {
   ) {
   }
 
-  getHeroes(): void {
-    this.heroService
-      .getHeroes()
-      .subscribe(heroeS => {
-        this.heroes = heroeS;
-        this.qty = this.heroes.length;
-      });
-  }
-
   add(name: string): void {
     name = name.trim();
     if (!name) {
       return;
     }
-    this.heroService.addHero({name} as Hero)
-      .subscribe(heroO => {
-        this.heroes.push(heroO);
-        this.qty = this.heroes.length;
+    this.subscription = this.heroService.addHero({name} as Hero)
+      .subscribe((oneHero) => {
+        this.heroes.push(oneHero);
+        this.qty++;
       });
   }
 
   delete(hero: Hero): void {
     this.heroes = this.heroes.filter(h => h !== hero);
-    this.qty = this.heroes.length;
-    this.heroService.deleteHero(hero).subscribe();
+    this.subscription = this.heroService.deleteHero(hero).subscribe(
+      () => {
+        this.qty--;
+      });
   }
 
   ngOnInit() {
-    this.heroes$ = this.route.paramMap
-      .pipe(switchMap((params) => { // trzeba użyć zmiennej Observable, aby wykonało lambdę
+    this.subscription = this.route.paramMap
+      .pipe(switchMap(params => { // trzeba użyć zasubskrybować zmienną Observable, aby wykonało lambdę
         this.selectedId = +params.get('id');
         console.log(this.selectedId);
-        setTimeout(() => {
-          console.log('time');
-        }, 200);
-        return this.heroService.getHeroes();
-      }));
-    this.heroes$.subscribe(heroTab => {
-      this.heroes = heroTab;
-    });
+        setTimeout(() => console.log('time'), 50);
+        this.subscription = this.heroService.getHeroes()
+          .subscribe(heroTable => {
+            this.heroes = heroTable;
+            this.qty = heroTable.length;
+          });
+        return new Observable<any>();
+      })).subscribe();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

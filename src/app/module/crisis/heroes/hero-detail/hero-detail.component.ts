@@ -27,7 +27,10 @@ export class HeroDetailComponent implements OnInit {
   }
 
   goToHeroesList(heroId: string) {
-    this.router.navigate(['../../heroess', {id: heroId, foo: 'fighters'}], {relativeTo: this.route});
+    this.router.navigate(
+      ['../../heroess', {id: heroId, foo: 'fighters'}],
+      {relativeTo: this.route}
+    );
   }
 
   save(hero: Hero): void {
