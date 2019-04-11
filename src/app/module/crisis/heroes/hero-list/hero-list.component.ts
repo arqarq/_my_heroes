@@ -50,9 +50,13 @@ export class HeroListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.heroes$ = this.route.paramMap.pipe( // trzeba użyć w komponencie zmiennej z Observable, aby tu weszło
-      switchMap(params => {
+    this.heroes$ = this.route.paramMap
+      .pipe(switchMap((params) => { // trzeba użyć w komponencie zmiennej z Observable, aby tu weszło
         this.selectedId = +params.get('id');
+        console.log(this.selectedId);
+        setTimeout(() => {
+          console.log('time');
+        }, 200);
         return this.heroService.getHeroes();
       }));
     this.getHeroes();
