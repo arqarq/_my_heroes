@@ -6,9 +6,6 @@ import { HeroesComponent } from '../../component/heroes/heroes.component';
 import { HeroDetailComponent } from '../../component/hero-detail/hero-detail.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from '../../component/dashboard/dashboard.component';
-import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from '../../service/in-memory-data.service';
 import { HeroSearchComponent } from '../../component/hero-search/hero-search.component';
 import { MessagesModule } from '../../gen_modules/messages/messages.module';
 
@@ -17,12 +14,7 @@ import { MessagesModule } from '../../gen_modules/messages/messages.module';
     CommonModule,
     FormsModule,
     AppRoutingModule,
-    MessagesModule,
-    HttpClientModule,        // TODO out, to distinct module
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService,
-      {dataEncapsulation: false}
-    )
+    MessagesModule
   ],
   declarations: [
     AppComponent,
