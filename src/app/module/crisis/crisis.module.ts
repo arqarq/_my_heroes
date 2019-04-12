@@ -9,9 +9,9 @@ import { MessagesModule } from '../../gen_modules/messages/messages.module';
 @NgModule({
   imports: [
     CommonModule,
-    MessagesModule,
     HeroesModule,
-    CrisisRoutingModule
+    CrisisRoutingModule,
+    MessagesModule
   ],
   declarations: [
     CrisisCenterComponent,

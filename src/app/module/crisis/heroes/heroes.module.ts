@@ -10,8 +10,8 @@ import { MessagesModule } from '../../../gen_modules/messages/messages.module';
   imports: [
     CommonModule,
     FormsModule,
-    MessagesModule,
-    HeroesRoutingModule
+    HeroesRoutingModule,
+    MessagesModule
   ],
   declarations: [
     HeroListComponent,

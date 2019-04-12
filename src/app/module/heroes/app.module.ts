@@ -18,7 +18,7 @@ import { MessagesModule } from '../../gen_modules/messages/messages.module';
     FormsModule,
     AppRoutingModule,
     MessagesModule,
-    HttpClientModule,
+    HttpClientModule,        // TODO out, to distinct module
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService,
       {dataEncapsulation: false}
