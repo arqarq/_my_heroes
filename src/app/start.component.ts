@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { slideInAnimation } from './animations';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-start',
@@ -9,5 +10,9 @@ import { slideInAnimation } from './animations';
 })
 export class StartComponent {
   constructor() {
+  }
+
+  getAnimationData(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData[`animation`];
   }
 }

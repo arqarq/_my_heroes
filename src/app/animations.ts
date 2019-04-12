@@ -2,8 +2,8 @@ import { animate, animateChild, group, query, style, transition, trigger } from 
 
 // Routable animations
 export const slideInAnimation =
-  trigger('routeAnimation', [
-    transition('heroesq <=> heroq', [
+  trigger('routeAnimationn', [
+    transition('heroesq => heroq', [
       style({position: 'relative'}),
       query(':enter, :leave', [
         style({
@@ -14,15 +14,39 @@ export const slideInAnimation =
         })
       ]),
       query(':enter', [
-        style({left: '-100%'})
+        style({left: '50%'})
       ]),
       query(':leave', animateChild()),
       group([
         query(':leave', [
-          animate('300ms ease-out', style({left: '100%'}))
+          animate('500ms ease-out', style({left: '-50%'}))
         ]),
         query(':enter', [
-          animate('300ms ease-out', style({left: '0%'}))
+          animate('500ms ease-out', style({left: '0%'}))
+        ])
+      ]),
+      query(':enter', animateChild())
+    ]),
+    transition('heroq => heroesq', [
+      style({position: 'relative'}),
+      query(':enter, :leave', [
+        style({
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%'
+        })
+      ]),
+      query(':enter', [
+        style({left: '-50%'})
+      ]),
+      query(':leave', animateChild()),
+      group([
+        query(':leave', [
+          animate('500ms ease-out', style({left: '50%'}))
+        ]),
+        query(':enter', [
+          animate('500ms ease-out', style({left: '0%'}))
         ])
       ]),
       query(':enter', animateChild())
