@@ -8,8 +8,8 @@ export const slideInAnimation =
       query(':enter, :leave', [
         style({
           position: 'absolute',
-          top: 0,
-          left: 0,
+          top: '-20px',
+          left: '0',
           width: '100%'
         })
       ]),
@@ -32,7 +32,7 @@ export const slideInAnimation =
       query(':enter, :leave', [
         style({
           position: 'absolute',
-          top: 0,
+          top: '-20px',
           left: 0,
           width: '100%'
         })
