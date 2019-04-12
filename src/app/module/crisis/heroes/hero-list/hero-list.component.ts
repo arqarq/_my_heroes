@@ -44,7 +44,7 @@ export class HeroListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription = this.route.paramMap
-      .pipe(switchMap(params => { // trzeba użyć zasubskrybować zmienną Observable, aby wykonało lambdę
+      .pipe(switchMap(params => {
         this.selectedId = +params.get('id');
         // console.log(this.selectedId);
         // setTimeout(() => console.log('time'), 50);
@@ -54,7 +54,7 @@ export class HeroListComponent implements OnInit, OnDestroy {
             this.qty = heroTable.length;
           });
         return new Observable<any>();
-      })).subscribe();
+      })).subscribe(); // trzeba zasubskrybować zmienną Observable, aby wykonało lambdy
   }
 
   ngOnDestroy() {
