@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero } from '../hero';
+import { Hero } from '../../../../model/hero';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { HeroService } from '../hero.service';
+import { HeroService } from '../../../../service/hero.service';
 import { Location } from '@angular/common';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./hero-detail.component.css']
 })
 export class HeroDetailComponent implements OnInit {
-  private hero$: Observable<Hero>;
+  hero$: Observable<Hero>;
 
   constructor(
     private route: ActivatedRoute,

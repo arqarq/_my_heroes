@@ -13,20 +13,21 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class HeroService {
-  // hero: Hero = new Hero();
   private heroesUrl = 'api/HEROES';
+  // hero: Hero = new Hero();
   // hero2: Hero = new Hero();
   // heroTab: Hero[];
 
-  constructor(private http: HttpClient,
-              private messageService: MessageService) {
+  constructor(
+    private http: HttpClient,
+    private messageService: MessageService
     // this.hero.id = 0;
     // this.hero2.id = 55;
     // this.hero.name = 'empty Hero';
     // this.hero2.name = 'zzzzzzzz';
     // this.heroTab.push(this.hero, this.hero2);
     // this.heroTab.push(this.hero);
-
+  ) {
   }
 
   // getHeroes(): Hero[] {
@@ -62,7 +63,7 @@ export class HeroService {
   //   return of(HEROES.find(hero => hero.id === id));
   // }
 
-  getHero(id: number): Observable<Hero> {
+  getHero(id: number | string): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.get<Hero>(url)
       .pipe(

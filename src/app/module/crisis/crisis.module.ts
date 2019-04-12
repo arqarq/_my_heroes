@@ -4,18 +4,18 @@ import { CrisisCenterComponent } from './crisis-center.component';
 import { CrisisRoutingModule } from './crisis-routing.module';
 import { CrisisListComponent } from './crisis-list/crisis-list.component';
 import { HeroesModule } from './heroes/heroes.module';
-import { MessagesComponent } from './service/component/messages.component';
+import { MessagesModule } from '../../gen_modules/messages/messages.module';
 
 @NgModule({
   imports: [
     CommonModule,
+    MessagesModule,
     HeroesModule,
     CrisisRoutingModule
   ],
   declarations: [
     CrisisCenterComponent,
-    CrisisListComponent,
-    MessagesComponent
+    CrisisListComponent
   ]
 })
 export class CrisisModule {

@@ -7,7 +7,9 @@ import { MessageService } from '../../service/message.service';
   styleUrls: ['./messages.component.css']
 })
 export class MessagesComponent {
-  // constructor(public messageService: MessageService) {
-  constructor(private messageService: MessageService) {
+  constructor(
+    public messageService: MessageService
+    // private messageService: MessageService // nie dla --aot
+  ) {
   }
 }

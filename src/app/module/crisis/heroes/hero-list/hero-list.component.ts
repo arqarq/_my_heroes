@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Hero } from '../hero';
-import { HeroService } from '../hero.service';
+import { Hero } from '../../../../model/hero';
+import { HeroService } from '../../../../service/hero.service';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
@@ -11,9 +11,9 @@ import { Observable, Subscription } from 'rxjs';
   styleUrls: ['./hero-list.component.css']
 })
 export class HeroListComponent implements OnInit, OnDestroy {
-  private heroes: Hero[];
+  heroes: Hero[]; // --aot
+  qty: number; // --aot
   private selectedId: number;
-  private qty: number;
   private subscription: Subscription;
 
   constructor(
