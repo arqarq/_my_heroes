@@ -1,4 +1,5 @@
 <h2>CRISIS CENTER</h2>
+<router-outlet></router-outlet>
 <div>
   <label>Crisis name:
     <input #crisisName/>
@@ -8,7 +9,7 @@
   </button>
 </div>
 <ul class="crises">
-  <li *ngFor="let crisis of crises"
+  <li *ngFor="let crisis of crises$"
       [class.selected]="crisis.id === selectedId">
     <a [routerLink]="['../crisis', crisis.id]">
       <span class="badge">{{crisis.id}}</span> {{crisis.name}}

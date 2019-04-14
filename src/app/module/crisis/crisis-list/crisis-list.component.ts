@@ -11,7 +11,7 @@ import { CrisisService } from '../../../service/crisis.service';
   styleUrls: ['./crisis-list.component.css']
 })
 export class CrisisListComponent implements OnInit, OnDestroy {
-  crises: Crisis[]; // --aot
+  crises$: Crisis[]; // --aot
   qty: number; // --aot
   private selectedId: number;
   private subscription: Subscription;
@@ -29,13 +29,13 @@ export class CrisisListComponent implements OnInit, OnDestroy {
     }
     this.subscription = this.crisisService.addHero({name} as Crisis)
       .subscribe((oneHero) => {
-        this.crises.push(oneHero);
+        this.crises$.push(oneHero);
         this.qty++;
       });
   }
 
   delete(crisis: Crisis): void {
-    this.crises = this.crises.filter(h => h !== crisis);
+    this.crises$ = this.crises$.filter(h => h !== crisis);
     this.subscription = this.crisisService.deleteHero(crisis).subscribe(
       () => {
         this.qty--;
@@ -50,7 +50,7 @@ export class CrisisListComponent implements OnInit, OnDestroy {
         // setTimeout(() => console.log('time'), 50);
         this.subscription = this.crisisService.getHeroes()
           .subscribe(heroTable => {
-            this.crises = heroTable;
+            this.crises$ = heroTable;
             this.qty = heroTable.length;
           });
         return new Observable<any>();

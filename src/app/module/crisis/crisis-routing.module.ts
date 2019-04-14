@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CrisisCenterComponent } from './crisis-center.component';
+import { CrisisCenterComponent } from './crisis-center/crisis-center.component';
 import { RouterModule, Routes } from '@angular/router';
 import { CrisisListComponent } from './crisis-list/crisis-list.component';
 
