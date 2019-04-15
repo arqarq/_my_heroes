@@ -1,5 +1,4 @@
 <h2>CRISIS CENTER</h2>
-<router-outlet></router-outlet>
 <div>
   <label>Crisis name:
     <input #crisisName/>
@@ -11,8 +10,9 @@
 <ul class="crises">
   <li *ngFor="let crisis of crises$"
       [class.selected]="crisis.id === selectedId">
-    <a [routerLink]="['../crisis', crisis.id]">
-      <span class="badge">{{crisis.id}}</span> {{crisis.name}}
+    <a (click)="navigate(crisis.id)">
+      <!--    <a [routerLink]="[crisis.id]">-->
+      <span class="badge">{{ crisis.id }}</span> {{crisis.name}}
     </a>
     <button (click)="delete(crisis)" class="delete"
             title="delete hero"><strong>x</strong>
@@ -22,3 +22,4 @@
 <div>
   ilość: {{qty}}
 </div>
+<router-outlet></router-outlet>

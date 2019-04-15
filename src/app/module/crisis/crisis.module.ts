@@ -8,20 +8,22 @@ import { MessagesModule } from '../../gen_modules/messages/messages.module';
 import { CrisisCenterHomeComponent } from './crisis-center-home/crisis-center-home.component';
 import { CrisisDetailComponent } from './crisis-detail/crisis-detail.component';
 import { FormsModule } from '@angular/forms';
+import { ComposeMessageComponent } from './compose-message/compose-message.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    MessagesModule,
     HeroesModule,
-    CrisisRoutingModule,
-    MessagesModule
+    CrisisRoutingModule
   ],
   declarations: [
     CrisisCenterComponent,
     CrisisListComponent,
     CrisisCenterHomeComponent,
-    CrisisDetailComponent
+    CrisisDetailComponent,
+    ComposeMessageComponent
   ]
 })
 export class CrisisModule {

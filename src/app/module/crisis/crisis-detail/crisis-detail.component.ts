@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Crisis } from '../../../model/crisis';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CrisisService } from '../../../service/crisis.service';
 
 @Component({
   selector: 'app-crisis-detail',
@@ -9,11 +10,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CrisisDetailComponent implements OnInit {
   crisis: Crisis;
-  editName: string;
+  private editName: string;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private crisisService: CrisisService
   ) {
   }
 
@@ -39,10 +41,15 @@ export class CrisisDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.data
-      .subscribe((data: { crisis: Crisis }) => {
-        this.editName = data.crisis.name;
-        this.crisis = data.crisis;
-      });
+    const id = this.route.snapshot.paramMap.get('id');
+    this.crisisService.getHero(+id).subscribe(crisis => {
+      this.crisis = crisis;
+      this.editName = crisis.name;
+    });
+    // this.route.data
+    //   .subscribe((data: { crisis: Crisis }) => {
+    //     this.editName = data.crisis.name;
+    //     this.crisis = data.crisis;
+    //   });
   }
 }

@@ -5,7 +5,7 @@ import { HeroListComponent } from './hero-list/hero-list.component';
 
 const heroesRoutes: Routes = [
   {
-    path: 'heroess',
+    path: 'superheroes',
     component: HeroListComponent,
     data: {
       animation: 'heroesq'

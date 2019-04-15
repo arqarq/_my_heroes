@@ -13,8 +13,8 @@ import { MessagesModule } from '../../gen_modules/messages/messages.module';
   imports: [
     CommonModule,
     FormsModule,
-    AppRoutingModule,
-    MessagesModule
+    MessagesModule,
+    AppRoutingModule
   ],
   declarations: [
     AppComponent,

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Crisis } from '../../../model/crisis';
 import { Observable, Subscription } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { CrisisService } from '../../../service/crisis.service';
 
@@ -18,7 +18,8 @@ export class CrisisListComponent implements OnInit, OnDestroy {
 
   constructor(
     private crisisService: CrisisService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
   }
 
@@ -35,11 +36,22 @@ export class CrisisListComponent implements OnInit, OnDestroy {
   }
 
   delete(crisis: Crisis): void {
-    this.crises$ = this.crises$.filter(h => h !== crisis);
-    this.subscription = this.crisisService.deleteHero(crisis).subscribe(
-      () => {
-        this.qty--;
-      });
+    if (crisis.id !== this.selectedId) {
+      this.crises$ = this.crises$.filter(h => h !== crisis);
+      this.subscription = this.crisisService.deleteHero(crisis).subscribe(
+        () => {
+          this.qty--;
+        });
+    }
+  }
+
+  navigate(id) {
+    if (this.router.navigate(
+      ['./', id],
+      {relativeTo: this.route}
+    )) {
+      this.selectedId = id;
+    }
   }
 
   ngOnInit() {

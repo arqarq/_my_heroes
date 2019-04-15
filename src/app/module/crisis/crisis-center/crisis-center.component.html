@@ -3,9 +3,12 @@
   <a [routerLinkActive]="'activated activated-color'" routerLink="crisis-center">Crisis Center</a>
   &nbsp;
   <a [routerLinkActive]="'activated activated-color'" routerLink="heroes">Heroes</a>
+  &nbsp;
+  <a [routerLink]="[{ outlets: { popup: ['compose'] } }]">Contact</a>
 </nav>
 <router-outlet></router-outlet>
 <app-messages></app-messages>
+<router-outlet name="popup"></router-outlet>
 <div class="bottom-right">
   <nav>
     <a routerLink="/choose">Back to choice</a>
