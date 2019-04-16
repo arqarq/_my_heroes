@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero } from '../../model/hero';
+import { Hero, HERO_NOUN } from '../../model/hero';
 import { Observable, Subject } from 'rxjs';
 import { HeroService } from '../../service/hero.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
@@ -14,6 +14,8 @@ export class HeroSearchComponent implements OnInit {
   private searchTerms = new Subject<string>();
 
   constructor(private heroService: HeroService) {
+    this.heroService.singular(HERO_NOUN.singular);
+    this.heroService.plural(HERO_NOUN.plural);
   }
 
   search(term: string): void {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero } from '../../model/hero';
+import { Hero, HERO_NOUN } from '../../model/hero';
 import { HeroService } from '../../service/hero.service';
 
 @Component({
@@ -11,6 +11,8 @@ export class DashboardComponent implements OnInit {
   heroes: Hero[] = [];
 
   constructor(private heroService: HeroService) {
+    this.heroService.singular(HERO_NOUN.singular);
+    this.heroService.plural(HERO_NOUN.plural);
   }
 
   getHeroes(): void {

@@ -13,10 +13,9 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class HeroService {
-  private heroesUrl = 'api/HEROES';
-  // hero: Hero = new Hero();
-  // hero2: Hero = new Hero();
-  // heroTab: Hero[];
+  private s: string;
+  private p: string;
+  private heroesUrl: string;
 
   constructor(
     private http: HttpClient,
@@ -29,6 +28,20 @@ export class HeroService {
     // this.heroTab.push(this.hero);
   ) {
   }
+
+  singular(value: string) {
+    this.s = value;
+  }
+
+  plural(value: string) {
+    this.p = value;
+    this.heroesUrl = `api/${value.toUpperCase()}`;
+  }
+
+  // private heroesUrl = 'api/HEROES';
+  // hero: Hero = new Hero();
+  // hero2: Hero = new Hero();
+  // heroTab: Hero[];
 
   // getHeroes(): Hero[] {
   getHeroes(): Observable<Hero[]> {

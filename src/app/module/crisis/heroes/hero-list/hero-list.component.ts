@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Hero } from '../../../../model/hero';
+import { Hero, HERO_NOUN } from '../../../../model/hero';
 import { HeroService } from '../../../../service/hero.service';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
@@ -20,6 +20,8 @@ export class HeroListComponent implements OnInit, OnDestroy {
     private heroService: HeroService,
     private route: ActivatedRoute
   ) {
+    this.heroService.singular(HERO_NOUN.singular);
+    this.heroService.plural(HERO_NOUN.plural);
   }
 
   add(name: string): void {
