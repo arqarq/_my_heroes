@@ -35,7 +35,7 @@ export class CrisisDetailComponent implements OnInit {
     // Add a totally useless `foo` parameter for kicks.
     // Relative navigation back to the crises
     this.router.navigate(
-      ['../', {id: crisisId, foo: 'foo'}],
+      ['../', {id: crisisId, foo: 'fighters'}],
       {relativeTo: this.route}
     );
   }

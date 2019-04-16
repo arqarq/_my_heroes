@@ -1,12 +1,16 @@
 <h1>Angular Router</h1>
 <nav>
-  <a [routerLinkActive]="'activated activated-color'" routerLink="crisis-center">Crisis Center</a>
+  <a [routerLinkActiveOptions]="{exact: true}"
+     [routerLinkActive]="'activated activated-color'"
+     routerLink="./">Crisis Center</a>
   &nbsp;
-  <a [routerLinkActive]="'activated activated-color'" routerLink="heroes">Heroes</a>
+  <a [routerLinkActive]="'activated activated-color'" routerLink="superheroes">Heroes</a>
   &nbsp;
   <a [routerLink]="[{ outlets: { popup: ['compose'] } }]">Contact</a>
 </nav>
-<router-outlet></router-outlet>
+<div [@routeAnimationn]="getAnimationData(routerOutlett)">
+  <router-outlet #routerOutlett="outlet"></router-outlet>
+</div>
 <app-messages></app-messages>
 <router-outlet name="popup"></router-outlet>
 <div class="bottom-right">

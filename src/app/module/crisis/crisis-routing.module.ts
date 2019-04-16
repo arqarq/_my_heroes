@@ -13,12 +13,15 @@ const ROUTES: Routes = [
     outlet: 'popup'
   },
   {
-    path: '',
+    path: 'crisis-center',
     component: CrisisCenterComponent,
-    pathMatch: 'prefix',
     children: [
       {
-        path: 'crisis-center',
+        path: 'superheroes',
+        loadChildren: './heroes/heroes.module#HeroesModule'
+      },
+      {
+        path: '',
         component: CrisisListComponent,
         children: [
           {
@@ -30,13 +33,13 @@ const ROUTES: Routes = [
             component: CrisisCenterHomeComponent
           }
         ]
-      },
-      {
-        path: 'heroes',
-        redirectTo: 'superheroes',
-        pathMatch: 'prefix' // domyślne
       }
     ]
+  },
+  {
+    path: '',
+    redirectTo: 'crisis-center',
+    pathMatch: 'full'
   }
 ];
 

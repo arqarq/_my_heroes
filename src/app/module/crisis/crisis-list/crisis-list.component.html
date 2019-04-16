@@ -12,7 +12,7 @@
       [class.selected]="crisis.id === selectedId">
     <a (click)="navigate(crisis.id)">
       <!--    <a [routerLink]="[crisis.id]">-->
-      <span class="badge">{{ crisis.id }}</span> {{crisis.name}}
+      <span class="badge">{{ crisis.id }}</span> {{ crisis.name }}
     </a>
     <button (click)="delete(crisis)" class="delete"
             title="delete hero"><strong>x</strong>
