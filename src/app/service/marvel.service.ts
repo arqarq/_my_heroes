@@ -12,10 +12,12 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class HeroService {
-  private s: string;
-  private p: string;
-  private heroesUrl: string;
+export class MarvelService {
+  private s = 'item';
+  private p = 'items';
+  private S = 'Item';
+  private P = 'Items';
+  private heroesUrl = 'api/';
 
   constructor(
     private http: HttpClient,
@@ -29,14 +31,21 @@ export class HeroService {
   ) {
   }
 
-  singular(value: string) {
-    this.s = value;
+  setNouns(value: {[key: string]: string}) {
+    if (value.singular.length > 0) {
+      this.s = value.singular;
+      this.S = this.s.charAt(0).toUpperCase() + ((this.s.length > 1) ? this.s.slice(1) : this.s.charAt(1));
+    }
+    if (value.plural.length > 0) {
+      this.p = value.plural;
+      this.P = this.p.charAt(0).toUpperCase() + ((this.p.length > 1) ? this.p.slice(1) : this.p.charAt(1));
+    }
+    this.heroesUrl = `api/${this.p.toUpperCase()}`;
   }
 
-  plural(value: string) {
-    this.p = value;
-    this.heroesUrl = `api/${value.toUpperCase()}`;
-  }
+  // plural(value: string) {
+  //   this.p = value;
+  // }
 
   // private heroesUrl = 'api/HEROES';
   // hero: Hero = new Hero();
@@ -50,7 +59,7 @@ export class HeroService {
     // return of(HEROES);
     return this.http.get<Hero[]>(this.heroesUrl)
       .pipe(
-        tap(() => this.log('fetched heroes (tap)')),
+        tap(() => this.log('fetched ' + this.p + ' (tap)')),
         catchError(this.handleError<Hero[]>('getHeroes', []))
       );
   }
@@ -63,7 +72,7 @@ export class HeroService {
         map(heroes => heroes[0]),
         tap(h => {
           const outcome = h ? `fetched` : `did not find`;
-          this.log(`${outcome} hero id=${id}`);
+          this.log(`${outcome} ${this.s} id=${id}`);
         }),
         catchError(this.handleError<Hero>(`getHeroNo404 id=${id}`))
       );
@@ -80,7 +89,7 @@ export class HeroService {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.get<Hero>(url)
       .pipe(
-        tap(() => this.log(`fetched hero (tap) id=${id}`)),
+        tap(() => this.log(`fetched ${this.s} (tap) id=${id}`)),
         catchError(this.handleError<Hero>(`getHero id=${id}`/*, this.hero*/))
       );
   }
@@ -88,7 +97,7 @@ export class HeroService {
   updateHero(hero: Hero): Observable<any> {
     return this.http.put(this.heroesUrl, hero, httpOptions)
       .pipe(
-        tap(() => this.log(`updated hero (tap) id=${hero.id}`)),
+        tap(() => this.log(`updated ${this.s} (tap) id=${hero.id}`)),
         catchError(this.handleError<any>('updateHero'))
       );
   }
@@ -96,7 +105,7 @@ export class HeroService {
   addHero(hero: Hero): Observable<Hero> {
     return this.http.post<Hero>(this.heroesUrl, hero, httpOptions)
       .pipe(
-        tap((newHero: Hero) => this.log(`added hero (tap) /w id=${newHero.id}`)),
+        tap((newHero: Hero) => this.log(`added ${this.s} (tap) /w id=${newHero.id}`)),
         catchError(this.handleError<Hero>('addHero'))
       );
   }
@@ -106,7 +115,7 @@ export class HeroService {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.delete<Hero>(url, httpOptions)
       .pipe(
-        tap(() => this.log(`deleted hero (tap) id=${id}`)),
+        tap(() => this.log(`deleted ${this.s} (tap) id=${id}`)),
         catchError(this.handleError<Hero>('deleteHero'))
       );
   }
@@ -117,13 +126,13 @@ export class HeroService {
     }
     return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`)
       .pipe(
-        tap(() => this.log(`found (tap) heroes matching "${term}"`)),
+        tap(() => this.log(`found (tap) ${this.p} matching "${term}"`)),
         catchError(this.handleError<Hero[]>('searchHeroes', []))
       );
   }
 
   private log(message: string) {
-    this.messageService.add(`HeroService: ${message}`);
+    this.messageService.add(`${this.S}Service: ${message}`);
   }
 
   private handleError<T>(operation: string = 'operation', result?: T) {

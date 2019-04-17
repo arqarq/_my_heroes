@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Hero, HERO_NOUN } from '../../../../model/hero';
-import { HeroService } from '../../../../service/hero.service';
+import { MarvelService } from '../../../../service/marvel.service';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
@@ -17,11 +17,10 @@ export class HeroListComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
 
   constructor(
-    private heroService: HeroService,
+    private heroService: MarvelService,
     private route: ActivatedRoute
   ) {
-    this.heroService.singular(HERO_NOUN.singular);
-    this.heroService.plural(HERO_NOUN.plural);
+    this.heroService.setNouns(HERO_NOUN);
   }
 
   add(name: string): void {

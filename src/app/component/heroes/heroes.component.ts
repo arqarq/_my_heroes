@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero, HERO_NOUN } from '../../model/hero';
-import { HeroService } from '../../service/hero.service';
+import { MarvelService } from '../../service/marvel.service';
 
 @Component({
   styles: [],
@@ -18,9 +18,8 @@ export class HeroesComponent implements OnInit {
   // heroes = HEROES;
   heroes: Hero[];
 
-  constructor(private heroService: HeroService) {
-    this.heroService.singular(HERO_NOUN.singular);
-    this.heroService.plural(HERO_NOUN.plural);
+  constructor(private heroService: MarvelService) {
+    this.heroService.setNouns(HERO_NOUN);
   }
 
   getHeroes(): void {

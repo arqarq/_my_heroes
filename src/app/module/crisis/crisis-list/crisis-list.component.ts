@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Crisis } from '../../../model/crisis';
+import { Crisis, CRISIS_NOUN } from '../../../model/crisis';
 import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import { CrisisService } from '../../../service/crisis.service';
+import { MarvelService } from '../../../service/marvel.service';
 
 @Component({
   selector: 'app-crisis-list',
@@ -17,10 +17,11 @@ export class CrisisListComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
 
   constructor(
-    private crisisService: CrisisService,
+    private crisisService: MarvelService,
     private route: ActivatedRoute,
     private router: Router
   ) {
+    this.crisisService.setNouns(CRISIS_NOUN);
   }
 
   add(name: string): void {

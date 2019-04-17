@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Hero, HERO_NOUN } from '../../model/hero';
 import { ActivatedRoute } from '@angular/router';
-import { HeroService } from '../../service/hero.service';
+import { MarvelService } from '../../service/marvel.service';
 import { Location } from '@angular/common';
 
 @Component({
@@ -14,11 +14,10 @@ export class HeroDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private heroService: HeroService,
+    private heroService: MarvelService,
     private location: Location
   ) {
-    this.heroService.singular(HERO_NOUN.singular);
-    this.heroService.plural(HERO_NOUN.plural);
+    this.heroService.setNouns(HERO_NOUN);
   }
 
   getHero(): void {

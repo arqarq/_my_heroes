@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero, HERO_NOUN } from '../../../../model/hero';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { HeroService } from '../../../../service/hero.service';
+import { MarvelService } from '../../../../service/marvel.service';
 import { Location } from '@angular/common';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -17,11 +17,10 @@ export class HeroDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private heroService: HeroService,
+    private heroService: MarvelService,
     private location: Location
   ) {
-    this.heroService.singular(HERO_NOUN.singular);
-    this.heroService.plural(HERO_NOUN.plural);
+    this.heroService.setNouns(HERO_NOUN);
   }
 
   goBack(): void {

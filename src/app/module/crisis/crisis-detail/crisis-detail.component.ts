@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Crisis } from '../../../model/crisis';
+import { Crisis, CRISIS_NOUN } from '../../../model/crisis';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CrisisService } from '../../../service/crisis.service';
+import { MarvelService } from '../../../service/marvel.service';
 
 @Component({
   selector: 'app-crisis-detail',
@@ -15,8 +15,9 @@ export class CrisisDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private crisisService: CrisisService
+    private crisisService: MarvelService
   ) {
+    this.crisisService.setNouns(CRISIS_NOUN);
   }
 
   cancel() {
