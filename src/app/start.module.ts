@@ -11,8 +11,8 @@ import { InMemoryDataService } from './service/in-memory-data.service';
 
 @NgModule({
   imports: [
-    BrowserAnimationsModule,
     // BrowserModule, // not needed!
+    BrowserAnimationsModule,
     StartRoutingModule,
     AppModule, // App2Module nie ma żadnego routera, a jest typu "children", więc psuje jak jest tu umieszczony
     HttpClientModule,

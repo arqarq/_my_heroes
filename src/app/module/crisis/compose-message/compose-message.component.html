@@ -7,7 +7,13 @@
     <label for="note">Message: </label>
   </div>
   <div>
-    <textarea [(ngModel)]="message" [disabled]="sending" cols="35" id="note" rows="10"></textarea>
+    <textarea [(ngModel)]="message"
+              [disabled]="sending"
+              cols="35"
+              id="note"
+              rows="10">
+
+    </textarea>
   </div>
 </div>
 <p *ngIf="!sending">

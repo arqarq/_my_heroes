@@ -43,10 +43,6 @@ export class MarvelService {
     this.heroesUrl = `api/${this.p.toUpperCase()}`;
   }
 
-  // plural(value: string) {
-  //   this.p = value;
-  // }
-
   // private heroesUrl = 'api/HEROES';
   // hero: Hero = new Hero();
   // hero2: Hero = new Hero();

@@ -8,17 +8,17 @@ import { ComposeMessageComponent } from './compose-message/compose-message.compo
 
 const ROUTES: Routes = [
   {
-    path: 'compose',
-    component: ComposeMessageComponent,
-    outlet: 'popup'
-  },
-  {
     path: 'crisis-center',
     component: CrisisCenterComponent,
     children: [
       {
         path: 'superheroes',
         loadChildren: './heroes/heroes.module#HeroesModule'
+      },
+      {
+        path: 'compose',
+        component: ComposeMessageComponent,
+        outlet: 'popup'
       },
       {
         path: '',
