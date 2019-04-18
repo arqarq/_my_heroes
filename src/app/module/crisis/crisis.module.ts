@@ -21,7 +21,7 @@ import { ComposeMessageComponent } from './compose-message/compose-message.compo
     CrisisListComponent,
     CrisisCenterHomeComponent,
     CrisisDetailComponent,
-    ComposeMessageComponent
+    ComposeMessageComponent // użyte w StartModule
   ]
 })
 export class CrisisModule {
