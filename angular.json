@@ -132,5 +132,8 @@
       }
     }
   },
-  "defaultProject": "heroes"
+  "defaultProject": "heroes",
+  "cli": {
+    "packageManager": "yarn"
+  }
 }

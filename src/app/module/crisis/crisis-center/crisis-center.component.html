@@ -6,13 +6,12 @@
   &nbsp;
   <a [routerLinkActive]="'activated activated-color'" routerLink="superheroes">Heroes</a>
   &nbsp;
-  <a [routerLink]="[{outlets: {popup: ['compose']}}]">Contact</a>
+  <a [routerLink]="['', {outlets: {popup: ['compose']}}]">Contact</a>
 </nav>
 <div [@routeAnimationn]="getAnimationData(routerOutlett)">
   <router-outlet #routerOutlett="outlet"></router-outlet>
 </div>
 <app-messages></app-messages>
-<router-outlet name="popup"></router-outlet>
 <div class="bottom-right">
   <nav>
     <a routerLink="/choose">Back to choice</a>

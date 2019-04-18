@@ -8,13 +8,11 @@ import { CrisisCenterHomeComponent } from './crisis-center-home/crisis-center-ho
 import { CrisisDetailComponent } from './crisis-detail/crisis-detail.component';
 import { FormsModule } from '@angular/forms';
 import { ComposeMessageComponent } from './compose-message/compose-message.component';
-import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule,
     MessagesModule,
     CrisisRoutingModule
   ],
@@ -24,8 +22,7 @@ import { RouterModule } from '@angular/router';
     CrisisCenterHomeComponent,
     CrisisDetailComponent,
     ComposeMessageComponent
-  ],
-  providers: [RouterModule]
+  ]
 })
 export class CrisisModule {
 }

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFound404Component } from './component/notfound404/notfound404.component';
 import { ChooserComponent } from './component/chooser/chooser.component';
+import { ComposeMessageComponent } from './module/crisis/compose-message/compose-message.component';
 
 const ROUTES: Routes = [
   {
@@ -19,6 +20,11 @@ const ROUTES: Routes = [
   {
     path: 'choose',
     component: ChooserComponent
+  },
+  {
+    path: 'compose',
+    component: ComposeMessageComponent,
+    outlet: 'popup'
   },
   {
     path: '',
