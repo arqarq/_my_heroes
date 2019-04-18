@@ -4,7 +4,11 @@
      [routerLinkActive]="'activated activated-color'"
      routerLink="./">Crisis Center</a>
   &nbsp;
-  <a [routerLinkActive]="'activated activated-color'" routerLink="superheroes">Heroes</a>
+  <a [routerLinkActive]="'activated activated-color'"
+     routerLink="superheroes">Heroes</a>
+  &nbsp;
+  <a routerLink="../admin"
+     routerLinkActive="activated activated-color">Admin</a>
   &nbsp;
   <a [routerLink]="['', {outlets: {popup: ['compose']}}]">Contact</a>
 </nav>

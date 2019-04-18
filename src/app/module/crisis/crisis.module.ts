@@ -8,12 +8,14 @@ import { CrisisCenterHomeComponent } from './crisis-center-home/crisis-center-ho
 import { CrisisDetailComponent } from './crisis-detail/crisis-detail.component';
 import { FormsModule } from '@angular/forms';
 import { ComposeMessageComponent } from './compose-message/compose-message.component';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     MessagesModule,
+    AdminModule,
     CrisisRoutingModule
   ],
   declarations: [

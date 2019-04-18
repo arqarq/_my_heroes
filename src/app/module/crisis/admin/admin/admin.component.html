@@ -1,0 +1,12 @@
+<h3>ADMIN</h3>
+<nav>
+  <a [routerLinkActiveOptions]="{exact: true}" routerLink="./"
+     routerLinkActive="activated activated-color">Dashboard</a>
+  &nbsp;
+  <a routerLink="./crises"
+     routerLinkActive="activated activated-color">Manage Crises</a>
+  &nbsp;
+  <a routerLink="./heroes"
+     routerLinkActive="activated activated-color">Manage Heroes</a>
+</nav>
+<router-outlet></router-outlet>
