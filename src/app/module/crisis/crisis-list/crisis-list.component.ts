@@ -14,6 +14,7 @@ export class CrisisListComponent implements OnInit, OnDestroy {
   crises$: Crisis[]; // --aot
   qty: number; // --aot
   private selectedId: number;
+  private clickedId?: number;
   private subscription: Subscription;
 
   constructor(
@@ -22,6 +23,10 @@ export class CrisisListComponent implements OnInit, OnDestroy {
     private router: Router
   ) {
     this.crisisService.setNouns(CRISIS_NOUN);
+  }
+
+  set setClickedId(value: number) {
+    this.clickedId = value;
   }
 
   add(name: string): void {
@@ -37,7 +42,7 @@ export class CrisisListComponent implements OnInit, OnDestroy {
   }
 
   delete(crisis: Crisis): void {
-    if (crisis.id !== this.selectedId) {
+    if (this.clickedId !== crisis.id) {
       this.crises$ = this.crises$.filter(h => h !== crisis);
       this.subscription = this.crisisService.deleteHero(crisis).subscribe(
         () => {
@@ -51,7 +56,7 @@ export class CrisisListComponent implements OnInit, OnDestroy {
       ['./', id],
       {relativeTo: this.route, preserveQueryParams: false}
     )) {
-      this.selectedId = id;
+      this.clickedId = id;
     }
   }
 
