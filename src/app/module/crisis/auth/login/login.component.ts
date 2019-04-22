@@ -38,6 +38,6 @@ export class LoginComponent {
   logout() {
     this.authService.logout();
     this.setMessage();
-    console.log(this.router.navigateByUrl('/crisis'));
+    console.log(this.router.navigateByUrl('/crisis')); // TODO Promise?
   }
 }

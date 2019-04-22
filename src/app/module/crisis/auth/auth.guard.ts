@@ -22,6 +22,13 @@ export class AuthGuard implements CanActivate {
     return this.checkLogin(url);
   }
 
+  canActivateChild(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): boolean {
+    return this.canActivate(route, state)
+  }
+
   checkLogin(url: string): boolean {
     // Create a dummy session id
     const sessionId = 1234567890;
