@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Crisis, CRISIS_NOUN } from '../../../model/crisis';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MarvelService } from '../../../service/marvel.service';
+import { Observable } from 'rxjs';
+import { DialogService } from './dialog.service';
 
 @Component({
   selector: 'app-crisis-detail',
@@ -18,6 +20,13 @@ export class CrisisDetailComponent implements OnInit {
     private crisisService: MarvelService
   ) {
     this.crisisService.setNouns(CRISIS_NOUN);
+  }
+
+  canDeactivate(): Observable<boolean> | boolean {
+    if (!this.crisis || this.crisis.name === this.editName) {
+      return true;
+    }
+    return DialogService.confirm('Discard changes?');
   }
 
   cancel() {
