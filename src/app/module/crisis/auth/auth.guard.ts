@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, NavigationExtras, Router, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -8,8 +8,7 @@ import { AuthService } from './auth.service';
 export class AuthGuard implements CanActivate {
   constructor(
     private authService: AuthService,
-    private router: Router,
-    private route: ActivatedRoute
+    private router: Router
   ) {
   }
 
@@ -19,20 +18,31 @@ export class AuthGuard implements CanActivate {
   ): boolean {
     console.log('AuthGuard#canActivate called');
     const url: string = state.url;
+    console.log(url);
     return this.checkLogin(url);
   }
 
   checkLogin(url: string): boolean {
+    // Create a dummy session id
+    const sessionId = 1234567890;
+    // Set our navigation extras object
+    // that contains our global query params and fragment
+    const navigationExtras: NavigationExtras = {
+      queryParams: {session_id: sessionId},
+      fragment: 'anchor'
+    };
+    const dummy = {};
+
+    // this.authService.isLoggedIn = true;
     if (this.authService.isLoggedIn) {
       return true;
     }
-
     // Store the attempted URL for redirecting
     this.authService.redirectUrl = url;
     // Navigate to the login page with extras
     this.router.navigate(
       ['/login'],
-      {relativeTo: this.route});
+      dummy);
     return false;
   }
 }

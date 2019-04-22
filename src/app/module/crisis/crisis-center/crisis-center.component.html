@@ -7,8 +7,10 @@
   <a [routerLinkActive]="'activated activated-color'"
      routerLink="superheroes">Heroes</a>
   &nbsp;
-  <a routerLink="../admin"
+  <a routerLink="./admin"
      routerLinkActive="activated activated-color">Admin</a>
+  &nbsp;
+  <a routerLink="/login">Login</a>
   &nbsp;
   <a [routerLink]="['', {outlets: {popup: ['compose']}}]">Contact</a>
 </nav>

@@ -7,23 +7,28 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './service/in-memory-data.service';
-import { CrisisModule } from './module/crisis/crisis.module';
+import { AuthModule } from './module/crisis/auth/auth.module';
+import { ComposeMessageComponent } from './module/crisis/compose-message/compose-message.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     // BrowserModule, // not needed gdy są animacje!
     BrowserAnimationsModule,
+    FormsModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {dataEncapsulation: false}),
-    StartRoutingModule, // kolejność routingów ma znaczenie
+    AuthModule, // 1 komponent użyty - login; musi być przed '/**'
+    StartRoutingModule // kolejność routingów ma znaczenie
     // AppModule, // (stare heroes) "lazy child", nie użyty żaden komponent do załadowania
     // App2Module, // (forms) nie ma żadnego routera, więc psuje jak jest tu umieszczony, i także "lazy child"
-    CrisisModule // jest użyty 1 komponent w outlecie popup
+    // CrisisModule // jest użyty 1 komponent w outlecie popup, ale "lazy" więc nie w declarations, i może być po '/**'
   ],
   declarations: [
     StartComponent,
     ChooserComponent,
-    NotFound404Component
+    NotFound404Component,
+    ComposeMessageComponent
   ],
   bootstrap: [StartComponent]
 })

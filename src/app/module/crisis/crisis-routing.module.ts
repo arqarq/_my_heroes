@@ -5,6 +5,7 @@ import { CrisisListComponent } from './crisis-list/crisis-list.component';
 import { CrisisDetailComponent } from './crisis-detail/crisis-detail.component';
 import { CrisisCenterHomeComponent } from './crisis-center-home/crisis-center-home.component';
 import { ComposeMessageComponent } from './compose-message/compose-message.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const ROUTES: Routes = [
   {
@@ -13,12 +14,18 @@ const ROUTES: Routes = [
     children: [
       {
         path: 'superheroes',
-        loadChildren: './heroes/heroes.module#HeroesModule'
+        loadChildren: './heroes/heroes.module#HeroesModule',
+        canActivate: [AuthGuard]
       },
       {
         path: 'compose',
         component: ComposeMessageComponent,
         outlet: 'popup'
+      },
+      {
+        path: 'admin',
+        loadChildren: './admin/admin.module#AdminModule'
+        // canLoad: [AuthGuard]
       },
       {
         path: '',

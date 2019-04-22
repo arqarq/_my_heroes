@@ -7,23 +7,20 @@ import { MessagesModule } from '../../gen_modules/messages/messages.module';
 import { CrisisCenterHomeComponent } from './crisis-center-home/crisis-center-home.component';
 import { CrisisDetailComponent } from './crisis-detail/crisis-detail.component';
 import { FormsModule } from '@angular/forms';
-import { ComposeMessageComponent } from './compose-message/compose-message.component';
-import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     MessagesModule,
-    AdminModule,
     CrisisRoutingModule
   ],
   declarations: [
     CrisisCenterComponent,
     CrisisListComponent,
     CrisisCenterHomeComponent,
-    CrisisDetailComponent,
-    ComposeMessageComponent // użyte w StartModule
+    CrisisDetailComponent
+    // ComposeMessageComponent // użyte w StartModule
   ]
 })
 export class CrisisModule {
