@@ -1,18 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Crisis, CRISIS_NOUN } from '../../../model/crisis';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { MarvelService } from '../../../service/marvel.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { DialogService } from './dialog.service';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-crisis-detail',
   templateUrl: './crisis-detail.component.html',
   styleUrls: ['./crisis-detail.component.css']
 })
-export class CrisisDetailComponent implements OnInit {
+export class CrisisDetailComponent implements OnInit, OnDestroy {
   crisis: Crisis;
+  crisis$: Observable<Crisis>;
   private editName: string;
+  private subscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -51,15 +54,41 @@ export class CrisisDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.crisisService.getHero(+id).subscribe(crisis => {
-      this.crisis = crisis;
-      this.editName = crisis.name;
-    });
-    // this.route.data
-    //   .subscribe((data: { crisis: Crisis }) => {
+    // TODO SNAPSHOT - ONLY FIRST ID
+    // const id = this.route.snapshot.paramMap.get('id');
+    // this.subscription = this.crisisService.getHero(+id).subscribe(crisis => {
+    //   this.crisis = crisis;
+    //   this.editName = crisis.name;
+    // });
+    // TODO MAP - REUSE WITH EACH ID
+    // this.subscription = this.route.paramMap.pipe(
+    //   map((par: ParamMap) => {
+    //     this.crisisService.getHero(par.get('id')).subscribe(crisis => {
+    //       this.editName = crisis.name;
+    //       this.crisis = crisis;
+    //     });
+    //   })
+    // ).subscribe();
+    // TODO SWITCHMAP - REUSE WITH EACH ID
+    this.crisis$ = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) =>
+        this.crisisService.getHero(params.get('id')))
+    );
+    this.subscription = this.crisis$.subscribe(
+      crisis => {
+        this.editName = crisis.name;
+        this.crisis = crisis;
+      }
+    );
+    // TODO RESOLVE
+    // this.subscription = this.route.data
+    //   .subscribe((data: {crisis: Crisis}) => {
     //     this.editName = data.crisis.name;
     //     this.crisis = data.crisis;
     //   });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

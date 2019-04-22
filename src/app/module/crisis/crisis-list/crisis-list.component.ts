@@ -61,7 +61,8 @@ export class CrisisListComponent implements OnInit, OnDestroy {
         this.selectedId = +params.get('id');
         // console.log(this.selectedId);
         // setTimeout(() => console.log('time'), 50);
-        this.subscription = this.crisisService.getHeroes()
+        /*this.subscription = */
+        this.crisisService.getHeroes()
           .subscribe(heroTable => {
             this.crises$ = heroTable;
             this.qty = heroTable.length;
