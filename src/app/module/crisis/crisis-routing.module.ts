@@ -5,7 +5,6 @@ import { CrisisListComponent } from './crisis-list/crisis-list.component';
 import { CrisisDetailComponent } from './crisis-detail/crisis-detail.component';
 import { CrisisCenterHomeComponent } from './crisis-center-home/crisis-center-home.component';
 import { ComposeMessageComponent } from './compose-message/compose-message.component';
-import { AuthGuard } from './auth/auth.guard';
 import { CanDeactivateGuard } from './can-deactivate.guard';
 
 const ROUTES: Routes = [
@@ -15,8 +14,8 @@ const ROUTES: Routes = [
     children: [
       {
         path: 'superheroes',
-        loadChildren: './heroes/heroes.module#HeroesModule',
-        canActivate: [AuthGuard]
+        loadChildren: './heroes/heroes.module#HeroesModule'
+        // canActivate: [AuthGuard]
       },
       {
         path: 'compose',
@@ -34,7 +33,7 @@ const ROUTES: Routes = [
           {
             path: ':id',
             component: CrisisDetailComponent,
-            canDeactivate: [CanDeactivateGuard]
+            canDeactivate: [CanDeactivateGuard] // TODO do with component specific guard
           },
           {
             path: '',
