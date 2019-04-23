@@ -18,7 +18,7 @@ export class HeroesComponent implements OnInit {
   // heroes = HEROES;
   heroes: Hero[];
 
-  constructor(private heroService: MarvelService) {
+  constructor(private heroService: MarvelService<Hero>) {
     this.heroService.setNouns(HERO_NOUN);
   }
 

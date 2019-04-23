@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Injectable, OnDestroy, OnInit } from '@angular/core';
 import { Crisis, CRISIS_NOUN } from '../../../model/crisis';
 import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,23 +10,25 @@ import { MarvelService } from '../../../service/marvel.service';
   templateUrl: './crisis-list.component.html',
   styleUrls: ['./crisis-list.component.css']
 })
+@Injectable({
+  providedIn: 'root'
+})
 export class CrisisListComponent implements OnInit, OnDestroy {
   crises$: Crisis[]; // --aot
   qty: number; // --aot
-  private selectedId: number;
-  private clickedId?: number;
+  private selectedId?: number;
   private subscription: Subscription;
 
   constructor(
-    private crisisService: MarvelService,
+    private crisisService: MarvelService<Crisis>,
     private route: ActivatedRoute,
     private router: Router
   ) {
     this.crisisService.setNouns(CRISIS_NOUN);
   }
 
-  set setClickedId(value: number) {
-    this.clickedId = value;
+  set setSelectedId(value: number | undefined) {
+    this.selectedId = value;
   }
 
   add(name: string): void {
@@ -42,7 +44,7 @@ export class CrisisListComponent implements OnInit, OnDestroy {
   }
 
   delete(crisis: Crisis): void {
-    if (this.clickedId !== crisis.id) {
+    if (this.selectedId !== crisis.id) {
       this.crises$ = this.crises$.filter(h => h !== crisis);
       this.subscription = this.crisisService.deleteHero(crisis).subscribe(
         () => {
@@ -56,7 +58,7 @@ export class CrisisListComponent implements OnInit, OnDestroy {
       ['./', id],
       {relativeTo: this.route, preserveQueryParams: false}
     )) {
-      this.clickedId = id;
+      this.selectedId = id;
     }
   }
 
@@ -64,7 +66,7 @@ export class CrisisListComponent implements OnInit, OnDestroy {
     this.subscription = this.route.paramMap
       .pipe(switchMap(params => {
         this.selectedId = +params.get('id');
-        // console.log(this.selectedId);
+        console.log('CrisisList#ngOnInit called');
         // setTimeout(() => console.log('time'), 50);
         /*this.subscription = */
         this.crisisService.getHeroes()

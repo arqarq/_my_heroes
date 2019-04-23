@@ -1,5 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
 /* Application-wide Styles */
+/* You can add global styles to this file, and also import other style files */
+
 h1 {
   color: #369;
   font-family: Arial, Helvetica, sans-serif;
@@ -69,6 +70,7 @@ button:disabled {
 /*}*/
 
 /* everywhere else */
+
 * {
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -77,4 +79,11 @@ div.bottom-right {
   position: fixed;
   bottom: 0;
   right: 0
+}
+
+h2.inline-block,
+h2.inline-block + div {
+  display: inline-block;
+  margin-right: 0.333333em;
+  padding: 0
 }

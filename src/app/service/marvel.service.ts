@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Hero } from '../model/hero';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { Marvel } from '../model/marvel';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -12,7 +12,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class MarvelService {
+export class MarvelService<TT extends Marvel> {
   private s = 'item';
   private p = 'items';
   private S = 'Item';
@@ -22,10 +22,6 @@ export class MarvelService {
   constructor(
     private http: HttpClient,
     private messageService: MessageService
-    // this.hero.id = 0;
-    // this.hero2.id = 55;
-    // this.hero.name = 'empty Hero';
-    // this.hero2.name = 'zzzzzzzz';
     // this.heroTab.push(this.hero, this.hero2);
     // this.heroTab.push(this.hero);
   ) {
@@ -43,35 +39,30 @@ export class MarvelService {
     this.heroesUrl = `api/${this.p.toUpperCase()}`;
   }
 
-  // private heroesUrl = 'api/HEROES';
-  // hero: Hero = new Hero();
-  // hero2: Hero = new Hero();
-  // heroTab: Hero[];
-
   // getHeroes(): Hero[] {
-  getHeroes(): Observable<Hero[]> {
+  getHeroes(): Observable<TT[]> {
     // this.messageService.add('HeroService: fetched heroes');
     // this.log('fetched heroes');
     // return of(HEROES);
-    return this.http.get<Hero[]>(this.heroesUrl)
+    return this.http.get<TT[]>(this.heroesUrl)
       .pipe(
         tap(() => this.log('fetched ' + this.p + ' (tap)')),
-        catchError(this.handleError<Hero[]>('getHeroes', []))
+        catchError(this.handleError<TT[]>('get' + this.P, []))
       );
   }
 
-  getHeroNo404<Data>(id: number): Observable<Hero> {
+  // sprawdza czy istnieje obiekt w tabeli odpowiedzi
+  getHeroNo404<Data>(id: number): Observable<TT> { // TODO <Data>?
     const url = `${this.heroesUrl}/?id=${id}`;
     console.log(url);
-    return this.http.get<Hero[]>(url)
-      .pipe(
-        map(heroes => heroes[0]),
-        tap(h => {
-          const outcome = h ? `fetched` : `did not find`;
-          this.log(`${outcome} ${this.s} id=${id}`);
-        }),
-        catchError(this.handleError<Hero>(`getHeroNo404 id=${id}`))
-      );
+    return this.http.get<TT[]>(url).pipe(
+      map(heroes => heroes[0]),
+      tap(h => {
+        const outcome = h ? `fetched` : `did not find`;
+        this.log(`${outcome} ${this.s} id=${id}`);
+      }),
+      catchError(this.handleError<TT>(`get${this.S}No404 id=${id}`))
+    );
   }
 
   // getHero(id: number): Observable<Hero> {
@@ -81,49 +72,45 @@ export class MarvelService {
   //   return of(HEROES.find(hero => hero.id === id));
   // }
 
-  getHero(id: number | string): Observable<Hero> {
+  getHero(id: number | string): Observable<TT> {
     const url = `${this.heroesUrl}/${id}`;
-    return this.http.get<Hero>(url)
-      .pipe(
-        tap(() => this.log(`fetched ${this.s} (tap) id=${id}`)),
-        catchError(this.handleError<Hero>(`getHero id=${id}`/*, this.hero*/))
-      );
+    return this.http.get<TT>(url).pipe(
+      tap(() => this.log(`fetched ${this.s} (tap) id=${id}`)),
+      catchError(this.handleError<TT>(`get${this.S} id=${id}`/*, this.hero*/))
+    );
   }
 
-  updateHero(hero: Hero): Observable<any> {
-    return this.http.put(this.heroesUrl, hero, httpOptions)
-      .pipe(
-        tap(() => this.log(`updated ${this.s} (tap) id=${hero.id}`)),
-        catchError(this.handleError<any>('updateHero'))
-      );
+  updateHero(item: TT): Observable<any> {
+    return this.http.put(this.heroesUrl, item, httpOptions).pipe(
+      tap(() => this.log(`updated ${this.s} (tap) id=${item.id}`)),
+      catchError(this.handleError<any>('update' + this.S))
+    );
   }
 
-  addHero(hero: Hero): Observable<Hero> {
-    return this.http.post<Hero>(this.heroesUrl, hero, httpOptions)
-      .pipe(
-        tap((newHero: Hero) => this.log(`added ${this.s} (tap) /w id=${newHero.id}`)),
-        catchError(this.handleError<Hero>('addHero'))
-      );
+  addHero(item: TT): Observable<TT> {
+    return this.http.post<TT>(this.heroesUrl, item, httpOptions).pipe(
+      tap((newItem: TT) => this.log(`added ${this.s} (tap) /w id=${newItem.id}`)),
+      catchError(this.handleError<TT>('add' + this.S))
+    );
   }
 
-  deleteHero(hero: Hero | number): Observable<Hero> {
-    const id = (typeof hero === 'number') ? hero : hero.id;
+  deleteHero(item: TT | number): Observable<TT> {
+    const id = (typeof item === 'number') ? item : item.id;
     const url = `${this.heroesUrl}/${id}`;
-    return this.http.delete<Hero>(url, httpOptions)
-      .pipe(
-        tap(() => this.log(`deleted ${this.s} (tap) id=${id}`)),
-        catchError(this.handleError<Hero>('deleteHero'))
-      );
+    return this.http.delete<TT>(url, httpOptions).pipe(
+      tap(() => this.log(`deleted ${this.s} (tap) id=${id}`)),
+      catchError(this.handleError<TT>('delete' + this.S))
+    );
   }
 
-  searchHeroes(term: string): Observable<Hero[]> {
+  searchHeroes(term: string): Observable<TT[]> {
     if (!term.trim()) {
       return of([]);
     }
-    return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`)
+    return this.http.get<TT[]>(`${this.heroesUrl}/?name=${term}`)
       .pipe(
         tap(() => this.log(`found (tap) ${this.p} matching "${term}"`)),
-        catchError(this.handleError<Hero[]>('searchHeroes', []))
+        catchError(this.handleError<TT[]>('search' + this.P, []))
       );
   }
 
@@ -135,10 +122,8 @@ export class MarvelService {
     return (error: any): Observable<T> => {
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
-
       // TODO: better job of transforming error for user consumption
       this.log(`${operation}_failed: ${error.message}`);
-
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };

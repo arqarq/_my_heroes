@@ -13,7 +13,7 @@ export class HeroSearchComponent implements OnInit {
   heroes$: Observable<Hero[]>;
   private searchTerms = new Subject<string>();
 
-  constructor(private heroService: MarvelService) {
+  constructor(private heroService: MarvelService<Hero>) {
     this.heroService.setNouns(HERO_NOUN);
   }
 

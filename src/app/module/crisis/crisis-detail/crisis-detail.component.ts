@@ -5,13 +5,15 @@ import { MarvelService } from '../../../service/marvel.service';
 import { Observable, Subscription } from 'rxjs';
 import { DialogService } from './dialog.service';
 import { switchMap } from 'rxjs/operators';
+import { CrisisListComponent } from '../crisis-list/crisis-list.component';
+import { CanDeactivateGuard } from '../can-deactivate.guard';
 
 @Component({
   selector: 'app-crisis-detail',
   templateUrl: './crisis-detail.component.html',
   styleUrls: ['./crisis-detail.component.css']
 })
-export class CrisisDetailComponent implements OnInit, OnDestroy {
+export class CrisisDetailComponent implements OnInit, OnDestroy, CanDeactivateGuard {
   crisis: Crisis;
   crisis$: Observable<Crisis>;
   private editName: string;
@@ -20,12 +22,13 @@ export class CrisisDetailComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private crisisService: MarvelService
+    private crisisService: MarvelService<Crisis>,
+    private crisesList: CrisisListComponent
   ) {
     this.crisisService.setNouns(CRISIS_NOUN);
   }
 
-  canDeactivate(): Observable<boolean> | boolean {
+  canDeactivate(): Observable<boolean> | boolean { // interface AuthGuard tego używa!
     if (!this.crisis || this.crisis.name === this.editName) {
       return true;
     }
@@ -38,22 +41,36 @@ export class CrisisDetailComponent implements OnInit, OnDestroy {
 
   save() {
     this.crisis.name = this.editName;
-    this.gotoCrises();
+    this.crisisService.updateHero(this.crisis).subscribe(
+      () => this.gotoCrises()
+    );
   }
 
   gotoCrises() {
-    const crisisId = this.crisis ? this.crisis.id : undefined;
+    // const crisisId = this.crisis ? this.crisis.id : undefined;
+    const crisisId = '';
     // Pass along the crisis id if available
     // so that the CrisisListComponent can select that crisis.
     // Add a totally useless `foo` parameter for kicks.
     // Relative navigation back to the crises
-    this.router.navigate(
+    const booleanPromise = this.router.navigate(
       ['../', {id: crisisId, foo: 'fighters'}],
       {relativeTo: this.route}
     );
+    (booleanPromise.then(
+      () => {
+        this.crisesList.ngOnInit();
+        this.crisesList.setSelectedId = undefined;
+      },
+      () => {
+        this.crisesList.ngOnInit();
+        this.crisesList.setSelectedId = undefined;
+      }
+    ));
   }
 
   ngOnInit() {
+    console.log('CrisisDetail#ngOnInit called');
     // TODO SNAPSHOT - ONLY FIRST ID
     // const id = this.route.snapshot.paramMap.get('id');
     // this.subscription = this.crisisService.getHero(+id).subscribe(crisis => {
@@ -90,5 +107,6 @@ export class CrisisDetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    this.crisesList.setSelectedId = undefined;
   }
 }

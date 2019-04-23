@@ -17,7 +17,7 @@ export class HeroListComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
 
   constructor(
-    private heroService: MarvelService,
+    private heroService: MarvelService<Hero>,
     private route: ActivatedRoute
   ) {
     this.heroService.setNouns(HERO_NOUN);

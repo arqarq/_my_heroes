@@ -10,7 +10,7 @@ import { MarvelService } from '../../service/marvel.service';
 export class DashboardComponent implements OnInit {
   heroes: Hero[] = [];
 
-  constructor(private heroService: MarvelService) {
+  constructor(private heroService: MarvelService<Hero>) {
     this.heroService.setNouns(HERO_NOUN);
   }
 

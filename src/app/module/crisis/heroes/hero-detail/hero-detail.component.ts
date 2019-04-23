@@ -17,7 +17,7 @@ export class HeroDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private heroService: MarvelService,
+    private heroService: MarvelService<Hero>,
     private location: Location
   ) {
     this.heroService.setNouns(HERO_NOUN);
