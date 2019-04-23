@@ -93,8 +93,10 @@ export class CrisisDetailComponent implements OnInit, OnDestroy, CanDeactivateGu
     );
     this.subscription = this.crisis$.subscribe(
       crisis => {
-        this.editName = crisis.name;
-        this.crisis = crisis;
+        if (crisis) {
+          this.editName = crisis.name;
+          this.crisis = crisis;
+        }
       }
     );
     // TODO RESOLVE
