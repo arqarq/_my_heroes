@@ -84,6 +84,5 @@ div.bottom-right {
 h2.inline-block,
 h2.inline-block + div {
   display: inline-block;
-  margin-right: 0.333333em;
-  padding: 0
+  margin-right: 0.333333em
 }
