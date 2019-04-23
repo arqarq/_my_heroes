@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Crisis, CRISIS_NOUN } from '../../../model/crisis';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { MarvelService } from '../../../service/marvel.service';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Observer, Subscription } from 'rxjs';
 import { DialogService } from './dialog.service';
 import { switchMap } from 'rxjs/operators';
 import { CrisisListComponent } from '../crisis-list/crisis-list.component';
@@ -91,13 +91,17 @@ export class CrisisDetailComponent implements OnInit, OnDestroy, CanDeactivateGu
       switchMap((params: ParamMap) =>
         this.crisisService.getHero(params.get('id')))
     );
-    this.subscription = this.crisis$.subscribe(
-      crisis => {
+    const observer: Observer<Crisis> = {
+      next: crisis => {
         if (crisis) {
           this.editName = crisis.name;
           this.crisis = crisis;
         }
-      }
+      },
+      error: undefined, // gdy błąd subscriber jest unsubscribed, dlatego if wyżej, żeby nie było wywołania na null
+      complete: undefined
+    };
+    this.subscription = this.crisis$.subscribe(observer
     );
     // TODO RESOLVE
     // this.subscription = this.route.data
