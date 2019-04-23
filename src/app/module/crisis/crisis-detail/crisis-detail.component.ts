@@ -25,7 +25,7 @@ export class CrisisDetailComponent implements OnInit, OnDestroy, CanDeactivateGu
     private crisisService: MarvelService<Crisis>,
     private crisesList: CrisisListComponent
   ) {
-    this.crisisService.setNouns(CRISIS_NOUN);
+    crisisService.setNouns(CRISIS_NOUN);
   }
 
   canDeactivate(): Observable<boolean> | boolean { // interface AuthGuard tego używa!
@@ -69,7 +69,7 @@ export class CrisisDetailComponent implements OnInit, OnDestroy, CanDeactivateGu
     ));
   }
 
-  ngOnInit() {
+  ngOnInitDontUse() { // TODO marker
     console.log('CrisisDetail#ngOnInit called');
     // TODO SNAPSHOT - ONLY FIRST ID
     // const id = this.route.snapshot.paramMap.get('id');
@@ -111,8 +111,18 @@ export class CrisisDetailComponent implements OnInit, OnDestroy, CanDeactivateGu
     //   });
   }
 
+  ngOnInit(): void {
+    this.route.data.subscribe(
+      (data: {crisis: Crisis}) => {
+        this.editName = data.crisis.name;
+        this.crisis = data.crisis;
+        this.crisesList.setSelectedId = data.crisis.id;
+      }
+    );
+  }
+
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
     this.crisesList.setSelectedId = undefined;
   }
 }

@@ -54,12 +54,14 @@ export class CrisisListComponent implements OnInit, OnDestroy {
   }
 
   navigate(id) {
-    if (this.router.navigate(
+    this.router.navigate(
       ['./', id],
       {relativeTo: this.route, preserveQueryParams: false}
-    )) {
-      this.selectedId = id;
-    }
+    ).then(
+      () => {
+        this.selectedId = id;
+      }
+    );
   }
 
   ngOnInit() {
