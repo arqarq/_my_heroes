@@ -112,7 +112,7 @@ export class CrisisDetailComponent implements OnInit, OnDestroy, CanDeactivateGu
   }
 
   ngOnInit(): void {
-    this.route.data.subscribe(
+    this.subscription = this.route.data.subscribe(
       (data: {crisis: Crisis}) => {
         this.editName = data.crisis.name;
         this.crisis = data.crisis;
@@ -122,7 +122,7 @@ export class CrisisDetailComponent implements OnInit, OnDestroy, CanDeactivateGu
   }
 
   ngOnDestroy(): void {
-    // this.subscription.unsubscribe();
+    this.subscription.unsubscribe();
     this.crisesList.setSelectedId = undefined;
   }
 }

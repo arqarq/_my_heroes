@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { HeroListComponent } from './hero-list/hero-list.component';
+import { HeroDetailResolverService } from './hero-detail/hero-detail-resolver.service';
 
 const heroesRoutes: Routes = [
   {
@@ -14,6 +15,9 @@ const heroesRoutes: Routes = [
   {
     path: 'hero/:id',
     component: HeroDetailComponent,
+    resolve: {
+      hero: HeroDetailResolverService
+    },
     data: {
       animation: 'heroq'
     }

@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Hero, HERO_NOUN } from '../../../../model/hero';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { MarvelService } from '../../../../service/marvel.service';
 import { Location } from '@angular/common';
 import { switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-hero-detail',
   templateUrl: './hero-detail.component.html',
   styleUrls: ['./hero-detail.component.css']
 })
-export class HeroDetailComponent implements OnInit {
+export class HeroDetailComponent implements OnInit, OnDestroy {
   hero$: Observable<Hero>;
+  hero: Hero;
+  private subscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -39,9 +41,21 @@ export class HeroDetailComponent implements OnInit {
       .subscribe(() => this.goBack());
   }
 
-  ngOnInit() {
+  ngOnInitDontUse() {
     this.hero$ = this.route.paramMap
       .pipe(switchMap((params: ParamMap) =>
         this.heroService.getHero(params.get('id'))));
+  }
+
+  ngOnInit(): void {
+    this.subscription = this.route.data.subscribe(
+      (data: {hero: Hero}) => {
+        this.hero = data.hero;
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
