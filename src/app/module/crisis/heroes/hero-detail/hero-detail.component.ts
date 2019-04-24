@@ -5,15 +5,18 @@ import { MarvelService } from '../../../../service/marvel.service';
 import { Location } from '@angular/common';
 import { switchMap } from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
+import { CanDeactivateGuard } from '../../can-deactivate.guard';
+import { DialogService } from '../../../../service/dialog.service';
 
 @Component({
   selector: 'app-hero-detail',
   templateUrl: './hero-detail.component.html',
   styleUrls: ['./hero-detail.component.css']
 })
-export class HeroDetailComponent implements OnInit, OnDestroy {
-  hero$: Observable<Hero>;
+export class HeroDetailComponent extends CanDeactivateGuard implements OnInit, OnDestroy {
   hero: Hero;
+  hero$: Observable<Hero>;
+  private editName: string;
   private subscription: Subscription;
 
   constructor(
@@ -22,7 +25,15 @@ export class HeroDetailComponent implements OnInit, OnDestroy {
     private heroService: MarvelService<Hero>,
     private location: Location
   ) {
+    super();
     this.heroService.setNouns(HERO_NOUN);
+  }
+
+  canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+    if (!this.hero || this.hero.name === this.editName) {
+      return true;
+    }
+    return DialogService.confirm('Discard changes?');
   }
 
   goBack(): void {
@@ -37,6 +48,7 @@ export class HeroDetailComponent implements OnInit, OnDestroy {
   }
 
   save(hero: Hero): void {
+    hero.name = this.editName;
     this.heroService.updateHero(hero)
       .subscribe(() => this.goBack());
   }
@@ -51,6 +63,7 @@ export class HeroDetailComponent implements OnInit, OnDestroy {
     this.subscription = this.route.data.subscribe(
       (data: {hero: Hero}) => {
         this.hero = data.hero;
+        this.editName = this.hero.name;
       }
     );
   }

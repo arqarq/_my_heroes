@@ -5,6 +5,7 @@ import { AdminComponent } from './admin/admin.component';
 import { ManageCrisesComponent } from './manage-crises/manage-crises.component';
 import { ManageHeroesComponent } from './manage-heroes/manage-heroes.component';
 import { AdminRoutingModule } from './admin-routing.module';
+import { AuthGuard } from '../auth/auth.guard';
 
 @NgModule({
   imports: [
@@ -16,6 +17,9 @@ import { AdminRoutingModule } from './admin-routing.module';
     AdminComponent,
     ManageCrisesComponent,
     ManageHeroesComponent
+  ],
+  providers: [
+    AuthGuard
   ]
 })
 export class AdminModule {

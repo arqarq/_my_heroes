@@ -8,6 +8,7 @@ import { CrisisCenterHomeComponent } from './crisis-center-home/crisis-center-ho
 import { CrisisDetailComponent } from './crisis-detail/crisis-detail.component';
 import { FormsModule } from '@angular/forms';
 import { CrisisDetailResolverService } from './crisis-detail/crisis-detail-resolver.service';
+import { CanDeactivateGuard } from './can-deactivate.guard';
 
 @NgModule({
   imports: [
@@ -24,7 +25,9 @@ import { CrisisDetailResolverService } from './crisis-detail/crisis-detail-resol
     // ComposeMessageComponent // użyte w StartModule
   ],
   providers: [
-    CrisisDetailResolverService
+    CrisisDetailResolverService,
+    CrisisListComponent,
+    CanDeactivateGuard
   ]
 })
 export class CrisisModule {

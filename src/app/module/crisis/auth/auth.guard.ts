@@ -8,9 +8,10 @@ import {
   RouterStateSnapshot
 } from '@angular/router';
 import { AuthService } from './auth.service';
+import { AdminModule } from '../admin/admin.module';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: AdminModule
 })
 export class AuthGuard implements CanActivate, CanActivateChild {
   constructor(

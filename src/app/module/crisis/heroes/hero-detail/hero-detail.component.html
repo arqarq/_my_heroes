@@ -1,11 +1,11 @@
 <h2>details!</h2>
 <!--<div *ngIf="hero$ | async as hero">-->
 <div *ngIf="hero">
-  <h2>{{hero.name | uppercase}}</h2>
+  <h2>{{editName | uppercase}}</h2>
   <div><span>id: </span>{{hero.id}}</div>
   <div>
     <label>name:
-      <input [(ngModel)]="hero.name" placeholder="wpisz imię"></label>
+      <input [(ngModel)]="editName" placeholder="wpisz imię"></label>
   </div>
   <button (click)="save(hero)">save</button>
   <button (click)="goToHeroesList(hero.id.toString())">go back</button>

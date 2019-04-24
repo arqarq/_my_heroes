@@ -3,7 +3,7 @@ import { Crisis, CRISIS_NOUN } from '../../../model/crisis';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { MarvelService } from '../../../service/marvel.service';
 import { Observable, Observer, Subscription } from 'rxjs';
-import { DialogService } from './dialog.service';
+import { DialogService } from '../../../service/dialog.service';
 import { switchMap } from 'rxjs/operators';
 import { CrisisListComponent } from '../crisis-list/crisis-list.component';
 import { CanDeactivateGuard } from '../can-deactivate.guard';
@@ -13,7 +13,7 @@ import { CanDeactivateGuard } from '../can-deactivate.guard';
   templateUrl: './crisis-detail.component.html',
   styleUrls: ['./crisis-detail.component.css']
 })
-export class CrisisDetailComponent implements OnInit, OnDestroy, CanDeactivateGuard {
+export class CrisisDetailComponent extends CanDeactivateGuard implements OnInit, OnDestroy {
   crisis: Crisis;
   crisis$: Observable<Crisis>;
   private editName: string;
@@ -25,10 +25,11 @@ export class CrisisDetailComponent implements OnInit, OnDestroy, CanDeactivateGu
     private crisisService: MarvelService<Crisis>,
     private crisesList: CrisisListComponent
   ) {
+    super();
     crisisService.setNouns(CRISIS_NOUN);
   }
 
-  canDeactivate(): Observable<boolean> | boolean { // interface AuthGuard tego używa!
+  canDeactivate(): Observable<boolean> | Promise<boolean> | boolean { // interface AuthGuard tego używa!
     if (!this.crisis || this.crisis.name === this.editName) {
       return true;
     }

@@ -4,6 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { MarvelService } from '../../../service/marvel.service';
+import { CrisisModule } from '../crisis.module';
 
 @Component({
   selector: 'app-crisis-list',
@@ -11,7 +12,7 @@ import { MarvelService } from '../../../service/marvel.service';
   styleUrls: ['./crisis-list.component.css']
 })
 @Injectable({
-  providedIn: 'root'
+  providedIn: CrisisModule
 })
 export class CrisisListComponent implements OnInit, OnDestroy {
   crises$: Crisis[]; // --aot

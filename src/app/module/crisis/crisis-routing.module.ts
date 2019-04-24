@@ -34,7 +34,9 @@ const ROUTES: Routes = [
           {
             path: ':id',
             component: CrisisDetailComponent,
-            canDeactivate: [CanDeactivateGuard],
+            canDeactivate: [
+              CanDeactivateGuard
+            ],
             // canDeactivate: [CanDeactivate] // TODO do with component specific guard
             resolve: {
               crisisHere: CrisisDetailResolverService
