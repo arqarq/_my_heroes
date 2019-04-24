@@ -15,6 +15,7 @@ export class HeroListComponent implements OnInit, OnDestroy {
   qty: number; // --aot
   private selectedId: number;
   private subscription: Subscription;
+  private subscription2: Subscription;
 
   constructor(
     private heroService: MarvelService<Hero>,
@@ -43,22 +44,37 @@ export class HeroListComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnInit() {
-    this.subscription = this.route.paramMap
-      .pipe(switchMap(params => {
+  ngOnInitDontUse() {
+    this.subscription = this.route.paramMap.pipe(
+      switchMap(params => {
         this.selectedId = +params.get('id');
         // console.log(this.selectedId);
         // setTimeout(() => console.log('time'), 50);
-        this.subscription = this.heroService.getHeroes()
+        this.subscription2 = this.heroService.getHeroes()
           .subscribe(heroTable => {
             this.heroes = heroTable;
             this.qty = heroTable.length;
           });
         return new Observable<any>();
-      })).subscribe(); // trzeba zasubskrybować zmienną Observable, aby wykonało lambdy
+      })
+    ).subscribe(); // trzeba zasubskrybować zmienną Observable, aby wykonało lambdy
+  }
+
+  ngOnInit() {
+    this.subscription = this.route.data
+      .subscribe((data: {heroesHere: Hero[]}) => {
+        this.heroes = data.heroesHere;
+        this.qty = data.heroesHere.length;
+      });
+    this.subscription2 = this.route.paramMap
+      .subscribe(params => {
+          this.selectedId = +params.get('id');
+        }
+      );
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    this.subscription2.unsubscribe();
   }
 }

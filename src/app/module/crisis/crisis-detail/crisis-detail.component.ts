@@ -113,10 +113,10 @@ export class CrisisDetailComponent implements OnInit, OnDestroy, CanDeactivateGu
 
   ngOnInit(): void {
     this.subscription = this.route.data.subscribe(
-      (data: {crisis: Crisis}) => {
-        this.editName = data.crisis.name;
-        this.crisis = data.crisis;
-        this.crisesList.setSelectedId = data.crisis.id;
+      (data: {crisisHere: Crisis}) => {
+        this.editName = data.crisisHere.name;
+        this.crisis = data.crisisHere;
+        this.crisesList.setSelectedId = data.crisisHere.id;
       }
     );
   }

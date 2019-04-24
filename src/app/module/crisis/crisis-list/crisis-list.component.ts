@@ -18,6 +18,7 @@ export class CrisisListComponent implements OnInit, OnDestroy {
   qty: number; // --aot
   private selectedId?: number;
   private subscription: Subscription;
+  private subscription2: Subscription;
 
   constructor(
     private crisisService: MarvelService<Crisis>,
@@ -70,17 +71,18 @@ export class CrisisListComponent implements OnInit, OnDestroy {
         this.selectedId = +params.get('id');
         console.log('CrisisList#ngOnInit called');
         // setTimeout(() => console.log('time'), 50);
-        /*this.subscription = */
-        this.crisisService.getHeroes()
+        this.subscription2 = this.crisisService.getHeroes()
           .subscribe(heroTable => {
             this.crises$ = heroTable;
             this.qty = heroTable.length;
           });
         return new Observable<any>();
-      })).subscribe(); // trzeba zasubskrybować zmienną Observable, aby wykonało lambdy
+      }))
+      .subscribe(); // trzeba zasubskrybować zmienną Observable, aby wykonało lambdy
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    this.subscription2.unsubscribe();
   }
 }

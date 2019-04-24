@@ -10,10 +10,10 @@ import { mergeMap, take } from 'rxjs/operators';
 })
 export class HeroDetailResolverService implements Resolve<Hero> {
   constructor(
-    private crisisService: MarvelService<Hero>,
+    private heroService: MarvelService<Hero>,
     private router: Router
   ) {
-    crisisService.setNouns(HERO_NOUN);
+    heroService.setNouns(HERO_NOUN);
   }
 
   resolve(
@@ -21,7 +21,7 @@ export class HeroDetailResolverService implements Resolve<Hero> {
     state: RouterStateSnapshot
   ): Observable<Hero> | Promise<Hero> | Hero | Observable<never> {
     const id = route.paramMap.get('id');
-    return this.crisisService.getHeroNo404(id).pipe(
+    return this.heroService.getHeroNo404(id).pipe(
       take(1),
       mergeMap(hero => {
         if (hero) {

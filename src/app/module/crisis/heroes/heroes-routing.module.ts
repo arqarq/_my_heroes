@@ -3,11 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { HeroListComponent } from './hero-list/hero-list.component';
 import { HeroDetailResolverService } from './hero-detail/hero-detail-resolver.service';
+import { HeroListResolverService } from './hero-list/hero-list-resolver.service';
 
 const heroesRoutes: Routes = [
   {
     path: '',
     component: HeroListComponent,
+    resolve: {
+      heroesHere: HeroListResolverService
+    },
     data: {
       animation: 'heroesq'
     }
