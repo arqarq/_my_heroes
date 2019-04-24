@@ -4,9 +4,10 @@ import { Hero, HERO_NOUN } from '../../../../model/hero';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { EMPTY, Observable, of } from 'rxjs';
 import { mergeMap, take } from 'rxjs/operators';
+import { HeroesModule } from '../heroes.module';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: HeroesModule
 })
 export class HeroListResolverService implements Resolve<Hero[]> {
   constructor(

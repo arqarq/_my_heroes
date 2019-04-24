@@ -1,12 +1,13 @@
 /* DashboardComponent's private CSS styles */
-[class*='col-'] {
-  float: left;
-  padding-right: 20px;
-  padding-bottom: 20px;
+
+section.dash-left-col {
+  display: grid
 }
 
-[class*='col-']:last-of-type {
-  padding-right: 0;
+.hero {
+  display: flex;
+  flex-direction: row;
+  justify-content: center
 }
 
 a {
@@ -21,15 +22,11 @@ a {
 
 h3 {
   text-align: center;
-  margin-bottom: 0;
+  margin-bottom: 0
 }
 
 h4 {
   position: relative;
-}
-
-.grid {
-  margin: 0;
 }
 
 .col-1-4 {
@@ -52,12 +49,28 @@ h4 {
   color: #607d8b;
 }
 
+.grid {
+  margin: 0;
+}
+
 .grid-pad {
-  padding: 10px 0;
+  /*padding: 10px 0;*/
+  padding: 10px;
 }
 
 .grid-pad > [class*='col-']:last-of-type {
-  padding-right: 20px;
+  /*padding-right: 20px;*/
+}
+
+[class*='col-']:last-of-type {
+  /*padding-right: 0;*/
+}
+
+[class*='col-'] {
+  float: left;
+  padding: 0 10px 20px;
+  /*padding-right: 20px;*/
+  /*padding-bottom: 20px;*/
 }
 
 @media (max-width: 600px) {

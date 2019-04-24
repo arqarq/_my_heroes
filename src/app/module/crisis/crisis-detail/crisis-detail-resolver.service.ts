@@ -4,9 +4,10 @@ import { Crisis, CRISIS_NOUN } from '../../../model/crisis';
 import { EMPTY, Observable, of } from 'rxjs';
 import { MarvelService } from '../../../service/marvel.service';
 import { mergeMap, take } from 'rxjs/operators';
+import { CrisisModule } from '../crisis.module';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: CrisisModule
 })
 export class CrisisDetailResolverService implements Resolve<Crisis> {
   constructor(

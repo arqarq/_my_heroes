@@ -7,6 +7,7 @@ import { MessagesModule } from '../../gen_modules/messages/messages.module';
 import { CrisisCenterHomeComponent } from './crisis-center-home/crisis-center-home.component';
 import { CrisisDetailComponent } from './crisis-detail/crisis-detail.component';
 import { FormsModule } from '@angular/forms';
+import { CrisisDetailResolverService } from './crisis-detail/crisis-detail-resolver.service';
 
 @NgModule({
   imports: [
@@ -21,6 +22,9 @@ import { FormsModule } from '@angular/forms';
     CrisisCenterHomeComponent,
     CrisisDetailComponent
     // ComposeMessageComponent // użyte w StartModule
+  ],
+  providers: [
+    CrisisDetailResolverService
   ]
 })
 export class CrisisModule {

@@ -1,4 +1,9 @@
 /* AppComponent's private CSS styles */
+
+section.heroes-old {
+  max-width: calc(100% - 260px)
+}
+
 h1 {
   font-size: 1.2em;
   color: #999;
