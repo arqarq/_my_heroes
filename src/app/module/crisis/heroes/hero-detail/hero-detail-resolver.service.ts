@@ -27,7 +27,10 @@ export class HeroDetailResolverService implements Resolve<Hero> {
         if (hero) {
           return of(hero);
         } else {
-          this.router.navigate(['/crisis/crisis-center/superheroes']);
+          this.router.navigate(['/crisis/crisis-center/superheroes'])
+            .then(
+              (success) => console.log(state.toString() + ' / ' + success)
+            );
           return EMPTY;
         }
       })
