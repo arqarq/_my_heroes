@@ -20,17 +20,18 @@ export class HeroListResolverService implements Resolve<Hero[]> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<Hero[]> | Promise<Hero[]> | Hero[] | Observable<never> {
-    return this.heroService.getHeroes().pipe(
-      take(1),
-      mergeMap(heroTab => {
-          if (heroTab) {
-            return of(heroTab);
-          } else {
-            this.router.navigate(['/crisis']);
-            return EMPTY;
+    return this.heroService.getHeroes()
+      .pipe(
+        take(1),
+        mergeMap(heroTab => {
+            if (heroTab) {
+              return of(heroTab);
+            } else {
+              this.router.navigate(['/crisis']);
+              return EMPTY;
+            }
           }
-        }
-      )
-    );
+        )
+      );
   }
 }
