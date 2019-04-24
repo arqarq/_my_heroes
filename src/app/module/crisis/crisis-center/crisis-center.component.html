@@ -1,3 +1,4 @@
+<app-messages></app-messages>
 <h1>Angular Router</h1>
 <nav>
   <a [routerLinkActiveOptions]="{exact: true}"
@@ -17,8 +18,7 @@
 <div [@routeAnimationn]="getAnimationData(routerOutlett)">
   <router-outlet #routerOutlett="outlet"></router-outlet>
 </div>
-<app-messages></app-messages>
-<div class="bottom-right">
+<div class="bottom-right bottom-right-generic">
   <nav>
     <a routerLink="/choose">Back to choice</a>
   </nav>

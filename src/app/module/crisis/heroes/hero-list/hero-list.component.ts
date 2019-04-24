@@ -11,7 +11,7 @@ import { Observable, Subscription } from 'rxjs';
   styleUrls: ['./hero-list.component.css']
 })
 export class HeroListComponent implements OnInit, OnDestroy {
-  heroes: Hero[]; // --aot
+  heroes$: Hero[]; // --aot
   qty: number; // --aot
   private selectedId: number;
   private subscription: Subscription;
@@ -21,7 +21,7 @@ export class HeroListComponent implements OnInit, OnDestroy {
     private heroService: MarvelService<Hero>,
     private route: ActivatedRoute
   ) {
-    this.heroService.setNouns(HERO_NOUN);
+    heroService.setNouns(HERO_NOUN);
   }
 
   add(name: string): void {
@@ -31,13 +31,13 @@ export class HeroListComponent implements OnInit, OnDestroy {
     }
     this.subscription = this.heroService.addHero({name} as Hero)
       .subscribe((oneHero) => {
-        this.heroes.push(oneHero);
+        this.heroes$.push(oneHero);
         this.qty++;
       });
   }
 
   delete(hero: Hero): void {
-    this.heroes = this.heroes.filter(h => h !== hero);
+    this.heroes$ = this.heroes$.filter(h => h !== hero);
     this.subscription = this.heroService.deleteHero(hero).subscribe(
       () => {
         this.qty--;
@@ -52,7 +52,7 @@ export class HeroListComponent implements OnInit, OnDestroy {
         // setTimeout(() => console.log('time'), 50);
         this.subscription2 = this.heroService.getHeroes()
           .subscribe(heroTable => {
-            this.heroes = heroTable;
+            this.heroes$ = heroTable;
             this.qty = heroTable.length;
           });
         return new Observable<any>();
@@ -63,8 +63,8 @@ export class HeroListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription = this.route.data
       .subscribe((data: {heroesHere: Hero[]}) => {
-        this.heroes = data.heroesHere;
-        this.qty = data.heroesHere.length;
+        this.heroes$ = data.heroesHere;
+        this.qty = this.heroes$.length;
       });
     this.subscription2 = this.route.paramMap
       .subscribe(params => {

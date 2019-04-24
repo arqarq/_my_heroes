@@ -25,7 +25,7 @@ export class CrisisListComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.crisisService.setNouns(CRISIS_NOUN);
+    crisisService.setNouns(CRISIS_NOUN);
   }
 
   set setSelectedId(value: number | undefined) {
