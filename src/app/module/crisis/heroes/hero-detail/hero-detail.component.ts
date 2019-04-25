@@ -50,7 +50,7 @@ export class HeroDetailComponent extends CanDeactivateGuard implements OnInit, O
   save(hero: Hero): void {
     hero.name = this.editName;
     this.heroService.updateHero(hero)
-      .subscribe(() => this.goBack());
+      .subscribe(() => this.goToHeroesList(hero.id.toString()));
   }
 
   ngOnInitDontUse() {
