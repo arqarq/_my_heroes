@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { HEROES } from '../repository/mock-heroes';
 import { CRISES } from '../repository/mock-crises';
-import { Crisis } from '../model/crisis';
-import { Hero } from '../model/hero';
+import { Marvel } from '../model/marvel';
 
 @Injectable({
   providedIn: 'root'
 })
-export class InMemoryDataService implements InMemoryDbService {
+export class InMemoryDataService<T extends Marvel> implements InMemoryDbService {
   constructor() {
   }
 
@@ -16,7 +15,7 @@ export class InMemoryDataService implements InMemoryDbService {
     return {HEROES, CRISES};
   }
 
-  genId(array: Hero[] | Crisis[]): number {
-    return array.length > 0 ? Math.max(...array.map(elem => elem.id)) + 1 : 11;
+  genId(array: T[]): number {
+    return array.length > 0 ? Math.max(...array.map(elem => elem.id)) + 10 : 11;
   }
 }

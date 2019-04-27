@@ -11,9 +11,11 @@
   <a routerLink="./admin"
      routerLinkActive="activated activated-color">Admin</a>
   &nbsp;
-  <a routerLink="/login">Login</a>
+  <a routerLink="./login">Login</a>
   &nbsp;
-  <a [routerLink]="['', {outlets: {popup: ['compose']}}]">Contact</a>
+  <a [preserveFragment]="true"
+     [queryParamsHandling]="'preserve'"
+     [routerLink]="['', {outlets: {popup: ['compose']}}]">Contact</a>
 </nav>
 <div [@routeAnimationn]="getAnimationData(routerOutlett)">
   <router-outlet #routerOutlett="outlet"></router-outlet>

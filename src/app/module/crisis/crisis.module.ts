@@ -15,6 +15,7 @@ import { CanDeactivateGuard } from './can-deactivate.guard';
     CommonModule,
     FormsModule,
     MessagesModule,
+    // AuthModule,
     CrisisRoutingModule
   ],
   declarations: [

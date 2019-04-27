@@ -4,6 +4,6 @@
 
 .activated-color {
   background-color: red;
-  border-radius: 3px;
-  padding: 3px
+  border-radius: 5px 0 0 0;
+  padding: 5px
 }

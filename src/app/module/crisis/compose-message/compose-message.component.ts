@@ -36,7 +36,11 @@ export class ComposeMessageComponent {
     // clears the contents of the named outlet
     this.router.navigate( // wszystkie możliwości ActivatedRoute
       ['', {outlets: {popup: null}}],
-      {relativeTo: this.route}
+      {
+        relativeTo: this.route,
+        queryParamsHandling: 'preserve',
+        preserveFragment: true
+      }
     );
   }
 }

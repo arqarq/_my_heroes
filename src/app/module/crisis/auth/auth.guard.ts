@@ -26,7 +26,6 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   ): boolean {
     console.log('AuthGuard#canActivate called');
     const url: string = state.url;
-    console.log(url);
     return this.checkLogin(url);
   }
 
@@ -34,10 +33,17 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
+    console.log('AuthGuard#canActivateChild called');
     return this.canActivate(route, state);
   }
 
   checkLogin(url: string): boolean {
+    if (this.authService.isLoggedIn) {
+      console.log('od razu true');
+      return true;
+    }
+    // Store the attempted URL for redirecting
+    this.authService.redirectUrl = url;
     // Create a dummy session id
     const sessionId = 1234567890;
     // Set our navigation extras object
@@ -46,17 +52,11 @@ export class AuthGuard implements CanActivate, CanActivateChild {
       queryParams: {session_id: sessionId},
       fragment: 'anchor'
     };
-    const dummy = {};
-    // this.authService.isLoggedIn = true;
-    if (this.authService.isLoggedIn) {
-      return true;
-    }
-    // Store the attempted URL for redirecting
-    this.authService.redirectUrl = url;
     // Navigate to the login page with extras
     this.router.navigate(
-      ['/login'],
-      dummy);
+      ['/crisis/crisis-center/login'],
+      navigationExtras
+    );
     return false;
   }
 }

@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './service/in-memory-data.service';
-import { AuthModule } from './module/crisis/auth/auth.module';
 import { ComposeMessageComponent } from './module/crisis/compose-message/compose-message.component';
 import { FormsModule } from '@angular/forms';
 
@@ -18,7 +17,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {dataEncapsulation: false}),
-    AuthModule, // 1 komponent użyty - login; musi być przed '/**'
+    // AuthModule, // 1 komponent użyty - login; musi być przed '/**'
     StartRoutingModule // kolejność routingów ma znaczenie
     // AppModule, // (stare heroes) "lazy child", nie użyty żaden komponent do załadowania
     // App2Module, // (forms) nie ma żadnego routera, więc psuje jak jest tu umieszczony, i także "lazy child"
