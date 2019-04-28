@@ -53,10 +53,12 @@ export class AuthGuard implements CanActivate, CanActivateChild {
       fragment: 'anchor'
     };
     // Navigate to the login page with extras
-    this.router.navigate(
-      ['/crisis/crisis-center/login'],
-      navigationExtras
-    );
+    const urlTree = this.router.createUrlTree(['crisis', 'crisis-center', 'login'], navigationExtras);
+    this.router.navigateByUrl(urlTree);
+    // this.router.navigate(
+    //   [url, '/crisis/crisis-center/login'],
+    //   navigationExtras
+    // );
     return false;
   }
 }

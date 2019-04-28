@@ -7,7 +7,6 @@ import { CrisisCenterHomeComponent } from './crisis-center-home/crisis-center-ho
 import { ComposeMessageComponent } from './compose-message/compose-message.component';
 import { CanDeactivateGuard } from './can-deactivate.guard';
 import { CrisisDetailResolverService } from './crisis-detail/crisis-detail-resolver.service';
-import { LoginComponent } from './auth/login/login.component';
 
 const ROUTES: Routes = [
   {
@@ -20,7 +19,8 @@ const ROUTES: Routes = [
       },
       {
         path: 'login',
-        component: LoginComponent
+        // component: LoginComponent
+        loadChildren: './auth/auth.module#AuthModule'
       },
       {
         path: 'compose',
