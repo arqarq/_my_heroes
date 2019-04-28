@@ -8,3 +8,15 @@
           *ngIf="authService.isLoggedIn">Logout
   </button>
 </p>
+<div *ngIf="temp">
+  <p>
+    Zapisano w local storage:<br>
+    Session ID: {{ temp.session_id }}<br>
+    Token: {{ temp.fragment }}
+  </p>
+</div>
+<div *ngIf="!temp">
+  <p>
+    Nic nie zapisano w local storage
+  </p>
+</div>

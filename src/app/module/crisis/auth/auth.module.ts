@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { LoginComponent } from './login/login.component';
 import { AuthRoutingModule } from './auth-routing.module';
+import { LocalStorageService } from '../../../service/local-storage.service';
 
 @NgModule({
   imports: [
@@ -13,6 +14,9 @@ import { AuthRoutingModule } from './auth-routing.module';
   ],
   declarations: [
     LoginComponent
+  ],
+  providers: [
+    LocalStorageService
   ]
 })
 export class AuthModule {

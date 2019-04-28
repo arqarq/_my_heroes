@@ -6,6 +6,7 @@ import { ManageCrisesComponent } from './manage-crises/manage-crises.component';
 import { ManageHeroesComponent } from './manage-heroes/manage-heroes.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AuthGuard } from '../auth/auth.guard';
+import { LocalStorageService } from '../../../service/local-storage.service';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { AuthGuard } from '../auth/auth.guard';
     ManageHeroesComponent
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
+    LocalStorageService
   ]
 })
 export class AdminModule {
