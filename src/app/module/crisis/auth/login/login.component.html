@@ -11,8 +11,8 @@
 <div *ngIf="temp">
   <p>
     Zapisano w local storage:<br>
-    Session ID: {{ temp.session_id }}<br>
-    Token: {{ temp.fragment }}
+    Session ID: {{ temp.session_id || 'nic' }}<br>
+    Token: {{ temp.fragment || 'nic' }}
   </p>
 </div>
 <div *ngIf="!temp">

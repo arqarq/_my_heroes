@@ -14,12 +14,12 @@ export class LocalStorageService {
 
   storeQueryParamsAndFragment(doZapisu = {a: 'aa', b: 'bb'}) {
     this.storage.set(STORAGE_KEY, doZapisu);
-    console.log('----set> ' + JSON.stringify(this.storage.get(STORAGE_KEY)) || 'Storage pusty');
+    console.log('----set> ' + JSON.stringify(this.storage.get(STORAGE_KEY)));
   }
 
-  getQueryParamsAndFragment(key: string = STORAGE_KEY): {} {
+  getQueryParamsAndFragment(key: string = STORAGE_KEY): {} | undefined {
     const newVar = this.storage.get(key);
-    console.log('----get> ' + JSON.stringify(newVar) || 'Storage pusty');
+    console.log('----get> ' + (JSON.stringify(newVar) || 'Storage pusty'));
     return newVar;
   }
 

@@ -12,13 +12,9 @@ import { LocalStorageService } from '../../../../service/local-storage.service';
 export class LoginComponent implements OnInit, OnDestroy {
   message: string;
   temp: {[key: string]: string};
-  // sessionId: Observable<string>;
-  // token: Observable<string>;
   sessionIdd: string;
   tokenn: string;
   private subscription: Subscription;
-  // private subscription2: Subscription;
-  // private subscription3: Subscription;
 
   constructor(
     public authService: AuthService,
@@ -62,23 +58,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   extractObj(): {} {
     this.sessionIdd = this.route.snapshot.queryParams.session_id;
     this.tokenn = this.route.snapshot.fragment;
-    const toStore = {['session_id' || 'fragment']: undefined};
+    const toStore = {['session_id' && 'fragment']: undefined};
     toStore.session_id = this.sessionIdd;
     toStore.fragment = this.tokenn;
-    // this.router
-    // .queryParamMap
-    //   .pipe(map(params => params.get('session_id') || 'None')
-    //   );
-    // this.token = this.route
-    //   .fragment
-    //   .pipe(map(fragment => fragment || 'None'));
-    // // const toStore = {['session_id' || 'fragment']: undefined};
-    // this.subscription2 = this.sessionId.subscribe(
-    //   next => toStore.session_id = next
-    // );
-    // this.subscription3 = this.token.subscribe(
-    //   next => toStore.fragment = next
-    // );
     return toStore;
   }
 
@@ -91,7 +73,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.authService.logout();
     this.storage.clearLocalStorage();
     this.setMessage();
-    this.router.navigateByUrl('/crisis')
+    this.router.navigate(['/crisis'])
       .then(
         () => this.authService.redirectUrl = undefined
       );
@@ -108,8 +90,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();
-      // this.subscription2.unsubscribe();
-      // this.subscription3.unsubscribe();
     }
   }
 }
