@@ -7,3 +7,9 @@
   border-radius: 3px;
   padding: 3px
 }
+
+.activated-color-border-only {
+  border: 2px solid red;
+  border-radius: 3px;
+  padding: 3px
+}

@@ -1,21 +1,31 @@
 <app-messages></app-messages>
 <h1>Angular Router</h1>
 <nav>
-  <a [routerLinkActiveOptions]="{exact: true}"
+  <a [preserveFragment]="true"
+     [queryParamsHandling]="'preserve'"
+     [routerLinkActiveOptions]="{exact: true}"
      [routerLinkActive]="'activated activated-color'"
      routerLink="./">Crisis Center</a>
   &nbsp;
-  <a [routerLinkActive]="'activated activated-color'"
+  <a [preserveFragment]="true"
+     [queryParamsHandling]="'preserve'"
+     [routerLinkActive]="'activated activated-color'"
      routerLink="superheroes">Heroes</a>
-  &nbsp;
-  <a routerLink="./admin"
-     routerLinkActive="activated activated-color">Admin</a>
-  &nbsp;
-  <a routerLink="./login">Login</a>
   &nbsp;
   <a [preserveFragment]="true"
      [queryParamsHandling]="'preserve'"
-     [routerLink]="['', {outlets: {popup: ['compose']}}]">Contact</a>
+     routerLink="./admin"
+     routerLinkActive="activated activated-color">Admin</a>
+  &nbsp;
+  <a [preserveFragment]="true"
+     [queryParamsHandling]="'preserve'"
+     routerLink="./login"
+     routerLinkActive="activated activated-color">Login</a>
+  &nbsp;
+  <a [preserveFragment]="true"
+     [queryParamsHandling]="'preserve'"
+     [routerLink]="['', {outlets: {popup: ['compose']}}]"
+     routerLinkActive="activated-color-border-only">Contact</a>
 </nav>
 <div [@routeAnimationn]="getAnimationData(routerOutlett)">
   <router-outlet #routerOutlett="outlet"></router-outlet>
