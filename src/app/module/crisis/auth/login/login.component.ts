@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             ? this.router.parseUrl(this.authService.redirectUrl)
             : '/crisis';
           // Redirect the user
-          console.log(redirect.toString());
+          console.log('AAAAAAAAAAAAAAA ' + redirect.toString());
           // this.router.navigateByUrl(redirect, navigationExtras); // TODO navigateByUrl olewa queryParams i fragment!
           this.router.navigate([redirect.toString()], navigationExtras);
         }
@@ -58,7 +58,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   extractObj(): {} {
     this.sessionIdd = this.route.snapshot.queryParams.session_id;
     this.tokenn = this.route.snapshot.fragment;
-    const toStore = {['session_id' && 'fragment']: undefined};
+    const toStore = {
+      session_id: undefined,
+      fragment: undefined
+    };
     toStore.session_id = this.sessionIdd;
     toStore.fragment = this.tokenn;
     return toStore;

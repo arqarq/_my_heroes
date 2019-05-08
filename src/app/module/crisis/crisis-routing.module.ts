@@ -32,6 +32,11 @@ const ROUTES: Routes = [
         loadChildren: './admin/admin.module#AdminModule'
       },
       {
+        path: 'admin(popup:compose)',
+        redirectTo: 'admin',
+        pathMatch: 'prefix' // lub 'full', przy wewn. ścieżka to bez znaczenia
+      },
+      {
         path: '',
         component: CrisisListComponent,
         children: [
