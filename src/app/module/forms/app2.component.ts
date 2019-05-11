@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {Title} from '@angular/platform-browser';
+import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root2',
@@ -8,6 +8,8 @@ import {Title} from '@angular/platform-browser';
 })
 export class App2Component implements OnInit {
   title = 'Formularze';
+  und: Array<number>;
+  t = typeof this.und;
 
   constructor(private titleService: Title) {
   }
