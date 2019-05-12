@@ -4,7 +4,8 @@ import { ManageCrisesComponent } from './manage-crises/manage-crises.component';
 import { ManageHeroesComponent } from './manage-heroes/manage-heroes.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { NgModule } from '@angular/core';
-import { AuthGuard } from '../auth/auth.guard';
+import { AuthGuard } from './auth.guard';
+import { ClearComponent } from './clear/clear.component';
 
 const adminRoutes: Routes = [
   {
@@ -16,6 +17,10 @@ const adminRoutes: Routes = [
         path: '',
         canActivateChild: [AuthGuard],
         children: [
+          {
+            path: 'clear',
+            component: ClearComponent
+          },
           {
             path: 'crises',
             component: ManageCrisesComponent

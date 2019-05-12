@@ -11,13 +11,11 @@ export class DashboardComponent implements OnInit {
   heroes: Hero[] = [];
 
   constructor(private heroService: MarvelService<Hero>) {
-    this.heroService.setNouns(HERO_NOUN);
+    heroService.setNouns(HERO_NOUN);
   }
 
   getHeroes(): void {
-    this.heroService
-      .getHeroes()
-      .subscribe(heroeS => this.heroes = heroeS.slice(0, 4));
+    this.heroService.getHeroes().subscribe(heroeS => this.heroes = heroeS.slice(0, 4));
   }
 
   ngOnInit() {

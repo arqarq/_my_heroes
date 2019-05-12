@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './service/in-memory-data.service';
-import { ComposeMessageComponent } from './module/crisis/compose-message/compose-message.component';
+import { ComposeMessageComponent } from './module/crisis/component/compose-message/compose-message.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({

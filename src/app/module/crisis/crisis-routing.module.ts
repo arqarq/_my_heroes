@@ -1,12 +1,37 @@
 import { NgModule } from '@angular/core';
-import { CrisisCenterComponent } from './crisis-center/crisis-center.component';
-import { RouterModule, Routes } from '@angular/router';
-import { CrisisListComponent } from './crisis-list/crisis-list.component';
-import { CrisisDetailComponent } from './crisis-detail/crisis-detail.component';
-import { CrisisCenterHomeComponent } from './crisis-center-home/crisis-center-home.component';
-import { ComposeMessageComponent } from './compose-message/compose-message.component';
-import { CanDeactivateGuard } from './can-deactivate.guard';
-import { CrisisDetailResolverService } from './crisis-detail/crisis-detail-resolver.service';
+import { CrisisCenterComponent } from './component/crisis-center/crisis-center.component';
+import { RouterModule, Routes, UrlMatchResult, UrlSegment } from '@angular/router';
+import { CrisisListComponent } from './component/crisis-list/crisis-list.component';
+import { CrisisDetailComponent } from './component/crisis-detail/crisis-detail.component';
+import { CrisisCenterHomeComponent } from './component/crisis-center-home/crisis-center-home.component';
+import { ComposeMessageComponent } from './component/compose-message/compose-message.component';
+import { CanDeactivateGuard } from './service/can-deactivate.guard';
+import { CrisisDetailResolverService } from './component/crisis-detail/crisis-detail-resolver.service';
+
+export function adminMatch(url: UrlSegment[]): UrlMatchResult {
+  let result;
+  if (url.length >= 1 && url[0].path.startsWith('admin')) {
+    result = url;
+    if (url.length === 2) {
+      result.shift();
+      // result.shift();
+      // result = null;
+      result = {consumed: result};
+    } else {
+      result = {consumed: result};
+    }
+  } else {
+    result = null;
+  }
+  const output = [];
+  if (result) {
+    for (const war of url) {
+      output.push(war.path);
+    }
+  }
+  console.log('CrisisRoutingModule # adminMatch # result: ' + (result ? output : '-'));
+  return result;
+}
 
 const ROUTES: Routes = [
   {
@@ -29,13 +54,14 @@ const ROUTES: Routes = [
       },
       {
         path: 'admin',
-        loadChildren: './admin/admin.module#AdminModule'
+        // matcher: adminMatch, // zastępuje "path"
+        loadChildren: 'src/app/module/crisis/admin/admin.module#AdminModule' // całkowicie bezwzględna (tsconfig.json)
       },
-      {
-        path: 'admin(popup:compose)',
-        redirectTo: 'admin',
-        pathMatch: 'prefix' // lub 'full', przy wewn. ścieżka to bez znaczenia
-      },
+      // {
+      //   path: 'admin(popup:compose)',
+      //   redirectTo: 'admin',
+      //   pathMatch: 'prefix' // lub 'full', przy wewn. ścieżka to bez znaczenia
+      // },
       {
         path: '',
         component: CrisisListComponent,

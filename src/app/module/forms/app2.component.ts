@@ -7,9 +7,9 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./app2.component.css']
 })
 export class App2Component implements OnInit {
-  title = 'Formularze';
   und: Array<number>;
   t = typeof this.und;
+  private title = 'Formularze';
 
   constructor(private titleService: Title) {
   }

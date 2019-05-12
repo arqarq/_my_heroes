@@ -17,11 +17,11 @@ export class HeroDetailComponent implements OnInit {
     private heroService: MarvelService<Hero>,
     private location: Location
   ) {
-    this.heroService.setNouns(HERO_NOUN);
+    heroService.setNouns(HERO_NOUN);
   }
 
   getHero(): void {
-    console.log(this.route.snapshot.paramMap);
+    console.log('HeroDetailComponent # getHero() # this.route.snapshot.paramMap: ' + this.route.snapshot.paramMap);
     const id = +this.route.snapshot.paramMap.get('id');
     this.heroService
       .getHeroNo404(id)

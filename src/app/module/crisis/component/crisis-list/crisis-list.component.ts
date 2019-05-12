@@ -1,10 +1,11 @@
 import { Component, Injectable, OnDestroy, OnInit } from '@angular/core';
-import { Crisis, CRISIS_NOUN } from '../../../model/crisis';
+import { Crisis, CRISIS_NOUN } from '../../../../model/crisis';
 import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import { MarvelService } from '../../../service/marvel.service';
-import { CrisisModule } from '../crisis.module';
+import { MarvelService } from '../../../../service/marvel.service';
+import { CrisisModule } from '../../crisis.module';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-crisis-list',
@@ -24,9 +25,11 @@ export class CrisisListComponent implements OnInit, OnDestroy {
   constructor(
     private crisisService: MarvelService<Crisis>,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    authService: AuthService
   ) {
     crisisService.setNouns(CRISIS_NOUN);
+    authService.redirectUrl = undefined; // kasowanie zapamiętanego adresu
   }
 
   set setSelectedId(value: number | undefined) {
@@ -70,7 +73,7 @@ export class CrisisListComponent implements OnInit, OnDestroy {
     this.subscription = this.route.paramMap
       .pipe(switchMap(params => {
         this.selectedId = +params.get('id');
-        console.log('CrisisList#ngOnInit called');
+        console.log('CrisisList # ngOnInit(): called');
         // setTimeout(() => console.log('time'), 50);
         this.subscription2 = this.crisisService.getHeroes()
           .subscribe(heroTable => {

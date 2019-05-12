@@ -4,7 +4,7 @@ import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { HeroListComponent } from './hero-list/hero-list.component';
 import { HeroDetailResolverService } from './hero-detail/hero-detail-resolver.service';
 import { HeroListResolverService } from './hero-list/hero-list-resolver.service';
-import { CanDeactivateGuard } from '../can-deactivate.guard';
+import { CanDeactivateGuard } from '../service/can-deactivate.guard';
 
 const heroesRoutes: Routes = [
   {

@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Hero, HERO_NOUN } from '../../model/hero';
 import { MarvelService } from '../../service/marvel.service';
+import { Subscription } from 'rxjs';
 
 @Component({
-  styles: [],
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.css']
 })
-export class HeroesComponent implements OnInit {
+export class HeroesComponent implements OnInit, OnDestroy {
   // selectedHero: Hero;
   // heroTemp: Hero;
   // hero: Hero = {
@@ -17,15 +17,15 @@ export class HeroesComponent implements OnInit {
   // };
   // heroes = HEROES;
   heroes: Hero[];
+  private subscription: Subscription;
 
   constructor(private heroService: MarvelService<Hero>) {
-    this.heroService.setNouns(HERO_NOUN);
+    heroService.setNouns(HERO_NOUN);
   }
 
   getHeroes(): void {
     // this.heroes = this.heroService.getHeroes();
-    this.heroService
-      .getHeroes()
+    this.subscription = this.heroService.getHeroes()
       .subscribe(heroesTable => this.heroes = heroesTable);
   }
 
@@ -44,7 +44,7 @@ export class HeroesComponent implements OnInit {
     if (!name) {
       return;
     }
-    this.heroService.addHero({name} as Hero)
+    this.subscription = this.heroService.addHero({name} as Hero)
       .subscribe(heroO => {
         this.heroes.push(heroO);
       });
@@ -52,10 +52,14 @@ export class HeroesComponent implements OnInit {
 
   delete(hero: Hero): void {
     this.heroes = this.heroes.filter(h => h !== hero);
-    this.heroService.deleteHero(hero).subscribe();
+    this.subscription = this.heroService.deleteHero(hero).subscribe();
   }
 
   ngOnInit() {
     this.getHeroes();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-notfound404',
@@ -6,6 +6,4 @@ import {Component} from '@angular/core';
   styleUrls: ['./notfound404.component.css']
 })
 export class NotFound404Component {
-  constructor() {
-  }
 }

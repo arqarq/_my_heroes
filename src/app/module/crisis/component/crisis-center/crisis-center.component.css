@@ -1,0 +1,21 @@
+.activated {
+  color: yellow
+}
+
+.activated-color {
+  box-shadow: 0 0 0 3px red;
+  background-color: red;
+  border-radius: 1px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: red;
+  /*padding: 3px;*/
+  margin: auto -1px auto /* border width + padding size */
+}
+
+.activated-color-border-only {
+  border: 1px solid red;
+  border-radius: 4px;
+  padding: 3px;
+  margin-left: -4px /* border width + padding size */
+}

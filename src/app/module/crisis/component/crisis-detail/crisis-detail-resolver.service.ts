@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
-import { Crisis, CRISIS_NOUN } from '../../../model/crisis';
+import { Crisis, CRISIS_NOUN } from '../../../../model/crisis';
 import { EMPTY, Observable, of } from 'rxjs';
-import { MarvelService } from '../../../service/marvel.service';
+import { MarvelService } from '../../../../service/marvel.service';
 import { mergeMap, take } from 'rxjs/operators';
-import { CrisisModule } from '../crisis.module';
+import { CrisisModule } from '../../crisis.module';
 
 @Injectable({
   providedIn: CrisisModule

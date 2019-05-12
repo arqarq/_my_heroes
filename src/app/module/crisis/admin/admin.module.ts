@@ -5,8 +5,7 @@ import { AdminComponent } from './admin/admin.component';
 import { ManageCrisesComponent } from './manage-crises/manage-crises.component';
 import { ManageHeroesComponent } from './manage-heroes/manage-heroes.component';
 import { AdminRoutingModule } from './admin-routing.module';
-import { AuthGuard } from '../auth/auth.guard';
-import { LocalStorageService } from '../../../service/local-storage.service';
+import { ClearComponent } from './clear/clear.component';
 
 @NgModule({
   imports: [
@@ -14,14 +13,11 @@ import { LocalStorageService } from '../../../service/local-storage.service';
     AdminRoutingModule
   ],
   declarations: [
-    AdminDashboardComponent,
     AdminComponent,
+    AdminDashboardComponent,
     ManageCrisesComponent,
-    ManageHeroesComponent
-  ],
-  providers: [
-    AuthGuard,
-    LocalStorageService
+    ManageHeroesComponent,
+    ClearComponent
   ]
 })
 export class AdminModule {

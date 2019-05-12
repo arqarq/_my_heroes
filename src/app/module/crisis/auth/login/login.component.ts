@@ -1,8 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { Subscription } from 'rxjs';
-import { LocalStorageService } from '../../../../service/local-storage.service';
+import { LocalStorageService } from '../../service/local-storage.service';
+
+const toStoreTempl: {[key: string]: string} = {
+  session_id: undefined,
+  fragment: undefined
+};
 
 @Component({
   selector: 'app-login',
@@ -12,13 +17,13 @@ import { LocalStorageService } from '../../../../service/local-storage.service';
 export class LoginComponent implements OnInit, OnDestroy {
   message: string;
   temp: {[key: string]: string};
-  sessionIdd: string;
-  tokenn: string;
+  private sessionIdd: string;
+  private tokenn: string;
   private subscription: Subscription;
 
   constructor(
     public authService: AuthService,
-    public router: Router,
+    private router: Router,
     private storage: LocalStorageService,
     private route: ActivatedRoute
   ) {
@@ -31,26 +36,23 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   login() {
     this.message = 'Trying to log in...';
-    this.subscription = this.authService.login()
-      .subscribe(() => {
-        this.setMessage();
-        if (this.authService.isLoggedIn) {
-          // console.log(this.authService.redirectUrl);
-          const navigationExtras: NavigationExtras = {
-            queryParamsHandling: 'preserve',
-            preserveFragment: true
-          };
-          // Get the redirect URL from our auth service
-          // If no redirect has been set, use the default
-          const redirect = this.authService.redirectUrl
-            ? this.router.parseUrl(this.authService.redirectUrl)
-            : '/crisis';
-          // Redirect the user
-          console.log('AAAAAAAAAAAAAAA ' + redirect.toString());
-          // this.router.navigateByUrl(redirect, navigationExtras); // TODO navigateByUrl olewa queryParams i fragment!
-          this.router.navigate([redirect.toString()], navigationExtras);
-        }
-      });
+    this.subscription = this.authService.login().subscribe(() => {
+      this.setMessage();
+      if (this.authService.isLoggedIn) {
+        // Get the redirect URL from our auth service
+        // If no redirect has been set, use the default
+        const redirect = this.authService.redirectUrl
+          ? this.router.parseUrl(this.authService.redirectUrl).toString().split('?')[0]
+          // ? '/crisis/crisis-center/admin'
+          : '/crisis';
+        console.log('LoginComponent # login() # redirect: ' + redirect);
+        // Redirect the user
+        // this.router.navigateByUrl(redirect, navigationExtras); // TODO navigateByUrl olewa queryParams i fragment!
+        this.router.navigate(
+          [...redirect.split('/')],
+          {queryParamsHandling: 'preserve', preserveFragment: true});
+      }
+    });
     this.temp = this.extractObj();
     this.store(this.temp);
   }
@@ -58,10 +60,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   extractObj(): {} {
     this.sessionIdd = this.route.snapshot.queryParams.session_id;
     this.tokenn = this.route.snapshot.fragment;
-    const toStore = {
-      session_id: undefined,
-      fragment: undefined
-    };
+    const toStore = toStoreTempl;
     toStore.session_id = this.sessionIdd;
     toStore.fragment = this.tokenn;
     return toStore;
@@ -69,14 +68,16 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   store(temp: any) {
     this.storage.storeQueryParamsAndFragment(temp);
-    console.log('+++++++++++++++++' + JSON.stringify(temp));
+    console.log('LoginComponent # store() # temp: ' + JSON.stringify(temp));
   }
 
   logout() {
     this.authService.logout();
     this.storage.clearLocalStorage();
     this.setMessage();
-    this.router.navigate(['/crisis'])
+    this.router.navigate(
+      ['crisis'],
+      {queryParamsHandling: 'preserve', preserveFragment: true})
       .then(
         () => this.authService.redirectUrl = undefined
       );

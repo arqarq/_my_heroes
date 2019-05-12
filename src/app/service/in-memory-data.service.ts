@@ -16,6 +16,6 @@ export class InMemoryDataService<T extends Marvel> implements InMemoryDbService 
   }
 
   genId(array: T[]): number {
-    return array.length > 0 ? Math.max(...array.map(elem => elem.id)) + 10 : 11;
+    return array.length > 0 ? Math.max(...array.map(elem => elem.id)) + 1 : 11;
   }
 }

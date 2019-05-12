@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { HeroListResolverService } from './hero-list/hero-list-resolver.service';
 import { HeroDetailResolverService } from './hero-detail/hero-detail-resolver.service';
 import { MarvelService } from '../../../service/marvel.service';
-import { CanDeactivateGuard } from '../can-deactivate.guard';
+import { CanDeactivateGuard } from '../service/can-deactivate.guard';
 
 @NgModule({
   imports: [

@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Crisis, CRISIS_NOUN } from '../../../model/crisis';
+import { Crisis, CRISIS_NOUN } from '../../../../model/crisis';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { MarvelService } from '../../../service/marvel.service';
+import { MarvelService } from '../../../../service/marvel.service';
 import { Observable, Observer, Subscription } from 'rxjs';
-import { DialogService } from '../../../service/dialog.service';
+import { DialogService } from '../../service/dialog.service';
 import { switchMap } from 'rxjs/operators';
 import { CrisisListComponent } from '../crisis-list/crisis-list.component';
-import { CanDeactivateGuard } from '../can-deactivate.guard';
+import { CanDeactivateGuard } from '../../service/can-deactivate.guard';
 
 @Component({
   selector: 'app-crisis-detail',
@@ -15,7 +15,7 @@ import { CanDeactivateGuard } from '../can-deactivate.guard';
 })
 export class CrisisDetailComponent extends CanDeactivateGuard implements OnInit, OnDestroy {
   crisis: Crisis;
-  crisis$: Observable<Crisis>;
+  private crisis$: Observable<Crisis>;
   private editName: string;
   private subscription: Subscription;
 
@@ -71,7 +71,7 @@ export class CrisisDetailComponent extends CanDeactivateGuard implements OnInit,
   }
 
   ngOnInitDontUse() { // TODO marker
-    console.log('CrisisDetail#ngOnInit called');
+    console.log('CrisisDetail # ngOnInit(): called');
     // TODO SNAPSHOT - ONLY FIRST ID
     // const id = this.route.snapshot.paramMap.get('id');
     // this.subscription = this.crisisService.getHero(+id).subscribe(crisis => {

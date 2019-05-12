@@ -14,7 +14,7 @@ export class HeroSearchComponent implements OnInit {
   private searchTerms = new Subject<string>();
 
   constructor(private heroService: MarvelService<Hero>) {
-    this.heroService.setNouns(HERO_NOUN);
+    heroService.setNouns(HERO_NOUN);
   }
 
   search(term: string): void {
@@ -22,11 +22,10 @@ export class HeroSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.heroes$ = this.searchTerms
-      .pipe(
-        debounceTime(300),
-        distinctUntilChanged(),
-        switchMap((termString: string) => this.heroService.searchHeroes(termString))
-      );
+    this.heroes$ = this.searchTerms.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap((termString: string) => this.heroService.searchHeroes(termString))
+    );
   }
 }

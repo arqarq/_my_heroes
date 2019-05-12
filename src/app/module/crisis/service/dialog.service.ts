@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { CrisisModule } from '../crisis.module';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: CrisisModule
 })
 export class DialogService {
   static confirm(message?: string): Observable<boolean> {

@@ -54,7 +54,7 @@ export class MarvelService<TT extends Marvel> {
   // sprawdza czy istnieje obiekt w tabeli odpowiedzi
   getHeroNo404<Data>(id: number | string): Observable<TT> { // TODO <Data>?
     const url = `${this.heroesUrl}/?id=${id}`;
-    console.log(url);
+    console.log('MarvelService # getHeroNo404() # url: ' + url);
     return this.http.get<TT[]>(url).pipe(
       map(heroes => heroes[0]),
       tap(h => {

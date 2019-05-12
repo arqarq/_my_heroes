@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
-import { slideInAnimation } from '../animations';
+import { slideInAnimation } from '../../animations';
 
 @Component({
   selector: 'app-crisis-center',
@@ -10,7 +10,7 @@ import { slideInAnimation } from '../animations';
   animations: [slideInAnimation]
 })
 export class CrisisCenterComponent implements OnInit {
-  title = 'Crisis Center';
+  private title = 'Crisis Center';
 
   constructor(private titleService: Title) {
   }

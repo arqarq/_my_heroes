@@ -5,8 +5,8 @@ import { MarvelService } from '../../../../service/marvel.service';
 import { Location } from '@angular/common';
 import { switchMap } from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
-import { CanDeactivateGuard } from '../../can-deactivate.guard';
-import { DialogService } from '../../../../service/dialog.service';
+import { CanDeactivateGuard } from '../../service/can-deactivate.guard';
+import { DialogService } from '../../service/dialog.service';
 
 @Component({
   selector: 'app-hero-detail',
