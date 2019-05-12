@@ -7,8 +7,6 @@ import { MessagesModule } from '../../gen_modules/messages/messages.module';
 import { CrisisCenterHomeComponent } from './component/crisis-center-home/crisis-center-home.component';
 import { CrisisDetailComponent } from './component/crisis-detail/crisis-detail.component';
 import { FormsModule } from '@angular/forms';
-import { CrisisDetailResolverService } from './component/crisis-detail/crisis-detail-resolver.service';
-import { CanDeactivateGuard } from './service/can-deactivate.guard';
 
 @NgModule({
   imports: [
@@ -23,12 +21,12 @@ import { CanDeactivateGuard } from './service/can-deactivate.guard';
     CrisisCenterHomeComponent,
     CrisisDetailComponent
     // ComposeMessageComponent // użyte w StartModule
-  ],
-  providers: [
-    CrisisDetailResolverService,
-    CrisisListComponent,
-    CanDeactivateGuard
   ]
+  // providers: [ // old way DI
+  //   CrisisDetailResolverService,
+  //   CrisisListComponent,
+  //   CanDeactivateGuard
+  // ]
 })
 export class CrisisModule {
 }

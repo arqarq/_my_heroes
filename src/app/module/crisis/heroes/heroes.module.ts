@@ -19,7 +19,7 @@ import { CanDeactivateGuard } from '../service/can-deactivate.guard';
     HeroListComponent,
     HeroDetailComponent
   ],
-  providers: [
+  providers: [ // TODO
     HeroListResolverService,
     HeroDetailResolverService,
     MarvelService,
