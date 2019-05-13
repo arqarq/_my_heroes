@@ -4,10 +4,7 @@ import { HeroesRoutingModule } from './heroes-routing.module';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { HeroListComponent } from './hero-list/hero-list.component';
 import { FormsModule } from '@angular/forms';
-import { HeroListResolverService } from './hero-list/hero-list-resolver.service';
-import { HeroDetailResolverService } from './hero-detail/hero-detail-resolver.service';
 import { MarvelService } from '../../../service/marvel.service';
-import { CanDeactivateGuard } from '../service/can-deactivate.guard';
 
 @NgModule({
   imports: [
@@ -19,11 +16,11 @@ import { CanDeactivateGuard } from '../service/can-deactivate.guard';
     HeroListComponent,
     HeroDetailComponent
   ],
-  providers: [ // TODO
-    HeroListResolverService,
-    HeroDetailResolverService,
-    MarvelService,
-    CanDeactivateGuard
+  providers: [ // old way DI
+    MarvelService // osobna instancja dla Heroes!, w końcu wiadomo o co cho
+    // HeroListResolverService,
+    // HeroDetailResolverService,
+    // CanDeactivateGuard
   ]
 })
 export class HeroesModule {

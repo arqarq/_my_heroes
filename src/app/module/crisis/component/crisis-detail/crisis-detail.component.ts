@@ -6,7 +6,7 @@ import { Observable, Observer, Subscription } from 'rxjs';
 import { DialogService } from '../../service/dialog.service';
 import { switchMap } from 'rxjs/operators';
 import { CrisisListComponent } from '../crisis-list/crisis-list.component';
-import { CanDeactivateGuard } from '../../service/can-deactivate.guard';
+import { CanDeactivateGuard } from '../../heroes/can-deactivate.guard';
 
 @Component({
   selector: 'app-crisis-detail',
