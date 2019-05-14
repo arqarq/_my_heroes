@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute
   ) {
     this.setMessage();
+    this.temp = this.storage.getQueryParamsAndFragment();
   }
 
   setMessage() {
@@ -58,7 +59,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   extractObj(): {} {
-    this.sessionIdd = this.route.snapshot.queryParams.session_id;
+    this.sessionIdd = this.route.snapshot.queryParams.session_id || null;
     this.tokenn = this.route.snapshot.fragment;
     const toStore = toStoreTempl;
     toStore.session_id = this.sessionIdd;

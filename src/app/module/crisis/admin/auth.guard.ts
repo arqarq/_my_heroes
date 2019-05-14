@@ -3,12 +3,15 @@ import {
   ActivatedRouteSnapshot,
   CanActivate,
   CanActivateChild,
+  CanLoad,
   NavigationExtras,
+  Route,
   Router,
-  RouterStateSnapshot
+  RouterStateSnapshot,
+  UrlSegment
 } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
-import { AdminModule } from './admin.module';
+import { CrisisModule } from '../crisis.module';
 
 // Create a dummy session id
 const sessionId = 1234567890;
@@ -20,13 +23,23 @@ export const navigationExtras: NavigationExtras = {
 };
 
 @Injectable({
-  providedIn: AdminModule
+  providedIn: CrisisModule
 })
-export class AuthGuard implements CanActivate, CanActivateChild {
+export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   constructor(
     private authService: AuthService,
     private router: Router
   ) {
+  }
+
+  canLoad(route: Route, segments: UrlSegment[]): boolean {
+    const url = `/crisis/crisis-center/${route.path}`;
+    console.log('AuthGuard # canLoad() # url: ' + url);
+    return this.checkLogin(url);
+    // if (this.authService.isLoggedIn) {
+    //   console.log('AuthGuard # canLoad(): od razu true');
+    //   return true;
+    // }
   }
 
   canActivate(next: ActivatedRouteSnapshot,

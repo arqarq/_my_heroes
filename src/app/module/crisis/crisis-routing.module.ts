@@ -7,6 +7,7 @@ import { CrisisCenterHomeComponent } from './component/crisis-center-home/crisis
 import { ComposeMessageComponent } from './component/compose-message/compose-message.component';
 import { CanDeactivateGuard } from './heroes/can-deactivate.guard';
 import { CrisisDetailResolverService } from './component/crisis-detail/crisis-detail-resolver.service';
+import { AuthGuard } from './admin/auth.guard';
 
 export function adminMatch(url: UrlSegment[]): UrlMatchResult {
   let result;
@@ -55,7 +56,8 @@ const ROUTES: Routes = [
       {
         path: 'admin',
         // matcher: adminMatch, // zastępuje "path"
-        loadChildren: 'src/app/module/crisis/admin/admin.module#AdminModule' // całkowicie bezwzględna (tsconfig.json)
+        loadChildren: 'src/app/module/crisis/admin/admin.module#AdminModule', // całkowicie bezwzględna (tsconfig.json)
+        canLoad: [AuthGuard]
       },
       // {
       //   path: 'admin(popup:compose)',
