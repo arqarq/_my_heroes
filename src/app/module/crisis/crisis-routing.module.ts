@@ -13,7 +13,7 @@ export function adminMatch(url: UrlSegment[]): UrlMatchResult {
   if (url.length >= 1 && url[0].path.startsWith('admin')) {
     result = url;
     if (url.length === 2) {
-      result.shift();
+      // result.shift();
       // result.shift();
       // result = null;
       result = {consumed: result};

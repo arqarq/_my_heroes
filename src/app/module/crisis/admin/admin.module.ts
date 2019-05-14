@@ -18,7 +18,7 @@ import { ClearComponent } from './clear/clear.component';
     ManageCrisesComponent,
     ManageHeroesComponent,
     ClearComponent
-  ],
+  ]
   // providers: [ // old way DI
   //   AuthGuard
   // ]
