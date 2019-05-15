@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   extractObj(): {} {
     this.sessionIdd = this.route.snapshot.queryParams.session_id || null;
-    this.tokenn = this.route.snapshot.fragment;
+    this.tokenn = this.route.snapshot.fragment || null;
     const toStore = toStoreTempl;
     toStore.session_id = this.sessionIdd;
     toStore.fragment = this.tokenn;
