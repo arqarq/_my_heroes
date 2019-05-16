@@ -7,6 +7,12 @@
   - Session ID: {{ sessionId | async }},<br>
   - Token: {{ token | async }}
 </p>
+<p style="margin-bottom: 0">Preloaded modules:</p>
+<ul style="margin-top: 0; padding: 0 0 0 20px">
+  <li *ngFor="let module of modules">
+    {{ module }}
+  </li>
+</ul>
 <!--Preloaded Modules-->
 <!--<ul>-->
 <!--  <li *ngFor="let module of modules">{{ module }}</li>-->

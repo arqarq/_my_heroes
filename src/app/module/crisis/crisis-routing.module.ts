@@ -41,7 +41,10 @@ const ROUTES: Routes = [
     children: [
       {
         path: 'superheroes',
-        loadChildren: './heroes/heroes.module#HeroesModule'
+        loadChildren: './heroes/heroes.module#HeroesModule',
+        data: {
+          preload: true
+        }
       },
       {
         path: 'login',
