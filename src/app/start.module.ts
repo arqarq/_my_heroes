@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, OnInit } from '@angular/core';
 import { StartRoutingModule } from './start-routing.module';
 import { StartComponent } from './start.component';
 import { ChooserComponent } from './component/chooser/chooser.component';
@@ -9,6 +9,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './service/in-memory-data.service';
 import { ComposeMessageComponent } from './module/crisis/component/compose-message/compose-message.component';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -31,5 +32,14 @@ import { FormsModule } from '@angular/forms';
   ],
   bootstrap: [StartComponent]
 })
-export class StartModule {
+export class StartModule implements OnInit {
+  readonly replacer;
+
+  constructor(private router: Router) {
+    this.replacer = (key, value) => (typeof value === 'function') ? value.name : value;
+  }
+
+  ngOnInit(): void {
+    console.log('StartModule # router.config: ', JSON.stringify(this.router.config, this.replacer, 2));
+  }
 }
