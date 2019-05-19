@@ -68,6 +68,10 @@ const ROUTES: Routes = [
       //   pathMatch: 'prefix' // lub 'full', przy wewn. ścieżka to bez znaczenia
       // },
       {
+        path: 'heroes',
+        redirectTo: 'superheroes'
+      },
+      {
         path: '',
         component: CrisisListComponent,
         children: [

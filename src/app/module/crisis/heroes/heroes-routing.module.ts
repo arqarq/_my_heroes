@@ -18,7 +18,7 @@ const heroesRoutes: Routes = [
     }
   },
   {
-    path: 'hero/:id',
+    path: 'superhero/:id',
     component: HeroDetailComponent,
     resolve: {
       hero: HeroDetailResolverService
@@ -29,6 +29,10 @@ const heroesRoutes: Routes = [
     canDeactivate: [
       CanDeactivateGuard
     ]
+  },
+  {
+    path: 'hero/:id',
+    redirectTo: 'superhero/:id'
   }
 ];
 
