@@ -1,4 +1,4 @@
-import { NgModule, OnInit } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { StartRoutingModule } from './start-routing.module';
 import { StartComponent } from './start.component';
 import { ChooserComponent } from './component/chooser/chooser.component';
@@ -32,14 +32,11 @@ import { Router } from '@angular/router';
   ],
   bootstrap: [StartComponent]
 })
-export class StartModule implements OnInit {
+export class StartModule {
   readonly replacer;
 
   constructor(private router: Router) {
     this.replacer = (key, value) => (typeof value === 'function') ? value.name : value;
-  }
-
-  ngOnInit(): void {
     console.log('StartModule # router.config: ', JSON.stringify(this.router.config, this.replacer, 2));
   }
 }
