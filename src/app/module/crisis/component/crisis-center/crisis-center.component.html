@@ -8,6 +8,13 @@
      routerLink="./">Crisis Center</a>
   &nbsp;
   <a [preserveFragment]="true"
+     [queryParamsHandling]="'merge'"
+     [queryParams]="{a: 'b'}"
+     [routerLinkActiveOptions]="{exact: true}"
+     [routerLinkActive]="'activated activated-color'"
+     [routerLink]="['./1', {foo: 'foo'}]">Dragon Crisis</a>
+  &nbsp;
+  <a [preserveFragment]="true"
      [queryParamsHandling]="'preserve'"
      [routerLinkActive]="'activated activated-color'"
      routerLink="./superheroes">Heroes</a>
