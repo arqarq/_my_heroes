@@ -1,9 +1,9 @@
 :host {
   position: relative;
-  bottom: 10%
+  bottom: 0
 }
 
 section {
   float: right;
-  width: 260px
+  width: 300px
 }
