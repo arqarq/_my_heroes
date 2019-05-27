@@ -48,11 +48,16 @@ const ROUTES: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(ROUTES, {
-    enableTracing: false,
-    // preloadingStrategy: PreloadAllModules
-    preloadingStrategy: SelectivePreloadingStrategyService
-  })],
+  imports: [RouterModule.forRoot(
+    ROUTES,
+    {
+      enableTracing: false,
+      // preloadingStrategy: PreloadAllModules
+      preloadingStrategy: SelectivePreloadingStrategyService,
+      useHash: false // PathLocationStrategy
+      // useHash: true // HashLocationStrategy
+    }
+  )],
   // providers: [SelectivePreloadingStrategyService], // old way DI
   exports: [RouterModule]
 })
