@@ -17,7 +17,7 @@ export class AdminDashboardComponent implements OnInit {
     private route: ActivatedRoute,
     preloadStrategy: SelectivePreloadingStrategyService
   ) {
-    this.modules = preloadStrategy.preloadedModules
+    this.modules = preloadStrategy.preloadedModules;
   }
 
   ngOnInit() {
