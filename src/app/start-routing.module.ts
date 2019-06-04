@@ -22,7 +22,8 @@ const ROUTES: Routes = [
   },
   {
     path: 'crisis',
-    loadChildren: './module/crisis/crisis.module#CrisisModule',
+    // loadChildren: './module/crisis/crisis.module#CrisisModule',
+    loadChildren: () => import('./module/crisis/crisis.module').then((m) => m.CrisisModule),
     data: {
       preload: true
     }
