@@ -29,6 +29,13 @@ const ROUTES: Routes = [
     }
   },
   {
+    path: 'shop',
+    loadChildren: () => import('./module/shop/shop.module').then((m) => m.ShopModule),
+    data: {
+      preload: true
+    }
+  },
+  {
     path: 'choose',
     component: ChooserComponent
   },
