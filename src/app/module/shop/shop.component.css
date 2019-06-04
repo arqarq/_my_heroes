@@ -1,11 +1,5 @@
-/* Global Styles */
-
 * {
-  font-family: 'Roboto', Arial, sans-serif;
-  color: #616161;
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box
 }
 
 .margin-fix {
@@ -22,38 +16,30 @@
 }
 
 /* Text */
-
-h1 {
+::ng-deep h1 {
   font-size: 32px;
 }
 
-h2 {
+::ng-deep h2 {
   font-size: 20px;
 }
 
-h1, h2 {
+::ng-deep h1, h2 {
   font-weight: lighter;
 }
 
-p {
-  font-family: Lato, sans-serif;
-  font-size: 14px;
-}
-
 /* Hyperlink */
-
-a {
+::ng-deep a {
   cursor: pointer;
   color: #1976d2;
   text-decoration: none;
 }
 
-a:hover {
+::ng-deep a:hover {
   opacity: 0.8;
 }
 
 /* Input */
-
 input {
   font-size: 14px;
   border-radius: 2px;
@@ -71,7 +57,7 @@ label {
 }
 
 /* Button */
-.button, button {
+::ng-deep .button, button {
   display: inline-flex;
   align-items: center;
   padding: 8px 16px;
@@ -83,30 +69,28 @@ label {
   border: none;
 }
 
-.button:hover, button:hover {
+::ng-deep .button:hover, button:hover {
   opacity: 0.8;
   font-weight: normal;
 }
 
-.button:disabled, button:disabled {
+::ng-deep .button:disabled, button:disabled {
   opacity: 0.5;
   cursor: auto;
 }
 
 /* Fancy Button */
-
-.fancy-button {
+::ng-deep .fancy-button {
   background-color: white;
   color: #1976d2;
 }
 
-.fancy-button i.material-icons {
+::ng-deep .fancy-button i.material-icons {
   color: #1976d2;
   padding-right: 4px;
 }
 
 /* Top Bar */
-
 app-top-bar {
   width: 100%;
   height: 68px;
@@ -118,13 +102,12 @@ app-top-bar {
   align-items: center;
 }
 
-app-top-bar h1 {
+::ng-deep app-top-bar h1 {
   color: white;
   margin: 0;
 }
 
 /* Checkout Cart, Shipping Prices */
-
 .cart-item, .shipping-item {
   width: 100%;
   min-width: 400px;
@@ -139,7 +122,6 @@ app-top-bar h1 {
 }
 
 /*-------------*/
-
 nav a {
   padding: 5px 10px;
   text-decoration: none;
