@@ -3,6 +3,10 @@
 </h2>
 <div *ngFor="let product of products">
   <h3>
-    {{ product.name }} / {{ product.price }} / {{ product.description }}
+    {{ product.name }}
+    /
+    <small>{{ product.price }}</small>
+    /
+    <i>{{ product.description }}</i>
   </h3>
 </div>
