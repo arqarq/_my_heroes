@@ -8,4 +8,8 @@ import { PRODUCTS } from '../repository/products';
 })
 export class ProductListComponent {
   products: {[key: string]: number | string}[] = PRODUCTS;
+
+  private share() {
+    window.alert('The product has been shared!');
+  }
 }

@@ -4,7 +4,8 @@
 
 .margin-fix {
   /*margin: -2em*/
-  margin: 0
+  margin: 0;
+  display: flow-root
 }
 
 .container {
@@ -101,8 +102,8 @@ app-top-bar {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px
 }
 
 ::ng-deep app-top-bar h1 {

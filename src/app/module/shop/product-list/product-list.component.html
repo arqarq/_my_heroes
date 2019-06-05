@@ -3,10 +3,15 @@
 </h2>
 <div *ngFor="let product of products">
   <h3>
-    {{ product.name }}
+    <a [title]="product.name + ' details'"
+       style="color: #1976D2">{{ product.name }}</a>
     /
-    <small>{{ product.price }}</small>
-    /
-    <i>{{ product.description }}</i>
+    <small>${{ product.price }}</small>
   </h3>
+  <p *ngIf="product.description">
+    <i>Description: {{ product.description }}</i>
+  </p>
+  <button (click)="share()">
+    Share
+  </button>
 </div>
