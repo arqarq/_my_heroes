@@ -6,5 +6,5 @@
 section {
   float: right;
   width: 300px;
-  margin-left: calc(2em - 1px)
+  margin-left: calc(2em + 0.5px)
 }
