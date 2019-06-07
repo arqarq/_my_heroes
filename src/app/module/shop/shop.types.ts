@@ -1,7 +1,7 @@
 export type ProductParamsType = {
-  'description': string,
-  'name': string,
-  'price': number
+  description: string,
+  name: string,
+  price: number
 };
 
 export type ObjectPassedByEventDTO = {
