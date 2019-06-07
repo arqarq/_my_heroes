@@ -14,7 +14,9 @@
 }
 
 ::ng-deep router-outlet + app-product-list,
-::ng-deep router-outlet + app-product-details {
+::ng-deep router-outlet + app-product-details,
+::ng-deep router-outlet + app-cart,
+::ng-deep router-outlet + app-shipping {
   padding: 0 16px
 }
 
@@ -28,13 +30,18 @@
 }
 
 ::ng-deep h1, h2 {
-  font-weight: lighter;
+  font-weight: lighter
+}
+
+::ng-deep h3.detail {
+  color: #1976D2;
+  font-weight: bold
 }
 
 /* Hyperlink */
 ::ng-deep a {
   cursor: pointer;
-  color: #1976d2;
+  color: #1976D2;
   text-decoration: none;
 }
 
@@ -113,7 +120,8 @@ app-top-bar {
 }
 
 /* Checkout Cart, Shipping Prices */
-.cart-item, .shipping-item {
+::ng-deep .cart-item,
+::ng-deep .shipping-item {
   width: 100%;
   min-width: 400px;
   max-width: 450px;

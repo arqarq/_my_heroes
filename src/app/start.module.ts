@@ -4,12 +4,12 @@ import { StartComponent } from './start.component';
 import { ChooserComponent } from './component/chooser/chooser.component';
 import { NotFound404Component } from './component/notfound404/notfound404.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './service/in-memory-data.service';
 import { ComposeMessageComponent } from './module/crisis/component/compose-message/compose-message.component';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -17,7 +17,13 @@ import { Router } from '@angular/router';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {dataEncapsulation: false}),
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService,
+      {
+        dataEncapsulation: false,
+        passThruUnknownUrl: true
+      }
+    ),
     // AuthModule, // 1 komponent użyty - login; musi być przed '/**'
     StartRoutingModule // kolejność routingów ma znaczenie
     // AppModule, // (stare heroes) "lazy child", nie użyty żaden komponent do załadowania
