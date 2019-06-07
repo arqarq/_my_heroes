@@ -1,10 +1,10 @@
 export type ProductParamsType = {
-  'description': string;
-  'name': string;
+  'description': string,
+  'name': string,
   'price': number
 };
 
 export type ObjectPassedByEventDTO = {
-  wasCtrlKeyPressed: boolean;
+  wasCtrlKeyPressed: boolean,
   productPassedViaEvent: ProductParamsType
 };
