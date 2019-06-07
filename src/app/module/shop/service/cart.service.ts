@@ -6,18 +6,18 @@ import { ProductParamsType } from '../shop.types';
   providedIn: ShopModule
 })
 export class CartService {
-  private items = new Array<ProductParamsType>();
+  private items: Array<ProductParamsType> = [];
 
-  clearCart() {
+  clearCart(): ProductParamsType[] {
     this.items = [];
     return this.items;
   }
 
-  private addToCart(product: ProductParamsType) {
+  addToCart(product: ProductParamsType): void {
     this.items.push(product);
   }
 
-  private getItems() {
+  getItems(): ProductParamsType[] {
     return this.items;
   }
 }
