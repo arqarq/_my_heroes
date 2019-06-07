@@ -1,12 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-
-export type ProductParamsType = {
-  'description', 'name', 'price': number | string
-};
-export type ObjectPassedByEventDTO = {
-  wasCtrlKeyPressed: boolean,
-  productPassedViaEvent: ProductParamsType
-};
+import { ObjectPassedByEventDTO, ProductParamsType } from '../shop.types';
 
 @Component({
   selector: 'app-product-alerts',

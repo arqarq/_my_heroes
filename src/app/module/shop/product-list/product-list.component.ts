@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PRODUCTS } from '../repository/products';
-import { ObjectPassedByEventDTO, ProductParamsType } from '../product-alerts/product-alerts.component';
+import { ObjectPassedByEventDTO, ProductParamsType } from '../shop.types';
 
 @Component({
   selector: 'app-product-list',

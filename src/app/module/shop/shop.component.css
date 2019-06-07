@@ -13,7 +13,8 @@
   flex-direction: row;
 }
 
-::ng-deep router-outlet + app-product-list {
+::ng-deep router-outlet + app-product-list,
+::ng-deep router-outlet + app-product-details {
   padding: 0 16px
 }
 
@@ -133,14 +134,14 @@ nav a {
   margin-right: 10px;
   display: inline-block;
   background-color: #eee;
-  border-radius: 4px;
+  border-radius: 4px
 }
 
 nav a:visited, a:link {
-  color: #607d8b;
+  color: #607d8b
 }
 
 nav a:hover {
   color: #039be5;
-  background-color: #cfd8dc;
+  background-color: #cfd8dc
 }
