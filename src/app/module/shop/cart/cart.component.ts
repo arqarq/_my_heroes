@@ -36,6 +36,7 @@ export class CartComponent implements OnInit {
   }
 
   onSubmit(customerData: FormDataNow, items: ProductParamsType[]) {
+    items.forEach((item) => delete item.description);
     console.warn('Your order has been submitted - data:', JSON.stringify(customerData, null, 1));
     console.warn('Your order has been submitted - items:', JSON.stringify(items, null, 1));
     alert('Sent to: ' + JSON.stringify(customerData, null, 1));
