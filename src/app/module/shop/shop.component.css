@@ -10,7 +10,7 @@
 
 .container {
   display: flex;
-  flex-direction: row;
+  flex-direction: row
 }
 
 ::ng-deep router-outlet + app-product-list,
@@ -50,15 +50,15 @@
 }
 
 /* Input */
-input {
+::ng-deep input {
   font-size: 14px;
   border-radius: 2px;
   padding: 8px;
-  margin-bottom: 16px;
+  margin-bottom: 4px;
   border: 1px solid #BDBDBD;
 }
 
-label {
+::ng-deep label {
   font-size: 12px;
   font-weight: bold;
   margin-bottom: 4px;
@@ -74,9 +74,9 @@ label {
   border-radius: 2px;
   font-size: 14px;
   cursor: pointer;
-  background-color: #1976d2;
+  background-color: #1976D2;
   color: white;
-  border: none;
+  border: none
 }
 
 ::ng-deep .button:hover, button:hover {

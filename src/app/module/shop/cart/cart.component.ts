@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CartService } from '../service/cart.service';
-import { ProductParamsType } from '../shop.types';
+import { FormDataNow, ProductParamsType } from '../shop.types';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -11,7 +11,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class CartComponent implements OnInit {
   items: Array<ProductParamsType> = [];
-  private checkoutForm: FormGroup;
+  checkoutForm: FormGroup;
 
   constructor(
     private cartService: CartService,
@@ -35,8 +35,11 @@ export class CartComponent implements OnInit {
     this.cdr.detectChanges();
   }
 
-  onSubmit(customerData) {
-    console.warn('Your order has been submitted', customerData);
+  onSubmit(customerData: FormDataNow, items: ProductParamsType[]) {
+    console.warn('Your order has been submitted - data:', JSON.stringify(customerData, null, 1));
+    console.warn('Your order has been submitted - items:', JSON.stringify(items, null, 1));
+    alert('Sent to: ' + JSON.stringify(customerData, null, 1));
+    alert('You\'ve bought: ' + JSON.stringify(items, null, 1));
     this.clearCart();
     this.checkoutForm.reset();
   }

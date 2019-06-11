@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CartService } from '../service/cart.service';
 import { Observable } from 'rxjs';
+import { ShippingOptions } from '../shop.types';
 
 @Component({
   selector: 'app-shipping',
@@ -8,7 +9,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./shipping.component.css']
 })
 export class ShippingComponent {
-  shippingCosts: Observable<{type: string, price: number}[]>;
+  shippingCosts: Observable<ShippingOptions[]>;
 
   constructor(private cartService: CartService) {
     this.shippingCosts = this.cartService.getShippingPrices();

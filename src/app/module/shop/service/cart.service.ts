@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ShopModule } from '../shop.module';
-import { ProductParamsType } from '../shop.types';
+import { ProductParamsType, ShippingOptions } from '../shop.types';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -26,7 +26,7 @@ export class CartService {
     return this.items;
   }
 
-  getShippingPrices<T = {type: string, price: number}[]>(): Observable<T> {
+  getShippingPrices<T = ShippingOptions[]>(): Observable<T> {
     return this.http.get<T>('assets/shipping.json');
   }
 }

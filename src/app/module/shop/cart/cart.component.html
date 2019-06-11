@@ -1,6 +1,6 @@
-<h3>
+<h2>
   Cart
-</h3>
+</h2>
 <p>
   <a routerLink="../shipping">Shipping Prices</a>
 </p>
@@ -9,12 +9,28 @@
   <span>{{ item.name }}</span>
   <span>{{ item.price | currency }}</span>
 </div>
-<form formGroup="checkoutForm">
-  <button class="button"
-          type="submit">
-    Purchase
+<div *ngIf="items.length">
+  <button (click)="clearCart()"
+          id="clearButton">
+    Clear cart
   </button>
-</form>
-<button (click)="clearCart()">
-  Clear cart
-</button>
+  <form (ngSubmit)="onSubmit(checkoutForm.value, items)"
+        [formGroup]="checkoutForm">
+    <div>
+      <label for="name">Name</label>
+      <input [formControlName]="'name'"
+             id="name"
+             type="text">
+    </div>
+    <div>
+      <label for="address">Address</label>
+      <input [formControlName]="'address'"
+             id="address" type="text">
+    </div>
+    <button class="button"
+            id="purchaseButton"
+            type="submit">
+      Purchase
+    </button>
+  </form>
+</div>
