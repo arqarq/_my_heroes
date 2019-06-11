@@ -9,6 +9,11 @@
   <span>{{ item.name }}</span>
   <span>{{ item.price | currency }}</span>
 </div>
+<div *ngIf="done">
+  <h1>
+    All done!
+  </h1>
+</div>
 <div *ngIf="items.length">
   <button (click)="clearCart()"
           id="clearButton">

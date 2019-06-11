@@ -12,6 +12,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class CartComponent implements OnInit {
   items: Array<ProductParamsType> = [];
   checkoutForm: FormGroup;
+  done: boolean;
 
   constructor(
     private cartService: CartService,
@@ -23,6 +24,7 @@ export class CartComponent implements OnInit {
       name: '',
       address: ''
     });
+    this.done = false;
   }
 
   ngOnInit() {
@@ -36,11 +38,14 @@ export class CartComponent implements OnInit {
   }
 
   onSubmit(customerData: FormDataNow, items: ProductParamsType[]) {
-    items.forEach((item) => delete item.description);
+    items.forEach((item) => delete item.description); // slowest
+    // items.forEach((item) => item.description = undefined);
+    // items.forEach((item) => item.description = null); // fastest
     console.warn('Your order has been submitted - data:', JSON.stringify(customerData, null, 1));
     console.warn('Your order has been submitted - items:', JSON.stringify(items, null, 1));
     alert('Sent to: ' + JSON.stringify(customerData, null, 1));
     alert('You\'ve bought: ' + JSON.stringify(items, null, 1));
+    this.done = true;
     this.clearCart();
     this.checkoutForm.reset();
   }
