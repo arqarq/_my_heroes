@@ -52,6 +52,35 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "pl": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ],
+              "outputPath": "dist/d00af17f5d630b7296f102d",
+              "i18nFile": "src/locale/messages.pl.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "pl",
+              "i18nMissingTranslation": "error"
             }
           }
         },
@@ -63,6 +92,9 @@
           "configurations": {
             "production": {
               "browserTarget": "heroes:build:production"
+            },
+            "pl": {
+              "browserTarget": "heroes:build:pl"
             }
           }
         },

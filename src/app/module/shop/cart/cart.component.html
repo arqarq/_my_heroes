@@ -6,18 +6,34 @@
 <div [innerHTML]="divElement.innerHTML">
 </div>
 <p>
-  <a routerLink="../shipping">Shipping Prices</a>
+  <a i18n="ceny transportu|Pobiera ceny transportu z serwera.@@shippingPrice"
+     routerLink="../shipping">Shipping Prices</a>
 </p>
-<div *ngFor="let item of items"
-     class="cart-item">
-  <span>{{ item.name }}</span>
-  <span>{{ item.price | currency:'EUR' }}</span>
-</div>
 <div *ngIf="done">
   <h1>
     All done!
   </h1>
 </div>
+<div *ngIf="items.length">
+  <div *ngFor="let item of items"
+       class="cart-item">
+    <span>{{ item.name }}</span>
+    <span>{{ item.price | currency:'EUR' }}</span>
+  </div>
+</div>
+<p *ngIf="!done"
+   i18n="ilość produktów|Wyświetla ile jest produktów dodanych do koszyka.@@qtyInCart">
+  There
+  {items.length, plural,
+    =0 {are no}
+    =1 {is}
+    other {are}}
+  {{ items.length || '' }}
+  {items.length, plural,
+    =1 {product}
+    other {products}}
+  in the cart.
+</p>
 <div *ngIf="items.length">
   <button (click)="clearCart()"
           id="clearButton">
