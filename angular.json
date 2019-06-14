@@ -80,7 +80,7 @@
               "i18nFile": "src/locale/messages.pl.xlf",
               "i18nFormat": "xlf",
               "i18nLocale": "pl",
-              "i18nMissingTranslation": "error"
+              "i18nMissingTranslation": "warning"
             }
           }
         },
