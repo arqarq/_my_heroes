@@ -81,3 +81,7 @@ button.delete {
 .heroes li.selected:hover {
   background-color: #a9a0dc;
 }
+
+label {
+  margin-right: 8px
+}

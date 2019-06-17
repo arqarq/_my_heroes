@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { slideInAnimation } from './module/crisis/animations';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-start',
@@ -8,4 +9,11 @@ import { slideInAnimation } from './module/crisis/animations';
   animations: [slideInAnimation]
 })
 export class StartComponent {
+  constructor(private router: Router) {
+    if (navigator.language === 'pl') {
+      router.navigateByUrl('/pl');
+    } else {
+      router.navigateByUrl('/en');
+    }
+  }
 }
