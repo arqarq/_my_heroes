@@ -4,10 +4,9 @@
     {{ details }}
   </div>
   <div>
-    <div>
-      <label for="note">Message:</label>
-    </div>
-    <div>
+    <label for="note">Message:</label>
+  </div>
+  <div>
     <textarea [(ngModel)]="message"
               [disabled]="sending"
               [ngStyle]="{width: '294px'}"
@@ -15,7 +14,6 @@
               id="note"
               rows="10"
     ></textarea>
-    </div>
   </div>
   <p *ngIf="!sending">
     <button (click)="send()">

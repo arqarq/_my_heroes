@@ -9,7 +9,7 @@ if (environment.production) {
 }
 
 platformBrowserDynamic(
-  [{provide: LOCALE_ID, useValue: 'pl'}] // tylko dla 'ng serve', dla 'ng build' wystarczy registerLocaleData()
+  [{provide: LOCALE_ID, useValue: 'pl'}] // dla 'ng build' wystarczy tylko tu, bez registerLocaleData() w AppModule
 )
   .bootstrapModule(StartModule,
     {
