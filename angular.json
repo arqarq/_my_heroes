@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/d00af17f5d630b7296f102d",
+            "outputPath": "dist/en",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -51,7 +51,8 @@
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
                 }
-              ]
+              ],
+              "baseHref": "/en/"
             },
             "pl": {
               "fileReplacements": [
@@ -76,11 +77,12 @@
                   "maximumError": "5mb"
                 }
               ],
-              "outputPath": "dist/d00af17f5d630b7296f102d",
+              "outputPath": "dist/pl",
               "i18nFile": "src/locale/messages.pl.xlf",
               "i18nFormat": "xlf",
               "i18nLocale": "pl",
-              "i18nMissingTranslation": "warning"
+              "i18nMissingTranslation": "warning",
+              "baseHref": "/pl/"
             }
           }
         },

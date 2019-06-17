@@ -1,6 +1,6 @@
 {
   "name": "d00af17f5d630b7296f102d",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,7 +9,10 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build-i18n:en": "ng build --prod",
+    "build-i18n:pl": "ng build --configuration=pl",
+    "build-i18n": "npm run build-i18n:en && npm run build-i18n:pl"
   },
   "private": true,
   "dependencies": {
