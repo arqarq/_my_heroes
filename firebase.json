@@ -6,17 +6,20 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [
+    "redirects": [
       {
         "source": "/",
-        "destination": "/pl/index.html"
-      },
+        "destination": "/en/index.html",
+        "type": 301
+      }
+    ],
+    "rewrites": [
       {
-        "source": "/en/**",
+        "source": "/en/{,/**}",
         "destination": "/en/index.html"
       },
       {
-        "source": "/pl/**",
+        "source": "/pl/{,/**}",
         "destination": "/pl/index.html"
       }
     ]
