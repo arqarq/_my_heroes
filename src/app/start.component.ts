@@ -8,6 +8,4 @@ import { slideInAnimation } from './module/crisis/animations';
   animations: [slideInAnimation]
 })
 export class StartComponent {
-  constructor() {
-  }
 }

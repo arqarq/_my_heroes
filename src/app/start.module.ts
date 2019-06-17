@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
-import localePl from '@angular/common/locales/pl';
+import locale from '@angular/common/locales/pl';
 
 @NgModule({
   imports: [
@@ -46,6 +46,6 @@ export class StartModule {
   constructor(private router: Router) {
     this.replacer = (key, value) => (typeof value === 'function') ? value.name : value;
     console.log('StartModule # router.config: ', JSON.stringify(this.router.config, this.replacer, 2));
-    registerLocaleData(localePl);
+    registerLocaleData(locale);
   }
 }
