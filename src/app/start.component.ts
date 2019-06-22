@@ -11,9 +11,9 @@ import { Router } from '@angular/router';
 export class StartComponent {
   constructor(private router: Router) {
     if (navigator.language === 'pl') {
-      // router.navigateByUrl('../pl');
+      router.navigateByUrl('../pl');
     } else {
-      // router.navigateByUrl('../en');
+      router.navigateByUrl('../en');
     }
   }
 }
