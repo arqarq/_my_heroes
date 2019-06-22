@@ -10,8 +10,6 @@ import { ComposeMessageComponent } from './module/crisis/component/compose-messa
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { registerLocaleData } from '@angular/common';
-import locale from '@angular/common/locales/pl';
 
 @NgModule({
   imports: [
@@ -46,6 +44,5 @@ export class StartModule {
   constructor(private router: Router) {
     this.replacer = (key, value) => (typeof value === 'function') ? value.name : value;
     console.log('StartModule # router.config: ', JSON.stringify(this.router.config, this.replacer, 2));
-    registerLocaleData(locale); // potrzebne dla 'ng serve', 'ng build' radzi sobie bez tego
   }
 }

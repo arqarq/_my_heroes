@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { ShopComponent } from './shop.component';
 import { RouterModule } from '@angular/router';
 import { ProductListComponent } from './product-list/product-list.component';
@@ -9,6 +9,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { CartComponent } from './cart/cart.component';
 import { ShippingComponent } from './shipping/shipping.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import locale from '@angular/common/locales/pl';
 
 @NgModule({
   declarations: [
@@ -49,4 +50,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ])]
 })
 export class ShopModule {
+  constructor() {
+    registerLocaleData(locale); // potrzebne dla 'ng serve', 'ng build' radzi sobie bez tego
+  }
 }

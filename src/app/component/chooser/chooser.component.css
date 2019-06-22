@@ -15,3 +15,13 @@ body {
 p#owl {
   font-size: 4em
 }
+
+a.lang {
+  text-decoration-line: underline
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: rgb(0, 0, 238)
+}

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { slideInAnimation } from './module/crisis/animations';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-start',
@@ -8,12 +7,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./start.component.css'],
   animations: [slideInAnimation]
 })
-export class StartComponent {
-  constructor(private router: Router) {
-    if (navigator.language === 'pl') {
-      router.navigateByUrl('../pl');
-    } else {
-      router.navigateByUrl('../en');
-    }
+export class StartComponent/* implements OnInit*/ {
+  constructor(
+    // private router: Router,
+    // private route: ActivatedRoute
+  ) {
   }
+
+  // ngOnInit() {
+  //   if ('pl' === navigator.language) {
+  //     this.router.navigateByUrl(
+  //       '../pl',
+  //       {
+  //         relativeTo: this.route,
+  //         replaceUrl: true,
+  //         skipLocationChange: false
+  //       });
+  //   }
+  // }
 }
