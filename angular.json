@@ -54,6 +54,7 @@
                   "maximumError": "5mb"
                 }
               ],
+              "i18nLocale": "en",
               "baseHref": "/en/"
             },
             "pl": {
