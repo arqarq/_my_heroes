@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { LOCALE_ID_NUMBERS } from '../../../locale/LIDs';
 
@@ -12,11 +12,14 @@ import { LOCALE_ID_NUMBERS } from '../../../locale/LIDs';
 })
 export class ChooserComponent implements OnInit {
   localeIdNumbers = LOCALE_ID_NUMBERS;
-  browserLocaleID: string;
+  // browserLocaleID: string;
   private title = 'Wybór';
 
-  constructor(private titleService: Title) {
-    this.browserLocaleID = navigator.language;
+  constructor(
+    private titleService: Title,
+    @Inject(LOCALE_ID) public localeId: string
+  ) {
+    // this.browserLocaleID = navigator.language;
   }
 
   ngOnInit(): void {
