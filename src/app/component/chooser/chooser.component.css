@@ -2,10 +2,6 @@ body {
   font-size: 100%
 }
 
-/*.activated {*/
-/*  color: yellow*/
-/*}*/
-
 .activated-color {
   background-color: red;
   border-radius: 5px 0 0 0;
@@ -16,12 +12,17 @@ p#owl {
   font-size: 4em
 }
 
-a.lang {
-  text-decoration-line: underline
-}
-
 a {
   text-decoration: none;
   cursor: pointer;
   color: rgb(0, 0, 238)
+}
+
+a.lang {
+  text-decoration-line: underline
+}
+
+a.selected {
+  color: currentColor;
+  opacity: 0.75
 }

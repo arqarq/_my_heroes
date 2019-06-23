@@ -1,10 +1,12 @@
 <div>
   <nav style="font-size: xx-small">
-    <a class="lang"
-       href="/pl">PL</a>
+    <a [class.selected]="browserLocaleID === localeIdNumbers[1033]"
+       [href]="'/' + localeIdNumbers[1033]"
+       class="lang">{{ localeIdNumbers[1033] | uppercase }}</a>
     /
-    <a class="lang"
-       href="/en">EN</a>
+    <a [class.selected]="browserLocaleID === localeIdNumbers[1045]"
+       [href]="'/' + localeIdNumbers[1045]"
+       class="lang">{{ localeIdNumbers[1045] | uppercase }}</a>
   </nav>
 </div>
 <p>
@@ -27,6 +29,7 @@
 <div class="bottom-right">
   <nav>
     <a [routerLinkActive]="'activated activated-color'"
-       [routerLink]="'/choose'">Do choice</a>
+       [routerLink]="'/choose'">
+      Do choice</a>
   </nav>
 </div>

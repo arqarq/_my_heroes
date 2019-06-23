@@ -1,18 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { LOCALE_ID_NUMBERS } from '../../../locale/LIDs';
 
 @Component({
   selector: 'app-chooser',
   templateUrl: './chooser.component.html',
   styles: [
-    '.activated { color: yellow }'
+    '.activated {color: yellow}'
   ],
   styleUrls: ['./chooser.component.css']
 })
 export class ChooserComponent implements OnInit {
-  title = 'Wybór';
+  localeIdNumbers = LOCALE_ID_NUMBERS;
+  browserLocaleID: string;
+  private title = 'Wybór';
 
   constructor(private titleService: Title) {
+    this.browserLocaleID = navigator.language;
   }
 
   ngOnInit(): void {
