@@ -32,21 +32,35 @@ export class ChooserComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() { // only once, ngAfterViewChecked() can be more than once
     const stringStoredAtGivenKey = this.storage.getStringStoredAtGivenKey(LANG_STORAGE_KEY);
-    if (
-      // this.browserLocaleID !== this.localeIdNumbers[1033] &&
-      !stringStoredAtGivenKey &&
-      this.browserLocaleID !== this.localeId &&
-      Object.values(this.localeIdNumbers).includes(this.browserLocaleID)
-    ) {
-      this.storage.storeStringAtGivenKey(LANG_STORAGE_KEY, this.browserLocaleID);
-      document.getElementById(this.browserLocaleID).click();
-    }
-    if (stringStoredAtGivenKey) {
-      if (stringStoredAtGivenKey !== this.localeId) {
-        this.storage.storeStringAtGivenKey(LANG_STORAGE_KEY, this.localeId);
+    // if (
+    //   // this.browserLocaleID !== this.localeIdNumbers[1033] &&
+    //   !stringStoredAtGivenKey &&
+    //   this.browserLocaleID !== this.localeId &&
+    //   Object.values(this.localeIdNumbers).includes(this.browserLocaleID)
+    // ) {
+    //   this.storage.storeStringAtGivenKey(LANG_STORAGE_KEY, this.browserLocaleID);
+    //   document.getElementById(this.browserLocaleID).click();
+    // }
+    // if (stringStoredAtGivenKey) {
+    //   if (stringStoredAtGivenKey !== this.localeId) {
+    //     this.storage.storeStringAtGivenKey(LANG_STORAGE_KEY, this.localeId);
+    //   } else {
+    //     document.getElementById(stringStoredAtGivenKey).click();
+    //     this.storage.storeStringAtGivenKey(LANG_STORAGE_KEY, this.localeId);
+    //   }
+    // }
+    if (Object.values(this.localeIdNumbers).includes(this.localeId)) {
+      if (stringStoredAtGivenKey) {
+        if (stringStoredAtGivenKey !== this.localeId) {
+          this.storage.storeStringAtGivenKey(LANG_STORAGE_KEY, this.localeId);
+          document.getElementById(this.localeId).click();
+        }
       } else {
-        document.getElementById(stringStoredAtGivenKey).click();
-        this.storage.storeStringAtGivenKey(LANG_STORAGE_KEY, this.localeId);
+        if (this.browserLocaleID === this.localeId) {
+          this.storage.storeStringAtGivenKey(LANG_STORAGE_KEY, this.localeId);
+        } else {
+          document.getElementById(this.browserLocaleID).click();
+        }
       }
     }
   }
