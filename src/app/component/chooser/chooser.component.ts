@@ -53,13 +53,12 @@ export class ChooserComponent implements OnInit, AfterViewInit {
       if (stringStoredAtGivenKey) {
         if (stringStoredAtGivenKey !== this.localeId) {
           this.storage.storeStringAtGivenKey(LANG_STORAGE_KEY, this.localeId);
-          document.getElementById(this.localeId).click();
         }
       } else {
         if (this.browserLocaleID === this.localeId) {
           this.storage.storeStringAtGivenKey(LANG_STORAGE_KEY, this.localeId);
         } else {
-          document.getElementById(this.browserLocaleID).click();
+          document.getElementById(this.localeId).click();
         }
       }
     }
