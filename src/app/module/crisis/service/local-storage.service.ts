@@ -22,7 +22,7 @@ export class LocalStorageService {
     return newVar;
   }
 
-  storeStringAtGivenKey(key: string, text: string) {
+  storeStringAtGivenKey(key: string, text?: string) {
     this.storage.set(key, text);
     console.log('LocalStorageService # storeStringAtGivenKey() # set(' + key + '): ' + this.storage.get(key));
   }

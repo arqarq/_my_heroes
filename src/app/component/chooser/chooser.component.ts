@@ -5,6 +5,7 @@ import { LocalStorageService } from '../../module/crisis/service/local-storage.s
 
 const LANG_STORAGE_KEY = 'lang';
 const LANG_INIT_STORAGE_KEY = 'lang_init';
+const LANG_FIRST_STORE_KEY = 'lang_first';
 
 @Component({
   selector: 'app-chooser',
@@ -34,13 +35,18 @@ export class ChooserComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() { // only once, ngAfterViewChecked() can be more than once
     const langStored = this.storage.getStringStoredAtGivenKey(LANG_STORAGE_KEY);
     const langInitialized = this.storage.getStringStoredAtGivenKey(LANG_INIT_STORAGE_KEY);
+    const langFirstStored = this.storage.getStringStoredAtGivenKey(LANG_FIRST_STORE_KEY);
 
     if (Object.values(this.localeIdNumbers).includes(this.browserLocaleID)) {
       if (langInitialized) {
         if (langStored && langStored !== this.localeId) {
-          document.getElementById(langStored).click();
-        } else {
-          this.storage.storeStringAtGivenKey(LANG_STORAGE_KEY, this.localeId);
+          if (!langFirstStored) {
+            this.storage.storeStringAtGivenKey(LANG_FIRST_STORE_KEY, 'done');
+            this.storage.storeStringAtGivenKey(LANG_STORAGE_KEY, this.localeId);
+          } else {
+            this.storage.storeStringAtGivenKey(LANG_FIRST_STORE_KEY);
+            document.getElementById(langStored).click();
+          }
         }
       } else {
         this.storage.storeStringAtGivenKey(LANG_INIT_STORAGE_KEY, this.browserLocaleID);
