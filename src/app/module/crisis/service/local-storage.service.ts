@@ -1,11 +1,11 @@
 import { Inject, Injectable } from '@angular/core';
 import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
-import { CrisisModule } from '../crisis.module';
 
 const STORAGE_KEY = 'mojStorage';
 
 @Injectable({
-  providedIn: CrisisModule
+  // providedIn: CrisisModule
+  providedIn: 'root'
 })
 export class LocalStorageService {
   constructor(@Inject(LOCAL_STORAGE) private storage: StorageService) {
@@ -19,6 +19,17 @@ export class LocalStorageService {
   getQueryParamsAndFragment(key: string = STORAGE_KEY): {[key: string]: string} | undefined {
     const newVar = this.storage.get(key);
     console.log('LocalStorageService # getQueryParamsAndFragment() # get(): ' + (JSON.stringify(newVar) || 'Storage pusty'));
+    return newVar;
+  }
+
+  storeStringAtGivenKey(key: string, text: string) {
+    this.storage.set(key, text);
+    console.log('LocalStorageService # storeStringAtGivenKey() # set(' + key + '): ' + this.storage.get(key));
+  }
+
+  getStringStoredAtGivenKey(key: string): string | undefined {
+    const newVar = this.storage.get(key);
+    console.log('LocalStorageService # getStringStoredAtGivenKey() # get(' + key + '): ' + (newVar || 'Storage pusty'));
     return newVar;
   }
 

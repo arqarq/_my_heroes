@@ -1,29 +1,35 @@
-<h2>ADMIN</h2>
+<h2>
+  ADMIN
+</h2>
 <nav>
   <a [preserveFragment]="true"
      [queryParamsHandling]="'preserve'"
      [routerLinkActiveOptions]="{exact: true}"
      routerLink="./"
-     routerLinkActive="activated activated-color">Dashboard</a>
+     routerLinkActive="activated activated-color">
+    Dashboard</a>
   &nbsp;
   <a [fragment]="defaultFragment"
      [preserveFragment]="false"
      [queryParamsHandling]="''"
      [queryParams]="defaultQueryParams"
      routerLink="./crises"
-     routerLinkActive="activated activated-color">Manage Crises</a>
+     routerLinkActive="activated activated-color">
+    Manage Crises</a>
   &nbsp;
   <a [fragment]="'anchor2'"
      [preserveFragment]="false"
      [queryParamsHandling]="''"
      [queryParams]="{session_id: 0987654321}"
      routerLink="./heroes"
-     routerLinkActive="activated activated-color">Manage Heroes</a>
+     routerLinkActive="activated activated-color">
+    Manage Heroes</a>
   &nbsp;
   <a [preserveFragment]="false"
      [queryParamsHandling]="''"
      [queryParams]="{}"
      routerLink="./clear"
-     routerLinkActive="activated-color-border-only">Clear queryParams & fragment</a>
+     routerLinkActive="activated-color-border-only">
+    Clear queryParams & fragment</a>
 </nav>
 <router-outlet></router-outlet>
