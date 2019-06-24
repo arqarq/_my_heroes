@@ -2,11 +2,15 @@
   <nav style="font-size: xx-small">
     <a [class.selected]="localeId === localeIdNumbers[1033]"
        [href]="'/' + localeIdNumbers[1033]"
-       class="lang">{{ localeIdNumbers[1033] | uppercase }}</a>
-    /
+       [id]="localeIdNumbers[1033]"
+       class="lang">
+      {{ localeIdNumbers[1033] | uppercase }}</a>
+    &bull;
     <a [class.selected]="localeId === localeIdNumbers[1045]"
        [href]="'/' + localeIdNumbers[1045]"
-       class="lang">{{ localeIdNumbers[1045] | uppercase }}</a>
+       [id]="localeIdNumbers[1045]"
+       class="lang">
+      {{ localeIdNumbers[1045] | uppercase }}</a>
   </nav>
 </div>
 <p>

@@ -1,4 +1,4 @@
-import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { LOCALE_ID_NUMBERS } from '../../../locale/LIDs';
 
@@ -10,20 +10,30 @@ import { LOCALE_ID_NUMBERS } from '../../../locale/LIDs';
   ],
   styleUrls: ['./chooser.component.css']
 })
-export class ChooserComponent implements OnInit {
+export class ChooserComponent implements OnInit, AfterViewInit {
   localeIdNumbers = LOCALE_ID_NUMBERS;
-  // browserLocaleID: string;
+  readonly browserLocaleID: string;
   private title = 'Wybór';
 
   constructor(
     private titleService: Title,
     @Inject(LOCALE_ID) public localeId: string
   ) {
-    // this.browserLocaleID = navigator.language;
+    this.browserLocaleID = navigator.language.slice(0, 2);
   }
 
   ngOnInit(): void {
     this.setTitle(this.title);
+  }
+
+  ngAfterViewInit() { // only once, ngAfterViewChecked() can be more than once
+    if (
+      Object.values(this.localeIdNumbers).includes(this.browserLocaleID) &&
+      this.browserLocaleID !== this.localeId &&
+      this.browserLocaleID !== this.localeIdNumbers[1033]
+    ) {
+      document.getElementById(this.browserLocaleID).click();
+    }
   }
 
   private setTitle(newTitle: string) {
