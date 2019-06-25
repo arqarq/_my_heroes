@@ -31,3 +31,10 @@ a.selected {
   color: currentColor;
   opacity: 0.75
 }
+
+input[type=checkbox] {
+  transform: scale(0.75);
+  margin: 0;
+  position: absolute;
+  top: 31px
+}
