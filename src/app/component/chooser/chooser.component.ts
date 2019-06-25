@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { LOCALE_ID_NUMBERS } from '../../../locale/LIDs';
-import { LocalStorageService } from '../../module/crisis/service/local-storage.service';
+import { LocalStorageService } from '../../service/local-storage.service';
 
 const LANG_STORAGE_KEY = 'lang';
 const LANG_INIT_STORAGE_KEY = 'lang_init';

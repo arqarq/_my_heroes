@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { Subscription } from 'rxjs';
-import { LocalStorageService } from '../../service/local-storage.service';
+import { LocalStorageService } from '../../../../service/local-storage.service';
 
 const toStoreTempl: {[key: string]: string} = {
   session_id: undefined,
@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   store(temp: any) {
     this.storage.storeQueryParamsAndFragment(temp);
-    console.log('LoginComponent # store() # temp: ' + JSON.stringify(temp));
+    console.log('LoginComponent # store(temp): ' + JSON.stringify(temp));
   }
 
   logout() {
@@ -78,7 +78,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.setMessage();
     this.router.navigate(
       ['crisis'],
-      {queryParamsHandling: 'preserve', preserveFragment: true})
+      {
+        queryParamsHandling: 'preserve',
+        preserveFragment: true
+      })
       .then(
         () => this.authService.redirectUrl = undefined
       );
