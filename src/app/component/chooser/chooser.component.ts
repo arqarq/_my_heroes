@@ -4,9 +4,8 @@ import { LOCALE_ID_NUMBERS } from '../../../locale/LIDs';
 import { LocalStorageService } from '../../service/local-storage.service';
 
 // const LANG_STORAGE_KEY = 'lang';
-const LANG_INIT_STORAGE_KEY = 'lang_init';
-
 // const LANG_FIRST_STORE_KEY = 'lang_first';
+const LANG_INIT_STORAGE_KEY = 'lang_init';
 
 @Component({
   selector: 'app-chooser',
@@ -39,8 +38,10 @@ export class ChooserComponent implements OnInit, AfterViewInit {
       !this.storage.getStringStoredAtGivenKey(LANG_INIT_STORAGE_KEY) &&
       Object.values(this.localeIdNumbers).includes(this.browserLocaleID)
     ) {
-      this.storage.storeStringAtGivenKey(LANG_INIT_STORAGE_KEY, 'done');
+      this.storage.storeStringAtGivenKey(LANG_INIT_STORAGE_KEY, this.localeId);
       document.getElementById(this.browserLocaleID).click();
+    } else {
+      this.storage.storeStringAtGivenKey(LANG_INIT_STORAGE_KEY, this.localeId);
     }
     // const langStored = this.storage.getStringStoredAtGivenKey(LANG_STORAGE_KEY);
     // const langInitialized = this.storage.getStringStoredAtGivenKey(LANG_INIT_STORAGE_KEY);
