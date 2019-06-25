@@ -33,6 +33,12 @@ export class LocalStorageService {
     return newVar;
   }
 
+  checkEntryAtGivenKey(key: string): boolean {
+    const newVar = this.storage.has(key);
+    console.log('LocalStorageService # checkEntryAtGivenKey() # has(' + key + '): ' + newVar);
+    return newVar;
+  }
+
   removeStorageAtGivenKey(key: string) {
     this.storage.remove(key);
     console.log('LocalStorageService # removeStorageAtGivenKey() # get(' + key + ')');

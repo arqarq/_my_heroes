@@ -4,7 +4,7 @@ import { LOCALE_ID_NUMBERS } from '../../../locale/LIDs';
 import { LocalStorageService } from '../../service/local-storage.service';
 
 // const LANG_FIRST_STORE_KEY = 'lang_first';
-// const LANG_INIT_STORAGE_KEY = 'lang_init';
+const LANG_INIT_STORAGE_KEY = 'lang_init';
 const LANG_STORAGE_KEY = 'lang';
 
 @Component({
@@ -29,7 +29,7 @@ export class ChooserComponent implements OnInit, AfterViewInit {
   ) {
     this.browserLocaleID = navigator.language.slice(0, 2);
     this.langStoredCode = this.storage.getStringStoredAtGivenKey(LANG_STORAGE_KEY);
-    this.langStored = this.langStoredCode === this.localeId;
+    this.langStored = (this.langStoredCode === this.localeId);
   }
 
   ngOnInit(): void {
@@ -44,10 +44,11 @@ export class ChooserComponent implements OnInit, AfterViewInit {
     } else {
       if (
         this.localeId !== this.browserLocaleID &&
-        // !this.storage.getStringStoredAtGivenKey(LANG_INIT_STORAGE_KEY) &&
+        !this.storage.checkEntryAtGivenKey(LANG_INIT_STORAGE_KEY) &&
         Object.values(this.localeIdNumbers).includes(this.browserLocaleID)
       ) {
         this.storage.storeStringAtGivenKey(LANG_STORAGE_KEY, this.browserLocaleID);
+        this.storage.storeStringAtGivenKey(LANG_INIT_STORAGE_KEY);
         document.getElementById(this.browserLocaleID).click();
       }
       // else {
@@ -84,6 +85,7 @@ export class ChooserComponent implements OnInit, AfterViewInit {
       this.storage.storeStringAtGivenKey(LANG_STORAGE_KEY, this.localeId);
     } else {
       this.storage.removeStorageAtGivenKey(LANG_STORAGE_KEY);
+      this.storage.removeStorageAtGivenKey(LANG_INIT_STORAGE_KEY);
     }
   }
 
