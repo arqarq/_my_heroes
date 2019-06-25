@@ -4,8 +4,8 @@ import { LOCALE_ID_NUMBERS } from '../../../locale/LIDs';
 import { LocalStorageService } from '../../service/local-storage.service';
 
 // const LANG_FIRST_STORE_KEY = 'lang_first';
+// const LANG_INIT_STORAGE_KEY = 'lang_init';
 const LANG_STORAGE_KEY = 'lang';
-const LANG_INIT_STORAGE_KEY = 'lang_init';
 
 @Component({
   selector: 'app-chooser',
@@ -19,6 +19,7 @@ export class ChooserComponent implements OnInit, AfterViewInit {
   langStored: boolean;
   readonly localeIdNumbers = LOCALE_ID_NUMBERS;
   readonly browserLocaleID: string;
+  readonly langStoredCode: string;
   private title = 'Wybór';
 
   constructor(
@@ -27,7 +28,8 @@ export class ChooserComponent implements OnInit, AfterViewInit {
     private storage: LocalStorageService
   ) {
     this.browserLocaleID = navigator.language.slice(0, 2);
-    this.langStored = !!this.storage.getStringStoredAtGivenKey(LANG_STORAGE_KEY);
+    this.langStoredCode = this.storage.getStringStoredAtGivenKey(LANG_STORAGE_KEY);
+    this.langStored = this.langStoredCode === this.localeId;
   }
 
   ngOnInit(): void {
@@ -35,15 +37,22 @@ export class ChooserComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() { // only once, ngAfterViewChecked() can be more than once
-    if (
-      this.localeId !== this.browserLocaleID &&
-      !this.storage.getStringStoredAtGivenKey(LANG_INIT_STORAGE_KEY) &&
-      Object.values(this.localeIdNumbers).includes(this.browserLocaleID)
-    ) {
-      this.storage.storeStringAtGivenKey(LANG_INIT_STORAGE_KEY, this.localeId);
-      document.getElementById(this.browserLocaleID).click();
+    if (this.langStored) {
+      if (this.localeId !== this.langStoredCode) {
+        document.getElementById(this.langStoredCode).click();
+      }
     } else {
-      this.storage.storeStringAtGivenKey(LANG_INIT_STORAGE_KEY, this.localeId);
+      if (
+        this.localeId !== this.browserLocaleID &&
+        // !this.storage.getStringStoredAtGivenKey(LANG_INIT_STORAGE_KEY) &&
+        Object.values(this.localeIdNumbers).includes(this.browserLocaleID)
+      ) {
+        this.storage.storeStringAtGivenKey(LANG_STORAGE_KEY, this.browserLocaleID);
+        document.getElementById(this.browserLocaleID).click();
+      }
+      // else {
+      //   this.storage.storeStringAtGivenKey(LANG_INIT_STORAGE_KEY, this.localeId);
+      // }
     }
     // const langStored = this.storage.getStringStoredAtGivenKey(LANG_STORAGE_KEY);
     // const langInitialized = this.storage.getStringStoredAtGivenKey(LANG_INIT_STORAGE_KEY);
