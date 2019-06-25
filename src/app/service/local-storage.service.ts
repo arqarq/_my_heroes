@@ -33,6 +33,10 @@ export class LocalStorageService {
     return newVar;
   }
 
+  removeStorageAtGivenKey(key: string) {
+    this.storage.remove(key);
+  }
+
   clearLocalStorage() {
     this.storage.clear();
   }

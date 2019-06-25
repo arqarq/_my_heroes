@@ -3,8 +3,8 @@ import { Title } from '@angular/platform-browser';
 import { LOCALE_ID_NUMBERS } from '../../../locale/LIDs';
 import { LocalStorageService } from '../../service/local-storage.service';
 
-// const LANG_STORAGE_KEY = 'lang';
 // const LANG_FIRST_STORE_KEY = 'lang_first';
+const LANG_STORAGE_KEY = 'lang';
 const LANG_INIT_STORAGE_KEY = 'lang_init';
 
 @Component({
@@ -16,7 +16,8 @@ const LANG_INIT_STORAGE_KEY = 'lang_init';
   styleUrls: ['./chooser.component.css']
 })
 export class ChooserComponent implements OnInit, AfterViewInit {
-  localeIdNumbers = LOCALE_ID_NUMBERS;
+  langStored: boolean;
+  readonly localeIdNumbers = LOCALE_ID_NUMBERS;
   readonly browserLocaleID: string;
   private title = 'Wybór';
 
@@ -26,6 +27,7 @@ export class ChooserComponent implements OnInit, AfterViewInit {
     private storage: LocalStorageService
   ) {
     this.browserLocaleID = navigator.language.slice(0, 2);
+    this.langStored = !!this.storage.getStringStoredAtGivenKey(LANG_STORAGE_KEY);
   }
 
   ngOnInit(): void {
@@ -65,6 +67,15 @@ export class ChooserComponent implements OnInit, AfterViewInit {
     //     }
     //   }
     // }
+  }
+
+  langStorageChanged(event: boolean) {
+    this.langStored = event;
+    if (event) {
+      this.storage.storeStringAtGivenKey(LANG_STORAGE_KEY, this.localeId);
+    } else {
+      this.storage.removeStorageAtGivenKey(LANG_STORAGE_KEY);
+    }
   }
 
   private setTitle(newTitle: string) {

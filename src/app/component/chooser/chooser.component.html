@@ -13,7 +13,9 @@
       {{ localeIdNumbers[1045] | uppercase }}</a>
     &bull;
     <label for="chbox">stored?</label>
-    <input id="chbox"
+    <input (ngModelChange)="langStorageChanged($event)"
+           [(ngModel)]="langStored"
+           id="chbox"
            type="checkbox">
   </nav>
 </div>
