@@ -4,7 +4,8 @@ import { LOCALE_ID_NUMBERS } from '../../../locale/LIDs';
 import { LocalStorageService } from '../../service/local-storage.service';
 
 // const LANG_STORAGE_KEY = 'lang';
-// const LANG_INIT_STORAGE_KEY = 'lang_init';
+const LANG_INIT_STORAGE_KEY = 'lang_init';
+
 // const LANG_FIRST_STORE_KEY = 'lang_first';
 
 @Component({
@@ -35,8 +36,10 @@ export class ChooserComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() { // only once, ngAfterViewChecked() can be more than once
     if (
       this.localeId !== this.browserLocaleID &&
+      !this.storage.getStringStoredAtGivenKey(LANG_INIT_STORAGE_KEY) &&
       Object.values(this.localeIdNumbers).includes(this.browserLocaleID)
     ) {
+      this.storage.storeStringAtGivenKey(LANG_INIT_STORAGE_KEY, 'done');
       document.getElementById(this.browserLocaleID).click();
     }
     // const langStored = this.storage.getStringStoredAtGivenKey(LANG_STORAGE_KEY);
