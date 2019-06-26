@@ -1,10 +1,7 @@
-import { AfterViewInit, Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { LOCALE_ID_NUMBERS } from '../../../locale/LIDs';
-import { LocalStorageService } from '../../service/local-storage.service';
-
-const LANG_INIT_STORAGE_KEY = 'lang_init';
-const LANG_STORAGE_KEY = 'lang';
+import { LANG_STORAGE_KEY, LocalStorageService } from '../../service/local-storage.service';
 
 @Component({
   selector: 'app-chooser',
@@ -14,7 +11,7 @@ const LANG_STORAGE_KEY = 'lang';
   ],
   styleUrls: ['./chooser.component.css']
 })
-export class ChooserComponent implements OnInit, AfterViewInit {
+export class ChooserComponent implements OnInit {
   langStored: boolean;
   readonly localeIdNumbers = LOCALE_ID_NUMBERS;
   readonly browserLocaleID: string;
@@ -35,24 +32,24 @@ export class ChooserComponent implements OnInit, AfterViewInit {
     this.setTitle(this.title);
   }
 
-  ngAfterViewInit() { // only once, ngAfterViewChecked() can be more than once
-    if (
-      this.langStored &&
-      this.langStoredCode !== this.localeId
-    ) {
-      document.getElementById(this.langStoredCode).click();
-    } else {
-      if (
-        this.localeId !== this.browserLocaleID &&
-        !this.storage.checkEntryAtGivenKey(LANG_INIT_STORAGE_KEY) &&
-        Object.values(this.localeIdNumbers).includes(this.browserLocaleID)
-      ) {
-        this.storage.storeStringAtGivenKey(LANG_STORAGE_KEY, this.browserLocaleID);
-        this.storage.storeStringAtGivenKey(LANG_INIT_STORAGE_KEY);
-        document.getElementById(this.browserLocaleID).click();
-      }
-    }
-  }
+  // ngAfterViewInit() { // only once, ngAfterViewChecked() can be more than once
+  //   if (
+  //     this.langStored &&
+  //     this.langStoredCode !== this.localeId
+  //   ) {
+  //     document.getElementById(this.langStoredCode).click();
+  //   } else {
+  //     if (
+  //       this.localeId !== this.browserLocaleID &&
+  //       !this.storage.checkEntryAtGivenKey(LANG_INIT_STORAGE_KEY) &&
+  //       Object.values(this.localeIdNumbers).includes(this.browserLocaleID)
+  //     ) {
+  //       this.storage.storeStringAtGivenKey(LANG_STORAGE_KEY, this.browserLocaleID);
+  //       this.storage.storeStringAtGivenKey(LANG_INIT_STORAGE_KEY);
+  //       document.getElementById(this.browserLocaleID).click();
+  //     }
+  //   }
+  // }
 
   langStorageChanged(event: boolean) {
     this.langStored = event;
