@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { StartRoutingModule } from './start-routing.module';
 import { StartComponent } from './start.component';
-import { ChooserComponent } from './component/chooser/chooser.component';
 import { NotFound404Component } from './component/notfound404/notfound404.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -32,7 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   declarations: [
     StartComponent,
-    ChooserComponent,
+    // ChooserComponent,
     NotFound404Component,
     ComposeMessageComponent
   ],

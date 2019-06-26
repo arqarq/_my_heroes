@@ -30,7 +30,7 @@ export function adminMatch(url: UrlSegment[]): UrlMatchResult {
       output.push(war.path);
     }
   }
-  console.log('CrisisRoutingModule # adminMatch # result: ' + (result ? output : '-'));
+  console.log('CrisisRoutingModule # adminMatch() # result: ' + (result ? output : '-'));
   return result;
 }
 

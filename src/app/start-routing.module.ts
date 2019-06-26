@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFound404Component } from './component/notfound404/notfound404.component';
-import { ChooserComponent } from './component/chooser/chooser.component';
 import { ComposeMessageComponent } from './module/crisis/component/compose-message/compose-message.component';
 import { SelectivePreloadingStrategyService } from './module/crisis/service/selective-preloading-strategy.service';
 
@@ -38,7 +37,11 @@ const ROUTES: Routes = [
   },
   {
     path: 'choose',
-    component: ChooserComponent
+    // component: ChooserComponent
+    loadChildren: () => import('./gen_modules/chooser/chooser.module').then((m) => m.ChooserModule),
+    data: {
+      preload: true
+    }
   },
   {
     path: 'compose',
