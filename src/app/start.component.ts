@@ -30,12 +30,12 @@ export class StartComponent implements OnInit {
     this.localeIdNumbersValues = Object.values(this.localeIdNumbers);
     const currentAddress = window.location.href;
     this.addressSplit = currentAddress.split('/');
+    if (this.addressSplit[this.addressSplit.length - 1] === '') {
+      this.addressSplit.pop();
+    }
   }
 
   ngOnInit() {
-    // const strings = window.location.href.split('/');
-    // this.addressSplit = window.location.href.split('/');
-    // const addressSplit = strings[0] + '//' + strings[2];
     console.log('----------------------------------------------------------------------' +
       '---------------------------------------------------------------------- PROD?', environment.production);
     if (
