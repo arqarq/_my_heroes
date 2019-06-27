@@ -14,7 +14,6 @@ const ROUTES: Routes = [
   },
   {
     path: 'ng-heroes',
-    // loadChildren: './module/heroes/app.module#AppModule',
     loadChildren: () => import('./module/heroes/app.module').then((m) => m.AppModule),
     data: {
       preload: true
@@ -22,7 +21,6 @@ const ROUTES: Routes = [
   },
   {
     path: 'crisis',
-    // loadChildren: './module/crisis/crisis.module#CrisisModule',
     loadChildren: () => import('./module/crisis/crisis.module').then((m) => m.CrisisModule),
     data: {
       preload: true

@@ -32,7 +32,6 @@ export class StartComponent implements OnInit {
     const address = strings[0] + '//' + strings[2];
     console.log('----------------------------------------------------------------------' +
       '---------------------------------------------------------------------- PROD?', environment.production);
-
     if (
       this.langStored &&
       this.langStoredCode !== this.localeId &&
