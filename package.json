@@ -1,6 +1,6 @@
 {
   "name": "d00af17f5d630b7296f102d",
-  "version": "4.6.0",
+  "version": "4.6.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -23,7 +23,9 @@
     "@angular/forms": "^8.1.0-next.1",
     "@angular/platform-browser": "^8.1.0-next.1",
     "@angular/platform-browser-dynamic": "^8.1.0-next.1",
+    "@angular/pwa": "^0.800.4",
     "@angular/router": "^8.1.0-next.1",
+    "@angular/service-worker": "^8.1.0-next.1",
     "angular-in-memory-web-api": "^0.8.0",
     "core-js": "^3.0.1",
     "karma-cli": "^2.0.0",

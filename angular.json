@@ -22,7 +22,8 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.webmanifest"
             ],
             "styles": [
               "src/styles.css"
@@ -55,7 +56,9 @@
                 }
               ],
               "i18nLocale": "en",
-              "baseHref": "/en/"
+              "baseHref": "/en/",
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
             },
             "pl": {
               "fileReplacements": [
@@ -85,7 +88,9 @@
               "i18nFormat": "xlf",
               "i18nLocale": "pl",
               "i18nMissingTranslation": "warning",
-              "baseHref": "/pl/"
+              "baseHref": "/pl/",
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
             }
           }
         },
@@ -122,7 +127,8 @@
             "scripts": [],
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.webmanifest"
             ]
           }
         },

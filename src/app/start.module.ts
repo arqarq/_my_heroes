@@ -9,6 +9,8 @@ import { ComposeMessageComponent } from './module/crisis/component/compose-messa
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   imports: [
@@ -18,16 +20,17 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService,
-      {
-        dataEncapsulation: false,
-        passThruUnknownUrl: true
-      }
+      {dataEncapsulation: false, passThruUnknownUrl: true}
     ),
     // AuthModule, // 1 komponent użyty - login; musi być przed '/**'
-    StartRoutingModule // kolejność routingów ma znaczenie
+    StartRoutingModule, // kolejność routingów ma znaczenie
     // AppModule, // (stare heroes) "lazy child", nie użyty żaden komponent do załadowania
     // App2Module, // (forms) nie ma żadnego routera, więc psuje jak jest tu umieszczony, i także "lazy child"
     // CrisisModule // jest użyty 1 komponent w outlecie popup, ale "lazy" więc nie w declarations, i może być po '/**'
+    ServiceWorkerModule.register(
+      'ngsw-worker.js',
+      {enabled: environment.production}
+    )
   ],
   declarations: [
     StartComponent,
