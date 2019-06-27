@@ -40,7 +40,7 @@ const ROUTES: Routes = [
     // component: ChooserComponent
     loadChildren: () => import('./gen_modules/chooser/chooser.module').then((m) => m.ChooserModule),
     data: {
-      preload: true
+      preload: false
     }
   },
   {

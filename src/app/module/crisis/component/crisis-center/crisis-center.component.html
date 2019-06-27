@@ -1,38 +1,46 @@
 <app-messages></app-messages>
-<h1>Angular Router</h1>
+<h1>
+  Angular Router
+</h1>
 <nav>
   <a [preserveFragment]="true"
      [queryParamsHandling]="'preserve'"
      [routerLinkActiveOptions]="{exact: true}"
      [routerLinkActive]="'activated activated-color'"
-     routerLink="./">Crisis Center</a>
+     routerLink="./">
+    Crisis Center</a>
   &nbsp;
   <a [preserveFragment]="true"
      [queryParamsHandling]="'merge'"
      [queryParams]="{a: 'b'}"
      [routerLinkActiveOptions]="{exact: true}"
      [routerLinkActive]="'activated activated-color'"
-     [routerLink]="['./1', {foo: 'foo'}]">Dragon Crisis</a>
+     [routerLink]="['./1', {foo: 'foo'}]">
+    Dragon Crisis</a>
   &nbsp;
   <a [preserveFragment]="true"
      [queryParamsHandling]="'preserve'"
      [routerLinkActive]="'activated activated-color'"
-     routerLink="./superheroes">Heroes</a>
+     routerLink="./superheroes">
+    Heroes</a>
   &nbsp;
   <a [preserveFragment]="true"
      [queryParamsHandling]="'preserve'"
      routerLink="./admin"
-     routerLinkActive="activated activated-color">Admin</a>
+     routerLinkActive="activated activated-color">
+    Admin</a>
   &nbsp;
   <a [preserveFragment]="true"
      [queryParamsHandling]="'preserve'"
      routerLink="./login"
-     routerLinkActive="activated activated-color">Login</a>
+     routerLinkActive="activated activated-color">
+    Login</a>
   &nbsp;
   <a [preserveFragment]="true"
      [queryParamsHandling]="'preserve'"
      [routerLink]="['', {outlets: {popup: ['compose']}}]"
-     routerLinkActive="activated-color-border-only">Contact</a>
+     routerLinkActive="activated-color-border-only">
+    Contact</a>
 </nav>
 <div [@routeAnimationn]="getAnimationData(routerOutlett)">
   <router-outlet #routerOutlett="outlet"></router-outlet>

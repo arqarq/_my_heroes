@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Route, RouterModule } from '@angular/router';
 import { ChooserComponent } from './chooser.component';
 
+const ROUTES: Route[] = [
+  {
+    path: '',
+    component: ChooserComponent
+  }
+];
+
 @NgModule({
-  imports: [RouterModule.forChild([
-    {
-      path: '',
-      pathMatch: 'full',
-      component: ChooserComponent
-    }
-  ])],
+  imports: [RouterModule.forChild(ROUTES)],
   exports: [RouterModule]
 })
 export class ChooserRoutingModule {
