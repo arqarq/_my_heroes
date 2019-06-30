@@ -8,8 +8,7 @@ if (environment.production) {
 }
 
 platformBrowserDynamic(
-  [{provide: LOCALE_ID, useValue: 'pl'}] // dla 'ng build' wystarczy tylko tu, bez registerLocaleData() w AppModule
-)
+  [{provide: LOCALE_ID, useValue: 'pl'}]) // dla 'ng build' wystarczy tylko tu, bez registerLocaleData() w AppModule
   .bootstrapModule(StartModule,
     {
       missingTranslation: MissingTranslationStrategy.Warning // for JIT, for AOT in 'angular.json' only
