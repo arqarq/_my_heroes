@@ -1,5 +1,4 @@
 import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
-import { slideInAnimation } from './module/crisis/animations';
 import { LOCALE_ID_NUMBERS } from '../locale/LIDs';
 import { LANG_INIT_STORAGE_KEY, LANG_STORAGE_KEY, LocalStorageService } from './service/local-storage.service';
 import { environment } from '../environments/environment';
@@ -7,8 +6,7 @@ import { environment } from '../environments/environment';
 @Component({
   selector: 'app-start',
   templateUrl: './start.component.html',
-  styleUrls: ['./start.component.css'],
-  animations: [slideInAnimation]
+  styleUrls: ['./start.component.css']
 })
 export class StartComponent implements OnInit {
   readonly langStored: boolean;

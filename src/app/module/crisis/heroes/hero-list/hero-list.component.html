@@ -1,11 +1,11 @@
-<h2 class="inline-block">HEROES</h2>
+<h2 class="inline-block">
+  HEROES
+</h2>
 <div>
   (ilość: {{ qty }})
 </div>
 <div>
-  <label>Hero name:
-    <input #heroName/>
-  </label>
+  <label>Hero name:<input #heroName/></label>
   <button (click)="add(heroName.value); heroName.value=''">
     add
   </button>
@@ -21,7 +21,6 @@
     <button (click)="delete(hero)"
             class="delete"
             title="delete hero">
-      <strong>x</strong>
-    </button>
+      <strong>x</strong></button>
   </li>
 </ul>

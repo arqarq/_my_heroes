@@ -10,7 +10,7 @@ export const slideInAnimation =
           position: 'absolute',
           top: 0,
           left: 0,
-          width: '100%'
+          width: '50%'
         })
       ]),
       query(':enter', [
@@ -34,7 +34,7 @@ export const slideInAnimation =
           position: 'absolute',
           top: 0,
           left: 0,
-          width: '100%'
+          width: '50%'
         })
       ]),
       query(':enter', [
