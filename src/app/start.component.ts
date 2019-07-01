@@ -2,6 +2,9 @@ import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { LOCALE_ID_NUMBERS } from '../locale/LIDs';
 import { LANG_INIT_STORAGE_KEY, LANG_STORAGE_KEY, LocalStorageService } from './service/local-storage.service';
 import { environment } from '../environments/environment';
+import { LogUpdateService } from './service/log-update.service';
+import { CheckForUpdateService } from './service/check-for-update.service';
+import { PromptUpdateService } from './service/prompt-update.service';
 
 @Component({
   selector: 'app-start',
@@ -14,11 +17,14 @@ export class StartComponent implements OnInit {
   readonly localeIdNumbersValues: string[];
   readonly browserLocaleID: string;
   readonly langStoredCode: string;
-  readonly addressSplit: string[];
+  private addressSplit: string[];
 
   constructor(
     @Inject(LOCALE_ID) public localeId: string,
-    private storage: LocalStorageService
+    private storage: LocalStorageService,
+    sw: LogUpdateService,
+    cu: CheckForUpdateService,
+    pu: PromptUpdateService
     // private router: Router,
     // private location: Location
   ) {
@@ -26,11 +32,7 @@ export class StartComponent implements OnInit {
     this.langStoredCode = this.storage.getStringStoredAtGivenKey(LANG_STORAGE_KEY);
     this.langStored = !!this.langStoredCode;
     this.localeIdNumbersValues = Object.values(this.localeIdNumbers);
-    const currentAddress = window.location.href;
-    this.addressSplit = currentAddress.split('/');
-    if (this.addressSplit[this.addressSplit.length - 1] === '') {
-      this.addressSplit.pop();
-    }
+    this.prepareAddress();
   }
 
   ngOnInit() {
@@ -43,7 +45,7 @@ export class StartComponent implements OnInit {
     ) {
       // document.getElementById(this.langStoredCode).click();
       // window.location.href = addressSplit + `/${this.langStoredCode}`;
-      window.location.href = this.replaceLocaleInAddress(this.langStoredCode);
+      document.location.href = this.replaceLocaleInAddress(this.langStoredCode);
     } else {
       if (
         this.localeId !== this.browserLocaleID &&
@@ -54,7 +56,7 @@ export class StartComponent implements OnInit {
         this.storage.storeStringAtGivenKey(LANG_INIT_STORAGE_KEY);
         // document.getElementById(this.browserLocaleID).click();
         // window.location.href = addressSplit + `/${this.browserLocaleID}`;
-        window.location.href = this.replaceLocaleInAddress(this.browserLocaleID);
+        document.location.href = this.replaceLocaleInAddress(this.browserLocaleID);
       }
     }
     // console.log('------------------------');
@@ -66,6 +68,14 @@ export class StartComponent implements OnInit {
     // console.log('------------------------');
     // window.location.href = strings[0] + '//' + strings[2] + '/en';
     // this.router.navigate(['es', 'choose']);
+  }
+
+  private prepareAddress() {
+    const currentAddress = document.location.href;
+    this.addressSplit = currentAddress.split('/');
+    if (this.addressSplit[this.addressSplit.length - 1] === '') {
+      this.addressSplit.pop();
+    }
   }
 
   private replaceLocaleInAddress(localeId: string): string {
