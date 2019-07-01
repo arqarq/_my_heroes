@@ -2,9 +2,9 @@ import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { LOCALE_ID_NUMBERS } from '../locale/LIDs';
 import { LANG_INIT_STORAGE_KEY, LANG_STORAGE_KEY, LocalStorageService } from './service/local-storage.service';
 import { environment } from '../environments/environment';
-import { LogUpdateService } from './service/log-update.service';
 import { CheckForUpdateService } from './service/check-for-update.service';
 import { PromptUpdateService } from './service/prompt-update.service';
+import { LogUpdateService } from './service/log-update.service';
 
 @Component({
   selector: 'app-start',

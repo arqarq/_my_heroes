@@ -2,6 +2,7 @@ import { AfterViewInit, Component, Inject, LOCALE_ID, OnInit } from '@angular/co
 import { Title } from '@angular/platform-browser';
 import { LOCALE_ID_NUMBERS } from '../../../locale/LIDs';
 import { LANG_STORAGE_KEY, LocalStorageService } from '../../service/local-storage.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-chooser',
@@ -12,6 +13,7 @@ import { LANG_STORAGE_KEY, LocalStorageService } from '../../service/local-stora
   styleUrls: ['./chooser.component.css']
 })
 export class ChooserComponent implements OnInit, AfterViewInit {
+  readonly ver: string;
   langStored: boolean;
   readonly localeIdNumbers = LOCALE_ID_NUMBERS;
   readonly browserLocaleID: string;
@@ -27,6 +29,7 @@ export class ChooserComponent implements OnInit, AfterViewInit {
     this.browserLocaleID = navigator.language.slice(0, 2);
     this.langStoredCode = this.storage.getStringStoredAtGivenKey(LANG_STORAGE_KEY);
     this.langStored = !!this.langStoredCode;
+    this.ver = environment.VERSION;
   }
 
   ngOnInit(): void {

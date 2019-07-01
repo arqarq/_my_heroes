@@ -1,9 +1,8 @@
 import { SwUpdate } from '@angular/service-worker';
 import { Injectable } from '@angular/core';
-import { StartModule } from '../start.module';
 
 @Injectable({
-  providedIn: StartModule
+  providedIn: 'root'
 })
 export class PromptUpdateService {
   constructor(updates: SwUpdate) {

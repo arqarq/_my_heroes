@@ -2,10 +2,9 @@ import { ApplicationRef, Injectable } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
 import { first } from 'rxjs/operators';
 import { concat, interval } from 'rxjs';
-import { StartModule } from '../start.module';
 
 @Injectable({
-  providedIn: StartModule
+  providedIn: 'root'
 })
 export class CheckForUpdateService {
   constructor(

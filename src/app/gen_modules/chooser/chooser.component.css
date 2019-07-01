@@ -38,3 +38,9 @@ input[type=checkbox] {
   position: relative;
   top: 2px
 }
+
+div.version {
+  color: black;
+  font-size: xx-small;
+  opacity: 0.85
+}

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
-import { StartModule } from '../start.module';
+import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: StartModule
+  providedIn: 'root'
 })
 export class LogUpdateService {
   constructor(updates: SwUpdate) {
@@ -15,6 +15,7 @@ export class LogUpdateService {
     updates.activated.subscribe((event) => {
       console.log('old version was', event.previous.hash);
       console.log('new version is', event.current.hash);
+      alert('old version: ' + environment.VERSION);
     });
   }
 }
