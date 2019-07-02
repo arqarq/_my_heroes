@@ -44,3 +44,7 @@ div.version {
   font-size: xx-small;
   opacity: 0.85
 }
+
+div.bigger {
+  font-size: xx-large
+}

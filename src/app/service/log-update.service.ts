@@ -3,6 +3,10 @@ import { SwUpdate } from '@angular/service-worker';
 import { environment } from '../../environments/environment';
 import { finalize } from 'rxjs/operators';
 
+interface VersionTag {
+  ver: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +22,8 @@ export class LogUpdateService {
       .subscribe((event) => {
         console.log('old version was', event.previous.hash);
         console.log('new version is', event.current.hash);
-        alert('old version: ' + environment.VERSION + '\nnew version: ' + event.current.appData['ver']);
+        alert('old version: ' + environment.VERSION +
+          '\nnew version: ' + (event.current.appData as VersionTag).ver);
       });
   }
 }
