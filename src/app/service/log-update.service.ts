@@ -8,7 +8,7 @@ import { finalize } from 'rxjs/operators';
 })
 export class LogUpdateService {
   constructor(updates: SwUpdate) {
-    console.log('LogUpdateService instantiated!!!');
+    console.log('\t\t\tLogUpdateService instantiated!!!');
     // updates.available.subscribe((event) => {
     //   console.log('current version is', event.current.hash);
     //   console.log('available version is', event.available.hash);

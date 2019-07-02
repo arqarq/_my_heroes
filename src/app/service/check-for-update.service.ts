@@ -11,7 +11,7 @@ export class CheckForUpdateService {
     appRef: ApplicationRef,
     updates: SwUpdate
   ) {
-    console.log('CheckForUpdateService instantiated!!!');
+    console.log('\t\t\tCheckForUpdateService instantiated!!!');
     // Allow the app to stabilize first, before starting polling for updates with `interval()`.
     const appIsStable$ = appRef.isStable.pipe(first(isStable => isStable === true));
     const everySixHours$ = interval(15 * 1000);

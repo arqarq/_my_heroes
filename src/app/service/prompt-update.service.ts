@@ -7,7 +7,7 @@ import { finalize } from 'rxjs/operators';
 })
 export class PromptUpdateService {
   constructor(updates: SwUpdate) {
-    console.log('PromptUpdateService instantiated!!!');
+    console.log('\t\t\tPromptUpdateService instantiated!!!');
     const subscription = updates.available
       .pipe(finalize(() => subscription.unsubscribe()))
       .subscribe((event) => {
