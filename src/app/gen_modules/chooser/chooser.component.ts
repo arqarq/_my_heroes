@@ -53,7 +53,7 @@ export class ChooserComponent implements OnInit, AfterViewInit {
     //     document.getElementById(this.browserLocaleID).click();
     //   }
     // }
-    setTimeout(() => this.wait = false, 300);
+    setTimeout(() => this.wait = false, 500);
   }
 
   langStorageChanged(event: boolean) {
