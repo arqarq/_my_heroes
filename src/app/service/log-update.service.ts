@@ -18,7 +18,7 @@ export class LogUpdateService {
       .subscribe((event) => {
         console.log('old version was', event.previous.hash);
         console.log('new version is', event.current.hash);
-        alert('old version: ' + environment.VERSION);
+        alert('old version: ' + environment.VERSION + '\nnew version: ' + event.current.appData['ver']);
       });
   }
 }
