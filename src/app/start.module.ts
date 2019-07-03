@@ -46,7 +46,7 @@ export class StartModule {
 
   constructor(
     private router: Router,
-    lcr: LangChangeRelayService // instancja
+    lcr: LangChangeRelayService // jak najwcześniej instancja
   ) {
     this.replacer = (key, value) => (typeof value === 'function') ? value.name : value;
     console.log('StartModule # router.config: ', JSON.stringify(this.router.config, this.replacer, 2));
