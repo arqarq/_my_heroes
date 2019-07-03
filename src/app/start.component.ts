@@ -1,4 +1,4 @@
-import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { LOCALE_ID_NUMBERS } from '../locale/LIDs';
 import { LANG_INIT_STORAGE_KEY, LANG_STORAGE_KEY, LocalStorageService } from './service/local-storage.service';
 import { environment } from '../environments/environment';
@@ -22,9 +22,10 @@ export class StartComponent implements OnInit {
   constructor(
     @Inject(LOCALE_ID) public localeId: string,
     private storage: LocalStorageService,
-    sw: LogUpdateService,
-    cu: CheckForUpdateService,
-    pu: PromptUpdateService
+    sw: LogUpdateService, // wywołaj constructor
+    cu: CheckForUpdateService, // wywołaj constructor
+    pu: PromptUpdateService, // wywołaj constructor
+    private el: ElementRef
     // private router: Router,
     // private location: Location
   ) {
@@ -38,6 +39,20 @@ export class StartComponent implements OnInit {
   ngOnInit() {
     console.log('----------------------------------------------------------------------' +
       '---------------------------------------------------------------------- PROD?', environment.production);
+    this.redirectToOtherLang();
+    this.setLangInHTMLElement();
+    // console.log('------------------------');
+    // console.log(strings[0] + '//' + strings[2] + '/es');
+    // console.log('------------------------');
+    // console.log(this.location.path());
+    // console.log('------------------------');
+    // console.log(this.router.url);
+    // console.log('------------------------');
+    // window.location.href = strings[0] + '//' + strings[2] + '/en';
+    // this.router.navigate(['es', 'choose']);
+  }
+
+  private redirectToOtherLang() {
     if (
       this.langStored &&
       this.langStoredCode !== this.localeId &&
@@ -59,15 +74,6 @@ export class StartComponent implements OnInit {
         document.location.href = this.replaceLocaleInAddress(this.browserLocaleID);
       }
     }
-    // console.log('------------------------');
-    // console.log(strings[0] + '//' + strings[2] + '/es');
-    // console.log('------------------------');
-    // console.log(this.location.path());
-    // console.log('------------------------');
-    // console.log(this.router.url);
-    // console.log('------------------------');
-    // window.location.href = strings[0] + '//' + strings[2] + '/en';
-    // this.router.navigate(['es', 'choose']);
   }
 
   private prepareAddress() {
@@ -92,5 +98,12 @@ export class StartComponent implements OnInit {
     // } else if (this.addressSplit.length > 3) {
     //   return this.addressSplit[0] + '//' + this.addressSplit[2] + `/${localeId}`;
     // }
+  }
+
+  private setLangInHTMLElement() {
+    const lang = document.createAttribute('lang');
+    lang.value = this.localeId;
+    this.el.nativeElement.parentElement.parentElement.attributes.setNamedItem(lang);
+    // document.documentElement.lang = 'es'; // inny sposób
   }
 }

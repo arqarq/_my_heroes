@@ -21,9 +21,14 @@ export class PromptUpdateService {
 
   private static promptUser() {
     let confirm = '';
-    while (confirm !== 'yes' && confirm !== 'no') {
-      confirm = prompt('Update app? [\'yes\' or \'no\']');
+    while (confirm !== ConfirmOptions.YES && confirm !== ConfirmOptions.NO) {
+      confirm = prompt(`Update app? ['${ConfirmOptions.YES}' or '${ConfirmOptions.NO}']`);
     }
-    return confirm === 'yes';
+    return confirm === ConfirmOptions.YES;
   }
+}
+
+const enum ConfirmOptions {
+  YES = 'y',
+  NO = 'n'
 }
