@@ -5,6 +5,7 @@ import { environment } from '../environments/environment';
 import { CheckForUpdateService } from './service/check-for-update.service';
 import { PromptUpdateService } from './service/prompt-update.service';
 import { LogUpdateService } from './service/log-update.service';
+import { LangChangeRelayService } from './service/lang-change-relay.service';
 
 @Component({
   selector: 'app-start',
@@ -25,7 +26,8 @@ export class StartComponent implements OnInit {
     sw: LogUpdateService, // wywołaj constructor
     cu: CheckForUpdateService, // wywołaj constructor
     pu: PromptUpdateService, // wywołaj constructor
-    private el: ElementRef
+    private el: ElementRef,
+    private lcr: LangChangeRelayService
     // private router: Router,
     // private location: Location
   ) {
@@ -74,6 +76,7 @@ export class StartComponent implements OnInit {
         document.location.href = this.replaceLocaleInAddress(this.browserLocaleID);
       }
     }
+    setTimeout(() => this.lcr.langSwitched = false, 500);
   }
 
   private prepareAddress() {

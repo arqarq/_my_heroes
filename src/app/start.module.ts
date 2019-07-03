@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { LangChangeRelayService } from './service/lang-change-relay.service';
 
 @NgModule({
   imports: [
@@ -43,7 +44,10 @@ import { environment } from '../environments/environment';
 export class StartModule {
   readonly replacer;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    lcr: LangChangeRelayService // instancja
+  ) {
     this.replacer = (key, value) => (typeof value === 'function') ? value.name : value;
     console.log('StartModule # router.config: ', JSON.stringify(this.router.config, this.replacer, 2));
   }

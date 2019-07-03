@@ -1,4 +1,4 @@
-<div [hidden]="wait">
+<div [hidden]="lcr.langSwitched">
   <nav style="font-size: small">
     <a [class.selected]="localeId === localeIdNumbers[1033]"
        [href]="'/' + localeIdNumbers[1033]"
@@ -43,7 +43,7 @@
     </nav>
   </div>
 </div>
-<div [class.bigger]="wait"
+<div [class.bigger]="lcr.langSwitched"
      class="version bottom-left">
   {{ this.ver }}
 </div>
