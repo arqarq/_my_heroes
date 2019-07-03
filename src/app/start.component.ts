@@ -76,7 +76,7 @@ export class StartComponent implements OnInit {
         document.location.href = this.replaceLocaleInAddress(this.browserLocaleID);
       }
     }
-    setTimeout(() => this.lcr.langSwitched = false, 1000);
+    this.lcr.resetFlag();
   }
 
   private prepareAddress() {
