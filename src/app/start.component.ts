@@ -1,6 +1,11 @@
 import { Component, ElementRef, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { LOCALE_ID_NUMBERS } from '../locale/LIDs';
-import { LANG_INIT_STORAGE_KEY, LANG_STORAGE_KEY, LocalStorageService } from './service/local-storage.service';
+import {
+  LANG_INIT_STORAGE_KEY,
+  LANG_STORAGE_KEY,
+  LANG_USER_IS_SWITCHING,
+  LocalStorageService
+} from './service/local-storage.service';
 import { environment } from '../environments/environment';
 import { CheckForUpdateService } from './service/check-for-update.service';
 import { PromptUpdateService } from './service/prompt-update.service';
@@ -31,6 +36,7 @@ export class StartComponent implements OnInit {
     // private router: Router,
     // private location: Location
   ) {
+    this.setLangInHTMLElement();
     this.browserLocaleID = navigator.language.slice(0, 2);
     this.langStoredCode = this.storage.getStringStoredAtGivenKey(LANG_STORAGE_KEY);
     this.langStored = !!this.langStoredCode;
@@ -41,8 +47,8 @@ export class StartComponent implements OnInit {
   ngOnInit() {
     console.log('----------------------------------------------------------------------' +
       '---------------------------------------------------------------------- PROD?', environment.production);
-    this.redirectToOtherLang();
-    this.setLangInHTMLElement();
+    this.checkIfUserIsSwitchingLanguage();
+    this.lcr.resetFlag();
     // console.log('------------------------');
     // console.log(strings[0] + '//' + strings[2] + '/es');
     // console.log('------------------------');
@@ -52,6 +58,19 @@ export class StartComponent implements OnInit {
     // console.log('------------------------');
     // window.location.href = strings[0] + '//' + strings[2] + '/en';
     // this.router.navigate(['es', 'choose']);
+  }
+
+  private checkIfUserIsSwitchingLanguage() {
+    if (
+      this.langStored &&
+      this.storage.checkEntryAtGivenKey(LANG_USER_IS_SWITCHING)
+    ) {
+      this.storage.removeStorageAtGivenKey(LANG_USER_IS_SWITCHING);
+      this.storage.storeStringAtGivenKey(LANG_STORAGE_KEY, this.localeId);
+    } else {
+      this.storage.removeStorageAtGivenKey(LANG_USER_IS_SWITCHING);
+      this.redirectToOtherLang();
+    }
   }
 
   private redirectToOtherLang() {
@@ -76,7 +95,6 @@ export class StartComponent implements OnInit {
         document.location.href = this.replaceLocaleInAddress(this.browserLocaleID);
       }
     }
-    this.lcr.resetFlag();
   }
 
   private prepareAddress() {

@@ -1,7 +1,7 @@
 import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { LOCALE_ID_NUMBERS } from '../../../locale/LIDs';
-import { LANG_STORAGE_KEY, LocalStorageService } from '../../service/local-storage.service';
+import { LANG_STORAGE_KEY, LANG_USER_IS_SWITCHING, LocalStorageService } from '../../service/local-storage.service';
 import { environment } from '../../../environments/environment';
 import { LangChangeRelayService } from '../../service/lang-change-relay.service';
 
@@ -56,8 +56,11 @@ export class ChooserComponent implements OnInit {
   }
 
   switchLocaleByUser(el: HTMLAnchorElement) {
-    el.href = '/' + el.id;
-    el.click();
+    if (this.localeId !== el.id) {
+      this.storage.storeStringAtGivenKey(LANG_USER_IS_SWITCHING);
+      el.href = '/' + el.id;
+      el.click();
+    }
   }
 
   private setTitle(newTitle: string) {

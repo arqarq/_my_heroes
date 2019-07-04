@@ -2,6 +2,7 @@
   <nav style="font-size: small">
     <a #first
        (click)="switchLocaleByUser(first)"
+       [class.not-allowed]="localeId === localeIdNumbers[1033]"
        [class.selected]="localeId === localeIdNumbers[1033]"
        [id]="localeIdNumbers[1033]"
        class="lang">
@@ -9,6 +10,7 @@
     &bull;
     <a #second
        (click)="switchLocaleByUser(second)"
+       [class.not-allowed]="localeId === localeIdNumbers[1045]"
        [class.selected]="localeId === localeIdNumbers[1045]"
        [id]="localeIdNumbers[1045]"
        class="lang">

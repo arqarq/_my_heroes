@@ -32,6 +32,10 @@ a.selected {
   opacity: 0.75
 }
 
+a.not-allowed {
+  cursor: not-allowed
+}
+
 input[type=checkbox] {
   /*transform: scale(0.75);*/
   margin: 0 0 0 0.15rem;
@@ -41,11 +45,11 @@ input[type=checkbox] {
 
 div.version {
   color: black;
-  transition: font-size 1s ease-in 0s;
+  transition: font-size 0.5s ease 0s;
   font-size: xx-small;
   opacity: 0.6
 }
 
 div.bigger {
-  font-size: xx-large
+  font-size: 500%
 }

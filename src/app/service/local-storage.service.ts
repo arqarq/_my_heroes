@@ -3,6 +3,7 @@ import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
 
 export const LANG_INIT_STORAGE_KEY = 'lang_init';
 export const LANG_STORAGE_KEY = 'lang';
+export const LANG_USER_IS_SWITCHING = 'user_switching';
 const STORAGE_KEY = 'mojStorage';
 
 @Injectable({
