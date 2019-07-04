@@ -21,13 +21,13 @@ export class StartComponent implements OnInit {
   private addressSplit: string[];
 
   constructor(
-    @Inject(LOCALE_ID) public localeId: string,
+    @Inject(LOCALE_ID) private localeId: string,
     private storage: LocalStorageService,
     sw: LogUpdateService, // wywołaj constructor
     cu: CheckForUpdateService, // wywołaj constructor
     pu: PromptUpdateService, // wywołaj constructor
     private el: ElementRef,
-    private lcr: LangChangeRelayService
+    private lcr: LangChangeRelayService // instancja
     // private router: Router,
     // private location: Location
   ) {
