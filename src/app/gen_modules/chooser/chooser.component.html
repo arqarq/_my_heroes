@@ -1,13 +1,15 @@
 <div [hidden]="lcr.langSwitched">
   <nav style="font-size: small">
-    <a [class.selected]="localeId === localeIdNumbers[1033]"
-       [href]="'/' + localeIdNumbers[1033]"
+    <a #first
+       (click)="switchLocaleByUser(first)"
+       [class.selected]="localeId === localeIdNumbers[1033]"
        [id]="localeIdNumbers[1033]"
        class="lang">
       {{ localeIdNumbers[1033] | uppercase }}</a>
     &bull;
-    <a [class.selected]="localeId === localeIdNumbers[1045]"
-       [href]="'/' + localeIdNumbers[1045]"
+    <a #second
+       (click)="switchLocaleByUser(second)"
+       [class.selected]="localeId === localeIdNumbers[1045]"
        [id]="localeIdNumbers[1045]"
        class="lang">
       {{ localeIdNumbers[1045] | uppercase }}</a>

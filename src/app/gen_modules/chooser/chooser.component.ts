@@ -55,6 +55,11 @@ export class ChooserComponent implements OnInit {
     }
   }
 
+  switchLocaleByUser(el: HTMLAnchorElement) {
+    el.href = '/' + el.id;
+    el.click();
+  }
+
   private setTitle(newTitle: string) {
     this.titleService.setTitle(newTitle);
   }
