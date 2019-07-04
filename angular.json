@@ -55,6 +55,7 @@
                   "maximumError": "5mb"
                 }
               ],
+              "outputPath": "dist/en",
               "i18nLocale": "en",
               "baseHref": "/en/",
               "serviceWorker": true,
