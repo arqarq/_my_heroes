@@ -1,6 +1,6 @@
 {
   "name": "d00af17f5d630b7296f102d",
-  "version": "4.10.9",
+  "version": "4.11.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -12,7 +12,8 @@
     "e2e": "ng e2e",
     "build-i18n:en": "ng build --prod",
     "build-i18n:pl": "ng build --configuration=pl",
-    "build-i18n": "npm run build-i18n:en && npm run build-i18n:pl"
+    "build-i18n": "npm run build-i18n:en && npm run build-i18n:pl",
+    "a": "rmdir /q/s dist && npm run build-i18n && firebase deploy"
   },
   "private": true,
   "dependencies": {
