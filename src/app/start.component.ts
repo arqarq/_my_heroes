@@ -106,12 +106,6 @@ export class StartComponent implements OnInit {
       this.addressSplit.forEach((val) => newAddress += val + '/');
       return newAddress.substr(0, newAddress.length - 1);
     }
-    // alert(this.addressSplit.length);
-    // if (this.addressSplit.length === 3) {
-    //   return this.addressSplit[0] + '//' + this.addressSplit[2] + `/${localeId}`;
-    // } else if (this.addressSplit.length > 3) {
-    //   return this.addressSplit[0] + '//' + this.addressSplit[2] + `/${localeId}`;
-    // }
   }
 
   private setLangInHTMLElement() {
