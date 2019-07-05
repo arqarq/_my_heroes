@@ -48,7 +48,7 @@ export class StartComponent implements OnInit {
     console.log('----------------------------------------------------------------------' +
       '---------------------------------------------------------------------- PROD?', environment.production);
     this.checkIfUserIsSwitchingLanguage();
-    this.lcr.resetFlag();
+    this.lcr.resetFlag(500);
     // console.log('------------------------');
     // console.log(strings[0] + '//' + strings[2] + '/es');
     // console.log('------------------------');
@@ -61,14 +61,13 @@ export class StartComponent implements OnInit {
   }
 
   private checkIfUserIsSwitchingLanguage() {
-    if (
-      this.langStored &&
-      this.storage.checkEntryAtGivenKey(LANG_USER_IS_SWITCHING)
-    ) {
+    if (this.storage.checkEntryAtGivenKey(LANG_USER_IS_SWITCHING)) {
       this.storage.removeStorageAtGivenKey(LANG_USER_IS_SWITCHING);
-      this.storage.storeStringAtGivenKey(LANG_STORAGE_KEY, this.localeId);
+      if (this.langStored) {
+        this.storage.storeStringAtGivenKey(LANG_STORAGE_KEY, this.localeId);
+        this.storage.storeStringAtGivenKey(LANG_INIT_STORAGE_KEY);
+      }
     } else {
-      this.storage.removeStorageAtGivenKey(LANG_USER_IS_SWITCHING);
       this.redirectToOtherLang();
     }
   }
@@ -79,21 +78,15 @@ export class StartComponent implements OnInit {
       this.langStoredCode !== this.localeId &&
       environment.production
     ) {
-      // document.getElementById(this.langStoredCode).click();
-      // window.location.href = addressSplit + `/${this.langStoredCode}`;
       document.location.href = this.replaceLocaleInAddress(this.langStoredCode);
-    } else {
-      if (
-        this.localeId !== this.browserLocaleID &&
-        !this.storage.checkEntryAtGivenKey(LANG_INIT_STORAGE_KEY) &&
-        this.localeIdNumbersValues.includes(this.browserLocaleID)
-      ) {
-        this.storage.storeStringAtGivenKey(LANG_STORAGE_KEY, this.browserLocaleID);
-        this.storage.storeStringAtGivenKey(LANG_INIT_STORAGE_KEY);
-        // document.getElementById(this.browserLocaleID).click();
-        // window.location.href = addressSplit + `/${this.browserLocaleID}`;
-        document.location.href = this.replaceLocaleInAddress(this.browserLocaleID);
-      }
+    } else if (
+      this.localeId !== this.browserLocaleID &&
+      !this.storage.checkEntryAtGivenKey(LANG_INIT_STORAGE_KEY) &&
+      this.localeIdNumbersValues.includes(this.browserLocaleID)
+    ) {
+      this.storage.storeStringAtGivenKey(LANG_STORAGE_KEY, this.browserLocaleID);
+      this.storage.storeStringAtGivenKey(LANG_INIT_STORAGE_KEY);
+      document.location.href = this.replaceLocaleInAddress(this.browserLocaleID);
     }
   }
 

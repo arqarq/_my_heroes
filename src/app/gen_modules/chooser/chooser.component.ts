@@ -1,7 +1,12 @@
 import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { LOCALE_ID_NUMBERS } from '../../../locale/LIDs';
-import { LANG_STORAGE_KEY, LANG_USER_IS_SWITCHING, LocalStorageService } from '../../service/local-storage.service';
+import {
+  LANG_INIT_STORAGE_KEY,
+  LANG_STORAGE_KEY,
+  LANG_USER_IS_SWITCHING,
+  LocalStorageService
+} from '../../service/local-storage.service';
 import { environment } from '../../../environments/environment';
 import { LangChangeRelayService } from '../../service/lang-change-relay.service';
 
@@ -49,9 +54,10 @@ export class ChooserComponent implements OnInit {
     this.langStored = event;
     if (event) {
       this.storage.storeStringAtGivenKey(LANG_STORAGE_KEY, this.localeId);
+      this.storage.storeStringAtGivenKey(LANG_INIT_STORAGE_KEY);
     } else {
       this.storage.removeStorageAtGivenKey(LANG_STORAGE_KEY);
-      // this.storage.removeStorageAtGivenKey(LANG_INIT_STORAGE_KEY);
+      this.storage.removeStorageAtGivenKey(LANG_INIT_STORAGE_KEY);
     }
   }
 
