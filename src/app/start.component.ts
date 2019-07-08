@@ -48,7 +48,7 @@ export class StartComponent implements OnInit {
     console.log('----------------------------------------------------------------------' +
       '---------------------------------------------------------------------- PROD?', environment.production);
     this.checkIfUserIsSwitchingLanguage();
-    this.lcr.resetFlag(500);
+    this.lcr.resetFlag();
     // console.log('------------------------');
     // console.log(strings[0] + '//' + strings[2] + '/es');
     // console.log('------------------------');
