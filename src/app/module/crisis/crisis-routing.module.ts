@@ -4,12 +4,11 @@ import { RouterModule, Routes, UrlMatchResult, UrlSegment } from '@angular/route
 import { CrisisListComponent } from './component/crisis-list/crisis-list.component';
 import { CrisisDetailComponent } from './component/crisis-detail/crisis-detail.component';
 import { CrisisCenterHomeComponent } from './component/crisis-center-home/crisis-center-home.component';
-import { ComposeMessageComponent } from './component/compose-message/compose-message.component';
 import { CanDeactivateGuard } from './heroes/can-deactivate.guard';
 import { CrisisDetailResolverService } from './component/crisis-detail/crisis-detail-resolver.service';
 import { AuthGuard } from './admin/auth.guard';
 
-export function adminMatch(url: UrlSegment[]): UrlMatchResult {
+export function isAdminMatched(url: UrlSegment[]): UrlMatchResult {
   let result;
   if (url.length >= 1 && url[0].path.startsWith('admin')) {
     result = url;
@@ -30,7 +29,7 @@ export function adminMatch(url: UrlSegment[]): UrlMatchResult {
       output.push(war.path);
     }
   }
-  console.log('CrisisRoutingModule # adminMatch() # result: ' + (result ? output : '-'));
+  console.log('CrisisRoutingModule # isAdminMatched() # result: ' + (result ? output : '-'));
   return result;
 }
 
@@ -52,15 +51,12 @@ const ROUTES: Routes = [
         loadChildren: './auth/auth.module#AuthModule'
       },
       {
-        path: 'compose',
-        component: ComposeMessageComponent,
-        outlet: 'popup'
-      },
-      {
         path: 'admin',
-        // matcher: adminMatch, // zastępuje "path"
+        // matcher: isAdminMatched, // zastępuje "path", ale nie działa z routingiem w lazy loaded module
         loadChildren: 'src/app/module/crisis/admin/admin.module#AdminModule', // całkowicie bezwzględna (tsconfig.json)
-        canLoad: [AuthGuard]
+        canLoad: [
+          AuthGuard
+        ]
       },
       // {
       //   path: 'admin(popup:compose)',

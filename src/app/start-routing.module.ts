@@ -1,8 +1,13 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, UrlMatchResult, UrlSegment } from '@angular/router';
 import { NotFound404Component } from './component/notfound404/notfound404.component';
 import { ComposeMessageComponent } from './module/crisis/component/compose-message/compose-message.component';
 import { SelectivePreloadingStrategyService } from './module/crisis/service/selective-preloading-strategy.service';
+
+export function isComposeMatched(url: UrlSegment[]): UrlMatchResult {
+  console.log('CrisisRoutingModule # isComposeMatched() # url: ' + url);
+  return url.length && url[0].path.startsWith('compose') ? {consumed: url} : null;
+}
 
 const ROUTES: Routes = [
   {
@@ -42,7 +47,8 @@ const ROUTES: Routes = [
     }
   },
   {
-    path: 'compose',
+    // path: 'compose',
+    matcher: isComposeMatched,
     component: ComposeMessageComponent,
     outlet: 'popup'
   },

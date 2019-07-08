@@ -1,6 +1,6 @@
 {
   "name": "d00af17f5d630b7296f102d",
-  "version": "4.12.10",
+  "version": "4.12.20",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -13,8 +13,8 @@
     "build-i18n:en": "ng build --prod",
     "build-i18n:pl": "ng build --configuration=pl",
     "build-i18n": "npm run build-i18n:en && npm run build-i18n:pl",
-    "a": "rmdir /q/s dist && node setver && npm run build-i18n && firebase deploy",
-    "am": "rmdir /q/s dist && node setver minor && npm run build-i18n && firebase deploy"
+    "a": "(if exist dist rmdir /q/s dist) && node setver && npm run build-i18n && firebase deploy",
+    "am": "(if exist dist rmdir /q/s dist) && node setver minor && npm run build-i18n && firebase deploy"
   },
   "private": true,
   "dependencies": {

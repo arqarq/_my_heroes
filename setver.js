@@ -36,31 +36,31 @@ if (param.length) {
 const pkgData = fs.readFileSync(P, {encoding: 'utf8'});
 const pkgObj = JSON.parse(pkgData);
 const pkgVer = pkgObj.version;
-console.log('wersja w', P + ':', pkgVer);
+console.log('wersja w \x1b[33m[%s]\x1b[0m: \x1b[33m\x1b[1m%s\x1b[0m', P, pkgVer);
 const ngswData = fs.readFileSync(N, {encoding: 'utf8'});
 const ngswObj = JSON.parse(ngswData);
 const ngswVer = ngswObj.appData.ver;
-console.log('wersja w', N + ':', ngswVer);
-console.log('wersje równe?', pkgVer === ngswVer ? 'tak' : 'nie');
+console.log('wersja w \x1b[33m[%s]\x1b[0m: \x1b[33m\x1b[1m%s\x1b[0m', N, ngswVer);
+console.log('wersje równe? \x1b[33m\x1b[1m%s\x1b[0m', pkgVer === ngswVer ? 'tak' : 'nie');
 let tabOfNumbers = pkgVer.split('.');
 switch (param) {
   case Opcje.MAJOR:
     majorOpt();
-    console.log('zwiększono o jeden MAJOR, wyzerowano resztę:', tabOfNumbers);
+    console.log('zwiększono o jeden \x1b[33mMAJOR\x1b[0m, wyzerowano resztę: \x1b[33m\x1b[1m%s\x1b[0m', tabOfNumbers);
     break;
   case Opcje.MINOR:
     minorOpt();
-    console.log('zwiększono o jeden MINOR, wyzerowano resztę:', tabOfNumbers);
+    console.log('zwiększono o jeden \x1b[33mMINOR\x1b[0m, wyzerowano resztę: \x1b[33m\x1b[1m%s\x1b[0m', tabOfNumbers);
     break;
   case Opcje.PATCH:
     patchOpt();
-    console.log('zwiększono o jeden PATCH:', tabOfNumbers);
+    console.log('zwiększono o jeden \x1b[33mPATCH\x1b[0m: \x1b[33m\x1b[1m%s\x1b[0m', tabOfNumbers);
     break;
   default:
     patchOpt();
-    console.log('nie podano parametru, więc zwiększono o jeden PATCH:', tabOfNumbers);
+    console.log('nie podano parametru, więc zwiększono o jeden \x1b[33mPATCH\x1b[0m: \x1b[33m\x1b[1m%s\x1b[0m', tabOfNumbers);
 }
 pkgObj.version = tabOfNumbers;
-fs.writeFileSync(P, JSON.stringify(pkgObj, null, 2) + '\n', {encoding: 'utf8'});
+fs.writeFileSync(P, JSON.stringify(pkgObj, null, 2) + '\r\n', {encoding: 'utf8'});
 ngswObj.appData.ver = tabOfNumbers;
-fs.writeFileSync(N, JSON.stringify(ngswObj, null, 2) + '\n', {encoding: 'utf8'});
+fs.writeFileSync(N, JSON.stringify(ngswObj, null, 2) + '\r\n', {encoding: 'utf8'});
