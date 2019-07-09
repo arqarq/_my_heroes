@@ -61,6 +61,6 @@ switch (param) {
     console.log('nie podano parametru, więc zwiększono o jeden \x1b[33mPATCH\x1b[0m: \x1b[33m\x1b[1m%s\x1b[0m', tabOfNumbers);
 }
 pkgObj.version = tabOfNumbers;
-fs.writeFileSync(P, JSON.stringify(pkgObj, null, 2) + '\r\n', {encoding: 'utf8'});
+fs.writeFileSync(P, JSON.stringify(pkgObj, null, 2) + '\n', {encoding: 'utf8'});
 ngswObj.appData.ver = tabOfNumbers;
-fs.writeFileSync(N, JSON.stringify(ngswObj, null, 2) + '\r\n', {encoding: 'utf8'});
+fs.writeFileSync(N, JSON.stringify(ngswObj, null, 2) + '\n', {encoding: 'utf8'});
