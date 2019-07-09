@@ -46,11 +46,13 @@ let tabOfNumbers = pkgVer.split('.');
 switch (param) {
   case Opcje.MAJOR:
     majorOpt();
-    console.log('zwiększono o jeden \x1b[33mMAJOR\x1b[0m, wyzerowano resztę: \x1b[33m\x1b[1m%s\x1b[0m', tabOfNumbers);
+    console.log('zwiększono o jeden \x1b[33mMAJOR\x1b[0m, wyzerowano \x1b[33mMINOR\x1b[0m i' +
+      ' \x1b[33mPATCH\x1b[0m: \x1b[33m\x1b[1m%s\x1b[0m', tabOfNumbers);
     break;
   case Opcje.MINOR:
     minorOpt();
-    console.log('zwiększono o jeden \x1b[33mMINOR\x1b[0m, wyzerowano resztę: \x1b[33m\x1b[1m%s\x1b[0m', tabOfNumbers);
+    console.log('zwiększono o jeden \x1b[33mMINOR\x1b[0m, wyzerowano \x1b[33mPATCH\x1b[0m:' +
+      ' \x1b[33m\x1b[1m%s\x1b[0m', tabOfNumbers);
     break;
   case Opcje.PATCH:
     patchOpt();
@@ -58,7 +60,8 @@ switch (param) {
     break;
   default:
     patchOpt();
-    console.log('nie podano parametru, więc zwiększono o jeden \x1b[33mPATCH\x1b[0m: \x1b[33m\x1b[1m%s\x1b[0m', tabOfNumbers);
+    console.log('nie podano parametru, więc zwiększono o jeden \x1b[33mPATCH\x1b[0m:' +
+      ' \x1b[33m\x1b[1m%s\x1b[0m', tabOfNumbers);
 }
 pkgObj.version = tabOfNumbers;
 fs.writeFileSync(P, JSON.stringify(pkgObj, null, 2) + '\n', {encoding: 'utf8'});
