@@ -36,17 +36,19 @@ export class StartComponent implements OnInit {
     // private router: Router,
     // private location: Location
   ) {
-    this.setLangInHTMLElement();
-    this.browserLocaleID = navigator.language.slice(0, 2);
+    if (environment.isNode) {
+      this.browserLocaleID = this.localeId;
+    } else {
+      this.setLangInHTMLElement();
+      this.browserLocaleID = navigator.language.slice(0, 2);
+      this.prepareAddress();
+    }
     this.langStoredCode = this.storage.getStringStoredAtGivenKey(LANG_STORAGE_KEY);
     this.langStored = !!this.langStoredCode;
     this.localeIdNumbersValues = Object.values(this.localeIdNumbers);
-    this.prepareAddress();
   }
 
   ngOnInit() {
-    console.log('----------------------------------------------------------------------' +
-      '---------------------------------------------------------------------- PROD?', environment.production);
     this.checkIfUserIsSwitchingLanguage();
     this.lcr.resetFlag();
     // console.log('------------------------');
@@ -78,7 +80,9 @@ export class StartComponent implements OnInit {
       this.langStoredCode !== this.localeId &&
       environment.production
     ) {
-      document.location.href = this.replaceLocaleInAddress(this.langStoredCode);
+      if (!environment.isNode) {
+        document.location.href = this.replaceLocaleInAddress(this.langStoredCode);
+      }
     } else if (
       this.localeId !== this.browserLocaleID &&
       !this.storage.checkEntryAtGivenKey(LANG_INIT_STORAGE_KEY) &&
@@ -86,7 +90,9 @@ export class StartComponent implements OnInit {
     ) {
       this.storage.storeStringAtGivenKey(LANG_STORAGE_KEY, this.browserLocaleID);
       this.storage.storeStringAtGivenKey(LANG_INIT_STORAGE_KEY);
-      document.location.href = this.replaceLocaleInAddress(this.browserLocaleID);
+      if (!environment.isNode) {
+        document.location.href = this.replaceLocaleInAddress(this.browserLocaleID);
+      }
     }
   }
 

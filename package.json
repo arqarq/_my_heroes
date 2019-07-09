@@ -1,6 +1,6 @@
 {
   "name": "d00af17f5d630b7296f102d",
-  "version": "4.12.21",
+  "version": "4.12.22",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -14,7 +14,7 @@
     "build-i18n:pl": "ng build --configuration=pl",
     "build-i18n": "npm run build-i18n:en && npm run build-i18n:pl",
     "a": "(if exist dist rmdir /q/s dist) && node setver && npm run build-i18n && firebase deploy",
-    "am": "(if exist dist rmdir /q/s dist) && node setver minor && npm run build-i18n && firebase deploy"
+    "aminor": "(if exist dist rmdir /q/s dist) && node setver minor && npm run build-i18n && firebase deploy"
   },
   "private": true,
   "dependencies": {
@@ -28,6 +28,7 @@
     "@angular/pwa": "^0.801.0",
     "@angular/router": "^8.2.0-next.0",
     "@angular/service-worker": "^8.2.0-next.0",
+    "@types/node": "^12.6.1",
     "angular-in-memory-web-api": "^0.8.0",
     "core-js": "^3.1.4",
     "karma-cli": "^2.0.0",
@@ -44,7 +45,6 @@
     "@angular/language-service": "^8.2.0-next.0",
     "@types/jasmine": "^3.3.13",
     "@types/jasminewd2": "~2.0.6",
-    "@types/node": "^12.0.12",
     "codelyzer": "^5.0.1",
     "firebase-tools": "^7.0.2",
     "http-server": "0.9.0",

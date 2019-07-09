@@ -7,6 +7,13 @@ if (environment.production) {
   enableProdMode();
 }
 
+console.log('----------------------------------------------------------------------' +
+  '---------------------------------------------------------------------- %cnode/browser? %c' +
+  (environment.isNode ? 'node' : 'browser'), 'color: red', 'color: red; font-weight: bolder');
+console.log('----------------------------------------------------------------------' +
+  '---------------------------------------------------------------------- %cPROD? %c' + environment.production,
+  'color: red', 'color: red; font-weight: bolder');
+
 platformBrowserDynamic(
   [{provide: LOCALE_ID, useValue: 'pl'}]) // dla 'ng build' wystarczy tylko tu, bez registerLocaleData() w AppModule
   .bootstrapModule(StartModule,
