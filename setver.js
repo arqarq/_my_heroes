@@ -1,8 +1,9 @@
 'use strict';
-const fs = require('fs');
+
+const fse = require('fs-extra');
 const P = 'package.json';
 const N = 'ngsw-config.json';
-const Opcje = Object.freeze({
+const Params = Object.freeze({
   MAJOR: 'major',
   MINOR: 'minor',
   PATCH: 'patch'
@@ -33,28 +34,28 @@ let param = process.argv.slice(2);
 if (param.length) {
   param = param[0].toLowerCase();
 }
-const pkgData = fs.readFileSync(P, {encoding: 'utf8'});
+const pkgData = fse.readFileSync(P, {encoding: 'utf8'});
 const pkgObj = JSON.parse(pkgData);
 const pkgVer = pkgObj.version;
 console.log('wersja w \x1b[33m[%s]\x1b[0m: \x1b[33m\x1b[1m%s\x1b[0m', P, pkgVer);
-const ngswData = fs.readFileSync(N, {encoding: 'utf8'});
+const ngswData = fse.readFileSync(N, {encoding: 'utf8'});
 const ngswObj = JSON.parse(ngswData);
 const ngswVer = ngswObj.appData.ver;
 console.log('wersja w \x1b[33m[%s]\x1b[0m: \x1b[33m\x1b[1m%s\x1b[0m', N, ngswVer);
 console.log('wersje równe? \x1b[33m\x1b[1m%s\x1b[0m', pkgVer === ngswVer ? 'tak' : 'nie');
 let tabOfNumbers = pkgVer.split('.');
 switch (param) {
-  case Opcje.MAJOR:
+  case Params.MAJOR:
     majorOpt();
     console.log('zwiększono o jeden \x1b[33mMAJOR\x1b[0m, wyzerowano \x1b[33mMINOR\x1b[0m i' +
       ' \x1b[33mPATCH\x1b[0m: \x1b[33m\x1b[1m%s\x1b[0m', tabOfNumbers);
     break;
-  case Opcje.MINOR:
+  case Params.MINOR:
     minorOpt();
     console.log('zwiększono o jeden \x1b[33mMINOR\x1b[0m, wyzerowano \x1b[33mPATCH\x1b[0m:' +
       ' \x1b[33m\x1b[1m%s\x1b[0m', tabOfNumbers);
     break;
-  case Opcje.PATCH:
+  case Params.PATCH:
     patchOpt();
     console.log('zwiększono o jeden \x1b[33mPATCH\x1b[0m: \x1b[33m\x1b[1m%s\x1b[0m', tabOfNumbers);
     break;
@@ -64,6 +65,6 @@ switch (param) {
       ' \x1b[33m\x1b[1m%s\x1b[0m', tabOfNumbers);
 }
 pkgObj.version = tabOfNumbers;
-fs.writeFileSync(P, JSON.stringify(pkgObj, null, 2) + '\n', {encoding: 'utf8'});
+fse.writeFileSync(P, JSON.stringify(pkgObj, null, 2) + '\n', {encoding: 'utf8'});
 ngswObj.appData.ver = tabOfNumbers;
-fs.writeFileSync(N, JSON.stringify(ngswObj, null, 2) + '\n', {encoding: 'utf8'});
+fse.writeFileSync(N, JSON.stringify(ngswObj, null, 2) + '\n', {encoding: 'utf8'});

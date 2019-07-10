@@ -1,6 +1,6 @@
 {
   "name": "d00af17f5d630b7296f102d",
-  "version": "4.13.2",
+  "version": "4.13.3",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -47,6 +47,7 @@
     "@types/jasminewd2": "~2.0.6",
     "codelyzer": "^5.0.1",
     "firebase-tools": "^7.0.2",
+    "fs-extra": "^8.1.0",
     "http-server": "0.9.0",
     "jasmine-core": "^3.4.0",
     "jasmine-spec-reporter": "^4.2.1",
