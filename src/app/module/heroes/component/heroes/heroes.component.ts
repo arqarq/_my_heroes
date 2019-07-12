@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Hero, HERO_NOUN } from '../../model/hero';
-import { MarvelService } from '../../service/marvel.service';
+import { Hero, HERO_NOUN } from '../../../../model/hero';
+import { MarvelService } from '../../../../service/marvel.service';
 import { Subscription } from 'rxjs';
 
 @Component({

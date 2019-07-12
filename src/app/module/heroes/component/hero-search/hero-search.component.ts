@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero, HERO_NOUN } from '../../model/hero';
+import { Hero, HERO_NOUN } from '../../../../model/hero';
 import { Observable, Subject } from 'rxjs';
-import { MarvelService } from '../../service/marvel.service';
+import { MarvelService } from '../../../../service/marvel.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Component({
