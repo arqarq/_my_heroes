@@ -2,3 +2,14 @@ export const LOCALE_ID_NUMBERS: {[key: number]: string} = { // keys of object as
   1033: 'en',
   1045: 'pl'
 };
+
+export const LOCALE_ID_CURRENCIES: {[key: string]: {code: string, display: string}} = {
+  en: {
+    code: 'USD',
+    display: 'symbol'
+  },
+  pl: {
+    code: 'PLN',
+    display: 'symbol'
+  }
+};

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, registerLocaleData } from '@angular/common';
+import { CommonModule, CurrencyPipe, registerLocaleData } from '@angular/common';
 import { ShopComponent } from './shop.component';
 import { RouterModule } from '@angular/router';
 import { ProductListComponent } from './product-list/product-list.component';
@@ -10,6 +10,7 @@ import { CartComponent } from './cart/cart.component';
 import { ShippingComponent } from './shipping/shipping.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import locale from '@angular/common/locales/pl';
+import { MoneyPipe } from './service/money.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import locale from '@angular/common/locales/pl';
     ProductAlertsComponent,
     ProductDetailsComponent,
     CartComponent,
-    ShippingComponent
+    ShippingComponent,
+    MoneyPipe
   ],
   imports: [
     CommonModule,
@@ -47,7 +49,8 @@ import locale from '@angular/common/locales/pl';
           }
         ]
       }
-    ])]
+    ])],
+  providers: [CurrencyPipe]
 })
 export class ShopModule {
   constructor() {
