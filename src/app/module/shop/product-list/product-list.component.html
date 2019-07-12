@@ -7,7 +7,7 @@
        [title]="product.name + ' details'"
        style="color: #1976D2">{{ product.name }}</a>
     /
-    <small>€{{ product.price }}</small>
+    <small>{{ product.price | money }}</small>
   </h3>
   <p *ngIf="product.description">
     <i>Description: {{ product.description }}</i>
