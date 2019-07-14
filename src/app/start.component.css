@@ -1,0 +1,10 @@
+div.version {
+  color: black;
+  transition: font-size 0.5s ease 0s;
+  font-size: xx-small;
+  opacity: 0.6
+}
+
+div.bigger {
+  font-size: 500%
+}

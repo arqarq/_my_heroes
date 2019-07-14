@@ -7,7 +7,6 @@ import {
   LANG_USER_IS_SWITCHING,
   LocalStorageService
 } from '../../service/local-storage.service';
-import { environment } from '../../../environments/environment';
 import { LangChangeRelayService } from '../../service/lang-change-relay.service';
 
 @Component({
@@ -19,7 +18,6 @@ import { LangChangeRelayService } from '../../service/lang-change-relay.service'
   styleUrls: ['./chooser.component.css']
 })
 export class ChooserComponent implements OnInit {
-  readonly ver: string;
   langStored: boolean;
   readonly localeIdNumbers = LOCALE_ID_NUMBERS;
   readonly browserLocaleID: string;
@@ -36,7 +34,6 @@ export class ChooserComponent implements OnInit {
     this.browserLocaleID = navigator.language.slice(0, 2);
     this.langStoredCode = this.storage.getStringStoredAtGivenKey(LANG_STORAGE_KEY);
     this.langStored = !!this.langStoredCode;
-    this.ver = environment.VERSION;
     // this.wait = this.lcr.langSwitched;
   }
 

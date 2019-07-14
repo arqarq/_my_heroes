@@ -1,2 +1,6 @@
 <router-outlet name="popup"></router-outlet>
 <router-outlet></router-outlet>
+<div [class.bigger]="lcr.langSwitched"
+     class="version bottom-left">
+  {{ this.ver }}
+</div>

@@ -18,6 +18,7 @@ import { LangChangeRelayService } from './service/lang-change-relay.service';
   styleUrls: ['./start.component.css']
 })
 export class StartComponent implements OnInit {
+  readonly ver: string;
   readonly langStored: boolean;
   readonly localeIdNumbers = LOCALE_ID_NUMBERS;
   readonly localeIdNumbersValues: string[];
@@ -32,10 +33,11 @@ export class StartComponent implements OnInit {
     cu: CheckForUpdateService, // wywołaj constructor
     pu: PromptUpdateService, // wywołaj constructor
     private el: ElementRef,
-    private lcr: LangChangeRelayService // instancja
+    public lcr: LangChangeRelayService // instancja
     // private router: Router,
     // private location: Location
   ) {
+    this.ver = environment.VERSION;
     if (environment.isNode) {
       this.browserLocaleID = this.localeId;
     } else {
