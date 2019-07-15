@@ -47,7 +47,11 @@ export class LocalStorageService {
     console.log('LocalStorageService # removeStorageAtGivenKey() # get(' + key + ')');
   }
 
-  clearLocalStorage() {
-    this.storage.clear();
+  clearLocalStorage(all = false) {
+    if (all) {
+      this.storage.clear();
+    } else {
+      this.storage.remove(STORAGE_KEY);
+    }
   }
 }

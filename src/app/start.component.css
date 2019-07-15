@@ -8,3 +8,36 @@ div.version {
 div.bigger {
   font-size: 500%
 }
+
+.container {
+  display: inline-block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 200px;
+  height: 200px;
+  margin: auto
+}
+
+.machine {
+  width: 100%
+}
+
+.large-shadow {
+  animation: counter-rotation 5s infinite linear;
+  fill: rgba(202, 80, 16, 0.66);
+  stroke: black;
+  stroke-width: 3;
+  transform-origin: 471.37px 183.694px
+}
+
+@keyframes counter-rotation {
+  from {
+    transform: rotate(359deg)
+  }
+  to {
+    transform: rotate(0deg)
+  }
+}
