@@ -79,10 +79,9 @@ export class StartComponent implements OnInit {
   private redirectToOtherLang() {
     if (
       this.langStored &&
-      this.langStoredCode !== this.localeId &&
-      environment.production
+      this.langStoredCode !== this.localeId
     ) {
-      if (!environment.isNode) {
+      if (!environment.isNode && environment.production) {
         document.location.href = this.replaceLocaleInAddress(this.langStoredCode);
       }
     } else if (
@@ -92,7 +91,7 @@ export class StartComponent implements OnInit {
     ) {
       this.storage.storeStringAtGivenKey(LANG_STORAGE_KEY, this.browserLocaleID);
       this.storage.storeStringAtGivenKey(LANG_INIT_STORAGE_KEY);
-      if (!environment.isNode) {
+      if (!environment.isNode && environment.production) {
         document.location.href = this.replaceLocaleInAddress(this.browserLocaleID);
       }
     }
