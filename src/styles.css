@@ -94,6 +94,7 @@ h2.inline-block + div {
 }
 
 div.bottom-left {
+  display: inline-block;
   position: fixed;
   bottom: 0;
   left: 0;
