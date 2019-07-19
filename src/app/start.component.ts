@@ -70,6 +70,7 @@ export class StartComponent implements OnInit {
         this.storage.storeStringAtGivenKey(LANG_STORAGE_KEY, this.localeId);
         this.storage.storeStringAtGivenKey(LANG_INIT_STORAGE_KEY);
       }
+      this.lcr.resetFlag(100);
     } else {
       this.redirectToOtherLang();
     }
@@ -93,6 +94,8 @@ export class StartComponent implements OnInit {
       if (!environment.isNode && environment.production) {
         document.location.href = this.replaceLocaleInAddress(this.browserLocaleID);
       }
+    } else {
+      this.lcr.resetFlag(100);
     }
   }
 
