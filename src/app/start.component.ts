@@ -27,13 +27,13 @@ export class StartComponent implements OnInit {
   private addressSplit: string[];
 
   constructor(
+    public lcr: LangChangeRelayService, // instancja
     @Inject(LOCALE_ID) private localeId: string,
     private storage: LocalStorageService,
     sw: LogUpdateService, // wywołaj constructor
     cu: CheckForUpdateService, // wywołaj constructor
     pu: PromptUpdateService, // wywołaj constructor
-    private el: ElementRef,
-    public lcr: LangChangeRelayService // instancja
+    private el: ElementRef
     // private router: Router,
     // private location: Location
   ) {
@@ -52,7 +52,6 @@ export class StartComponent implements OnInit {
 
   ngOnInit() {
     this.checkIfUserIsSwitchingLanguage();
-    this.lcr.resetFlag();
     // console.log('------------------------');
     // console.log(strings[0] + '//' + strings[2] + '/es');
     // console.log('------------------------');

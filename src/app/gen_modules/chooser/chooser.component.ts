@@ -1,4 +1,4 @@
-import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { LOCALE_ID_NUMBERS } from '../../../locale/LIDs';
 import {
@@ -17,7 +17,7 @@ import { LangChangeRelayService } from '../../service/lang-change-relay.service'
   ],
   styleUrls: ['./chooser.component.css']
 })
-export class ChooserComponent implements OnInit {
+export class ChooserComponent implements OnInit, AfterViewInit {
   langStored: boolean;
   readonly localeIdNumbers = LOCALE_ID_NUMBERS;
   readonly browserLocaleID: string;
@@ -26,10 +26,10 @@ export class ChooserComponent implements OnInit {
   private title = 'Wybór';
 
   constructor(
+    public lcr: LangChangeRelayService,
     private titleService: Title,
     @Inject(LOCALE_ID) public localeId: string,
-    private storage: LocalStorageService,
-    public lcr: LangChangeRelayService
+    private storage: LocalStorageService
   ) {
     this.browserLocaleID = navigator.language.slice(0, 2);
     this.langStoredCode = this.storage.getStringStoredAtGivenKey(LANG_STORAGE_KEY);
@@ -64,6 +64,10 @@ export class ChooserComponent implements OnInit {
       el.href = '/' + el.id;
       el.click();
     }
+  }
+
+  ngAfterViewInit() {
+    this.lcr.resetFlag(500);
   }
 
   private setTitle(newTitle: string) {
