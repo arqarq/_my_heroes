@@ -81,9 +81,7 @@ export class StartComponent implements OnInit {
       this.langStored &&
       this.langStoredCode !== this.localeId
     ) {
-      if (!environment.isNode && environment.production) {
-        document.location.href = this.replaceLocaleInAddress(this.langStoredCode);
-      }
+      this.changeLocationToGivenIfInProdAndNotNode(this.langStoredCode);
     } else if (
       this.localeId !== this.browserLocaleID &&
       !this.storage.checkEntryAtGivenKey(LANG_INIT_STORAGE_KEY) &&
@@ -91,9 +89,15 @@ export class StartComponent implements OnInit {
     ) {
       this.storage.storeStringAtGivenKey(LANG_STORAGE_KEY, this.browserLocaleID);
       this.storage.storeStringAtGivenKey(LANG_INIT_STORAGE_KEY);
-      if (!environment.isNode && environment.production) {
-        document.location.href = this.replaceLocaleInAddress(this.browserLocaleID);
-      }
+      this.changeLocationToGivenIfInProdAndNotNode(this.browserLocaleID);
+    } else {
+      this.lcr.resetFlag(100);
+    }
+  }
+
+  private changeLocationToGivenIfInProdAndNotNode(localeId: string) {
+    if (!environment.isNode && environment.production) {
+      document.location.href = this.replaceLocaleInAddress(localeId);
     } else {
       this.lcr.resetFlag(100);
     }
