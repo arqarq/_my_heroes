@@ -12,10 +12,13 @@ export class InMemoryDataService<T extends Marvel> implements InMemoryDbService 
   }
 
   createDb() {
-    return {HEROES, CRISES};
+    return {
+      HEROES,
+      CRISES
+    };
   }
 
-  genId(array: T[]): number {
+  genId<A extends T>(array: A[]): number {
     return array.length > 0 ? Math.max(...array.map(elem => elem.id)) + 1 : 11;
   }
 }

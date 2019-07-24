@@ -43,9 +43,7 @@ import { environment } from '../environments/environment';
 export class StartModule {
   readonly replacer;
 
-  constructor(
-    private router: Router
-  ) {
+  constructor(private router: Router) {
     this.replacer = (key, value) => (typeof value === 'function') ? value.name : value;
     console.log('StartModule # router.config: ', JSON.stringify(this.router.config, this.replacer, 2));
   }
