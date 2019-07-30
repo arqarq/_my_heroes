@@ -8,9 +8,6 @@ import { Marvel } from '../model/marvel';
   providedIn: 'root'
 })
 export class InMemoryDataService<T extends Marvel> implements InMemoryDbService {
-  constructor() {
-  }
-
   createDb() {
     return {
       HEROES,
