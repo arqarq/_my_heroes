@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, finalize, map, tap } from 'rxjs/operators';
 import { Marvel } from '../model/marvel';
 import { SUPERMEN } from '../repository/mock-supermanes';
 
@@ -24,19 +24,6 @@ export class MarvelService<TT extends Marvel> {
     private http: HttpClient,
     private messageService: MessageService
   ) {
-  }
-
-  private static tryExternalStorage<T extends Marvel>(id: number): T {
-    const heroToFind = SUPERMEN.find((superman) => superman.id === id);
-    if (heroToFind) {
-      return heroToFind as T;
-      // if (id > 20 && id <= 100) {
-      //   const tab = [];
-      //   tab.push({id, name: 'Superman'} as T);
-      //   return tab;
-    } else {
-      return undefined;
-    }
   }
 
   setNouns(value: {[key: string]: string}) {
@@ -78,7 +65,7 @@ export class MarvelService<TT extends Marvel> {
           console.log('zapytanie zwróciło[0]:', hero);
           if (!hero) {
             this.log('trying External Storage...');
-            return MarvelService.tryExternalStorage<TT>(+id);
+            return this.tryExternalStorage<TT>(+id);
           } else {
             return hero;
           }
@@ -149,16 +136,32 @@ export class MarvelService<TT extends Marvel> {
       );
   }
 
-  private tryExternalStorage2(id: number): Observable<TT> {
+  private tryExternalStorage<T extends Marvel>(id: number): T | undefined {
+    let supermanToReturn;
+    const heroCheck = SUPERMEN.find((superman) => superman.id === id); // TODO remove it later
+    if (heroCheck) {
+      const subscription = this.tryExternalStorage2<T>(id)
+        .pipe(finalize(() => subscription.unsubscribe()))
+        .subscribe((superman) => supermanToReturn = superman);
+      return supermanToReturn as T;
+      // if (id > 20 && id <= 100) {
+      //   const tab = [];
+      //   tab.push({id, name: 'Superman'} as T);
+      //   return tab;
+    } else {
+      return undefined;
+    }
+  }
+
+  private tryExternalStorage2<T extends Marvel>(id: number): Observable<T> {
     const url = `api/SUPERMEN/?id=${id}`;
     console.log('MarvelService # tryExternalStorage() # url: ' + url);
     return this.http
-      .get<TT[]>(url)
+      .get<T[]>(url)
       .pipe(
-        map((heroes) => {
-          return heroes[0];
-        })
-      );
+        map((supermen) => {
+          return supermen[0];
+        }));
   }
 
   private log(message: string) {
