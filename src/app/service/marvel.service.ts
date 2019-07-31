@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, race } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, finalize, map, tap } from 'rxjs/operators';
 import { Marvel } from '../model/marvel';
 import { SUPERMEN } from '../repository/mock-supermanes';
 
-const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
-};
+const httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
 
 @Injectable({
   providedIn: 'root'
 })
-export class MarvelService<TT extends Marvel> {
+export class MarvelService<T extends Marvel> {
   private s = 'item';
   private p = 'items';
   private S = 'Item';
@@ -39,43 +37,46 @@ export class MarvelService<TT extends Marvel> {
   }
 
   // getHeroes(): Hero[] {
-  getHeroes(): Observable<TT[]> {
+  getHeroes(): Observable<T[]> {
     // this.messageService.add('HeroService: fetched heroes');
     // this.log('fetched heroes');
     // return of(HEROES);
     return this.http
-      .get<TT[]>(this.heroesUrl)
+      .get<T[]>(this.heroesUrl)
       .pipe(
         tap(() => this.log('fetched ' + this.p + ' (tap)')),
-        catchError(this.handleError<TT[]>('get' + this.P, []))
+        catchError(this.handleError<T[]>('get' + this.P, []))
       );
   }
 
-  getHeroNo404<Data>(id: number | string): Observable<TT> { // TODO <Data>?
+  getHeroNo404<TT extends Marvel>(id: number | string): Observable<TT> {
     const url = `${this.heroesUrl}/?id=${id}`;
     console.log('MarvelService # getHeroNo404() # url: ' + url);
-    return this.http
-      .get<TT[]>(url)
-      .pipe(
-        map((heroes) => {
-          console.log('zapytanie zwróciło:', heroes);
-          return heroes[0];
-        }),
-        map((hero) => {
-          console.log('zapytanie zwróciło[0]:', hero);
-          if (!hero) {
-            this.log('trying External Storage...');
-            return this.tryExternalStorage<TT>(+id);
-          } else {
-            return hero;
-          }
-        }),
-        tap((h) => {
-          const outcome = h ? 'fetched' : 'did not find';
-          this.log(`${outcome} ${this.s} id=${id}`);
-        }),
-        catchError(this.handleError<TT>(`get${this.S}No404 id=${id}`))
-      );
+    return race<TT, TT>([
+      this.http
+        .get<TT[]>(url)
+        .pipe(
+          map((heroes) => {
+            console.log('zapytanie zwróciło (race(1, -)):', heroes);
+            return heroes[0];
+          }),
+          map((hero) => {
+            console.log('zapytanie zwróciło[0]:', hero);
+            if (!hero) {
+              this.log('trying External Storage...');
+              // return this.tryExternalStorage<T>(+id);
+            } else {
+              return hero;
+            }
+          }),
+          tap((h) => {
+            const outcome = h ? 'fetched' : 'did not find';
+            this.log(`${outcome} ${this.s} id=${id}`);
+          }),
+          catchError(this.handleError<TT>(`get${this.S}No404 id=${id}`))
+        ),
+      this.tryExternalStorage2<TT>(+id)
+    ]);
   }
 
   // getHero(id: number): Observable<Hero> {
@@ -85,17 +86,17 @@ export class MarvelService<TT extends Marvel> {
   //   return of(HEROES.find(hero => hero.id === id));
   // }
 
-  getHero(id: number | string): Observable<TT> {
+  getHero(id: number | string): Observable<T> {
     const url = `${this.heroesUrl}/${id}`;
     return this.http
-      .get<TT>(url)
+      .get<T>(url)
       .pipe(
         tap(() => this.log(`fetched ${this.s} (tap) id=${id}`)),
-        catchError(this.handleError<TT>(`get${this.S} id=${id}`/*, this.hero*/))
+        catchError(this.handleError<T>(`get${this.S} id=${id}`/*, this.hero*/))
       );
   }
 
-  updateHero(item: TT): Observable<any> {
+  updateHero(item: T): Observable<any> {
     return this.http
       .put(this.heroesUrl, item, httpOptions)
       .pipe(
@@ -104,46 +105,46 @@ export class MarvelService<TT extends Marvel> {
       );
   }
 
-  addHero(item: TT): Observable<TT> {
+  addHero(item: T): Observable<T> {
     return this.http
-      .post<TT>(this.heroesUrl, item, httpOptions)
+      .post<T>(this.heroesUrl, item, httpOptions)
       .pipe(
-        tap((newItem: TT) => this.log(`added ${this.s} (tap) /w id=${newItem.id}`)),
-        catchError(this.handleError<TT>('add' + this.S))
+        tap((newItem: T) => this.log(`added ${this.s} (tap) /w id=${newItem.id}`)),
+        catchError(this.handleError<T>('add' + this.S))
       );
   }
 
-  deleteHero(item: TT | number): Observable<TT> {
+  deleteHero(item: T | number): Observable<T> {
     const id = (typeof item === 'number') ? item : item.id;
     const url = `${this.heroesUrl}/${id}`;
     return this.http
-      .delete<TT>(url, httpOptions)
+      .delete<T>(url, httpOptions)
       .pipe(
         tap(() => this.log(`deleted ${this.s} (tap) id=${id}`)),
-        catchError(this.handleError<TT>('delete' + this.S))
+        catchError(this.handleError<T>('delete' + this.S))
       );
   }
 
-  searchHeroes(term: string): Observable<TT[]> {
+  searchHeroes(term: string): Observable<T[]> {
     if (!term.trim()) {
       return of([]);
     }
     return this.http
-      .get<TT[]>(`${this.heroesUrl}/?name=${term}`)
+      .get<T[]>(`${this.heroesUrl}/?name=${term}`)
       .pipe(
         tap(() => this.log(`found (tap) ${this.p} matching "${term}"`)),
-        catchError(this.handleError<TT[]>('search' + this.P, []))
+        catchError(this.handleError<T[]>('search' + this.P, []))
       );
   }
 
-  private tryExternalStorage<T extends Marvel>(id: number): T | undefined {
+  private tryExternalStorage<TT extends Marvel>(id: number): TT | undefined {
     let supermanToReturn;
     const heroCheck = SUPERMEN.find((superman) => superman.id === id); // TODO remove it later
     if (heroCheck) {
-      const subscription = this.tryExternalStorage2<T>(id)
+      const subscription = this.tryExternalStorage2<TT>(id)
         .pipe(finalize(() => subscription.unsubscribe()))
         .subscribe((superman) => supermanToReturn = superman);
-      return supermanToReturn as T;
+      return supermanToReturn as TT;
       // if (id > 20 && id <= 100) {
       //   const tab = [];
       //   tab.push({id, name: 'Superman'} as T);
@@ -153,13 +154,14 @@ export class MarvelService<TT extends Marvel> {
     }
   }
 
-  private tryExternalStorage2<T extends Marvel>(id: number): Observable<T> {
+  private tryExternalStorage2<TT extends Marvel>(id: number): Observable<TT> {
     const url = `api/SUPERMEN/?id=${id}`;
     console.log('MarvelService # tryExternalStorage() # url: ' + url);
     return this.http
-      .get<T[]>(url)
+      .get<TT[]>(url)
       .pipe(
         map((supermen) => {
+          console.log('zapytanie zwróciło (race(-, 2)):', supermen);
           return supermen[0];
         }));
   }
@@ -168,14 +170,14 @@ export class MarvelService<TT extends Marvel> {
     this.messageService.add(`${this.S}Service: ${message}`);
   }
 
-  private handleError<T>(operation: string = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
+  private handleError<TT>(operation: string = 'operation', result?: TT): (error: any) => Observable<TT> {
+    return (error: any): Observable<TT> => {
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
       // TODO: better job of transforming error for user consumption
       this.log(`${operation}_failed: ${error.message}`);
       // Let the app keep running by returning an empty result.
-      return of(result as T);
+      return of(result as TT);
     };
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { LOCALE_ID_NUMBERS } from '../../../locale/LIDs';
 import {
@@ -8,6 +8,9 @@ import {
   LocalStorageService
 } from '../../service/local-storage.service';
 import { LangChangeRelayService } from '../../service/lang-change-relay.service';
+import { combineLatest, forkJoin, Observable, Subscription } from 'rxjs';
+import { getDelayedValueObservable, getMultiValueObservable, getSingleValueObservable } from './observ';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-chooser',
@@ -17,11 +20,40 @@ import { LangChangeRelayService } from '../../service/lang-change-relay.service'
   ],
   styleUrls: ['./chooser.component.css']
 })
-export class ChooserComponent implements OnInit {
+export class ChooserComponent implements OnInit, OnDestroy {
   langStored: boolean;
   readonly localeIdNumbers = LOCALE_ID_NUMBERS;
   readonly browserLocaleID: string;
   readonly langStoredCode: string;
+  firstt: string;
+  secondd: string;
+  thirdd: number;
+  thirdSubscription: Subscription;
+  first$ = getSingleValueObservable();
+  first$$ = getSingleValueObservable(10000);
+  second$ = getDelayedValueObservable();
+  second$$ = getDelayedValueObservable();
+  third$ = getMultiValueObservable();
+  third$$ = getMultiValueObservable();
+  show = false;
+  values$ = forkJoin<string, string>([
+    getSingleValueObservable(),
+    getDelayedValueObservable()])
+  // getMultiValueObservable() // forkJoin on works for observables that complete
+    .pipe(map(([first, second]) => {
+      // forkJoin returns an array of values, here we map those values to an object
+      return {first, second};
+    }));
+  values$$ = combineLatest<Observable<string>, Observable<string>, Observable<number>>([
+    getSingleValueObservable(10000),
+    getDelayedValueObservable(),
+    getMultiValueObservable()])
+    .pipe(
+      map(([first, second, third]) => {
+        // combineLatest returns an array of values, here we map those values to an object
+        return {first, second, third};
+      })
+    );
   private title = 'Wybór';
 
   constructor(
@@ -37,6 +69,12 @@ export class ChooserComponent implements OnInit {
 
   ngOnInit(): void {
     this.setTitle(this.title);
+    getSingleValueObservable()
+      .subscribe(value => this.firstt = value);
+    getDelayedValueObservable()
+      .subscribe(value => this.secondd = value);
+    this.thirdSubscription = getMultiValueObservable()
+      .subscribe(value => this.thirdd = value);
   }
 
   langStorageChanged(event: boolean) {
@@ -56,6 +94,10 @@ export class ChooserComponent implements OnInit {
       el.href = '/' + el.id;
       el.click();
     }
+  }
+
+  ngOnDestroy() {
+    this.thirdSubscription.unsubscribe();
   }
 
   private setTitle(newTitle: string) {
