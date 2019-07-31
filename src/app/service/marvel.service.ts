@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { EMPTY, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -26,16 +26,16 @@ export class MarvelService<TT extends Marvel> {
   ) {
   }
 
-  private static tryExternalStorage<T extends Marvel>(id: number): T[] {
+  private static tryExternalStorage<T extends Marvel>(id: number): T {
     const heroToFind = SUPERMEN.find((superman) => superman.id === id);
     if (heroToFind) {
-      return [heroToFind as T];
+      return heroToFind as T;
       // if (id > 20 && id <= 100) {
       //   const tab = [];
       //   tab.push({id, name: 'Superman'} as T);
       //   return tab;
     } else {
-      return [];
+      return undefined;
     }
   }
 
@@ -70,7 +70,7 @@ export class MarvelService<TT extends Marvel> {
     return this.http
       .get<TT[]>(url)
       .pipe(
-        map(heroes => {
+        map((heroes) => {
           console.log('zapytanie zwróciło:', heroes);
           return heroes[0];
         }),
@@ -78,7 +78,7 @@ export class MarvelService<TT extends Marvel> {
           console.log('zapytanie zwróciło[0]:', hero);
           if (!hero) {
             this.log('trying External Storage...');
-            return MarvelService.tryExternalStorage<TT>(+id)[0];
+            return MarvelService.tryExternalStorage<TT>(+id);
           } else {
             return hero;
           }
@@ -152,7 +152,13 @@ export class MarvelService<TT extends Marvel> {
   private tryExternalStorage2(id: number): Observable<TT> {
     const url = `api/SUPERMEN/?id=${id}`;
     console.log('MarvelService # tryExternalStorage() # url: ' + url);
-    return EMPTY;
+    return this.http
+      .get<TT[]>(url)
+      .pipe(
+        map((heroes) => {
+          return heroes[0];
+        })
+      );
   }
 
   private log(message: string) {
