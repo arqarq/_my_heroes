@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { EMPTY, Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Marvel } from '../model/marvel';
+import { SUPERMEN } from '../repository/mock-supermanes';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -26,10 +27,13 @@ export class MarvelService<TT extends Marvel> {
   }
 
   private static tryExternalStorage<T extends Marvel>(id: number): T[] {
-    if (id > 20 && id <= 100) {
-      const tab = [];
-      tab.push({id, name: 'Superman'} as T);
-      return tab;
+    const heroToFind = SUPERMEN.find((superman) => superman.id === id);
+    if (heroToFind) {
+      return [heroToFind as T];
+      // if (id > 20 && id <= 100) {
+      //   const tab = [];
+      //   tab.push({id, name: 'Superman'} as T);
+      //   return tab;
     } else {
       return [];
     }
@@ -70,7 +74,7 @@ export class MarvelService<TT extends Marvel> {
           console.log('zapytanie zwróciło:', heroes);
           return heroes[0];
         }),
-        map(hero => {
+        map((hero) => {
           console.log('zapytanie zwróciło[0]:', hero);
           if (!hero) {
             this.log('trying External Storage...');
@@ -79,7 +83,7 @@ export class MarvelService<TT extends Marvel> {
             return hero;
           }
         }),
-        tap(h => {
+        tap((h) => {
           const outcome = h ? 'fetched' : 'did not find';
           this.log(`${outcome} ${this.s} id=${id}`);
         }),
@@ -143,6 +147,12 @@ export class MarvelService<TT extends Marvel> {
         tap(() => this.log(`found (tap) ${this.p} matching "${term}"`)),
         catchError(this.handleError<TT[]>('search' + this.P, []))
       );
+  }
+
+  private tryExternalStorage2(id: number): Observable<TT> {
+    const url = `api/SUPERMEN/?id=${id}`;
+    console.log('MarvelService # tryExternalStorage() # url: ' + url);
+    return EMPTY;
   }
 
   private log(message: string) {
