@@ -22,19 +22,20 @@ export class HeroDetailResolverService implements Resolve<Hero> {
     state: RouterStateSnapshot
   ): Observable<Hero> | Promise<Hero> | Hero | Observable<never> {
     const id = route.paramMap.get('id');
-    return this.heroService.getHeroNo404(id).pipe(
-      take(1),
-      mergeMap(hero => {
-        if (hero) {
-          return of(hero);
-        } else {
-          this.router.navigate(['/crisis/crisis-center/superheroes'])
-            .then(
-              (success) => console.log('HeroDetailResolverService # resolve() # navigate(): ' + state.url + ' / ' + success)
-            );
-          return EMPTY;
-        }
-      })
-    );
+    return this.heroService
+      .getHeroNo404(id)
+      .pipe(
+        take(1),
+        mergeMap(hero => {
+          if (hero) {
+            return of(hero);
+          } else {
+            this.router
+              .navigate(['/crisis/crisis-center/superheroes'])
+              .then((success) => console.log('HeroDetailResolverService # resolve() # navigate(): ' +
+                state.url + ' / ' + success));
+            return EMPTY;
+          }
+        }));
   }
 }

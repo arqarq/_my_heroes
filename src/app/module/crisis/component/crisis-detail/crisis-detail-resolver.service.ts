@@ -22,16 +22,17 @@ export class CrisisDetailResolverService implements Resolve<Crisis> {
     state: RouterStateSnapshot
   ): Observable<Crisis> | Promise<Crisis> | Crisis | Observable<never> {
     const id = route.paramMap.get('id');
-    return this.crisisService.getHeroNo404(id).pipe(
-      take(1),
-      mergeMap(crisis => {
-        if (crisis) {
-          return of(crisis);
-        } else { // id not found
-          this.router.navigate(['/crisis']);
-          return EMPTY;
-        }
-      })
-    );
+    return this.crisisService
+      .getHeroNo404(id)
+      .pipe(
+        take(1),
+        mergeMap(crisis => {
+          if (crisis) {
+            return of(crisis);
+          } else { // id not found
+            this.router.navigate(['/crisis']);
+            return EMPTY;
+          }
+        }));
   }
 }

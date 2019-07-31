@@ -60,7 +60,6 @@ export class MarvelService<TT extends Marvel> {
       );
   }
 
-  // sprawdza czy istnieje obiekt w tabeli odpowiedzi
   getHeroNo404<Data>(id: number | string): Observable<TT> { // TODO <Data>?
     const url = `${this.heroesUrl}/?id=${id}`;
     console.log('MarvelService # getHeroNo404() # url: ' + url);
@@ -81,7 +80,7 @@ export class MarvelService<TT extends Marvel> {
           }
         }),
         tap(h => {
-          const outcome = h ? `fetched` : `did not find`;
+          const outcome = h ? 'fetched' : 'did not find';
           this.log(`${outcome} ${this.s} id=${id}`);
         }),
         catchError(this.handleError<TT>(`get${this.S}No404 id=${id}`))

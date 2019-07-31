@@ -3,6 +3,7 @@ import { Hero, HERO_NOUN } from '../../../../model/hero';
 import { ActivatedRoute } from '@angular/router';
 import { MarvelService } from '../../../../service/marvel.service';
 import { Location } from '@angular/common';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-hero-detail',
@@ -23,10 +24,10 @@ export class HeroDetailComponent implements OnInit {
   getHero(): void {
     console.log('HeroDetailComponent # getHero() # this.route.snapshot.paramMap: ' + this.route.snapshot.paramMap);
     const id = +this.route.snapshot.paramMap.get('id');
-    this.heroService
-      .getHeroNo404(id)
-      // .getHero(id)
-      .subscribe(heroS => this.hero = heroS);
+    const subscription = this.heroService
+      .getHeroNo404(id) // .getHero(id)
+      .pipe(finalize(() => subscription.unsubscribe()))
+      .subscribe((heroS) => this.hero = heroS);
   }
 
   goBack(): void {
