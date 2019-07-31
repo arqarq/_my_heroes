@@ -27,6 +27,10 @@ const patchOpt = function () {
   tabOfNumbers = tabOfNumbers.join('.');
 };
 
+const otherOpt = function () {
+  tabOfNumbers = param.toString();
+};
+
 process.argv.forEach((val, index, obj) => {
   console.log(`${index}: ${val} / ${obj}`);
 });
@@ -44,6 +48,14 @@ const ngswVer = ngswObj.appData.ver;
 console.log('wersja w \x1b[33m[%s]\x1b[0m: \x1b[33m\x1b[1m%s\x1b[0m', N, ngswVer);
 console.log('wersje równe? \x1b[33m\x1b[1m%s\x1b[0m', pkgVer === ngswVer ? 'tak' : 'nie');
 let tabOfNumbers = pkgVer.split('.');
+if (tabOfNumbers.length !== 3) {
+  tabOfNumbers = [0, 0, 0];
+} else {
+  if (!tabOfNumbers.every((el) => !Number.isNaN(+el))
+  ) {
+    tabOfNumbers = [0, 0, 0];
+  }
+}
 switch (param) {
   case Params.MAJOR:
     majorOpt();
@@ -60,9 +72,9 @@ switch (param) {
     console.log('zwiększono o jeden \x1b[33mPATCH\x1b[0m: \x1b[33m\x1b[1m%s\x1b[0m', tabOfNumbers);
     break;
   default:
-    patchOpt();
-    console.log('nie podano parametru, więc zwiększono o jeden \x1b[33mPATCH\x1b[0m:' +
-      ' \x1b[33m\x1b[1m%s\x1b[0m', tabOfNumbers);
+    otherOpt();
+    console.log('nie podano pasującej opcji, więc ustawiono to, co \x1b[33mpodano\x1b[0m: \x1b[33m\x1b[1m%s\x1b[0m',
+      tabOfNumbers);
 }
 pkgObj.version = tabOfNumbers;
 fse.writeFileSync(P, JSON.stringify(pkgObj, null, 2) + '\n', {encoding: 'utf8'});
