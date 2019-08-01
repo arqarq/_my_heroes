@@ -49,10 +49,11 @@ export class MarvelService<T extends Marvel> {
   }
 
   getHeroNo404<TT extends Marvel>(id: number | string): Observable<TT> {
-    return onErrorResumeNext<TT>(
-      this.tryInMemStorage<TT>(+id)
-      // this.tryExternalStorage<TT>(+id)
-    )
+    // return onErrorResumeNext<TT>(
+    //   this.tryInMemStorage<TT>(+id),
+    //   this.tryExternalStorage<TT>(+id)
+    // );
+    return onErrorResumeNext<TT>(this.tryInMemStorage<TT>(+id))
       .pipe(
         take(1),
         withLatestFrom(this.tryExternalStorage<TT>(+id), (...[one, two]) => { // spread operator
