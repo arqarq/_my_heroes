@@ -27,7 +27,11 @@ export class HeroDetailComponent implements OnInit {
     const subscription = this.heroService
       .getHeroNo404<Hero>(id) // .getHero(id)
       .pipe(finalize(() => subscription.unsubscribe()))
-      .subscribe((heroS) => this.hero = heroS);
+      .subscribe((heroS) => {
+        if (heroS) {
+          this.hero = heroS;
+        }
+      });
   }
 
   goBack(): void {

@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, race } from 'rxjs';
+import { Observable, of, onErrorResumeNext } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, finalize, map, tap } from 'rxjs/operators';
+import { catchError, map, take, tap } from 'rxjs/operators';
 import { Marvel } from '../model/marvel';
-import { SUPERMEN } from '../repository/mock-supermanes';
 
 const httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
 
@@ -50,10 +49,10 @@ export class MarvelService<T extends Marvel> {
   }
 
   getHeroNo404<TT extends Marvel>(id: number | string): Observable<TT> {
-    return race<TT, TT>([
+    return onErrorResumeNext<TT, TT, TT>(
       this.tryInMemStorage<TT>(+id),
-      this.tryExternalStorage<TT>(+id)
-    ]);
+      this.tryExternalStorage<TT>(+id))
+      .pipe(take(2));
   }
 
   // getHero(id: number): Observable<Hero> {
@@ -114,23 +113,6 @@ export class MarvelService<T extends Marvel> {
       );
   }
 
-  private tryExternalStorageTemp<TT extends Marvel>(id: number): TT | undefined {
-    let supermanToReturn;
-    const heroCheck = SUPERMEN.find((superman) => superman.id === id); // TODO remove it later
-    if (heroCheck) {
-      const subscription = this.tryExternalStorage<TT>(id)
-        .pipe(finalize(() => subscription.unsubscribe()))
-        .subscribe((superman) => supermanToReturn = superman);
-      return supermanToReturn as TT;
-      // if (id > 20 && id <= 100) {
-      //   const tab = [];
-      //   tab.push({id, name: 'Superman'} as T);
-      //   return tab;
-    } else {
-      return undefined;
-    }
-  }
-
   private tryInMemStorage<TT extends Marvel>(id: number): Observable<TT> {
     const url = `${this.heroesUrl}/?id=${id}`;
     console.log('MarvelService # tryInMemStorage() # url: ' + url);
@@ -143,7 +125,7 @@ export class MarvelService<T extends Marvel> {
         }),
         tap((h) => {
           const outcome = h ? 'fetched' : 'did not find';
-          this.log(`${outcome} ${this.s} id=${id}`);
+          this.log(`InMem ${outcome} ${this.s} id=${id}`);
         }),
         catchError(this.handleError<TT>(`get${this.S}No404 id=${id}`))
       );
@@ -162,7 +144,7 @@ export class MarvelService<T extends Marvel> {
         }),
         tap((h) => {
           const outcome = h ? 'fetched' : 'did not find';
-          this.log(`${outcome} ${this.s} id=${id}`);
+          this.log(`ExtStor ${outcome} ${this.s} id=${id}`);
         }),
         catchError(this.handleError<TT>(`tryExternalStorage id=${id}`)));
   }
@@ -176,7 +158,7 @@ export class MarvelService<T extends Marvel> {
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
       // TODO: better job of transforming error for user consumption
-      this.log(`${operation}_failed: ${error.message}`);
+      this.log(`${operation} failed: ${error.message}`);
       // Let the app keep running by returning an empty result.
       return of(result as TT);
     };
