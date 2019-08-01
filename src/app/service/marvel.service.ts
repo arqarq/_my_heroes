@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, onErrorResumeNext } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, take, tap } from 'rxjs/operators';
+import { catchError, map, take, tap, withLatestFrom } from 'rxjs/operators';
 import { Marvel } from '../model/marvel';
 
 const httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
@@ -49,10 +49,19 @@ export class MarvelService<T extends Marvel> {
   }
 
   getHeroNo404<TT extends Marvel>(id: number | string): Observable<TT> {
-    return onErrorResumeNext<TT, TT, TT>(
-      this.tryInMemStorage<TT>(+id),
-      this.tryExternalStorage<TT>(+id))
-      .pipe(take(2));
+    return onErrorResumeNext<TT>(
+      this.tryInMemStorage<TT>(+id)
+      // this.tryExternalStorage<TT>(+id)
+    )
+      .pipe(
+        take(1),
+        withLatestFrom(this.tryExternalStorage<TT>(+id), (...[one, two]) => { // spread operator
+          if (one) {
+            return one;
+          } else {
+            return two;
+          }
+        }));
   }
 
   // getHero(id: number): Observable<Hero> {
@@ -138,7 +147,6 @@ export class MarvelService<T extends Marvel> {
       .get<TT[]>(url)
       .pipe(
         map((supermen) => {
-          this.log('trying External Storage...');
           console.log('zapytanie zwróciło (race(-, 2)):', supermen);
           return supermen[0];
         }),
