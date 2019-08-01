@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { ObservComponent } from './component/observ/observ.component';
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import { environment } from '../environments/environment';
   declarations: [
     StartComponent,
     // ChooserComponent,
+    ObservComponent,
     NotFound404Component,
     ComposeMessageComponent
   ],

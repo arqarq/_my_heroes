@@ -1,0 +1,80 @@
+<cite>
+  <a href="https://coryrylan.com/blog/subscribing-to-multiple-observables-in-angular-components"
+     target="_blank">
+    https://coryrylan.com/blog/subscribing-to-multiple-observables-in-angular-components</a></cite>
+<h2>
+  Manual Subscriptions
+</h2>
+<ng-container>
+  <p>
+    single value: {{ first }}
+    <br>
+    delayed value: {{ second }}
+    <br>
+    multi values: {{ third }}
+  </p>
+</ng-container>
+<h2>
+  Async Pipe
+  <button (click)="show = !show">Toggle</button>
+</h2>
+<ng-container *ngIf="show">
+  <p>
+    single value: {{ first$ | async }}
+    <br>
+    delayed value: {{ second$ | async }}
+    <br>
+    multi values: {{ third$ | async }}
+  </p>
+</ng-container>
+<h2>
+  ForkJoin and *ngIf
+  <button (click)="show2 = !show2">Toggle</button>
+</h2>
+<ng-container *ngIf="show2">
+  <ng-container *ngIf="values$ | async; let arek;">
+    <p>
+      single value: {{ arek.first }}
+      <br>
+      delayed value: {{ arek.second }}
+      <br>
+      <del>no multi values:</del>
+      {{ arek.third || '-' }}
+    </p>
+  </ng-container>
+</ng-container>
+<h2>
+  Combine Latest and *ngIf
+  <button (click)="show3 = !show3">Toggle</button>
+</h2>
+<ng-container *ngIf="show3">
+  <ng-container *ngIf="values$$ | async; let arek;">
+    <p>
+      single value: {{ arek.first }}
+      <br>
+      delayed value: {{ arek.second }}
+      <br>
+      multi values: {{ arek.third }}
+    </p>
+  </ng-container>
+</ng-container>
+<h2>
+  Subscribing with Async Pipe Objects
+  <button (click)="show4 = !show4">Toggle</button>
+</h2>
+<ng-container *ngIf="show4">
+  <ng-container *ngIf="{first: this.first$$ | async, second: second$$ | async, third: third$$ | async} as arek;">
+    <p>
+      single value: {{ arek.first }}
+      <br>
+      delayed value: {{ arek.second }}
+      <br>
+      multi values: {{ arek.third }}
+    </p>
+  </ng-container>
+</ng-container>
+<div class="bottom-right bottom-right-generic">
+  <nav>
+    <a routerLink="/choose">Back to choice</a>
+  </nav>
+</div>

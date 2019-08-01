@@ -3,6 +3,7 @@ import { RouterModule, Routes, UrlMatchResult, UrlSegment } from '@angular/route
 import { NotFound404Component } from './component/notfound404/notfound404.component';
 import { ComposeMessageComponent } from './module/crisis/component/compose-message/compose-message.component';
 import { SelectivePreloadingStrategyService } from './module/crisis/service/selective-preloading-strategy.service';
+import { ObservComponent } from './component/observ/observ.component';
 
 export function isComposeMatched(url: UrlSegment[]): UrlMatchResult {
   console.log('CrisisRoutingModule # isComposeMatched() # url: ' + url);
@@ -47,10 +48,8 @@ const ROUTES: Routes = [
     }
   },
   {
-    // path: 'compose',
-    matcher: isComposeMatched,
-    component: ComposeMessageComponent,
-    outlet: 'popup'
+    path: 'ng-observables',
+    component: ObservComponent
   },
   {
     path: '',
@@ -60,6 +59,12 @@ const ROUTES: Routes = [
   {
     path: '**',
     component: NotFound404Component
+  },
+  {
+    // path: 'compose',
+    matcher: isComposeMatched,
+    component: ComposeMessageComponent,
+    outlet: 'popup'
   }
 ];
 

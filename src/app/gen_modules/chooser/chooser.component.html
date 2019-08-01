@@ -33,6 +33,8 @@
       <br>
       <a routerLink="/ng-heroes">Heroes</a>
       <br>
+      <a routerLink="/ng-observables">Observables</a>
+      <br>
       <a routerLink="/shop">Shop</a>
     </nav>
   </div>
@@ -47,41 +49,3 @@
     </nav>
   </div>
 </div>
-
-<p>{{ firstt }}</p>
-<p>{{ secondd }}</p>
-<p>{{ thirdd }}</p>
-
-<button (click)="show = !show">Toggle</button>
-<ng-container *ngIf="show">
-  <p>{{ first$ | async }}</p>
-  <p>{{ second$ | async }}</p>
-  <p>multi values {{ third$ | async }}</p>
-</ng-container>
-
-<h2>forkJoin Operator</h2>
-<ng-container *ngIf="show">
-  <ng-container *ngIf="values$ | async; let arek;">
-    <p>{{ arek.first }}</p>
-    <p>{{ arek.second }}</p>
-    <p>{{ arek.third }}</p>
-  </ng-container>
-</ng-container>
-
-<h2>combineLatest Operator</h2>
-<ng-container *ngIf="show">
-  <ng-container *ngIf="values$$ | async; let arek;">
-    <p>{{ arek.first }}</p>
-    <p>{{ arek.second }}</p>
-    <p>{{ arek.third }}</p>
-  </ng-container>
-</ng-container>
-
-<h2>Async Pipe Object</h2>
-<ng-container *ngIf="show">
-  <ng-container *ngIf="{first: first$$ | async, second: second$$ | async, third: third$$ | async} as arek;">
-    <p>{{ arek.first }}</p>
-    <p>{{ arek.second }}</p>
-    <p>multi values {{ arek.third }}</p>
-  </ng-container>
-</ng-container>
