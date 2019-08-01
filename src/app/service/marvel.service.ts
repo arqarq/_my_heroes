@@ -50,32 +50,9 @@ export class MarvelService<T extends Marvel> {
   }
 
   getHeroNo404<TT extends Marvel>(id: number | string): Observable<TT> {
-    const url = `${this.heroesUrl}/?id=${id}`;
-    console.log('MarvelService # getHeroNo404() # url: ' + url);
     return race<TT, TT>([
-      this.http
-        .get<TT[]>(url)
-        .pipe(
-          map((heroes) => {
-            console.log('zapytanie zwróciło (race(1, -)):', heroes);
-            return heroes[0];
-          }),
-          map((hero) => {
-            console.log('zapytanie zwróciło[0]:', hero);
-            if (!hero) {
-              this.log('trying External Storage...');
-              // return this.tryExternalStorage<T>(+id);
-            } else {
-              return hero;
-            }
-          }),
-          tap((h) => {
-            const outcome = h ? 'fetched' : 'did not find';
-            this.log(`${outcome} ${this.s} id=${id}`);
-          }),
-          catchError(this.handleError<TT>(`get${this.S}No404 id=${id}`))
-        ),
-      this.tryExternalStorage2<TT>(+id)
+      this.tryStorage<TT>(+id),
+      this.tryExternalStorage<TT>(+id)
     ]);
   }
 
@@ -137,11 +114,11 @@ export class MarvelService<T extends Marvel> {
       );
   }
 
-  private tryExternalStorage<TT extends Marvel>(id: number): TT | undefined {
+  private tryExternalStorageTemp<TT extends Marvel>(id: number): TT | undefined {
     let supermanToReturn;
     const heroCheck = SUPERMEN.find((superman) => superman.id === id); // TODO remove it later
     if (heroCheck) {
-      const subscription = this.tryExternalStorage2<TT>(id)
+      const subscription = this.tryExternalStorage<TT>(id)
         .pipe(finalize(() => subscription.unsubscribe()))
         .subscribe((superman) => supermanToReturn = superman);
       return supermanToReturn as TT;
@@ -154,7 +131,34 @@ export class MarvelService<T extends Marvel> {
     }
   }
 
-  private tryExternalStorage2<TT extends Marvel>(id: number): Observable<TT> {
+  private tryStorage<TT extends Marvel>(id: number): Observable<TT> {
+    const url = `${this.heroesUrl}/?id=${id}`;
+    console.log('MarvelService # tryStorage() # url: ' + url);
+    return this.http
+      .get<TT[]>(url)
+      .pipe(
+        map((heroes) => {
+          console.log('zapytanie zwróciło (race(1, -)):', heroes);
+          return heroes[0];
+        }),
+        map((hero) => {
+          console.log('zapytanie zwróciło[0]:', hero);
+          if (!hero) {
+            this.log('trying External Storage...');
+            // return this.tryExternalStorage<T>(+id);
+          } else {
+            return hero;
+          }
+        }),
+        tap((h) => {
+          const outcome = h ? 'fetched' : 'did not find';
+          this.log(`${outcome} ${this.s} id=${id}`);
+        }),
+        catchError(this.handleError<TT>(`get${this.S}No404 id=${id}`))
+      );
+  }
+
+  private tryExternalStorage<TT extends Marvel>(id: number): Observable<TT> {
     const url = `api/SUPERMEN/?id=${id}`;
     console.log('MarvelService # tryExternalStorage() # url: ' + url);
     return this.http
