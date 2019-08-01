@@ -51,7 +51,7 @@ export class MarvelService<T extends Marvel> {
 
   getHeroNo404<TT extends Marvel>(id: number | string): Observable<TT> {
     return race<TT, TT>([
-      this.tryStorage<TT>(+id),
+      this.tryInMemStorage<TT>(+id),
       this.tryExternalStorage<TT>(+id)
     ]);
   }
@@ -131,24 +131,15 @@ export class MarvelService<T extends Marvel> {
     }
   }
 
-  private tryStorage<TT extends Marvel>(id: number): Observable<TT> {
+  private tryInMemStorage<TT extends Marvel>(id: number): Observable<TT> {
     const url = `${this.heroesUrl}/?id=${id}`;
-    console.log('MarvelService # tryStorage() # url: ' + url);
+    console.log('MarvelService # tryInMemStorage() # url: ' + url);
     return this.http
       .get<TT[]>(url)
       .pipe(
         map((heroes) => {
           console.log('zapytanie zwróciło (race(1, -)):', heroes);
           return heroes[0];
-        }),
-        map((hero) => {
-          console.log('zapytanie zwróciło[0]:', hero);
-          if (!hero) {
-            this.log('trying External Storage...');
-            // return this.tryExternalStorage<T>(+id);
-          } else {
-            return hero;
-          }
         }),
         tap((h) => {
           const outcome = h ? 'fetched' : 'did not find';
@@ -165,9 +156,15 @@ export class MarvelService<T extends Marvel> {
       .get<TT[]>(url)
       .pipe(
         map((supermen) => {
+          this.log('trying External Storage...');
           console.log('zapytanie zwróciło (race(-, 2)):', supermen);
           return supermen[0];
-        }));
+        }),
+        tap((h) => {
+          const outcome = h ? 'fetched' : 'did not find';
+          this.log(`${outcome} ${this.s} id=${id}`);
+        }),
+        catchError(this.handleError<TT>(`tryExternalStorage id=${id}`)));
   }
 
   private log(message: string) {
