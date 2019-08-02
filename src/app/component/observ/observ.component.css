@@ -1,5 +1,6 @@
 p {
-  margin-top: 0
+  margin: 0;
+  padding: 1.245em 10px 0
 }
 
 h2 {
@@ -9,4 +10,15 @@ h2 {
 button {
   margin-left: 10px;
   position: absolute
+}
+
+pre {
+  font-family: monospace;
+  color: darkslategray;
+  /*padding: 5px 10px 10px; !*1.532308em 0.383em*!*/
+  padding: 2px 5px 5px;
+  margin: 0 0.383em 0;
+  background-color: lightgray;
+  border: darkgray dashed 1px;
+  width: fit-content
 }

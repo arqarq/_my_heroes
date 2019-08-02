@@ -78,3 +78,34 @@
     <a routerLink="/choose">Back to choice</a>
   </nav>
 </div>
+<h2>
+  <b>Additional</b>: onErrorResumeNext()
+  <button (click)="show5 = !show5">Toggle</button>
+</h2>
+<ng-container *ngIf="show5">
+<pre>
+getHeroNo404&lt;TT extends Marvel>(id: number | string): Observable&lt;TT> &#123;
+  return onErrorResumeNext&lt;TT>(
+    this.tryInMemStorage&lt;TT>(+id),
+    this.tryExternalStorage&lt;TT>(+id)
+  );
+}</pre>
+</ng-container>
+<h2>
+  <b>Additional</b>: withLatestFrom()
+  <button (click)="show6 = !show6">Toggle</button>
+</h2>
+<ng-container *ngIf="show6">
+<pre>
+getHeroNo404&lt;TT extends Marvel>(id: number | string): Observable&lt;TT> &#123;
+  return this.tryInMemStorage&lt;TT>(+id).pipe(
+    take(1),
+    withLatestFrom(this.tryExternalStorage&lt;TT>(+id), (...[one, two]) => &#123; // spread operator
+      if (one) &#123;
+        return one;
+      } else &#123;
+        return two;
+      }
+    }));
+}</pre>
+</ng-container>

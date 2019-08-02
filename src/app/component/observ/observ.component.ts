@@ -13,6 +13,8 @@ export class ObservComponent implements OnInit, OnDestroy {
   show2 = false;
   show3 = false;
   show4 = false;
+  show5 = false;
+  show6 = false;
   first = 'N/A';
   second = 'N/A';
   third = 9999;
