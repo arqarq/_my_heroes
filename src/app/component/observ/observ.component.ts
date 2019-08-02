@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { combineLatest, forkJoin, Observable, Subscription } from 'rxjs';
+import { combineLatest, forkJoin, Observable, onErrorResumeNext, Subscription } from 'rxjs';
 import { getDelayedValueObservable, getMultiValueObservable, getSingleValueObservable } from './observ';
-import { map } from 'rxjs/operators';
+import { map, withLatestFrom } from 'rxjs/operators';
 
 @Component({
   selector: 'app-observ',
@@ -26,6 +26,8 @@ export class ObservComponent implements OnInit, OnDestroy {
   third$$: Observable<number>;
   values$: Observable<{first: string, second: string}>;
   values$$: Observable<{first: string, second: string, third: number}>;
+  values$$$: Observable<string>;
+  values$$$$: Observable<{first: number, second: number}>;
   private thirdSubscription: Subscription;
 
   constructor() {
@@ -37,8 +39,8 @@ export class ObservComponent implements OnInit, OnDestroy {
     this.third$$ = getMultiValueObservable();
     this.values$ = forkJoin<string, string>([
       getSingleValueObservable(),
+      // getMultiValueObservable()]), // forkJoin on works for observables that complete
       getDelayedValueObservable()])
-    // getMultiValueObservable()]) // forkJoin on works for observables that complete
       .pipe(map(([first, second]) => {
         // forkJoin returns an array of values, here we map those values to an object
         return {first, second};
@@ -47,12 +49,17 @@ export class ObservComponent implements OnInit, OnDestroy {
       getSingleValueObservable(),
       getDelayedValueObservable(),
       getMultiValueObservable()])
-      .pipe(
-        map(([first, second, third]) => {
-          // combineLatest returns an array of values, here we map those values to an object
-          return {first, second, third};
-        })
-      );
+      .pipe(map(([first, second, third]) => {
+        // combineLatest returns an array of values, here we map those values to an object
+        return {first, second, third};
+      }));
+    this.values$$$ = onErrorResumeNext<string>(
+      getSingleValueObservable(100),
+      getMultiValueObservable().pipe(map<number, string>((el) => el + '')));
+    this.values$$$$ = getMultiValueObservable(4000).pipe(
+      withLatestFrom<number, {first: number, second: number}>(getMultiValueObservable(), (one, two) => {
+        return {first: one, second: two};
+      }));
   }
 
   ngOnDestroy() {

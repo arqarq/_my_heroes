@@ -48,7 +48,7 @@
   <button (click)="show3 = !show3">Toggle</button>
 </h2>
 <ng-container *ngIf="show3">
-  <ng-container *ngIf="values$$ | async; let arek;">
+  <ng-container *ngIf="values$$ | async; let arek">
     <p>
       single value: {{ arek.first }}
       <br>
@@ -63,7 +63,7 @@
   <button (click)="show4 = !show4">Toggle</button>
 </h2>
 <ng-container *ngIf="show4">
-  <ng-container *ngIf="{first: this.first$$ | async, second: second$$ | async, third: third$$ | async} as arek;">
+  <ng-container *ngIf="{first: this.first$$ | async, second: second$$ | async, third: third$$ | async} as arek">
     <p>
       single value: {{ arek.first }}
       <br>
@@ -73,23 +73,20 @@
     </p>
   </ng-container>
 </ng-container>
-<div class="bottom-right bottom-right-generic">
-  <nav>
-    <a routerLink="/choose">Back to choice</a>
-  </nav>
-</div>
 <h2>
   <b>Additional</b>: onErrorResumeNext()
   <button (click)="show5 = !show5">Toggle</button>
 </h2>
 <ng-container *ngIf="show5">
 <pre>
-getHeroNo404&lt;TT extends Marvel>(id: number | string): Observable&lt;TT> &#123;
-  return onErrorResumeNext&lt;TT>(
-    this.tryInMemStorage&lt;TT>(+id),
-    this.tryExternalStorage&lt;TT>(+id)
-  );
-}</pre>
+this.values$$$ = onErrorResumeNext&lt;string>(
+  getSingleValueObservable(100),
+  getMultiValueObservable().pipe(map&lt;number, string>((el) => el + '')));</pre>
+  <ng-container *ngIf="values$$$ | async; let arek">
+    <p>
+      value: {{ arek }}
+    </p>
+  </ng-container>
 </ng-container>
 <h2>
   <b>Additional</b>: withLatestFrom()
@@ -97,15 +94,18 @@ getHeroNo404&lt;TT extends Marvel>(id: number | string): Observable&lt;TT> &#123
 </h2>
 <ng-container *ngIf="show6">
 <pre>
-getHeroNo404&lt;TT extends Marvel>(id: number | string): Observable&lt;TT> &#123;
-  return this.tryInMemStorage&lt;TT>(+id).pipe(
-    take(1),
-    withLatestFrom(this.tryExternalStorage&lt;TT>(+id), (...[one, two]) => &#123; // spread operator
-      if (one) &#123;
-        return one;
-      } else &#123;
-        return two;
-      }
-    }));
-}</pre>
+this.values$$$$ = getMultiValueObservable(4000).pipe(
+  withLatestFrom&lt;number, &#123;first: number, second: number}>(getMultiValueObservable(), (one, two) => &#123;
+    return &#123;first: one, second: two};
+  }));</pre>
+  <ng-container *ngIf="values$$$$ | async; let arek">
+    <p>
+      both values: {{ arek.first }}, {{ arek.second }}
+    </p>
+  </ng-container>
 </ng-container>
+<div class="bottom-right bottom-right-generic">
+  <nav>
+    <a routerLink="/choose">Back to choice</a>
+  </nav>
+</div>
