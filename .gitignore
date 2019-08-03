@@ -48,3 +48,4 @@ Thumbs.db
 
 # firebase cache
 /.firebase
+/firebase-debug.log
