@@ -56,8 +56,8 @@ export class ObservComponent implements OnInit, OnDestroy {
     this.values$$$ = onErrorResumeNext<string>(
       getSingleValueObservable(100),
       getMultiValueObservable().pipe(map<number, string>((el) => el + '')));
-    this.values$$$$ = getMultiValueObservable(4000).pipe(
-      withLatestFrom<number, {first: number, second: number}>(getMultiValueObservable(), (one, two) => {
+    this.values$$$$ = getMultiValueObservable().pipe(
+      withLatestFrom<number, {first: number, second: number}>(getMultiValueObservable(4000), (one, two) => {
         return {first: one, second: two};
       }));
   }

@@ -34,12 +34,12 @@
 <ng-container *ngIf="show2">
   <ng-container *ngIf="values$ | async; let arek;">
     <p>
-      single value: {{ arek.first }}
+      single value: {{ arek['first'] }}
       <br>
-      delayed value: {{ arek.second }}
+      delayed value: {{ arek['second'] }}
       <br>
       <del>no multi values:</del>
-      {{ arek.third || '-' }}
+      {{ arek['third'] || '-' }}
     </p>
   </ng-container>
 </ng-container>
@@ -50,11 +50,11 @@
 <ng-container *ngIf="show3">
   <ng-container *ngIf="values$$ | async; let arek">
     <p>
-      single value: {{ arek.first }}
+      single value: {{ arek['first'] }}
       <br>
-      delayed value: {{ arek.second }}
+      delayed value: {{ arek['second'] }}
       <br>
-      multi values: {{ arek.third }}
+      multi values: {{ arek['third'] }}
     </p>
   </ng-container>
 </ng-container>
@@ -94,15 +94,17 @@ this.values$$$ = onErrorResumeNext&lt;string>(
 </h2>
 <ng-container *ngIf="show6">
 <pre>
-this.values$$$$ = getMultiValueObservable(4000).pipe(
-  withLatestFrom&lt;number, &#123;first: number, second: number}>(getMultiValueObservable(), (one, two) => &#123;
+this.values$$$$ = getMultiValueObservable().pipe(
+  withLatestFrom&lt;number, &#123;first: number, second: number}>(getMultiValueObservable(4000), (one, two) => &#123;
     return &#123;first: one, second: two};
   }));</pre>
-  <ng-container *ngIf="values$$$$ | async; let arek">
-    <p>
-      both values: {{ arek.first }}, {{ arek.second }}
-    </p>
-  </ng-container>
+  <p>
+    both values:
+    <ng-container *ngIf="values$$$$ | async; let arek">
+      {{ arek['first'] }}, {{ arek['second'] }}
+    </ng-container>
+  </p>
+
 </ng-container>
 <div class="bottom-right bottom-right-generic">
   <nav>
