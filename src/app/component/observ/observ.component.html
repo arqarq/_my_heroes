@@ -32,7 +32,7 @@
   <button (click)="show2 = !show2">Toggle</button>
 </h2>
 <ng-container *ngIf="show2">
-  <ng-container *ngIf="values$ | async; let arek;">
+  <ng-container *ngIf="values$ | async; let arek">
     <p>
       single value: {{ arek['first'] }}
       <br>
@@ -161,11 +161,20 @@ function getMultiValuesWithDifferentDelay(del = 20, del2 = 20, interval = 100, q
 }
 
 this.values$$$$$ = getMultiValuesWithDifferentDelay(20, 80, undefined, 30);
-this.values$$$$$$ = getMultiValuesWithDifferentDelay(80, 20);</pre>
+this.values$$$$$$ = getMultiValuesWithDifferentDelay(80, 20, undefined, undefined, 'B');</pre>
   <p>
-    value1: {{ (values$$$$$ | async) || 'N/A' }}
+    value1:
+    <ng-container *ngIf="values$$$$$ | async; let arek; else elseBlock">
+      {{ arek['val'] }}/{{ arek['id'] }}
+    </ng-container>
+    <ng-template #elseBlock>
+      N/A
+    </ng-template>
     <br>
-    value2: {{ (values$$$$$$ | async) || 'N/A' }}
+    value2:
+    <ng-container *ngIf="values$$$$$$ | async; let arek; else elseBlock">
+      {{ arek['val'] }}/{{ arek['id'] }}
+    </ng-container>
   </p>
 </ng-container>
 <div class="bottom-right bottom-right-generic">

@@ -23,12 +23,12 @@ export function getMultiValueObservable(del = 2000) {
   });
 }
 
-export function getMultiValuesWithDifferentDelay(del = 20, del2 = 20, interval = 100, qty = 10): Observable<number> {
-  return new Observable<number>((observer) => {
-    const delResulted = del * interval;
-    const delResulted2 = del2 * interval;
-    if (interval < 100) {
-      interval = 100;
+export function getMultiValuesWithDifferentDelay(del = 20, del2 = 20, intervalMs = 100, qty = 10, id = 'A') {
+  return new Observable<{val: number, id: string}>((observer) => {
+    const delResulted = del * intervalMs;
+    const delResulted2 = del2 * intervalMs;
+    if (intervalMs < 100) {
+      intervalMs = 100;
     }
     let tick = true;
     let done = true;
@@ -41,7 +41,7 @@ export function getMultiValuesWithDifferentDelay(del = 20, del2 = 20, interval =
         done = false;
         if (tick) {
           timeout = setTimeout(() => {
-            observer.next(count);
+            observer.next({val: count, id});
             tick = false;
             done = true;
             clearTimeout(timeout2);
@@ -49,7 +49,7 @@ export function getMultiValuesWithDifferentDelay(del = 20, del2 = 20, interval =
           }, delResulted);
         } else {
           timeout2 = setTimeout(() => {
-            observer.next(count);
+            observer.next({val: count, id});
             tick = true;
             done = true;
             clearTimeout(timeout);
@@ -57,7 +57,7 @@ export function getMultiValuesWithDifferentDelay(del = 20, del2 = 20, interval =
           }, delResulted2);
         }
       }
-    }, interval);
+    }, intervalMs);
     return () => {
       clearInterval(intervalId);
       clearTimeout(timeout);

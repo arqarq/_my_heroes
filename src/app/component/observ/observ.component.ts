@@ -34,8 +34,8 @@ export class ObservComponent implements OnInit, OnDestroy {
   values$$: Observable<{first: string, second: string, third: number}>;
   values$$$: Observable<string>;
   values$$$$: Observable<{first: number, second: number}>;
-  values$$$$$: Observable<number>;
-  values$$$$$$: Observable<number>;
+  values$$$$$: Observable<{val: number, id: string}>;
+  values$$$$$$: Observable<{val: number, id: string}>;
   private thirdSubscription: Subscription;
 
   constructor() {
@@ -48,11 +48,11 @@ export class ObservComponent implements OnInit, OnDestroy {
     this.values$ = forkJoin<string, string>([
       getSingleValueObservable(),
       // getMultiValueObservable()]), // forkJoin on works for observables that complete
-      getDelayedValueObservable()])
-      .pipe(map(([first, second]) => {
-        // forkJoin returns an array of values, here we map those values to an object
-        return {first, second};
-      }));
+      getDelayedValueObservable()
+    ]).pipe(map(([first, second]) => {
+      // forkJoin returns an array of values, here we map those values to an object
+      return {first, second};
+    }));
     this.values$$ = combineLatest<Observable<string>, Observable<string>, Observable<number>>([
       getSingleValueObservable(),
       getDelayedValueObservable(),
@@ -69,7 +69,7 @@ export class ObservComponent implements OnInit, OnDestroy {
         return {first: one, second: two};
       }));
     this.values$$$$$ = getMultiValuesWithDifferentDelay(20, 80, undefined, 30);
-    this.values$$$$$$ = getMultiValuesWithDifferentDelay(80, 20);
+    this.values$$$$$$ = getMultiValuesWithDifferentDelay(80, 20, undefined, undefined, 'B');
   }
 
   ngOnDestroy() {
