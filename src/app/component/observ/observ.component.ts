@@ -1,6 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { combineLatest, forkJoin, Observable, onErrorResumeNext, Subscription } from 'rxjs';
-import { getDelayedValueObservable, getMultiValueObservable, getSingleValueObservable } from './observ';
+import {
+  getDelayedValueObservable,
+  getMultiValueObservable,
+  getMultiValuesWithDifferentDelay,
+  getSingleValueObservable
+} from './observ';
 import { map, withLatestFrom } from 'rxjs/operators';
 
 @Component({
@@ -15,6 +20,7 @@ export class ObservComponent implements OnInit, OnDestroy {
   show4 = false;
   show5 = false;
   show6 = false;
+  show7 = false;
   first = 'N/A';
   second = 'N/A';
   third = 9999;
@@ -28,6 +34,8 @@ export class ObservComponent implements OnInit, OnDestroy {
   values$$: Observable<{first: string, second: string, third: number}>;
   values$$$: Observable<string>;
   values$$$$: Observable<{first: number, second: number}>;
+  values$$$$$: Observable<number>;
+  values$$$$$$: Observable<number>;
   private thirdSubscription: Subscription;
 
   constructor() {
@@ -60,6 +68,8 @@ export class ObservComponent implements OnInit, OnDestroy {
       withLatestFrom<number, {first: number, second: number}>(getMultiValueObservable(4000), (one, two) => {
         return {first: one, second: two};
       }));
+    this.values$$$$$ = getMultiValuesWithDifferentDelay(20, 80, undefined, 30);
+    this.values$$$$$$ = getMultiValuesWithDifferentDelay(80, 20);
   }
 
   ngOnDestroy() {

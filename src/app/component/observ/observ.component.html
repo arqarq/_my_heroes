@@ -110,3 +110,66 @@ this.values$$$$ = getMultiValueObservable().pipe(
     <a routerLink="/choose">Back to choice</a>
   </nav>
 </div>
+<h2>
+  <b>Additional</b>: different delay Observable&lt;number>
+  <button (click)="show7 = !show7">Toggle</button>
+</h2>
+<ng-container *ngIf="show7">
+<pre>
+function getMultiValuesWithDifferentDelay(del = 20, del2 = 20, interval = 100, qty = 10): Observable&lt;number> &#123;
+  return new Observable&lt;number>((observer) => &#123;
+    const delResulted = del * interval;
+    const delResulted2 = del2 * interval;
+    if (interval < 100) &#123;
+      interval = 100;
+    }
+    let tick = true;
+    let done = true;
+    let count = 1;
+    let timeout;
+    let timeout2;
+
+    const intervalId = setInterval(() => &#123;
+      if (done) &#123;
+        done = false;
+        if (tick) &#123;
+          timeout = setTimeout(() => &#123;
+            observer.next(count);
+            tick = false;
+            done = true;
+            clearTimeout(timeout2);
+            console.log('------------------------------------ interval fired after delResulted =', delResulted, 'ms, emitted:', count++);
+          }, delResulted);
+        } else &#123;
+          timeout2 = setTimeout(() => &#123;
+            observer.next(count);
+            tick = true;
+            done = true;
+            clearTimeout(timeout);
+            console.log('------------------------------------ interval fired after delResulted2 =', delResulted2, 'ms, emitted:', count++);
+          }, delResulted2);
+        }
+      }
+    }, interval);
+    return () => &#123;
+      clearInterval(intervalId);
+      clearTimeout(timeout);
+      clearTimeout(timeout2);
+    };
+  })
+    .pipe(take(qty));
+}
+
+this.values$$$$$ = getMultiValuesWithDifferentDelay(20, 80, undefined, 30);
+this.values$$$$$$ = getMultiValuesWithDifferentDelay(80, 20);</pre>
+  <p>
+    value1: {{ (values$$$$$ | async) || 'N/A' }}
+    <br>
+    value2: {{ (values$$$$$$ | async) || 'N/A' }}
+  </p>
+</ng-container>
+<div class="bottom-right bottom-right-generic">
+  <nav>
+    <a routerLink="/choose">Back to choice</a>
+  </nav>
+</div>
