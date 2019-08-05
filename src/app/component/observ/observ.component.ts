@@ -74,12 +74,18 @@ export class ObservComponent implements OnInit, OnDestroy {
     let buff1: number;
     let buff2: number;
     this.values$$$$$$$ = merge(this.values$$$$$, this.values$$$$$$).pipe(
-      tap((val) => {
-        if (val.id === 'A') {
-          buff1 = val.val;
-          return;
+      tap({
+        next(val) {
+          if (val.id === 'A') {
+            buff1 = val.val;
+            return;
+          }
+          buff2 = val.val;
+        },
+        complete() {
+          buff1 = undefined;
+          buff2 = undefined;
         }
-        buff2 = val.val;
       }),
       map((val) => {
         if (val.id === 'A') {

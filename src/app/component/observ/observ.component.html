@@ -164,12 +164,18 @@ this.values$$$$$$ = getMultiValuesWithDifferentDelay(80, 20, undefined, undefine
 let buff1: number;
 let buff2: number;
 this.values$$$$$$$ = merge(this.values$$$$$, this.values$$$$$$).pipe(
-  tap((val) => &#123;
-    if (val.id === 'A') &#123;
-      buff1 = val.val;
-      return;
+  tap(&#123;
+    next(val) &#123;
+      if (val.id === 'A') &#123;
+        buff1 = val.val;
+        return;
+      }
+      buff2 = val.val;
+    },
+    complete() &#123;
+      buff1 = undefined;
+      buff2 = undefined;
     }
-    buff2 = val.val;
   }),
   map((val) => &#123;
     if (val.id === 'A') &#123;
