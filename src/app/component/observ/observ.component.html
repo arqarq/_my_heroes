@@ -116,13 +116,11 @@ this.values$$$$ = getMultiValueObservable().pipe(
 </h2>
 <ng-container *ngIf="show7">
 <pre>
-function getMultiValuesWithDifferentDelay(del = 20, del2 = 20, interval = 100, qty = 10): Observable&lt;number> &#123;
-  return new Observable&lt;number>((observer) => &#123;
-    const delResulted = del * interval;
-    const delResulted2 = del2 * interval;
-    if (interval < 100) &#123;
-      interval = 100;
-    }
+function getMultiValuesWithDifferentDelay(del = 20, del2 = 20, intervalMs = 100, qty = 15, id = 'A') &#123;
+  return new Observable&lt;&#123;val: number, id: string}>((observer) => &#123;
+    intervalMs = (intervalMs < 100) ? 100 : intervalMs;
+    const delResulted = del * intervalMs;
+    const delResulted2 = del2 * intervalMs;
     let tick = true;
     let done = true;
     let count = 1;
@@ -138,7 +136,8 @@ function getMultiValuesWithDifferentDelay(del = 20, del2 = 20, interval = 100, q
             tick = false;
             done = true;
             clearTimeout(timeout2);
-            console.log('------------------------------------ interval fired after delResulted =', delResulted, 'ms, emitted:', count++);
+            console.log('------------------------ interval fired after delResulted =', delResulted, 'ms, emitted:', count, 'from:', id);
+            count++;
           }, delResulted);
         } else &#123;
           timeout2 = setTimeout(() => &#123;
@@ -146,7 +145,8 @@ function getMultiValuesWithDifferentDelay(del = 20, del2 = 20, interval = 100, q
             tick = true;
             done = true;
             clearTimeout(timeout);
-            console.log('------------------------------------ interval fired after delResulted2 =', delResulted2, 'ms, emitted:', count++);
+            console.log('------------------------ interval fired after delResulted2 =', delResulted2, 'ms, emitted:', count, 'from:', id);
+            count++;
           }, delResulted2);
         }
       }
@@ -156,25 +156,45 @@ function getMultiValuesWithDifferentDelay(del = 20, del2 = 20, interval = 100, q
       clearTimeout(timeout);
       clearTimeout(timeout2);
     };
-  })
-    .pipe(take(qty));
+  }).pipe(take(qty));
 }
 
-this.values$$$$$ = getMultiValuesWithDifferentDelay(20, 80, undefined, 30);
-this.values$$$$$$ = getMultiValuesWithDifferentDelay(80, 20, undefined, undefined, 'B');</pre>
+this.values$$$$$ = getMultiValuesWithDifferentDelay(20, 79, undefined, 30);
+this.values$$$$$$ = getMultiValuesWithDifferentDelay(80, 20, undefined, undefined, 'B');
+let buff1: number;
+let buff2: number;
+this.values$$$$$$$ = merge(this.values$$$$$, this.values$$$$$$).pipe(
+  tap((val) => &#123;
+    if (val.id === 'A') &#123;
+      buff1 = val.val;
+      return;
+    }
+    buff2 = val.val;
+  }),
+  map((val) => &#123;
+    if (val.id === 'A') &#123;
+      return &#123;one: val.val, two: buff2, id: val.id};
+    }
+    return &#123;one: buff1, two: val.val, id: val.id};
+  }));</pre>
   <p>
-    value1:
-    <ng-container *ngIf="values$$$$$ | async; let arek; else elseBlock">
-      {{ arek['val'] }}/{{ arek['id'] }}
+    <ng-container *ngIf="values$$$$$$$ | async; let arek; else elseBlock">
+      value A:
+      {{ arek['one'] || 'N/A' }}
+      <br>
+      value B:
+      {{ arek['two'] || 'N/A' }}
+      <br>
+      update from:
+      {{ arek['id'] || '-' }}
     </ng-container>
     <ng-template #elseBlock>
-      N/A
+      value A: N/A
+      <br>
+      value B: N/A
+      <br>
+      update from: -
     </ng-template>
-    <br>
-    value2:
-    <ng-container *ngIf="values$$$$$$ | async; let arek; else elseBlock">
-      {{ arek['val'] }}/{{ arek['id'] }}
-    </ng-container>
   </p>
 </ng-container>
 <div class="bottom-right bottom-right-generic">

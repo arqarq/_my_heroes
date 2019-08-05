@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { combineLatest, forkJoin, Observable, onErrorResumeNext, Subscription } from 'rxjs';
+import { combineLatest, forkJoin, merge, Observable, onErrorResumeNext, Subscription } from 'rxjs';
 import {
   getDelayedValueObservable,
   getMultiValueObservable,
   getMultiValuesWithDifferentDelay,
   getSingleValueObservable
 } from './observ';
-import { map, withLatestFrom } from 'rxjs/operators';
+import { map, tap, withLatestFrom } from 'rxjs/operators';
 
 @Component({
   selector: 'app-observ',
@@ -36,6 +36,7 @@ export class ObservComponent implements OnInit, OnDestroy {
   values$$$$: Observable<{first: number, second: number}>;
   values$$$$$: Observable<{val: number, id: string}>;
   values$$$$$$: Observable<{val: number, id: string}>;
+  values$$$$$$$: Observable<{one: number; two: number; id: string}>;
   private thirdSubscription: Subscription;
 
   constructor() {
@@ -68,8 +69,24 @@ export class ObservComponent implements OnInit, OnDestroy {
       withLatestFrom<number, {first: number, second: number}>(getMultiValueObservable(4000), (one, two) => {
         return {first: one, second: two};
       }));
-    this.values$$$$$ = getMultiValuesWithDifferentDelay(20, 80, undefined, 30);
+    this.values$$$$$ = getMultiValuesWithDifferentDelay(20, 79, undefined, 30);
     this.values$$$$$$ = getMultiValuesWithDifferentDelay(80, 20, undefined, undefined, 'B');
+    let buff1: number;
+    let buff2: number;
+    this.values$$$$$$$ = merge(this.values$$$$$, this.values$$$$$$).pipe(
+      tap((val) => {
+        if (val.id === 'A') {
+          buff1 = val.val;
+          return;
+        }
+        buff2 = val.val;
+      }),
+      map((val) => {
+        if (val.id === 'A') {
+          return {one: val.val, two: buff2, id: val.id};
+        }
+        return {one: buff1, two: val.val, id: val.id};
+      }));
   }
 
   ngOnDestroy() {

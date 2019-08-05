@@ -23,13 +23,11 @@ export function getMultiValueObservable(del = 2000) {
   });
 }
 
-export function getMultiValuesWithDifferentDelay(del = 20, del2 = 20, intervalMs = 100, qty = 10, id = 'A') {
+export function getMultiValuesWithDifferentDelay(del = 20, del2 = 20, intervalMs = 100, qty = 15, id = 'A') {
   return new Observable<{val: number, id: string}>((observer) => {
+    intervalMs = (intervalMs < 100) ? 100 : intervalMs;
     const delResulted = del * intervalMs;
     const delResulted2 = del2 * intervalMs;
-    if (intervalMs < 100) {
-      intervalMs = 100;
-    }
     let tick = true;
     let done = true;
     let count = 1;
@@ -45,7 +43,8 @@ export function getMultiValuesWithDifferentDelay(del = 20, del2 = 20, intervalMs
             tick = false;
             done = true;
             clearTimeout(timeout2);
-            console.log('------------------------------------ interval fired after delResulted =', delResulted, 'ms, emitted:', count++);
+            console.log('------------------------ interval fired after delResulted =', delResulted, 'ms, emitted:', count, 'from:', id);
+            count++;
           }, delResulted);
         } else {
           timeout2 = setTimeout(() => {
@@ -53,7 +52,8 @@ export function getMultiValuesWithDifferentDelay(del = 20, del2 = 20, intervalMs
             tick = true;
             done = true;
             clearTimeout(timeout);
-            console.log('------------------------------------ interval fired after delResulted2 =', delResulted2, 'ms, emitted:', count++);
+            console.log('------------------------ interval fired after delResulted2 =', delResulted2, 'ms, emitted:', count, 'from:', id);
+            count++;
           }, delResulted2);
         }
       }
@@ -63,6 +63,5 @@ export function getMultiValuesWithDifferentDelay(del = 20, del2 = 20, intervalMs
       clearTimeout(timeout);
       clearTimeout(timeout2);
     };
-  })
-    .pipe(take(qty));
+  }).pipe(take(qty));
 }
