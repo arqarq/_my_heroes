@@ -112,10 +112,12 @@ this.values$$$$ = getMultiValueObservable().pipe(
 </div>
 <h2>
   <b>Additional</b>: different delay Observable&lt;number>
-  <button (click)="show7 = !show7">Toggle</button>
+  <button (click)="toggle7('hide7', 'pre7')">Toggle</button>
 </h2>
 <ng-container *ngIf="show7">
-<pre>
+  <div class="toHide"
+       id="hide7">
+    <pre id="pre7">
 function getMultiValuesWithDifferentDelay(del = 20, del2 = 20, intervalMs = 100, qty = 15, id = 'A') &#123;
   return new Observable&lt;&#123;val: number, id: string}>((observer) => &#123;
     intervalMs = (intervalMs < 100) ? 100 : intervalMs;
@@ -183,6 +185,7 @@ this.values$$$$$$$ = merge(this.values$$$$$, this.values$$$$$$).pipe(
     }
     return &#123;one: buff1, two: val.val, id: val.id};
   }));</pre>
+  </div>
   <p>
     <ng-container *ngIf="values$$$$$$$ | async; let arek; else elseBlock">
       value A:

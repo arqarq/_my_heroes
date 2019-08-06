@@ -107,4 +107,20 @@ export class ObservComponent implements OnInit, OnDestroy {
     this.thirdSubscription = getMultiValueObservable()
       .subscribe(value => this.third = value);
   }
+
+  toggle7(putIdHere: string, putIdOfTheElementToMeasure?: string) {
+    this.show7 = true;
+    setTimeout(() => {
+      const divById = document.getElementById(putIdHere);
+      const size = putIdOfTheElementToMeasure ? document.getElementById(putIdOfTheElementToMeasure).offsetHeight : 100;
+      if (divById.className === 'toHide') {
+        if (divById.style.height === '0' || !divById.style.height) {
+          divById.style.height = size + 'px';
+        } else {
+          divById.style.height = '0';
+          setTimeout(() => this.show7 = false, 600);
+        }
+      }
+    }, 100);
+  }
 }
