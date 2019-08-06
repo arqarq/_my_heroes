@@ -11,7 +11,7 @@
       Clear
     </button>
     <div *ngFor="let message of messageService.messages"
-         [innerHTML]="message">
+         [innerHTML]="addModifyingTag(message)">
     </div>
   </div>
 </section>

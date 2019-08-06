@@ -11,10 +11,18 @@ export class MessagesComponent {
   var2: {[key: string]: number | string} = {d: 11, b: 12};
   var3: {[key: string]: number | string} = {...this.var2, ...this.var, 6: 10};
 
-  constructor(
-    public messageService: MessageService
-    // private messageService: MessageService // nie dla --aot
+  constructor(public messageService: MessageService
+              // private messageService: MessageService // nie dla --aot
   ) {
     console.log('=-=-=-=-=-= ', this.var3);
+  }
+
+  private addModifyingTag(message: string, tag = 'small', close = true): string {
+    const tagOpen = '<' + tag + '>';
+    let tagClose = '';
+    if (close) {
+      tagClose = '</' + tag + '>';
+    }
+    return tagOpen + message + tagClose;
   }
 }
