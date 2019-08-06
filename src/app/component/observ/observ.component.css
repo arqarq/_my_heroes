@@ -17,10 +17,14 @@ pre {
   color: darkslategray;
   /*padding: 5px 10px 10px; !*1.532308em 0.383em*!*/
   padding: 3px 5px 5px;
-  margin: 0;
+  margin: 1.532308em 10px 0;
   background-color: lightgray;
   border: darkgray dashed 1px;
   width: fit-content
+}
+
+pre.toHide {
+  margin: 0
 }
 
 div.toHide {

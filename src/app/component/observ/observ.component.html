@@ -117,7 +117,8 @@ this.values$$$$ = getMultiValueObservable().pipe(
 <ng-container *ngIf="show7">
   <div class="toHide"
        id="hide7">
-    <pre id="pre7">
+    <pre class="toHide"
+         id="pre7">
 function getMultiValuesWithDifferentDelay(del = 20, del2 = 20, intervalMs = 100, qty = 15, id = 'A') &#123;
   return new Observable&lt;&#123;val: number, id: string}>((observer) => &#123;
     intervalMs = (intervalMs < 100) ? 100 : intervalMs;
