@@ -165,8 +165,11 @@ export class MarvelService<T extends Marvel> {
     return (error: any): Observable<TT> => {
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
+      this.log(`${operation} failed:<small><br>
+             <b>error</b>: ${error.name}<br>
+             <b>url</b>: ${error.url}<br>
+             <b>status</b>: ${error.status}<br>
+             <b>status text</b>: ${error.statusText}</small>`);
       // Let the app keep running by returning an empty result.
       return of(result as TT);
     };

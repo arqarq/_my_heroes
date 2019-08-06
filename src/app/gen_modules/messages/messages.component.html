@@ -3,13 +3,15 @@
 <!--</p>-->
 <section>
   <div *ngIf="messageService.messages.length">
-    <h2>Messages</h2>
+    <h2>
+      Messages
+    </h2>
     <button (click)="messageService.clear()"
             class="clear">
       Clear
     </button>
-    <div *ngFor="let message of messageService.messages">
-      {{ message }}
+    <div *ngFor="let message of messageService.messages"
+         [innerHTML]="message">
     </div>
   </div>
 </section>
