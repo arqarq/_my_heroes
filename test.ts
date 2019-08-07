@@ -35,3 +35,12 @@ let foo2 = Symbol.for('foo2');
 console.log(foo2);
 console.log(Symbol.keyFor(foo2));
 console.log(foo2.toString());
+
+let obj = {};
+obj[Symbol.for('sym')] = false;
+obj[Symbol.for('sym2')] = true;
+console.log(obj[Symbol.for('sym')]);
+console.log(obj[Symbol.for('sym2')]);
+obj[Symbol.for('sym')] = foo2;
+console.log(obj[Symbol.for('sym')].toString());
+console.log(Symbol.keyFor(obj[Symbol.for('sym')]));
