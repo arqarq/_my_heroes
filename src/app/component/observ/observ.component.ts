@@ -109,7 +109,7 @@ export class ObservComponent implements OnInit, OnDestroy {
       .subscribe(value => this.third = value);
   }
 
-  toggle7(putIdHere: string, place: number, putIdOfTheElementToMeasure?: string) {
+  toggleHidden(putIdHere: string, place: number, putIdOfTheElementToMeasure?: string) {
     this.place[place] = true;
     setTimeout(() => {
       const divById = document.getElementById(putIdHere);
