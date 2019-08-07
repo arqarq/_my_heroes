@@ -40,3 +40,8 @@ console.log(obj[Symbol["for"]('sym2')]);
 obj[Symbol["for"]('sym')] = foo2;
 console.log(obj[Symbol["for"]('sym')].toString());
 console.log(Symbol.keyFor(obj[Symbol["for"]('sym')]));
+var sym7;
+console.log('-', this[sym7]);
+console.log('-', !!this[sym7]);
+this[sym7] = true;
+console.log('-', this[sym7]);

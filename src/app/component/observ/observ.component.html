@@ -122,11 +122,11 @@ this.values$$$$ = getMultiValueObservable().pipe(
 </div>
 <h2>
   <b>Additional</b>: different delay Observable&lt;number>
-  <button (click)="toggleHidden('hide7', 7, 'pre7')">
+  <button (click)="toggleHidden('hide7', sym7, 'pre7')">
     Toggle
   </button>
 </h2>
-<ng-container *ngIf="place[7]">
+<ng-container *ngIf="this[sym7]">
   <div class="toHide"
        id="hide7">
     <pre class="toHide"

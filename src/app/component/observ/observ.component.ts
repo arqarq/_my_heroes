@@ -14,7 +14,7 @@ import { map, tap, withLatestFrom } from 'rxjs/operators';
   styleUrls: ['./observ.component.css']
 })
 export class ObservComponent implements OnInit, OnDestroy {
-  place: boolean[] = [];
+  sym7: symbol;
   show = false;
   show2 = false;
   show3 = false;
@@ -93,7 +93,6 @@ export class ObservComponent implements OnInit, OnDestroy {
         }
         return {one: buff1, two: val.val, id: val.id};
       }));
-    this.place[7] = false;
   }
 
   ngOnDestroy() {
@@ -109,8 +108,8 @@ export class ObservComponent implements OnInit, OnDestroy {
       .subscribe(value => this.third = value);
   }
 
-  toggleHidden(putIdHere: string, place: number, putIdOfTheElementToMeasure?: string) {
-    this.place[place] = true;
+  toggleHidden(putIdHere: string, place: symbol, putIdOfTheElementToMeasure?: string) {
+    this[place] = true;
     setTimeout(() => {
       const divById = document.getElementById(putIdHere);
       const size = putIdOfTheElementToMeasure ? document.getElementById(putIdOfTheElementToMeasure).offsetHeight : 100;
@@ -119,7 +118,7 @@ export class ObservComponent implements OnInit, OnDestroy {
           divById.style.height = size + 'px';
         } else {
           divById.style.height = '0';
-          setTimeout(() => this.place[place] = false, 600);
+          setTimeout(() => this[place] = false, 600);
         }
       }
     }, 100);
