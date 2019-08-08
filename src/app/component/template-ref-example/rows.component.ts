@@ -9,35 +9,31 @@ import {
   TemplateRef
 } from '@angular/core';
 
+@Injectable()
 @Component({
   selector: 'app-rows',
   templateUrl: './rows.component.html',
   styleUrls: ['./rows.component.css']
 })
-@Injectable()
 export class RowsComponent implements AfterViewInit, OnInit {
   @Input()
   rows: {name: string}[];
 
-  @ContentChild(TemplateRef, {read: '', static: true})
+  @ContentChild(TemplateRef, {static: true})
   template: TemplateRef<any>;
 
-  constructor(private changeDetector: ChangeDetectorRef) {
-    this.changeDetector.detach();
-    console.log('nie stop - constructor');
-  }
-
-  detect() {
-    this.changeDetector.detectChanges();
+  constructor(private cdr: ChangeDetectorRef) {
+    // this.cdr.detach();
+    console.log('stop - constructor');
   }
 
   ngAfterViewInit() {
-    this.changeDetector.detach(); // TODO Ivy
-    console.log('nie stop - ngAfterViewInit');
+    this.cdr.detach(); // TODO Ivy
+    console.log('stop - ngAfterViewInit');
   }
 
-  ngOnInit(): void {
-    this.changeDetector.detach();
-    console.log('nie stop - ngOnInit');
+  ngOnInit() {
+    // this.cdr.detach();
+    console.log('stop - ngOnInit');
   }
 }

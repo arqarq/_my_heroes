@@ -4,25 +4,25 @@ import { RowsComponent } from './rows.component';
 @Component({
   selector: 'app-template-ref-example',
   templateUrl: './template-ref-example.component.html',
-  styleUrls: ['./template-ref-example.component.css']
+  styleUrls: ['./template-ref-example.component.css'],
+  providers: [RowsComponent]
 })
 export class TemplateRefExampleComponent {
   rows: {name: string}[] = [];
 
   constructor(
-    private inj: RowsComponent
+    // private inj: RowsComponent
   ) {
     this.createRows(15);
   }
 
-  getName(row: {name: string}): string {
-    console.log('getName() called');
-    return row.name;
+  onClick() {
+    console.log('clicked');
   }
 
-  onClick() {
-    this.inj.detect();
-    console.log('clicked');
+  private getName(row: {name: string}): string {
+    console.log('getName() called');
+    return row.name;
   }
 
   private createRows(count: number) {

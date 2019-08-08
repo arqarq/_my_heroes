@@ -53,6 +53,6 @@ export class StartModule {
 
   constructor(private router: Router) {
     this.replacer = (key, value) => (typeof value === 'function') ? value.name : value;
-    console.log('StartModule # router.config: ', JSON.stringify(this.router.config, this.replacer, 2));
+    console.log('StartModule # router.config:', JSON.stringify(this.router.config, this.replacer, 2));
   }
 }
