@@ -14,6 +14,7 @@ import { environment } from '../environments/environment';
 import { ObservComponent } from './component/observ/observ.component';
 import { FoooterComponent } from './component/foooter/foooter.component';
 import { TemplateRefExampleComponent } from './component/template-ref-example/template-ref-example.component';
+import { RowsComponent } from './component/template-ref-example/rows.component';
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import { TemplateRefExampleComponent } from './component/template-ref-example/te
     ComposeMessageComponent,
     FoooterComponent,
     ObservComponent,
-    TemplateRefExampleComponent
+    TemplateRefExampleComponent,
+    RowsComponent
   ],
   bootstrap: [StartComponent]
 })

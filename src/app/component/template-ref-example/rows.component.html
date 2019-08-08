@@ -1,0 +1,4 @@
+<div *ngFor="let row of rows">
+  <ng-container *ngTemplateOutlet="template; context: {'rowData': row}">
+  </ng-container>
+</div>

@@ -1,4 +1,10 @@
-<p>
-  template-ref-example works!
-</p>
+<h5 (click)="onClick()"
+    style="cursor: pointer; margin-bottom: 5px">
+  Click me
+</h5>
+<app-rows [rows]="rows">
+  <ng-template let-row="rowData">
+    {{ getName(row) }}
+  </ng-template>
+</app-rows>
 <app-foooter></app-foooter>
