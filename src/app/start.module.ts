@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ObservComponent } from './component/observ/observ.component';
+import { FoooterComponent } from './component/foooter/foooter.component';
+import { TemplateRefExampleComponent } from './component/template-ref-example/template-ref-example.component';
 
 @NgModule({
   imports: [
@@ -36,9 +38,11 @@ import { ObservComponent } from './component/observ/observ.component';
   declarations: [
     StartComponent,
     // ChooserComponent,
-    ObservComponent,
     NotFound404Component,
-    ComposeMessageComponent
+    ComposeMessageComponent,
+    FoooterComponent,
+    ObservComponent,
+    TemplateRefExampleComponent
   ],
   bootstrap: [StartComponent]
 })

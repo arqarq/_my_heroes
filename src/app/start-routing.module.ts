@@ -4,6 +4,7 @@ import { NotFound404Component } from './component/notfound404/notfound404.compon
 import { ComposeMessageComponent } from './module/crisis/component/compose-message/compose-message.component';
 import { SelectivePreloadingStrategyService } from './module/crisis/service/selective-preloading-strategy.service';
 import { ObservComponent } from './component/observ/observ.component';
+import { TemplateRefExampleComponent } from './component/template-ref-example/template-ref-example.component';
 
 export function isComposeMatched(url: UrlSegment[]): UrlMatchResult {
   console.log('CrisisRoutingModule # isComposeMatched() # url: ' + url);
@@ -50,6 +51,10 @@ const ROUTES: Routes = [
   {
     path: 'ng-observables',
     component: ObservComponent
+  },
+  {
+    path: 'ng-templaterefexample',
+    component: TemplateRefExampleComponent
   },
   {
     path: '',
