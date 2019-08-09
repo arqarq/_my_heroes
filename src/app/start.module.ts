@@ -6,15 +6,17 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { environment } from '../environments/environment';
-import { InMemoryDataService } from './service/in-memory-data.service';
 import { StartRoutingModule } from './start-routing.module';
-import { StartComponent } from './start.component';
-import { NotFound404Component } from './component/notfound404/notfound404.component';
-import { ComposeMessageComponent } from './module/crisis/component/compose-message/compose-message.component';
-import { FoooterComponent } from './component/foooter/foooter.component';
-import { ObservComponent } from './component/observ/observ.component';
-import { TemplateRefExampleComponent } from './component/template-ref-example/template-ref-example.component';
-import { RowsComponent } from './component/template-ref-example/rows.component';
+import {
+  ComposeMessageComponent,
+  FoooterComponent,
+  InMemoryDataService,
+  NotFound404Component,
+  ObservComponent,
+  RowsComponent,
+  StartComponent,
+  TemplateRefExampleComponent
+} from './index';
 
 @NgModule({
   imports: [
