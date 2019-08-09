@@ -1,3 +1,7 @@
+<h5 (click)="onClick()"
+    style="cursor: pointer; margin: 5px auto">
+  Click - reattach() via RowsComponent
+</h5>
 <div *ngFor="let row of rows">
   <ng-container *ngTemplateOutlet="template; context: {rowData: row}">
   </ng-container>

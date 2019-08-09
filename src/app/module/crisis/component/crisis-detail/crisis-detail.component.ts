@@ -93,7 +93,7 @@ export class CrisisDetailComponent extends CanDeactivateGuard implements OnInit,
         this.crisisService.getHero(params.get('id')))
     );
     const observer: Observer<Crisis> = {
-      next: crisis => {
+      next: (crisis) => {
         if (crisis) {
           this.editName = crisis.name;
           this.crisis = crisis;
