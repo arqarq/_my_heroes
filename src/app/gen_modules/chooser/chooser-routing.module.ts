@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
-import { ChooserComponent } from '../../index6';
+import { ChooserComponent } from './chooser.component';
 
 const ROUTES: Route[] = [
   {

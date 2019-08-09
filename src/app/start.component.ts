@@ -7,7 +7,10 @@ import {
   LANG_USER_IS_SWITCHING,
   LocalStorageService
 } from './service/local-storage.service';
-import { CheckForUpdateService, LangChangeRelayService, LogUpdateService, PromptUpdateService } from './index';
+import { LangChangeRelayService } from './service/lang-change-relay.service';
+import { LogUpdateService } from './service/log-update.service';
+import { CheckForUpdateService } from './service/check-for-update.service';
+import { PromptUpdateService } from './service/prompt-update.service';
 
 @Component({
   selector: 'app-start',
