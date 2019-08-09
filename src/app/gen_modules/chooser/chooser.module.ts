@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChooserComponent } from './chooser.component';
 import { FormsModule } from '@angular/forms';
-import { ChooserRoutingModule } from './chooser-routing.module';
+import { ChooserComponent } from '../../index6';
+import { ChooserRoutingModule } from '../../index7';
 
 @NgModule({
   declarations: [ChooserComponent],

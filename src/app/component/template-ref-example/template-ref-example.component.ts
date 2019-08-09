@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RowsComponent } from './rows.component';
+import { RowsComponent } from '../../index5';
 
 @Component({
   selector: 'app-template-ref-example',

@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, UrlMatchResult, UrlSegment } from '@angular/router';
-import { NotFound404Component } from './component/notfound404/notfound404.component';
-import { ComposeMessageComponent } from './module/crisis/component/compose-message/compose-message.component';
-import { SelectivePreloadingStrategyService } from './service/selective-preloading-strategy.service';
-import { ObservComponent } from './component/observ/observ.component';
-import { TemplateRefExampleComponent } from './component/template-ref-example/template-ref-example.component';
+import { ComposeMessageComponent, NotFound404Component, ObservComponent, TemplateRefExampleComponent } from './index';
+import { SelectivePreloadingStrategyService } from './index4';
 
 export function isComposeMatched(url: UrlSegment[]): UrlMatchResult {
   console.log('CrisisRoutingModule # isComposeMatched() # url: ' + url);
