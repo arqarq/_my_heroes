@@ -10,7 +10,7 @@ import {
   RouterStateSnapshot,
   UrlSegment
 } from '@angular/router';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../auth/service/auth.service';
 import { CrisisModule } from '../crisis.module';
 
 // Create a dummy session id

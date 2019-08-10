@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { MarvelService } from '../../../../service/marvel.service';
 import { CrisisModule } from '../../crisis.module';
-import { AuthService } from '../../auth/auth.service';
+import { AuthService } from '../../auth/service/auth.service';
 
 @Component({
   selector: 'app-crisis-list',

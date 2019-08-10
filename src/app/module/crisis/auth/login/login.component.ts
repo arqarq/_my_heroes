@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LocalStorageService } from '../index5';
-import { AuthService } from '../index6';
+import { AuthService } from '../service/auth.service';
 
 const toStoreTempl: {[key: string]: string} = {
   session_id: undefined,
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
 
   constructor(
-    public authService: AuthService,
+    public authService: AuthService, // public for AOT
     private router: Router,
     private storage: LocalStorageService,
     private route: ActivatedRoute

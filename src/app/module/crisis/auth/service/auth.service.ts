@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
-import { CrisisModule } from '../crisis.module';
-import { LocalStorageService } from './index5';
+import { LocalStorageService } from '../index5';
+import { AuthServiceModule } from './auth-service.module';
 
 @Injectable({
-  providedIn: CrisisModule
+  providedIn: AuthServiceModule
 })
 export class AuthService {
   isLoggedIn = false;
