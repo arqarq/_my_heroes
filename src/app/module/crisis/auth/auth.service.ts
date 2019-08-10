@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
-import { LocalStorageService } from '../../../service/local-storage.service';
 import { CrisisModule } from '../crisis.module';
+import { LocalStorageService } from './index5';
 
 @Injectable({
   providedIn: CrisisModule

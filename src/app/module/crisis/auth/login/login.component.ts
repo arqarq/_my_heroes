@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../auth.service';
 import { Subscription } from 'rxjs';
-import { LocalStorageService } from '../../../../service/local-storage.service';
+import { LocalStorageService } from '../index5';
+import { AuthService } from '../index6';
 
 const toStoreTempl: {[key: string]: string} = {
   session_id: undefined,
