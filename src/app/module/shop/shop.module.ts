@@ -11,6 +11,7 @@ import { ShippingComponent } from './shipping/shipping.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import locale from '@angular/common/locales/pl';
 import { MoneyPipe } from './service/money.pipe';
+import { CartServiceModule } from './service/cart-service.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { MoneyPipe } from './service/money.pipe';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    CartServiceModule,
     RouterModule.forChild([
       {
         path: '',

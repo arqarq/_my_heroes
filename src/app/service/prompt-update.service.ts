@@ -1,22 +1,22 @@
 import { SwUpdate } from '@angular/service-worker';
-import { Injectable } from '@angular/core';
-import { finalize } from 'rxjs/operators';
+import { Injectable, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PromptUpdateService {
+export class PromptUpdateService implements OnDestroy {
+  private subscription: Subscription;
+
   constructor(updates: SwUpdate) {
     console.log('\t\t\tPromptUpdateService instantiated!!!');
-    const subscription = updates.available
-      .pipe(finalize(() => subscription.unsubscribe()))
-      .subscribe((event) => {
-        console.log('current version is', event.current.hash);
-        console.log('available version is', event.available.hash);
-        if (PromptUpdateService.promptUser()) {
-          updates.activateUpdate().then(() => document.location.reload());
-        }
-      });
+    this.subscription = updates.available.subscribe((event) => {
+      console.log('current version is', event.current.hash);
+      console.log('available version is', event.available.hash);
+      if (PromptUpdateService.promptUser()) {
+        updates.activateUpdate().then(() => document.location.reload());
+      }
+    });
   }
 
   private static promptUser() {
@@ -25,6 +25,10 @@ export class PromptUpdateService {
       confirm = prompt(`Update app? ['${ConfirmOptions.YES}' or '${ConfirmOptions.NO}']`);
     }
     return confirm === ConfirmOptions.YES;
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
 

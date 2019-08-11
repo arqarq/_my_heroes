@@ -4,8 +4,8 @@ import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { MarvelService } from '../../../../service/marvel.service';
-import { CrisisModule } from '../../crisis.module';
 import { AuthService } from '../../auth/service/auth.service';
+import { CrisisListServiceModule } from './crisis-list-service.module';
 
 @Component({
   selector: 'app-crisis-list',
@@ -13,14 +13,14 @@ import { AuthService } from '../../auth/service/auth.service';
   styleUrls: ['./crisis-list.component.css']
 })
 @Injectable({
-  providedIn: CrisisModule
+  providedIn: CrisisListServiceModule
 })
 export class CrisisListComponent implements OnInit, OnDestroy {
   crises$: Crisis[]; // --aot
   qty: number; // --aot
-  private selectedId?: number;
   private subscription: Subscription;
   private subscription2: Subscription;
+  private $selectedId: number;
 
   constructor(
     private crisisService: MarvelService<Crisis>,
@@ -32,8 +32,12 @@ export class CrisisListComponent implements OnInit, OnDestroy {
     authService.redirectUrl = undefined; // kasowanie zapamiętanego adresu
   }
 
-  set setSelectedId(value: number | undefined) {
-    this.selectedId = value;
+  get selectedId() {
+    return this.$selectedId;
+  }
+
+  set selectedId(value: number | undefined) {
+    this.$selectedId = value;
   }
 
   add(name: string): void {

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { ShopModule } from '../shop.module';
 import { ProductParamsType, ShippingOptions } from '../shop.types';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { CartServiceModule } from './cart-service.module';
 
 @Injectable({
-  providedIn: ShopModule
+  providedIn: CartServiceModule
 })
 export class CartService {
   private items: Array<ProductParamsType> = [];

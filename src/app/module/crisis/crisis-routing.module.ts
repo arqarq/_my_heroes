@@ -4,9 +4,10 @@ import { RouterModule, Routes, UrlMatchResult, UrlSegment } from '@angular/route
 import { CrisisListComponent } from './component/crisis-list/crisis-list.component';
 import { CrisisDetailComponent } from './component/crisis-detail/crisis-detail.component';
 import { CrisisCenterHomeComponent } from './component/crisis-center-home/crisis-center-home.component';
-import { CanDeactivateGuard } from './heroes/can-deactivate.guard';
+import { CanDeactivateGuard } from './service/can-deactivate.guard';
 import { CrisisDetailResolverService } from './component/crisis-detail/service/crisis-detail-resolver.service';
 import { AuthGuard } from './admin';
+import { CrisisDetailResolverServiceModule } from './component/crisis-detail/service/crisis-detail-resolver-service.module';
 
 export function isAdminMatched(url: UrlSegment[]): UrlMatchResult {
   let result;
@@ -40,7 +41,7 @@ const ROUTES: Routes = [
     children: [
       {
         path: 'superheroes',
-        loadChildren: './heroes/heroes.module#HeroesModule',
+        loadChildren: () => import('./heroes/heroes.module').then((m) => m.HeroesModule),
         data: {
           preload: true
         }
@@ -48,12 +49,13 @@ const ROUTES: Routes = [
       {
         path: 'login',
         // component: LoginComponent
-        loadChildren: './auth/auth.module#AuthModule'
+        loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule)
       },
       {
         path: 'admin',
         // matcher: isAdminMatched, // zastępuje "path", ale nie działa z routingiem w lazy loaded module
-        loadChildren: 'src/app/module/crisis/admin/admin.module#AdminModule', // całkowicie bezwzględna (tsconfig.json)
+        loadChildren: () =>
+          import('src/app/module/crisis/admin/admin.module').then((m) => m.AdminModule), // całkowicie bezwzględna (tsconfig.json)
         canLoad: [
           AuthGuard
         ]
@@ -98,8 +100,13 @@ const ROUTES: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(ROUTES)],
-  exports: [RouterModule]
+  imports: [
+    CrisisDetailResolverServiceModule, // circular dependency solved
+    RouterModule.forChild(ROUTES)
+  ],
+  exports: [
+    RouterModule
+  ]
 })
 export class CrisisRoutingModule {
 }

@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, UrlMatchResult, UrlSegment } from '@angular/router';
-import { ComposeMessageComponent, NotFound404Component, ObservComponent, TemplateRefExampleComponent } from './index2';
+import { NotFound404Component, ObservComponent, TemplateRefExampleComponent } from './component';
 import { SelectivePreloadingStrategyService } from './service/selective-preloading-strategy.service';
+import { SelectivePreloadingStrategyServiceModule } from './service/selective-preloading-strategy-service.module';
+import { ComposeMessageComponent } from './module/crisis/component/compose-message/compose-message.component';
 
 export function isComposeMatched(url: UrlSegment[]): UrlMatchResult {
   console.log('CrisisRoutingModule # isComposeMatched() # url: ' + url);
@@ -11,7 +13,7 @@ export function isComposeMatched(url: UrlSegment[]): UrlMatchResult {
 const ROUTES: Routes = [
   {
     path: 'forms',
-    loadChildren: './module/forms/app2.module#App2Module',
+    loadChildren: () => import('./module/forms/app2.module').then((m) => m.App2Module),
     data: {
       preload: true
     }
@@ -71,16 +73,16 @@ const ROUTES: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(
-    ROUTES,
-    {
+  imports: [
+    SelectivePreloadingStrategyServiceModule,
+    RouterModule.forRoot(ROUTES, {
       enableTracing: false,
       // preloadingStrategy: PreloadAllModules
       preloadingStrategy: SelectivePreloadingStrategyService,
       useHash: false // PathLocationStrategy
       // useHash: true // HashLocationStrategy
-    }
-  )],
+    })
+  ],
   // providers: [SelectivePreloadingStrategyService], // old way DI
   exports: [RouterModule]
 })

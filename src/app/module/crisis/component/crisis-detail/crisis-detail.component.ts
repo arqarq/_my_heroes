@@ -6,12 +6,14 @@ import { Observable, Observer, Subscription } from 'rxjs';
 import { DialogService } from '../../service/dialog.service';
 import { switchMap } from 'rxjs/operators';
 import { CrisisListComponent } from '../crisis-list/crisis-list.component';
-import { CanDeactivateGuard } from '../../heroes/can-deactivate.guard';
+import { CanDeactivateGuard } from '../../service/can-deactivate.guard';
+import { CrisisListServiceModule } from '../crisis-list/crisis-list-service.module';
 
 @Component({
   selector: 'app-crisis-detail',
   templateUrl: './crisis-detail.component.html',
-  styleUrls: ['./crisis-detail.component.css']
+  styleUrls: ['./crisis-detail.component.css'],
+  providers: [CrisisListServiceModule]
 })
 export class CrisisDetailComponent extends CanDeactivateGuard implements OnInit, OnDestroy {
   crisis: Crisis;
@@ -36,10 +38,6 @@ export class CrisisDetailComponent extends CanDeactivateGuard implements OnInit,
     return DialogService.confirm('Discard changes?');
   }
 
-  cancel() {
-    this.gotoCrises();
-  }
-
   save() {
     this.crisis.name = this.editName;
     this.crisisService.updateHero(this.crisis).subscribe(
@@ -61,11 +59,11 @@ export class CrisisDetailComponent extends CanDeactivateGuard implements OnInit,
     (booleanPromise.then(
       () => {
         this.crisesList.ngOnInit();
-        this.crisesList.setSelectedId = undefined;
+        this.crisesList.selectedId = undefined;
       },
       () => {
         this.crisesList.ngOnInit();
-        this.crisesList.setSelectedId = undefined;
+        this.crisesList.selectedId = undefined;
       }
     ));
   }
@@ -117,13 +115,13 @@ export class CrisisDetailComponent extends CanDeactivateGuard implements OnInit,
       (data: {crisisHere: Crisis}) => {
         this.crisis = data.crisisHere;
         this.editName = this.crisis.name;
-        this.crisesList.setSelectedId = this.crisis.id;
+        this.crisesList.selectedId = this.crisis.id;
       }
     );
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-    this.crisesList.setSelectedId = undefined;
+    this.crisesList.selectedId = undefined;
   }
 }

@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { MarvelService } from '../../../../service/marvel.service';
+import { MarvelService } from '../../../../../service/marvel.service';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
-import { Hero, HERO_NOUN } from '../../../../model/hero';
+import { Hero, HERO_NOUN } from '../../../../../model/hero';
 import { EMPTY, Observable, of } from 'rxjs';
 import { mergeMap, take } from 'rxjs/operators';
-import { HeroesModule } from '../heroes.module';
+import { HeroDetailResolverServiceModule } from './hero-detail-resolver-service.module';
 
 @Injectable({
-  providedIn: HeroesModule
+  providedIn: HeroDetailResolverServiceModule
 })
 export class HeroDetailResolverService implements Resolve<Hero> {
   constructor(

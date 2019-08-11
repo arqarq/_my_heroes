@@ -8,17 +8,19 @@ import { CrisisCenterHomeComponent } from './component/crisis-center-home/crisis
 import { CrisisDetailComponent } from './component/crisis-detail/crisis-detail.component';
 import { FormsModule } from '@angular/forms';
 import { AuthGuardModule } from './admin/service/auth.guard.module';
-import { CrisisDetailResolverServiceModule } from './component/crisis-detail/service/crisis-detail-resolver-service.module';
 import { AuthServiceModule } from './auth/service/auth-service.module';
+import { DialogServiceModule } from './service/dialog-service.module';
+import { CanDeactivateGuardModule } from './service/can-deactivate-guard.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     MessagesModule,
-    AuthServiceModule,
+    AuthServiceModule, // circular dependency solved
     AuthGuardModule, // circular dependency solved
-    CrisisDetailResolverServiceModule, // circular dependency solved
+    CanDeactivateGuardModule, // circular dependency solved
+    DialogServiceModule, // circular dependency solved
     CrisisRoutingModule
   ],
   declarations: [
