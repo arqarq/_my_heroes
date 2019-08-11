@@ -10,8 +10,8 @@ import {
   RouterStateSnapshot,
   UrlSegment
 } from '@angular/router';
-import { AuthService } from '../auth/service/auth.service';
-import { CrisisModule } from '../crisis.module';
+import { AuthService } from '../../auth/service/auth.service';
+import { AuthGuardModule } from './auth.guard.module';
 
 // Create a dummy session id
 const sessionId = 1234567890;
@@ -23,7 +23,7 @@ export const navigationExtras: NavigationExtras = {
 };
 
 @Injectable({
-  providedIn: CrisisModule
+  providedIn: AuthGuardModule
 })
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   constructor(

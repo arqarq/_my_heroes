@@ -7,15 +7,17 @@ import { MessagesModule } from '../../gen_modules/messages/messages.module';
 import { CrisisCenterHomeComponent } from './component/crisis-center-home/crisis-center-home.component';
 import { CrisisDetailComponent } from './component/crisis-detail/crisis-detail.component';
 import { FormsModule } from '@angular/forms';
-import { AuthServiceModule } from './auth/service/auth-service.module';
+import { AuthGuardModule } from './admin/service/auth.guard.module';
 import { CrisisDetailResolverServiceModule } from './component/crisis-detail/service/crisis-detail-resolver-service.module';
+import { AuthServiceModule } from './auth/service/auth-service.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     MessagesModule,
-    AuthServiceModule, // circular dependency solved
+    AuthServiceModule,
+    AuthGuardModule, // circular dependency solved
     CrisisDetailResolverServiceModule, // circular dependency solved
     CrisisRoutingModule
   ],

@@ -7,17 +7,18 @@ import {
   ClearComponent,
   ManageCrisesComponent,
   ManageHeroesComponent
-} from './index4';
+} from './index';
 
 const adminRoutes: Routes = [
   {
     path: '',
     component: AdminComponent,
-    canActivate: [AuthGuard],
+    canActivate: [
+      AuthGuard
+    ],
     children: [
       {
         path: '',
-        canActivateChild: [AuthGuard],
         children: [
           {
             path: 'clear',
@@ -35,6 +36,9 @@ const adminRoutes: Routes = [
             path: '',
             component: AdminDashboardComponent
           }
+        ],
+        canActivateChild: [
+          AuthGuard
         ]
       }
     ]

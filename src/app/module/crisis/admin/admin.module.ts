@@ -7,7 +7,7 @@ import {
   ClearComponent,
   ManageCrisesComponent,
   ManageHeroesComponent
-} from './index4';
+} from './index';
 
 @NgModule({
   imports: [

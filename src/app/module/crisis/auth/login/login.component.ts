@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { LocalStorageService } from '../index5';
+import { LocalStorageService } from 'src/app/index-services';
 import { AuthService } from '../service/auth.service';
 
 const toStoreTempl: {[key: string]: string} = {

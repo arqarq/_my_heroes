@@ -6,7 +6,7 @@ import { CrisisDetailComponent } from './component/crisis-detail/crisis-detail.c
 import { CrisisCenterHomeComponent } from './component/crisis-center-home/crisis-center-home.component';
 import { CanDeactivateGuard } from './heroes/can-deactivate.guard';
 import { CrisisDetailResolverService } from './component/crisis-detail/service/crisis-detail-resolver.service';
-import { AuthGuard } from './admin/auth.guard';
+import { AuthGuard } from './admin';
 
 export function isAdminMatched(url: UrlSegment[]): UrlMatchResult {
   let result;

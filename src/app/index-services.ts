@@ -1,0 +1,9 @@
+export { CheckForUpdateService } from './service/check-for-update.service';
+export { InMemoryDataService } from './service/in-memory-data.service';
+export { LangChangeRelayService } from './service/lang-change-relay.service';
+export { LocalStorageService } from './service/local-storage.service';
+export { LogUpdateService } from './service/log-update.service';
+export { MarvelService } from './service/marvel.service';
+export { MessageService } from './service/message.service';
+export { PromptUpdateService } from './service/prompt-update.service';
+export { SelectivePreloadingStrategyService } from './service/selective-preloading-strategy.service';

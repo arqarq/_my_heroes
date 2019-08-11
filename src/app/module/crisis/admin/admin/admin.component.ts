@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { navigationExtras } from '../auth.guard';
+import { navigationExtras } from '../service/auth.guard';
 
 @Component({
   selector: 'app-admin',
