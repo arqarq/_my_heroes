@@ -8,6 +8,7 @@ import { CrisisCenterHomeComponent } from './component/crisis-center-home/crisis
 import { CrisisDetailComponent } from './component/crisis-detail/crisis-detail.component';
 import { FormsModule } from '@angular/forms';
 import { AuthServiceModule } from './auth/service/auth-service.module';
+import { CrisisDetailResolverServiceModule } from './component/crisis-detail/service/crisis-detail-resolver-service.module';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { AuthServiceModule } from './auth/service/auth-service.module';
     FormsModule,
     MessagesModule,
     AuthServiceModule, // circular dependency solved
+    CrisisDetailResolverServiceModule, // circular dependency solved
     CrisisRoutingModule
   ],
   declarations: [

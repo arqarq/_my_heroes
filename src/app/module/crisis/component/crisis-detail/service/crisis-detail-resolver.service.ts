@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
-import { Crisis, CRISIS_NOUN } from '../../../../model/crisis';
+import { Crisis, CRISIS_NOUN } from '../../../../../model/crisis';
 import { EMPTY, Observable, of } from 'rxjs';
-import { MarvelService } from '../../../../service/marvel.service';
+import { MarvelService } from '../../../../../service/marvel.service';
 import { mergeMap, take } from 'rxjs/operators';
-import { CrisisModule } from '../../crisis.module';
+import { CrisisDetailResolverServiceModule } from './crisis-detail-resolver-service.module';
 
 @Injectable({
-  providedIn: CrisisModule
+  providedIn: CrisisDetailResolverServiceModule
 })
 export class CrisisDetailResolverService implements Resolve<Crisis> {
   constructor(
@@ -26,7 +26,7 @@ export class CrisisDetailResolverService implements Resolve<Crisis> {
       .getHeroNo404(id)
       .pipe(
         take(1),
-        mergeMap(crisis => {
+        mergeMap((crisis) => {
           if (crisis) {
             return of(crisis);
           } else { // id not found

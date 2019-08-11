@@ -5,7 +5,7 @@ import { CrisisListComponent } from './component/crisis-list/crisis-list.compone
 import { CrisisDetailComponent } from './component/crisis-detail/crisis-detail.component';
 import { CrisisCenterHomeComponent } from './component/crisis-center-home/crisis-center-home.component';
 import { CanDeactivateGuard } from './heroes/can-deactivate.guard';
-import { CrisisDetailResolverService } from './component/crisis-detail/crisis-detail-resolver.service';
+import { CrisisDetailResolverService } from './component/crisis-detail/service/crisis-detail-resolver.service';
 import { AuthGuard } from './admin/auth.guard';
 
 export function isAdminMatched(url: UrlSegment[]): UrlMatchResult {

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
 
 @NgModule()
-export class AuthServiceModule {
+export class CrisisDetailResolverServiceModule {
 }
