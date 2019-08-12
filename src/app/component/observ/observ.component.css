@@ -20,7 +20,7 @@ pre {
   margin: 1.532308em 10px 0;
   background-color: lightgray;
   border: darkgray dashed 1px;
-  width: fit-content
+  width: max-content
 }
 
 pre.toHide {
@@ -28,7 +28,7 @@ pre.toHide {
 }
 
 div.toHide {
-  width: fit-content;
+  width: max-content;
   margin: 1.245em 10px 0;
   overflow-x: hidden;
   overflow-y: scroll;
