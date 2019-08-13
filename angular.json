@@ -16,7 +16,7 @@
             "outputPath": "dist/en",
             "i18nLocale": "en",
             "baseHref": "/en/",
-            "index": "src/index.html",
+            "index": "src/locale/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
@@ -64,6 +64,7 @@
             },
             "pl": {
               "es5BrowserSupport": true,
+              "index": "src/locale/pl/index.html",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
