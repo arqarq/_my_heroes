@@ -26,9 +26,7 @@ export class TemplateRefExampleComponent {
     this.timeoutId = setTimeout(() => {
       this.flag = false;
       this.tock = !this.tock;
-      return () => {
-        clearTimeout(this.timeoutId);
-      };
+      return () => clearTimeout(this.timeoutId);
     }, 100);
     console.log('clicked');
   }

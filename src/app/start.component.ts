@@ -97,7 +97,8 @@ export class StartComponent implements OnInit {
 
   private changeLocationToGivenIfInProdAndNotNode(localeId: string) {
     if (!environment.isNode && environment.production) {
-      document.location.href = this.replaceLocaleInAddress(localeId);
+      // document.location.href = this.replaceLocaleInAddress(localeId);
+      document.location.replace(this.replaceLocaleInAddress(localeId));
     } else {
       this.lcr.resetFlag(100);
     }

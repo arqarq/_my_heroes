@@ -16,7 +16,10 @@ export class LangChangeRelayService {
 
   resetFlag(timeout = 1000) {
     if (this.$langSwitched) {
-      setTimeout(() => this.langSwitched = false, timeout);
+      const toId = setTimeout(() => {
+        this.langSwitched = false;
+        return () => clearTimeout(toId);
+      }, timeout);
     }
   }
 }

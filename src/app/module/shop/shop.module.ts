@@ -1,17 +1,17 @@
+// import locale from '@angular/common/locales/pl';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { CommonModule, CurrencyPipe, registerLocaleData } from '@angular/common';
-import { ShopComponent } from './shop.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ProductListComponent } from './product-list/product-list.component';
-import { TopBarComponent } from './top-bar/top-bar.component';
+import { CartComponent } from './cart/cart.component';
 import { ProductAlertsComponent } from './product-alerts/product-alerts.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-import { CartComponent } from './cart/cart.component';
-import { ShippingComponent } from './shipping/shipping.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import locale from '@angular/common/locales/pl';
-import { MoneyPipe } from './service/money.pipe';
+import { ProductListComponent } from './product-list/product-list.component';
 import { CartServiceModule } from './service/cart-service.module';
+import { MoneyPipe } from './service/money.pipe';
+import { ShippingComponent } from './shipping/shipping.component';
+import { ShopComponent } from './shop.component';
+import { TopBarComponent } from './top-bar/top-bar.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +56,6 @@ import { CartServiceModule } from './service/cart-service.module';
 })
 export class ShopModule {
   constructor() {
-    registerLocaleData(locale); // potrzebne dla 'ng serve', 'ng build' radzi sobie bez tego
+    // registerLocaleData(locale); // potrzebne dla 'ng serve', 'ng build' radzi sobie bez tego
   }
 }

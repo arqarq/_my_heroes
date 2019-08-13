@@ -21,9 +21,10 @@ export class ComposeMessageComponent {
     this.sending = true;
     this.details = 'Sending Message...';
 
-    setTimeout(() => {
+    const toId = setTimeout(() => {
       this.sending = false;
       this.closePopup();
+      return () => clearTimeout(toId);
     }, 1000);
   }
 

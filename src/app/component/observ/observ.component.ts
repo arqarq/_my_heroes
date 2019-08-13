@@ -110,17 +110,21 @@ export class ObservComponent implements OnInit, OnDestroy {
 
   toggleHidden(putIdHere: string, place: symbol, putIdOfTheElementToMeasure?: string) {
     this[place] = true;
-    setTimeout(() => {
+    const toId = setTimeout(() => {
       const divById = document.getElementById(putIdHere);
       const size = putIdOfTheElementToMeasure ? document.getElementById(putIdOfTheElementToMeasure).offsetHeight : 100;
-      if (divById.className === 'toHide') {
+      if (divById.classList.contains('toHide')) {
         if (divById.style.height === '0' || !divById.style.height) {
           divById.style.height = size + 'px';
         } else {
           divById.style.height = '0';
-          setTimeout(() => this[place] = false, 600);
+          const toId2 = setTimeout(() => {
+            this[place] = false;
+            return () => clearTimeout(toId2);
+          }, 600);
         }
       }
+      return () => clearTimeout(toId);
     }, 100);
   }
 }

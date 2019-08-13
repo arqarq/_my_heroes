@@ -33,6 +33,7 @@
           },
           "configurations": {
             "production": {
+              "es5BrowserSupport": true,
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -62,6 +63,7 @@
               "ngswConfigPath": "ngsw-config.json"
             },
             "pl": {
+              "es5BrowserSupport": true,
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
