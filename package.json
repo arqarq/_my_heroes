@@ -1,6 +1,6 @@
 {
   "name": "d00af17f5d630b7296f102d",
-  "version": "4.26.11",
+  "version": "4.26.13",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -62,6 +62,6 @@
     "protractor": "^5.4.2",
     "ts-node": "^8.3.0",
     "tslint": "^5.18.0",
-    "typescript": "^3.5.3"
+    "typescript": "~3.5.3"
   }
 }
