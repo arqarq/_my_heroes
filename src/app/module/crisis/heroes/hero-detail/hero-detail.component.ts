@@ -16,7 +16,7 @@ import { DialogService } from '../../service/dialog.service';
 export class HeroDetailComponent extends CanDeactivateGuard implements OnInit, OnDestroy {
   hero: Hero;
   hero$: Observable<Hero>;
-  private editName: string;
+  editName: string;
   private subscription: Subscription;
 
   constructor(

@@ -17,8 +17,8 @@ import { CrisisListServiceModule } from '../crisis-list/crisis-list-service.modu
 })
 export class CrisisDetailComponent extends CanDeactivateGuard implements OnInit, OnDestroy {
   crisis: Crisis;
+  editName: string;
   private crisis$: Observable<Crisis>;
-  private editName: string;
   private subscription: Subscription;
 
   constructor(

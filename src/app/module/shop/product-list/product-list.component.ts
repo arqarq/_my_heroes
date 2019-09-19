@@ -11,11 +11,11 @@ export class ProductListComponent {
   // products: {[key: string]: number | string}[] = PRODUCTS;
   products: ProductParamsType[] = PRODUCTS;
 
-  private share() {
+  share() {
     window.alert('The product has been shared!');
   }
 
-  private onNotify(fromEvent: ObjectPassedByEventDTO) {
+  onNotify(fromEvent: ObjectPassedByEventDTO) {
     window.alert('You will be notified when the product goes on sale.\n\n' +
       '...test przekazania obiektu przez event:\n' +
       JSON.stringify(fromEvent.productPassedViaEvent, null, 1) +

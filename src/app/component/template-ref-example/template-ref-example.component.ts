@@ -31,7 +31,7 @@ export class TemplateRefExampleComponent {
     console.log('clicked');
   }
 
-  private getName(row: {name: string}): string {
+  getName(row: {name: string}): string {
     console.log('getName() called');
     return row.name;
   }

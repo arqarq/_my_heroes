@@ -13,7 +13,7 @@ import { Observable, Subscription } from 'rxjs';
 export class HeroListComponent implements OnInit, OnDestroy {
   heroes$: Hero[]; // --aot
   qty: number; // --aot
-  private selectedId: number;
+  selectedId: number;
   private subscription: Subscription;
   private subscription2: Subscription;
 
