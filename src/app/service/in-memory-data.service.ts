@@ -3,7 +3,7 @@ import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { HEROES } from '../repository/mock-heroes';
 import { CRISES } from '../repository/mock-crises';
 import { Marvel } from '../model/marvel';
-import { SUPERMEN } from '../repository/mock-supermanes';
+import { SUPERMEN } from '../repository/mock-supermen';
 
 @Injectable({
   providedIn: 'root'
