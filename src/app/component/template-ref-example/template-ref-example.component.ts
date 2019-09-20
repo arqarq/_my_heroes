@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RowsComponent } from './rows.component';
+import { WoratorService } from '../../service/worator.service';
 
 @Component({
   selector: 'app-template-ref-example',
@@ -12,8 +13,9 @@ export class TemplateRefExampleComponent {
   tock: boolean;
   private timeoutId: NodeJS.Timeout;
 
-  constructor() {
+  constructor(private webWorker: WoratorService) {
     this.createRows(15);
+    this.webWorker.postToWorker('hello from TemplateRefExampleComponent!');
   }
 
   onClick2() {

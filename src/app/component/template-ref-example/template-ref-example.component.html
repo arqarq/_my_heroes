@@ -9,8 +9,8 @@
   Click - reattach() via TemplateRefExampleComponent reference to static in RowsComponent
 </h5>
 <app-rows [rows]="rows">
-  <ng-template let-row="rowData">
-    {{ getName(row) }}
+  <ng-template let-rowOne="rowData">
+    {{ getName(rowOne) }}
   </ng-template>
 </app-rows>
 <app-foooter></app-foooter>
