@@ -30,6 +30,7 @@
             ],
             "scripts": [],
             "es5BrowserSupport": true,
+            "extractLicenses": false,
             "webWorkerTsConfig": "tsconfig.worker.json"
           },
           "configurations": {
@@ -47,7 +48,6 @@
               "extractCss": true,
               "namedChunks": false,
               "aot": true,
-              "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
@@ -78,7 +78,6 @@
               "extractCss": true,
               "namedChunks": false,
               "aot": true,
-              "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
