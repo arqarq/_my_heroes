@@ -25,19 +25,19 @@ export class StartComponent implements OnInit {
     public lcr: LangChangeRelayService, // instancja
     @Inject(LOCALE_ID) readonly localeId: string,
     private storage: LocalStorageService,
+    private el: ElementRef,
     sw: LogUpdateService, // wywołaj constructor
     cu: CheckForUpdateService, // wywołaj constructor
-    pu: PromptUpdateService, // wywołaj constructor
-    private el: ElementRef
+    pu: PromptUpdateService // wywołaj constructor
     // private router: Router,
     // private location: Location
   ) {
     this.ver = environment.VERSION;
-    this.localeId = this.localeId.slice(0, 2);
+    this.localeId = this.localeId.slice(0, 2); // 'en-US' -> 'en' w Ivy jak wyjdzie 9.0.0
     if (environment.isNode) {
       this.browserLocaleID = this.localeId;
     } else {
-      this.setLangInHTMLElement();
+      // this.setLangInHTMLElement(); // niepotrzebne - przygotowane osobne pliki 'index.html' dla lokalizacji
       this.browserLocaleID = navigator.language.slice(0, 2);
       this.prepareAddress();
     }
