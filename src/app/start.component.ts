@@ -23,7 +23,7 @@ export class StartComponent implements OnInit {
 
   constructor(
     public lcr: LangChangeRelayService, // instancja
-    @Inject(LOCALE_ID) private localeId: string,
+    @Inject(LOCALE_ID) readonly localeId: string,
     private storage: LocalStorageService,
     sw: LogUpdateService, // wywołaj constructor
     cu: CheckForUpdateService, // wywołaj constructor
@@ -33,6 +33,7 @@ export class StartComponent implements OnInit {
     // private location: Location
   ) {
     this.ver = environment.VERSION;
+    this.localeId = this.localeId.slice(0, 2);
     if (environment.isNode) {
       this.browserLocaleID = this.localeId;
     } else {
@@ -47,6 +48,7 @@ export class StartComponent implements OnInit {
 
   ngOnInit() {
     this.checkIfUserIsSwitchingLanguage();
+    this.showLangsInConsole();
     // console.log('------------------------');
     // console.log(strings[0] + '//' + strings[2] + '/es');
     // console.log('------------------------');
@@ -56,6 +58,17 @@ export class StartComponent implements OnInit {
     // console.log('------------------------');
     // window.location.href = strings[0] + '//' + strings[2] + '/en';
     // this.router.navigate(['es', 'choose']);
+  }
+
+  private showLangsInConsole() {
+    console.log('----------------------------------------------------------------------' +
+      '---------------------------------------------------------------------- %clang from browser:%c ' +
+      (!environment.isNode ? navigator.language : 'node'),
+      'color: red', 'color: red; font-weight: bolder');
+    console.log('----------------------------------------------------------------------' +
+      '---------------------------------------------------------------------- %clang from @ang:%c ' +
+      (!environment.isNode ? this.localeId : 'node'),
+      'color: red', 'color: red; font-weight: bolder');
   }
 
   private checkIfUserIsSwitchingLanguage() {

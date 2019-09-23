@@ -8,10 +8,10 @@ if (environment.production) {
 }
 
 console.log('----------------------------------------------------------------------' +
-  '---------------------------------------------------------------------- %cnode / browser? %c' +
+  '---------------------------------------------------------------------- %cnode / browser?%c ' +
   (environment.isNode ? 'node' : 'browser'), 'color: red', 'color: red; font-weight: bolder');
 console.log('----------------------------------------------------------------------' +
-  '---------------------------------------------------------------------- %cPROD? %c' + environment.production,
+  '---------------------------------------------------------------------- %cPROD?%c ' + environment.production,
   'color: red', 'color: red; font-weight: bolder');
 
 platformBrowserDynamic(
