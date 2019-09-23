@@ -1,13 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import {
-  AdminComponent,
-  AdminDashboardComponent,
-  AuthGuard,
-  ClearComponent,
-  ManageCrisesComponent,
-  ManageHeroesComponent
-} from './index';
+import { AdminComponent, AdminDashboardComponent, AuthGuard, ClearComponent, ManageCrisesComponent, ManageHeroesComponent } from './index';
 
 const adminRoutes: Routes = [
   {

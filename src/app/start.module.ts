@@ -10,13 +10,13 @@ import { StartRoutingModule } from './start-routing.module';
 import {
   ComposeMessageComponent,
   FoooterComponent,
-  InMemoryDataService,
   NotFound404Component,
   ObservComponent,
   RowsComponent,
   StartComponent,
   TemplateRefExampleComponent
 } from './index';
+import { InMemoryDataService } from './service/index-services';
 
 @NgModule({
   imports: [

@@ -1,4 +1,3 @@
-export { InMemoryDataService } from './service/in-memory-data.service';
 export { StartComponent } from './start.component';
 export { NotFound404Component } from './component/notfound404/notfound404.component';
 export { ComposeMessageComponent } from './module/crisis/component/compose-message/compose-message.component';
