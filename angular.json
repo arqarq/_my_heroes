@@ -29,13 +29,12 @@
               "src/styles.css"
             ],
             "scripts": [],
-            "es5BrowserSupport": true,
+            "es5BrowserSupport": false,
             "extractLicenses": false,
             "webWorkerTsConfig": "tsconfig.worker.json"
           },
           "configurations": {
             "production": {
-              "es5BrowserSupport": true,
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -64,7 +63,6 @@
               "ngswConfigPath": "ngsw-config.json"
             },
             "pl": {
-              "es5BrowserSupport": true,
               "index": "src/locale/pl/index.html",
               "fileReplacements": [
                 {
