@@ -17,6 +17,7 @@ import {
   TemplateRefExampleComponent
 } from './index';
 import { InMemoryDataService } from './service/index-services';
+import { AdditionalDirective } from './directive/additional.directive';
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import { InMemoryDataService } from './service/index-services';
   ],
   declarations: [
     StartComponent,
+    AdditionalDirective,
     // ChooserComponent,
     NotFound404Component,
     ComposeMessageComponent,
