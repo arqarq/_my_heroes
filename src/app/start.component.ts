@@ -33,6 +33,7 @@ export class StartComponent implements OnInit {
     // private location: Location
   ) {
     this.ver = environment.VERSION;
+    this.showLangsInConsole();
     this.localeId = this.localeId.slice(0, 2); // 'en-US' -> 'en' w Ivy jak wyjdzie 9.0.0
     if (environment.isNode) {
       this.browserLocaleID = this.localeId;
@@ -48,7 +49,6 @@ export class StartComponent implements OnInit {
 
   ngOnInit() {
     this.checkIfUserIsSwitchingLanguage();
-    this.showLangsInConsole();
     // console.log('------------------------');
     // console.log(strings[0] + '//' + strings[2] + '/es');
     // console.log('------------------------');
@@ -66,7 +66,7 @@ export class StartComponent implements OnInit {
       (!environment.isNode ? navigator.language : 'node'),
       'color: red', 'color: red; font-weight: bolder');
     console.log('----------------------------------------------------------------------' +
-      '---------------------------------------------------------------------- %clang from @ang:%c ' +
+      '---------------------------------------------------------------------- %craw lang from @ang:%c ' +
       (!environment.isNode ? this.localeId : 'node'),
       'color: red', 'color: red; font-weight: bolder');
   }
