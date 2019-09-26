@@ -25,8 +25,10 @@ export class AdditionalDirective {
     @Inject(DOCUMENT) private doc: Document,
     @Inject(INJ2_TOKEN) private docc: Document
   ) {
-    win.addEventListener('dblclick', () => alert(`Podwójny klik! (URI: ${AdditionalDirective.prepareURI(doc.documentURI)}) ` +
-      ` (fullscreen enabled? ${docc.fullscreenEnabled})`));
+    win.addEventListener('dblclick', () => alert(
+      `Podwójny klik!\n` +
+      `(URI: ${AdditionalDirective.prepareURI(doc.documentURI)})\n` +
+      `(fullscreen enabled? ${!!docc.fullscreenElement})`));
   }
 
   private static prepareURI(input: string): string {
