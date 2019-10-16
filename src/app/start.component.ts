@@ -13,7 +13,7 @@ import { PromptUpdateService } from './service/prompt-update.service';
   styleUrls: ['./start.component.css']
 })
 export class StartComponent implements OnInit {
-  readonly ver: string;
+  ver: string;
   readonly langStored: boolean;
   readonly localeIdNumbers = LOCALE_ID_NUMBERS;
   readonly localeIdNumbersValues: string[];
@@ -49,6 +49,7 @@ export class StartComponent implements OnInit {
 
   ngOnInit() {
     this.checkIfUserIsSwitchingLanguage();
+    this.showAngularVersion();
     // console.log('------------------------');
     // console.log(strings[0] + '//' + strings[2] + '/es');
     // console.log('------------------------');
@@ -58,6 +59,12 @@ export class StartComponent implements OnInit {
     // console.log('------------------------');
     // window.location.href = strings[0] + '//' + strings[2] + '/en';
     // this.router.navigate(['es', 'choose']);
+  }
+
+  private showAngularVersion() {
+    const elementsByTagName = document.body.getElementsByTagName('app-start');
+    const angVer = elementsByTagName.length ? elementsByTagName.item(0).getAttribute('ng-version') : null;
+    this.ver = String(this.ver).concat(' / ' + (angVer || 'n/a'));
   }
 
   private showLangsInConsole() {
