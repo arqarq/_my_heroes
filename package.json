@@ -1,6 +1,6 @@
 {
   "name": "d00af17f5d630b7296f102d",
-  "version": "4.27.81",
+  "version": "4.27.89",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -12,18 +12,17 @@
     "build-i18n:en": "ng build --prod",
     "build-i18n:pl": "ng build --configuration=pl",
     "build-i18n": "npm run build-i18n:en && npm run build-i18n:pl",
-    "a": "(if exist dist rmdir /q/s dist) && node setver patch && npm run build-i18n && firebase deploy",
-    "am": "(if exist dist rmdir /q/s dist) && node setver minor && npm run build-i18n && firebase deploy",
-    "aM": "(if exist dist rmdir /q/s dist) && node setver major && npm run build-i18n && firebase deploy",
-    "ua": "yarn upgrade && (if exist dist rmdir /q/s dist) && node setver patch && npm run build-i18n && firebase deploy",
-    "uam": "yarn upgrade && (if exist dist rmdir /q/s dist) && node setver minor && npm run build-i18n && firebase deploy",
-    "uaM": "yarn upgrade && (if exist dist rmdir /q/s dist) && node setver major && npm run build-i18n && firebase deploy"
+    "a": "(if exist dist rmdir /q/s dist) && node z_js_util_files\\setver patch && npm run build-i18n && firebase deploy",
+    "am": "(if exist dist rmdir /q/s dist) && node z_js_util_files\\setver minor && npm run build-i18n && firebase deploy",
+    "aM": "(if exist dist rmdir /q/s dist) && node z_js_util_files\\setver major && npm run build-i18n && firebase deploy",
+    "ua": "yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\setver patch && npm run build-i18n && firebase deploy",
+    "uam": "yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\setver minor && npm run build-i18n && firebase deploy",
+    "uaM": "yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\setver major && npm run build-i18n && firebase deploy"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^9.0.0-next.0",
     "@angular/common": "^9.0.0-next.0",
-    "@angular/compiler": "^9.0.0-next.0",
     "@angular/core": "^9.0.0-next.0",
     "@angular/forms": "^9.0.0-next.0",
     "@angular/platform-browser": "^9.0.0-next.0",
@@ -37,13 +36,13 @@
     "karma-cli": "^2.0.0",
     "ngx-webstorage-service": "^4.0.1",
     "rxjs": "^6.5.2",
-    "tslib": "^1.10.0",
     "webpack": "^4.39.1",
     "zone.js": "^0.10.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.900.0-next.0",
     "@angular/cli": "^9.0.0-next.0",
+    "@angular/compiler": "^9.0.0-next.0",
     "@angular/compiler-cli": "^9.0.0-next.0",
     "@angular/language-service": "^9.0.0-next.0",
     "@types/jasmine": "^3.3.16",
