@@ -1,0 +1,12 @@
+p.list {
+  margin: 0 auto;
+  border: 1px solid black;
+  border-top: none;
+  width: 20%;
+  float: left;
+  clear: left
+}
+
+p.list:first-child {
+  margin-block-start: 1em
+}

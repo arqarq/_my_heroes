@@ -8,7 +8,11 @@ import { Title } from '@angular/platform-browser';
 })
 export class App2Component implements OnInit {
   und: Array<number>;
+  und2: Array<number> = [];
   t = typeof this.und;
+  tt = typeof this.und2;
+  dane: number[] = [];
+  liczba = 1;
   private title = 'Formularze';
 
   constructor(private titleService: Title) {
@@ -16,6 +20,10 @@ export class App2Component implements OnInit {
 
   ngOnInit(): void {
     this.setTitle(this.title);
+  }
+
+  dodajLiczbe() {
+    this.dane.push(this.liczba++);
   }
 
   private setTitle(newTitle: string) {

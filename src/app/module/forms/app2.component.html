@@ -1,7 +1,18 @@
 <p>
-  app-root2 works! // tu forms
-  {{ und?.length || '-' }}/{{ t }}
+  app-root2 works! // tu forms // {{ und?.length || '-' }}/{{ t }} {{ und2.length }}/{{ tt }}
 </p>
+<div>
+  <button (click)="dodajLiczbe()"
+          type="button">
+    dodaj liczbę
+  </button>
+</div>
+<div>
+  <p *ngFor="let dana of dane; let index = index"
+     class="list">
+    <sub>{{ index }}</sub>&nbsp;<b>{{ dana }}</b>
+  </p>
+</div>
 <div class="bottom-right bottom-right-generic">
   <nav>
     <a routerLink="/choose">Back to choice</a>
