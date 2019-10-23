@@ -16,14 +16,12 @@
             "outputPath": "dist/en",
             "i18nLocale": "en",
             "baseHref": "/en/",
-            "index": "src/locale/index.html",
+            "index": "src/locale/en/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/manifest.webmanifest"
+              "src/assets"
             ],
             "styles": [
               "src/styles.css"
@@ -39,6 +37,10 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "src/assets/manifest.webmanifest",
+                  "with": "src/locale/en/manifest.webmanifest"
                 }
               ],
               "optimization": true,
@@ -57,7 +59,6 @@
                 }
               ],
               "outputPath": "dist/en",
-              "i18nLocale": "en",
               "baseHref": "/en/",
               "serviceWorker": true,
               "ngswConfigPath": "ngsw-config.json"
@@ -68,6 +69,10 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "src/assets/manifest.webmanifest",
+                  "with": "src/locale/pl/manifest.webmanifest"
                 }
               ],
               "optimization": true,
@@ -86,7 +91,7 @@
                 }
               ],
               "outputPath": "dist/pl",
-              "i18nFile": "src/locale/messages.pl.xlf",
+              "i18nFile": "src/locale/pl/messages.pl.xlf",
               "i18nFormat": "xlf",
               "i18nLocale": "pl",
               "i18nMissingTranslation": "warning",
@@ -129,9 +134,7 @@
             ],
             "scripts": [],
             "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/manifest.webmanifest"
+              "src/assets"
             ]
           }
         },
