@@ -26,6 +26,22 @@ export class App2Component implements OnInit {
     this.dane.push(this.liczba++);
   }
 
+  weryfikacja(el: HTMLInputElement) {
+    let val: any = el.value;
+    if (/^[0-9]+\.$/.test(val)) {
+      alert('1. regex: ' + val);
+      val = val.slice(0, -1);
+    }
+    val = +val;
+    if (!(val > 0 && val < 101) || (val % 1 !== 0)) {
+      alert('2. zerowanie nullem: ' + val);
+      el.value = null;
+      return;
+    }
+    alert('3. ok: ' + val);
+    el.value = val + '';
+  }
+
   private setTitle(newTitle: string) {
     this.titleService.setTitle(newTitle);
   }

@@ -4,9 +4,25 @@ p.list {
   border-top: none;
   width: 20%;
   float: left;
-  clear: left
+  clear: both
 }
 
 p.list:first-child {
   margin-block-start: 1em
+}
+
+p.list:last-child {
+  margin-block-end: 1em
+}
+
+.first {
+  margin-block-start: 1em
+}
+
+.first-sm {
+  margin-block-start: .5em
+}
+
+.clear-both {
+  clear: both
 }

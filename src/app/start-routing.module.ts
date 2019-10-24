@@ -19,6 +19,10 @@ const ROUTES: Routes = [
     }
   },
   {
+    path: 'scrollpanel',
+    loadChildren: () => import('./module/primeng-scrollpanel/primeng-scrollpanel.module').then((m) => m.PrimengScrollpanelModule)
+  },
+  {
     path: 'ng-heroes',
     loadChildren: () => import('./module/heroes/app.module').then((m) => m.AppModule),
     data: {

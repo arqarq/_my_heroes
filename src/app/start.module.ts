@@ -9,7 +9,6 @@ import { environment } from '../environments/environment';
 import { StartRoutingModule } from './start-routing.module';
 import {
   ComposeMessageComponent,
-  FoooterComponent,
   NotFound404Component,
   ObservComponent,
   RowsComponent,
@@ -18,6 +17,7 @@ import {
 } from './index';
 import { InMemoryDataService } from './service/index-services';
 import { AdditionalDirective } from './directive/additional.directive';
+import { FooterModule } from './gen_modules/footer/footer.module';
 
 @NgModule({
   imports: [
@@ -37,7 +37,8 @@ import { AdditionalDirective } from './directive/additional.directive';
     ServiceWorkerModule.register(
       'ngsw-worker.js',
       {enabled: environment.production}
-    )
+    ),
+    FooterModule
   ],
   declarations: [
     StartComponent,
@@ -45,7 +46,6 @@ import { AdditionalDirective } from './directive/additional.directive';
     // ChooserComponent,
     NotFound404Component,
     ComposeMessageComponent,
-    FoooterComponent,
     ObservComponent,
     TemplateRefExampleComponent,
     RowsComponent
