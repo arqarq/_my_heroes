@@ -1,6 +1,6 @@
 {
   "name": "d00af17f5d630b7296f102d",
-  "version": "4.27.142",
+  "version": "4.27.154",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -22,7 +22,6 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^9.0.0-next.0",
-    "@angular/cdk": "~8.0.0",
     "@angular/common": "^9.0.0-next.0",
     "@angular/core": "^9.0.0-next.0",
     "@angular/forms": "^9.0.0-next.0",
@@ -36,7 +35,6 @@
     "core-js": "^3.1.4",
     "karma-cli": "^2.0.0",
     "ngx-webstorage-service": "^4.0.1",
-    "primeng": "^8.1.1",
     "rxjs": "^6.5.2",
     "webpack": "^4.39.1",
     "zone.js": "^0.10.1"
