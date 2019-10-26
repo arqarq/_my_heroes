@@ -1,6 +1,6 @@
 {
   "name": "d00af17f5d630b7296f102d",
-  "version": "4.28.32",
+  "version": "4.28.33",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -20,34 +20,27 @@
     "uaM": "yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\setver major && npm run build-i18n && firebase deploy"
   },
   "private": true,
-  "dependencies": {
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^0.900.0-next.0",
     "@angular/animations": "^9.0.0-next.0",
+    "@angular/cli": "^9.0.0-next.0",
     "@angular/common": "^9.0.0-next.0",
+    "@angular/compiler": "^9.0.0-next.0",
+    "@angular/compiler-cli": "^9.0.0-next.0",
     "@angular/core": "^9.0.0-next.0",
     "@angular/forms": "^9.0.0-next.0",
+    "@angular/language-service": "^9.0.0-next.0",
     "@angular/platform-browser": "^9.0.0-next.0",
     "@angular/platform-browser-dynamic": "^9.0.0-next.0",
     "@angular/pwa": "^0.900.0-next.0",
     "@angular/router": "^9.0.0-next.0",
     "@angular/service-worker": "^9.0.0-next.0",
-    "@types/node": "^12.6.9",
-    "angular-in-memory-web-api": "^0.9.0",
-    "core-js": "^3.1.4",
-    "karma-cli": "^2.0.0",
-    "ngx-webstorage-service": "^4.0.1",
-    "rxjs": "^6.5.2",
-    "webpack": "^4.39.1",
-    "zone.js": "^0.10.1"
-  },
-  "devDependencies": {
-    "@angular-devkit/build-angular": "^0.900.0-next.0",
-    "@angular/cli": "^9.0.0-next.0",
-    "@angular/compiler": "^9.0.0-next.0",
-    "@angular/compiler-cli": "^9.0.0-next.0",
-    "@angular/language-service": "^9.0.0-next.0",
     "@types/jasmine": "^3.3.16",
     "@types/jasminewd2": "^2.0.6",
+    "@types/node": "^12.6.9",
+    "angular-in-memory-web-api": "^0.9.0",
     "codelyzer": "^5.1.0",
+    "core-js": "^3.1.4",
     "firebase-tools": "^7.2.2",
     "fs-extra": "^8.1.0",
     "http-server": "0.9.0",
@@ -55,12 +48,17 @@
     "jasmine-spec-reporter": "^4.2.1",
     "karma": "^4.2.0",
     "karma-chrome-launcher": "^3.0.0",
+    "karma-cli": "^2.0.0",
     "karma-coverage-istanbul-reporter": "^2.1.0",
     "karma-jasmine": "^2.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
+    "ngx-webstorage-service": "^4.0.1",
     "protractor": "^5.4.2",
+    "rxjs": "^6.5.2",
     "ts-node": "^8.3.0",
     "tslint": "^5.18.0",
-    "typescript": "^3.6.4"
+    "typescript": "^3.6.4",
+    "webpack": "^4.39.1",
+    "zone.js": "^0.10.1"
   }
 }
