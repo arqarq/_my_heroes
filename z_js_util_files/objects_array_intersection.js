@@ -1,0 +1,30 @@
+const temp = {...{id: 1, data: {content: '111', content2: '1111'}}};
+const O1 = [];
+O1.push(temp);
+O1.push({id: 2, data: {content: '222', content2: '2222'}});
+O1.push({id: 3, data: {content: '333', content2: '3333'}});
+O1.push({id: 4, data: {content: '444', content2: '4444'}});
+console.log(O1);
+const O2 = [];
+O2.push({id: 3, data: {content: '333', content2: '3333'}});
+O2.push({id: 4, data: {content: '444', content2: '4444'}});
+O2.push({id: 5, data: {content: '555', content2: '5555'}});
+O2.push({id: 6, data: {content: '666', content2: '6666'}});
+O2.push({id: 7, data: {content: '777', content2: '7777'}});
+console.log(O2);
+const O3 = [...O1, ...O2];
+console.log(O3);
+console.log('-----', Object.keys(O2));
+console.log('-----', Object.values(O2));
+console.log('-----', Object.entries(O2));
+const O4 = O1.filter((value, index, array) => {
+  const wyn = O2.some((value2, index2, array2) => {
+    // return value2.id === value.id && value2.data.content === value.data.content && value2.data.content2 === value.data.content2;
+    console.log(value2.id === value.id);
+    return value2.id === value.id;
+  });
+  console.log('------');
+  // return value.id === 3;
+  return wyn;
+});
+console.log(O4);
