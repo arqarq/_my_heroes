@@ -1,6 +1,6 @@
 {
   "name": "d00af17f5d630b7296f102d",
-  "version": "4.28.34",
+  "version": "4.29.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -61,5 +61,8 @@
     "typescript": "^3.6.4",
     "webpack": "^4.39.1",
     "zone.js": "^0.10.1"
+  },
+  "dependencies": {
+    "@angular/localize": "^9.0.0-rc.0"
   }
 }
