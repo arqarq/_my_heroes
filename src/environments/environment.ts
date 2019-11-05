@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 import { version } from '../../package.json';
-import { angularCompilerOptions } from '../../tsconfig.app.json';
+import { IVY_ON } from '../locale/LIDs';
 
 let isNode = false;
 if (typeof process !== 'undefined' && process.version) {
@@ -13,7 +13,7 @@ if (typeof process !== 'undefined' && process.version) {
 export const environment = {
   production: false,
   VERSION: version,
-  IVY_ON: angularCompilerOptions.enableIvy,
+  IVY_ON,
   isNode
 };
 

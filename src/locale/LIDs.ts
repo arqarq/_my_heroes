@@ -14,3 +14,5 @@ export const LOCALE_ID_CURRENCIES: {[key: string]: {code: string, display: strin
     display: 'symbol'
   }
 };
+
+export const IVY_ON = true;

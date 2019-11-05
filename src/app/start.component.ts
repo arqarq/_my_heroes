@@ -64,7 +64,7 @@ export class StartComponent implements OnInit {
   private showAngularVersion() {
     const elementsByTagName = document.body.getElementsByTagName('app-start');
     const angVer = elementsByTagName.length ? elementsByTagName.item(0).getAttribute('ng-version') : null;
-    this.ver = String(this.ver).concat(' / ' + (angVer || 'n/a') + ' / Ivy on? ' + environment.IVY_ON);
+    this.ver = String(this.ver).concat(' / ' + (angVer || 'n/a')).concat(' / Ivy on? ' + environment.IVY_ON);
   }
 
   private showLangsInConsole() {
