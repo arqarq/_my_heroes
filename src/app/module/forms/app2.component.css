@@ -26,3 +26,32 @@ p.list:last-child {
 .clear-both {
   clear: both
 }
+
+table {
+  text-align: center;
+  border-collapse: collapse;
+  table-layout: fixed
+}
+
+table, th, td {
+  border: 1px solid black
+}
+
+th, td {
+  padding: 5px 10px;
+  min-width: 300px
+}
+
+.L {
+  text-align: left
+}
+
+.R {
+  text-align: right
+}
+
+#test0::before {
+  content: "Suma:";
+  position: absolute;
+  right: calc(50% + 1.5ch + 3px)
+}

@@ -123,6 +123,20 @@
             }
           }
         },
+        "serve2": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "heroes:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "heroes:build:production"
+            },
+            "pl": {
+              "browserTarget": "heroes:build:pl"
+            }
+          }
+        },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {

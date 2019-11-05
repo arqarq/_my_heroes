@@ -13,6 +13,7 @@ export class App2Component implements OnInit {
   tt = typeof this.und2;
   dane: number[] = [];
   liczba = 1;
+  ilePx = 20;
   private title = 'Formularze';
 
   constructor(private titleService: Title) {

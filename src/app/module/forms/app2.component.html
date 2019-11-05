@@ -1,6 +1,61 @@
 <p>
   app-root2 works! // tu forms // {{ und?.length || '-' }}/{{ t }} {{ und2.length }}/{{ tt }}
 </p>
+<section [ngStyle]="{background: 'yellow'}"
+         [style]="{'margin-block-end': '1em'}">
+  <table>
+    <thead>
+    <tr>
+      <th [style]="{'padding-left': '3em'}"
+          class="L">
+        AAA
+      </th>
+      <th [class.L]="true"
+          [style]="{paddingLeft: '3em'}">
+        BBB
+      </th>
+      <th #tableHeaderCellElement
+          [style.paddingLeft.px]="ilePx"
+          class="L">
+        CCC
+      </th>
+      <th [style.paddingLeft]="'3%'"
+          class="L">
+        DDD
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td [ngStyle]="{paddingLeft: ilePx + 'px'}"
+          class="L">
+        1
+      </td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td class="R">22</td>
+      <td>33</td>
+      <td>44</td>
+    </tr>
+    <tr>
+      <td>111</td>
+      <td>222</td>
+      <td [style.paddingLeft]="0"
+          [style.paddingRight.px]="(tableHeaderCellElement.offsetWidth)/1000 + 1"
+          [style]="{background: 'gray', color: 'azure'}">
+        <div style="position: relative">
+          <span id="test0">333</span>
+        </div>
+      </td>
+      <td>444</td>
+    </tr>
+    </tbody>
+  </table>
+</section>
 <section>
   <div>
     <button (click)="dodajLiczbe()"
