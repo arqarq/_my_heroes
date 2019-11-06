@@ -50,8 +50,8 @@ th, td {
   text-align: right
 }
 
-#test0::before {
+span#test0::before {
   content: "Suma:";
   position: absolute;
-  right: calc(50% + 1.5ch + 3px)
+  right: calc(50% + 1.75ch)
 }
