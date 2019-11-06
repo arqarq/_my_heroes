@@ -112,7 +112,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "heroes:build",
-            "proxyConfig": "proxy.conf.js"
+            "proxyConfig": "src/proxy.conf.js"
           },
           "configurations": {
             "production": {
@@ -149,7 +149,7 @@
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
+            "karmaConfig": "src/karma.conf.js",
             "styles": [
               "src/styles.css"
             ],
