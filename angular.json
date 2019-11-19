@@ -5,9 +5,6 @@
   "projects": {
     "heroes": {
       "root": "",
-      "i18n": {
-        "sourceLocale": "en"
-      },
       "sourceRoot": "src",
       "projectType": "application",
       "prefix": "app",
@@ -16,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist",
+            "outputPath": "dist/en",
             "i18nLocale": "en",
             "baseHref": "/en/",
             "index": "src/locale/en/index.html",
