@@ -14,6 +14,7 @@ export class App2Component implements OnInit {
   dane: number[] = [];
   liczba = 1;
   ilePx = 20;
+  items = [2, 1];
   private title = 'Formularze';
 
   constructor(private titleService: Title) {

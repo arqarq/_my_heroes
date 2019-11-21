@@ -23,6 +23,10 @@ p.list:last-child {
   margin-block-start: .5em
 }
 
+.first-sm-after {
+  margin-block-end: .5em
+}
+
 .clear-both {
   clear: both
 }

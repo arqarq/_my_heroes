@@ -80,10 +80,20 @@
            type="text"/>
     <label for="inputEl0"
            style="margin: 0"> %</label>
-    <p class="first-sm"
+    <p class="first-sm first-sm-after"
        style="font-weight: bold; font-size: x-large">
       {{ input0.value }}
     </p>
   </div>
+</section>
+<section>
+  <ng-template #parameterListItem
+               let-parameterRR="parameterR">
+    {{ parameterRR }}
+  </ng-template>
+  <ng-container *ngFor="let parameter of items"
+                [ngTemplateOutletContext]="{parameterR: parameter}"
+                [ngTemplateOutlet]="parameterListItem">
+  </ng-container>
 </section>
 <app-foooter></app-foooter>
