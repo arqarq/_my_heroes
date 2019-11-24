@@ -73,12 +73,13 @@
 <section>
   <div class="first clear-both">
     <input #input0
-           (input)="weryfikacja(input0)"
+           (input)="weryfik(input0)"
            id="inputEl0"
            placeholder="—"
-           style="width: 50px; text-align: center"
+           style="width: 50px; text-align: center; font-size: .8333em"
            type="text"/>
-    <label for="inputEl0"
+    <label [style]="{fontSize: input0.style.fontSize}"
+           for="inputEl0"
            style="margin: 0"> %</label>
     <p class="first-sm first-sm-after"
        style="font-weight: bold; font-size: x-large">
