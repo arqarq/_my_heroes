@@ -17,13 +17,13 @@
     "build-i18n": "npm run build-i18n:en && npm run build-i18n:pl",
     "build-i18n-watch": "start npm run build-i18n:en:watch && start npm run build-i18n:pl:watch",
     "biw": "(if exist dist rmdir /q/s dist) && start npm run build-i18n:en:watch && start npm run build-i18n:pl:watch",
-    "biws": "node z_js_util_files\\watch_serve_local.js",
-    "a": "(if exist dist rmdir /q/s dist) && node z_js_util_files\\setver patch && npm run build-i18n && firebase deploy",
-    "am": "(if exist dist rmdir /q/s dist) && node z_js_util_files\\setver minor && npm run build-i18n && firebase deploy",
-    "aM": "(if exist dist rmdir /q/s dist) && node z_js_util_files\\setver major && npm run build-i18n && firebase deploy",
-    "ua": "yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\setver patch && npm run build-i18n && firebase deploy",
-    "uam": "yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\setver minor && npm run build-i18n && firebase deploy",
-    "uaM": "yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\setver major && npm run build-i18n && firebase deploy"
+    "biws": "(if exist dist rmdir /q/s dist) && node z_js_util_files\\__watch_serve_local.js",
+    "a": "(if exist dist rmdir /q/s dist) && node z_js_util_files\\__setver patch && npm run build-i18n && firebase deploy",
+    "am": "(if exist dist rmdir /q/s dist) && node z_js_util_files\\__setver minor && npm run build-i18n && firebase deploy",
+    "aM": "(if exist dist rmdir /q/s dist) && node z_js_util_files\\__setver major && npm run build-i18n && firebase deploy",
+    "ua": "yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\__setver patch && npm run build-i18n && firebase deploy",
+    "uam": "yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\__setver minor && npm run build-i18n && firebase deploy",
+    "uaM": "yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\__setver major && npm run build-i18n && firebase deploy"
   },
   "private": true,
   "devDependencies": {
