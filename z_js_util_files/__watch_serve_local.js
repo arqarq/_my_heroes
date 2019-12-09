@@ -37,7 +37,7 @@ const timeout = setTimeout(() => {
 
   run2();
   del()
-}, 500);
+}, 1000);
 const interval = setInterval(() => {
   if (fse.existsSync('dist\\en') && fse.existsSync('dist\\pl')) {
     run3();
