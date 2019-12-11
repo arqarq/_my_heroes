@@ -29,3 +29,6 @@ var2('-- abc');
 console.log(var3);
 var3 = 4;
 console.log(var3);
+
+const b = require('child_process');
+b.execSync('start cmd');
