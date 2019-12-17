@@ -1,8 +1,8 @@
 {
   "configVersion": 1,
-  "timestamp": 1576582017864,
+  "timestamp": 1576593081422,
   "appData": {
-    "ver": "4.29.62"
+    "ver": "4.29.65"
   },
   "index": "/_my_heroes/index.html",
   "assetGroups": [
@@ -12,21 +12,22 @@
       "updateMode": "prefetch",
       "urls": [
         "/_my_heroes/0.65ee8c06f02f211e5c73.worker.js",
-        "/_my_heroes/10.d4461c6780e6c4d3d165.js",
-        "/_my_heroes/11.1f8ee1b8cf062d7447bc.js",
-        "/_my_heroes/12.2c667e8d34fcdc4b06c9.js",
-        "/_my_heroes/13.59733738ad705dbb9292.js",
-        "/_my_heroes/5.e27c53d1a8776d91fa50.js",
-        "/_my_heroes/6.37348a67908a7fe9d763.js",
-        "/_my_heroes/7.58bb8a3d34dfdc879eaa.js",
-        "/_my_heroes/8.99413b012ac0ace4e0b8.js",
-        "/_my_heroes/9.643c869932a811ffb68c.js",
+        "/_my_heroes/10.77c753aac566e00767d5.js",
+        "/_my_heroes/11.5e16933e0aff0bfd465e.js",
+        "/_my_heroes/12.bb2ddcc9d8467f9bf9d4.js",
+        "/_my_heroes/13.ed6b4c4856cca67f5f78.js",
+        "/_my_heroes/14.cb191277acb769e1d180.js",
+        "/_my_heroes/6.3d014c10ef7e21419305.js",
+        "/_my_heroes/7.6d54967c96d0582975a9.js",
+        "/_my_heroes/8.d79862b15a9b3141d6b5.js",
+        "/_my_heroes/9.b5fc49b4fea4f2ca9eb0.js",
         "/_my_heroes/common.52c6bb7162730ba7efc5.js",
         "/_my_heroes/index.html",
-        "/_my_heroes/main.e768963133e75710bf35.js",
+        "/_my_heroes/main.5ad89cbd13c54a6fefcb.js",
         "/_my_heroes/polyfills.9c8cdfca6008986179e6.js",
-        "/_my_heroes/runtime.d2fadb68562c7c49a88d.js",
-        "/_my_heroes/styles.20845b7dbc7e0dfd7111.css"
+        "/_my_heroes/runtime.d034b46c7f1fb87dd128.js",
+        "/_my_heroes/styles.20845b7dbc7e0dfd7111.css",
+        "/_my_heroes/vendor.c3e3f1b0fa2a8b30522c.js"
       ],
       "patterns": []
     },
@@ -67,15 +68,15 @@
   ],
   "hashTable": {
     "/_my_heroes/0.65ee8c06f02f211e5c73.worker.js": "92a7a587485f04e3788341f8aa2975778106134f",
-    "/_my_heroes/10.d4461c6780e6c4d3d165.js": "d2a54d54049a5a776d453ab01325c72505fc0bd8",
-    "/_my_heroes/11.1f8ee1b8cf062d7447bc.js": "08136129d300da97ee13abf8280f37eb58113aa1",
-    "/_my_heroes/12.2c667e8d34fcdc4b06c9.js": "a95f3a121e24c734195ea8029be03bc38d1618e4",
-    "/_my_heroes/13.59733738ad705dbb9292.js": "b662cab2d88368c2324d908500c1d836b3dd10c9",
-    "/_my_heroes/5.e27c53d1a8776d91fa50.js": "eec8955712aef80971f19e6ffd15515040a99dcf",
-    "/_my_heroes/6.37348a67908a7fe9d763.js": "6c9fc015272b2a05e09bdad5749f743e7ef6cbd9",
-    "/_my_heroes/7.58bb8a3d34dfdc879eaa.js": "53bb7c0e6717b54973e2a1c231b09b6d3982b5f2",
-    "/_my_heroes/8.99413b012ac0ace4e0b8.js": "6cbb771d2694faf7a7e1a8cf963f6ca1bfe5dfef",
-    "/_my_heroes/9.643c869932a811ffb68c.js": "ce6fab0320287d3c0343d593f91bbdd0f00e5fff",
+    "/_my_heroes/10.77c753aac566e00767d5.js": "58272d198345b9504e020ae0e4b995776723d53b",
+    "/_my_heroes/11.5e16933e0aff0bfd465e.js": "5777b14a1f00e43cdf6f985b3238d8888b0a9b48",
+    "/_my_heroes/12.bb2ddcc9d8467f9bf9d4.js": "f7629896831e4c9e24436e7fb9f562cd6a71ced3",
+    "/_my_heroes/13.ed6b4c4856cca67f5f78.js": "497a61dc3a2cdcc1856d15bc7421a602b214b95e",
+    "/_my_heroes/14.cb191277acb769e1d180.js": "e69cbcbffa4e18585c39bea422087f640557dde5",
+    "/_my_heroes/6.3d014c10ef7e21419305.js": "3e7168bdcd835051c3f5f9a7c67e66f6b8eba1fa",
+    "/_my_heroes/7.6d54967c96d0582975a9.js": "46000d7da466c6f81ede4ed49aa0a056724703d0",
+    "/_my_heroes/8.d79862b15a9b3141d6b5.js": "f10d155ba1c90393105a1934f26f22e75d534ceb",
+    "/_my_heroes/9.b5fc49b4fea4f2ca9eb0.js": "53a490086d2105e8d963e5538b733e2fb11ac5e4",
     "/_my_heroes/assets/api.json": "7f6dfa7819b8e36a83b6b5e9275537c2cd69d44b",
     "/_my_heroes/assets/icons/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
     "/_my_heroes/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
@@ -89,11 +90,12 @@
     "/_my_heroes/assets/manifest.webmanifest": "4ac80cbcb24a7d2e054200a85eca9bbeac2d26a2",
     "/_my_heroes/assets/shipping.json": "9b747e2f5291563031c833298eaf5f0a234b1870",
     "/_my_heroes/common.52c6bb7162730ba7efc5.js": "70483990db7ee38e821cce03a6853e36f2a86356",
-    "/_my_heroes/index.html": "529316332de2bb6d87a83abea3846a5db4360374",
-    "/_my_heroes/main.e768963133e75710bf35.js": "0a454d41d0581eda0d69884ecb9e6d96c8df311a",
+    "/_my_heroes/index.html": "ae9db1dee446ba99568a1d711ee669be93c1b7ba",
+    "/_my_heroes/main.5ad89cbd13c54a6fefcb.js": "2c937656548373cdfdda81553993e210b2ff8e3c",
     "/_my_heroes/polyfills.9c8cdfca6008986179e6.js": "1cafd6bcc5258f2615abd88eb4dffff7022f4299",
-    "/_my_heroes/runtime.d2fadb68562c7c49a88d.js": "701960a7030ca5c1bee1ea2532ccec94418e3cd2",
-    "/_my_heroes/styles.20845b7dbc7e0dfd7111.css": "a445ceb72bcd8d0385faeca3014f1b596133a6b9"
+    "/_my_heroes/runtime.d034b46c7f1fb87dd128.js": "7309984cb588933f787a84ef688a6a28b362aa5b",
+    "/_my_heroes/styles.20845b7dbc7e0dfd7111.css": "a445ceb72bcd8d0385faeca3014f1b596133a6b9",
+    "/_my_heroes/vendor.c3e3f1b0fa2a8b30522c.js": "5b7623d2ca62cebfad296d8cbe36942f9f201f50"
   },
   "navigationUrls": [
     {

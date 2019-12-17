@@ -35,7 +35,14 @@
             "scripts": [],
             "es5BrowserSupport": false,
             "extractLicenses": false,
-            "webWorkerTsConfig": "tsconfig.worker.json"
+            "webWorkerTsConfig": "tsconfig.worker.json",
+            "sourceMap": {
+              "vendor": false,
+              "hidden": false,
+              "scripts": true,
+              "styles": false
+            },
+            "vendorChunk": true
           },
           "configurations": {
             "production": {
@@ -51,11 +58,9 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
               "aot": true,
-              "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
                 {
@@ -81,11 +86,9 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
               "aot": true,
-              "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
                 {
