@@ -1,6 +1,6 @@
 {
   "name": "d00af17f5d630b7296f102d",
-  "version": "4.29.61",
+  "version": "4.29.62",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -11,10 +11,13 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build-i18n:en": "ng build --prod",
+    "build-i18n:en:github": "ng build --prod --output-path docs/en --base-href /_my_heroes/en/",
     "build-i18n:en:watch": "ng build --prod --watch",
     "build-i18n:pl": "ng build --configuration=pl",
+    "build-i18n:pl:github": "ng build --configuration=pl --output-path docs/pl --base-href /_my_heroes/pl/",
     "build-i18n:pl:watch": "ng build --configuration=pl --watch",
     "build-i18n": "npm run build-i18n:en && npm run build-i18n:pl",
+    "build-i18n-github": "(if exist docs rmdir /q/s docs) && npm run build-i18n:en:github && npm run build-i18n:pl:github",
     "build-i18n-watch": "start npm run build-i18n:en:watch && start npm run build-i18n:pl:watch",
     "biw": "(if exist dist rmdir /q/s dist) && start npm run build-i18n:en:watch && start npm run build-i18n:pl:watch",
     "biws": "(if exist dist rmdir /q/s dist) && node z_js_util_files\\__watch_serve_local.js",
