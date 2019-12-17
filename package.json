@@ -1,6 +1,6 @@
 {
   "name": "d00af17f5d630b7296f102d",
-  "version": "4.29.65",
+  "version": "4.29.66",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -18,6 +18,7 @@
     "build-i18n": "npm run build-i18n:en && npm run build-i18n:pl",
     "build-i18n-github": "(if exist docs rmdir /q/s docs) && npm run build-i18n:en:github && copy docs\\index.html docs\\404.html",
     "build-i18n-watch": "start npm run build-i18n:en:watch && start npm run build-i18n:pl:watch",
+    "bi": "(if exist dist rmdir /q/s dist) && npm run build-i18n",
     "biw": "(if exist dist rmdir /q/s dist) && start npm run build-i18n:en:watch && start npm run build-i18n:pl:watch",
     "biws": "(if exist dist rmdir /q/s dist) && node z_js_util_files\\__watch_serve_local.js",
     "a": "(if exist dist rmdir /q/s dist) && node z_js_util_files\\__setver patch && npm run build-i18n && firebase deploy",
@@ -30,6 +31,7 @@
   },
   "private": true,
   "devDependencies": {
+    "@angular-builders/custom-webpack": "^8.4.1",
     "@angular-devkit/build-angular": "^0.900.0-rc.0",
     "@angular/animations": "^9.0.0-rc.0",
     "@angular/cli": "^9.0.0-rc.0",
