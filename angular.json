@@ -11,12 +11,9 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "@angular-builders/custom-webpack:browser",
-          "builder_bak": "@angular-devkit/build-angular:browser",
+          "builder_bak": "@angular-builders/custom-webpack:browser",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "customWebpackConfig": {
-              "path": "./custom-webpack.config.js"
-            },
             "outputPath": "dist/en",
             "i18nLocale": "en",
             "baseHref": "/en/",
@@ -46,7 +43,7 @@
               "scripts": true,
               "styles": false
             },
-            "vendorChunk": true
+            "vendorChunk": false
           },
           "configurations": {
             "production": {
