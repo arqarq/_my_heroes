@@ -1,6 +1,6 @@
 {
   "name": "d00af17f5d630b7296f102d",
-  "version": "4.29.70",
+  "version": "4.29.71",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -13,7 +13,7 @@
     "build-i18n:en": "ng build --prod",
     "build-i18n:en:github": "ng build --output-path docs --base-href /_my_heroes/ --source-map false",
     "build-i18n:en:watch": "ng build --prod --watch",
-    "build-i18n:pl": "ng build --configuration=pl",
+    "build-i18n:pl": "ng build --configuration pl",
     "build-i18n:pl:watch": "ng build --configuration=pl --watch",
     "build-i18n": "npm run build-i18n:en && npm run build-i18n:pl",
     "build-i18n-github": "(if exist docs rmdir /q/s docs) && npm run build-i18n:en:github && copy docs\\index.html docs\\404.html",
