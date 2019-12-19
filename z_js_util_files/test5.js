@@ -21,7 +21,7 @@ exec('start calc', (err, stdout, stderr) => {
     console.log('Nie udało się! Komunikat:', stderr);
     return
   }
-  console.log('Udało się!', stdout)
+  console.log('Udało się! Komunikat:', stdout)
 });
 
 let {var2, var3} = {var2: (p) => console.log(p), var3: 3};
