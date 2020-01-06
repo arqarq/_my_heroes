@@ -64,7 +64,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"common":"common","module-crisis-crisis-module":"module-crisis-crisis-module","module-heroes-app-module":"module-heroes-app-module","gen_modules-chooser-chooser-module":"gen_modules-chooser-chooser-module","module-forms-app2-module":"module-forms-app2-module","module-primeng-scrollpanel-primeng-scrollpanel-module":"module-primeng-scrollpanel-primeng-scrollpanel-module","module-shop-shop-module":"module-shop-shop-module","auth-auth-module":"auth-auth-module","heroes-heroes-module":"heroes-heroes-module","src-app-module-crisis-admin-admin-module":"src-app-module-crisis-admin-admin-module"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"common":"common","module-crisis-crisis-module":"module-crisis-crisis-module","module-heroes-app-module":"module-heroes-app-module","gen_modules-chooser-chooser-module":"gen_modules-chooser-chooser-module","module-drag-drop-drag-drop-module":"module-drag-drop-drag-drop-module","module-forms-app2-module":"module-forms-app2-module","module-primeng-scrollpanel-primeng-scrollpanel-module":"module-primeng-scrollpanel-primeng-scrollpanel-module","module-shop-shop-module":"module-shop-shop-module","auth-auth-module":"auth-auth-module","heroes-heroes-module":"heroes-heroes-module","src-app-module-crisis-admin-admin-module":"src-app-module-crisis-admin-admin-module"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function

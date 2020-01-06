@@ -1,0 +1,21 @@
+<div>
+  Przeciągnięcie z wciśniętym <span style="font-weight: bold">Ctrl</span> kopiuje element.
+</div>
+<div>
+  Kliknięcie z wciśniętym <span style="font-weight: bold">Shift</span> usuwa/wstawia element.
+</div>
+<ng-container *ngFor="let node of nodes; let i = index">
+  <div (click)="onClick($event, i)"
+       (dragover)="dragOver($event, i)"
+       (drop)="onDrop($event, i)"
+       [ngStyle]="{left: node.L + '%', top: node.T + '%'}"
+       class="node">
+    <ng-container *ngIf="node.blob">
+      <div (dragstart)="dragStart($event, i)"
+           class="blob"
+           draggable="true">
+      </div>
+    </ng-container>
+  </div>
+</ng-container>
+<app-foooter></app-foooter>

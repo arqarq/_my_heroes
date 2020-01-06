@@ -23,6 +23,13 @@ const ROUTES: Routes = [
     loadChildren: () => import('./module/primeng-scrollpanel/primeng-scrollpanel.module').then((m) => m.PrimengScrollpanelModule)
   },
   {
+    path: 'dragdrop',
+    loadChildren: () => import('./module/drag-drop/drag-drop.module').then((m) => m.DragDropModule),
+    data: {
+      preload: true
+    }
+  },
+  {
     path: 'ng-heroes',
     loadChildren: () => import('./module/heroes/app.module').then((m) => m.AppModule),
     data: {
