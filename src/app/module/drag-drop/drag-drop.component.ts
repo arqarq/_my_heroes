@@ -13,6 +13,10 @@ export class DragDropComponent implements AfterViewInit, OnDestroy {
   private static bodyClasses: string;
   nodes = DATA;
   private initDrag = false;
+  private pos1 = 0;
+  private pos2 = 0;
+  private pos3 = 0;
+  private pos4 = 0;
 
   constructor(private elementRef: ElementRef) {
   }
@@ -26,13 +30,13 @@ export class DragDropComponent implements AfterViewInit, OnDestroy {
     this.restoreClassesOfBody();
   }
 
-  dragStart(event: DragEvent, i: number) {
+  onDragStart(event: DragEvent, i: number) {
     console.warn('dragStart: index of dragged element: ' + i);
     event.dataTransfer.setData(KEY0, i + '');
     this.initDrag = true;
   }
 
-  dragOver(event: DragEvent, i: number) {
+  onDragOver(event: DragEvent, i: number) {
     if (
       this.initDrag && // brak inicjacji drag dla braku elementu
       !this.nodes[i].blob // brak możliwości nadpisywania elementu
@@ -61,6 +65,34 @@ export class DragDropComponent implements AfterViewInit, OnDestroy {
     event.preventDefault();
     if (event.shiftKey) {
       this.nodes[i].blob = !this.nodes[i].blob;
+    }
+  }
+
+  onMouseDown(event: MouseEvent, divElement: HTMLDivElement, enable?: boolean) {
+    console.log('-- x', event.clientX, '-- y', event.clientY);
+    // console.log('-- x', divElement.style.left, '-- y', divElement.style.top);
+    this.pos3 = event.clientX;
+    this.pos4 = event.clientY;
+
+    if (enable) {
+      event.preventDefault();
+      document.onmouseup = () => {
+        console.log('stop');
+        document.onmouseup = null;
+        document.onmousemove = null;
+      };
+      document.onmousemove = (event2: MouseEvent) => {
+        event2.preventDefault();
+        console.log('-- x', event2.clientX, '-- y', event2.clientY);
+        // calculate the new cursor position:
+        this.pos1 = this.pos3 - event2.clientX;
+        this.pos2 = this.pos4 - event2.clientY;
+        this.pos3 = event2.clientX;
+        this.pos4 = event2.clientY;
+        // set the element's new position:
+        divElement.style.top = (divElement.offsetTop - this.pos2) + 'px';
+        divElement.style.left = (divElement.offsetLeft - this.pos1) + 'px';
+      };
     }
   }
 
