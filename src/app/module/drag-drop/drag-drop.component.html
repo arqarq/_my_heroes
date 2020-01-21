@@ -9,15 +9,16 @@
        (click)="onClick($event, i)"
        (dragover)="onDragOver($event, i)"
        (drop)="onDrop($event, i)"
-       (mousedown)="onMouseDown($event, divElement, true)"
-       [ngStyle]="{left: node.L + '%', top: node.T + '%'}"
+       (mousedown)="onMouseDown($event, divElement, i)"
+       [ngStyle]="{left: node.L, top: node.T}"
        class="node cursor-move"
        draggable="true">
     <ng-container *ngIf="node.blob">
       <div (dragstart)="onDragStart($event, i)"
-           (mousedown)="onMouseDown($event, divElement)"
-           class="blob"
+           (mousedown)="$event.stopPropagation()"
+           class="blob blob-text cursor-crosshair"
            draggable="true">
+        <span class="char-fix">{{ node.content }}</span>
       </div>
     </ng-container>
   </div>
