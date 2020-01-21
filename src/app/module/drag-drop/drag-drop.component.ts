@@ -46,7 +46,7 @@ export class DragDropComponent implements AfterViewInit, OnDestroy {
   }
 
   onDragOver(event: DragEvent, i: number) {
-    if (this.indexOfNodeRef === i) { // drag&drop na siebie
+    if (this.indexOfNodeRef === i) { // drag&drop na siebie wyłączony
       return;
     }
     event.preventDefault();
@@ -102,6 +102,10 @@ export class DragDropComponent implements AfterViewInit, OnDestroy {
       // divElement.style.left = (divElement.offsetLeft - this.pos1) + 'px';
       this.nodes[i].L = (divElement.offsetLeft - this.pos1) + 'px';
     };
+  }
+
+  getNextZ(index: number) {
+    return index * 2 + 1;
   }
 
   private changeBackgroundColorOfBody() {

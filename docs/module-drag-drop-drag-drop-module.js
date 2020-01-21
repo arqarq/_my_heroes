@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div>\r\n  Przeciągnięcie z wciśniętym <span style=\"font-weight: bold\">Ctrl</span> kopiuje element.\r\n</div>\r\n<div>\r\n  Kliknięcie z wciśniętym <span style=\"font-weight: bold\">Shift</span> usuwa/wstawia element.\r\n</div>\r\n<ng-container *ngFor=\"let node of nodes; let i = index\">\r\n  <div #divElement\r\n       (click)=\"onClick($event, i)\"\r\n       (dragover)=\"onDragOver($event, i)\"\r\n       (drop)=\"onDrop($event, i)\"\r\n       (mousedown)=\"onMouseDown($event, divElement, i)\"\r\n       [ngStyle]=\"{left: node.L, top: node.T}\"\r\n       class=\"node transition cursor-move\"\r\n       draggable=\"true\">\r\n    <ng-container *ngIf=\"node.blob\">\r\n      <div (dragstart)=\"onDragStart($event, i)\"\r\n           (mousedown)=\"$event.stopPropagation()\"\r\n           class=\"blob blob-text cursor-crosshair\"\r\n           draggable=\"true\">\r\n        <span class=\"char-fix\">{{ node.content }}</span>\r\n      </div>\r\n    </ng-container>\r\n  </div>\r\n</ng-container>\r\n<app-foooter></app-foooter>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div>\r\n  Przeciągnięcie z wciśniętym <span style=\"font-weight: bold\">Ctrl</span> kopiuje element.\r\n</div>\r\n<div>\r\n  Kliknięcie z wciśniętym <span style=\"font-weight: bold\">Shift</span> usuwa/wstawia element.\r\n</div>\r\n<ng-container *ngFor=\"let node of nodes; let i = index\">\r\n  <div #divElement\r\n       (click)=\"onClick($event, i)\"\r\n       (dragover)=\"onDragOver($event, i)\"\r\n       (drop)=\"onDrop($event, i)\"\r\n       (mousedown)=\"onMouseDown($event, divElement, i)\"\r\n       [ngStyle]=\"{left: node.L, top: node.T, zIndex: getNextZ(i)}\"\r\n       class=\"node transition cursor-move\"\r\n       draggable=\"true\">\r\n    <ng-container *ngIf=\"node.blob\">\r\n      <div (dragstart)=\"onDragStart($event, i)\"\r\n           (mousedown)=\"$event.stopPropagation()\"\r\n           [style.z-index]=\"getNextZ(i) + 1\"\r\n           class=\"blob blob-text cursor-crosshair\"\r\n           draggable=\"true\">\r\n        <span class=\"char-fix\">{{ node.content }}</span>\r\n      </div>\r\n    </ng-container>\r\n  </div>\r\n</ng-container>\r\n<app-foooter></app-foooter>\r\n");
 
 /***/ }),
 
@@ -22,7 +22,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("::ng-deep body.body_background_new_color {\r\n  background-color: rgba(52, 152, 210, .65)\r\n}\r\n\r\ndiv.node {\r\n  border: 1px solid rgba(0, 0, 0, .45);\r\n  background-color: white;\r\n  height: 42px;\r\n  width: 42px;\r\n  position: absolute\r\n}\r\n\r\ndiv.transition {\r\n  transition: left 1.5s ease-in-out 0s, top 1.5s ease-in-out 0s\r\n}\r\n\r\ndiv.blob {\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  background-color: rgba(0, 0, 0, .65);\r\n  height: 26px;\r\n  width: 26px;\r\n  position: relative;\r\n  left: 8px;\r\n  top: 8px;\r\n  z-index: 1\r\n}\r\n\r\ndiv.blob-text {\r\n  font-weight: 900;\r\n  color: greenyellow\r\n}\r\n\r\ndiv.cursor-move {\r\n  cursor: move\r\n}\r\n\r\ndiv.cursor-crosshair {\r\n  cursor: crosshair\r\n}\r\n\r\nspan.char-fix {\r\n  position: relative;\r\n  top: -.5px\r\n}\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("::ng-deep body.body_background_new_color {\r\n  background-color: rgba(52, 152, 210, .65)\r\n}\r\n\r\ndiv.node {\r\n  border: 1px solid rgba(0, 0, 0, .45);\r\n  background-color: white;\r\n  height: 42px;\r\n  width: 42px;\r\n  position: absolute\r\n}\r\n\r\ndiv.transition {\r\n  transition: left 1.5s ease-in-out 0s, top 1.5s ease-in-out 0s\r\n}\r\n\r\ndiv.blob {\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  background-color: rgba(0, 0, 0, .65);\r\n  height: 26px;\r\n  width: 26px;\r\n  position: relative;\r\n  left: 8px;\r\n  top: 8px\r\n  /*z-index: 1*/\r\n}\r\n\r\ndiv.blob-text {\r\n  font-weight: 900;\r\n  color: greenyellow\r\n}\r\n\r\ndiv.cursor-move {\r\n  cursor: move\r\n}\r\n\r\ndiv.cursor-crosshair {\r\n  cursor: crosshair\r\n}\r\n\r\nspan.char-fix {\r\n  position: relative;\r\n  top: -.5px\r\n}\r\n");
 
 /***/ }),
 
@@ -71,7 +71,7 @@ let DragDropComponent = DragDropComponent_1 = class DragDropComponent {
         event.dataTransfer.setData(KEY1, this.nodes[i].content);
     }
     onDragOver(event, i) {
-        if (this.indexOfNodeRef === i) { // drag&drop na siebie
+        if (this.indexOfNodeRef === i) { // drag&drop na siebie wyłączony
             return;
         }
         event.preventDefault();
@@ -124,6 +124,9 @@ let DragDropComponent = DragDropComponent_1 = class DragDropComponent {
             // divElement.style.left = (divElement.offsetLeft - this.pos1) + 'px';
             this.nodes[i].L = (divElement.offsetLeft - this.pos1) + 'px';
         };
+    }
+    getNextZ(index) {
+        return index * 2 + 1;
     }
     changeBackgroundColorOfBody() {
         this.elementRef.nativeElement.ownerDocument.body.className = DragDropComponent_1.bodyClasses

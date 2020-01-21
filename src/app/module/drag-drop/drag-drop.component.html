@@ -10,12 +10,13 @@
        (dragover)="onDragOver($event, i)"
        (drop)="onDrop($event, i)"
        (mousedown)="onMouseDown($event, divElement, i)"
-       [ngStyle]="{left: node.L, top: node.T}"
+       [ngStyle]="{left: node.L, top: node.T, zIndex: getNextZ(i)}"
        class="node transition cursor-move"
        draggable="true">
     <ng-container *ngIf="node.blob">
       <div (dragstart)="onDragStart($event, i)"
            (mousedown)="$event.stopPropagation()"
+           [style.z-index]="getNextZ(i) + 1"
            class="blob blob-text cursor-crosshair"
            draggable="true">
         <span class="char-fix">{{ node.content }}</span>

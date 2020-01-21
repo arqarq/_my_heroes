@@ -23,8 +23,8 @@ div.blob {
   width: 26px;
   position: relative;
   left: 8px;
-  top: 8px;
-  z-index: 1
+  top: 8px
+  /*z-index: 1*/
 }
 
 div.blob-text {
