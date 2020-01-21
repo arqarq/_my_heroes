@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div>\r\n  Przeciągnięcie z wciśniętym <span style=\"font-weight: bold\">Ctrl</span> kopiuje element.\r\n</div>\r\n<div>\r\n  Kliknięcie z wciśniętym <span style=\"font-weight: bold\">Shift</span> usuwa/wstawia element.\r\n</div>\r\n<ng-container *ngFor=\"let node of nodes; let i = index\">\r\n  <div #divElement\r\n       (click)=\"onClick($event, i)\"\r\n       (dragover)=\"onDragOver($event, i)\"\r\n       (drop)=\"onDrop($event, i)\"\r\n       (mousedown)=\"onMouseDown($event, divElement, i)\"\r\n       [ngStyle]=\"{left: node.L, top: node.T}\"\r\n       class=\"node cursor-move\"\r\n       draggable=\"true\">\r\n    <ng-container *ngIf=\"node.blob\">\r\n      <div (dragstart)=\"onDragStart($event, i)\"\r\n           (mousedown)=\"$event.stopPropagation()\"\r\n           class=\"blob blob-text cursor-crosshair\"\r\n           draggable=\"true\">\r\n        <span class=\"char-fix\">{{ node.content }}</span>\r\n      </div>\r\n    </ng-container>\r\n  </div>\r\n</ng-container>\r\n<app-foooter></app-foooter>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div>\r\n  Przeciągnięcie z wciśniętym <span style=\"font-weight: bold\">Ctrl</span> kopiuje element.\r\n</div>\r\n<div>\r\n  Kliknięcie z wciśniętym <span style=\"font-weight: bold\">Shift</span> usuwa/wstawia element.\r\n</div>\r\n<ng-container *ngFor=\"let node of nodes; let i = index\">\r\n  <div #divElement\r\n       (click)=\"onClick($event, i)\"\r\n       (dragover)=\"onDragOver($event, i)\"\r\n       (drop)=\"onDrop($event, i)\"\r\n       (mousedown)=\"onMouseDown($event, divElement, i)\"\r\n       [ngStyle]=\"{left: node.L, top: node.T}\"\r\n       class=\"node transition cursor-move\"\r\n       draggable=\"true\">\r\n    <ng-container *ngIf=\"node.blob\">\r\n      <div (dragstart)=\"onDragStart($event, i)\"\r\n           (mousedown)=\"$event.stopPropagation()\"\r\n           class=\"blob blob-text cursor-crosshair\"\r\n           draggable=\"true\">\r\n        <span class=\"char-fix\">{{ node.content }}</span>\r\n      </div>\r\n    </ng-container>\r\n  </div>\r\n</ng-container>\r\n<app-foooter></app-foooter>\r\n");
 
 /***/ }),
 
@@ -22,7 +22,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("::ng-deep body.body_background_new_color {\r\n  background-color: rgba(52, 152, 210, .65)\r\n}\r\n\r\ndiv.node {\r\n  border: 1px solid rgba(0, 0, 0, .45);\r\n  background-color: white;\r\n  height: 42px;\r\n  width: 42px;\r\n  position: absolute\r\n}\r\n\r\ndiv.blob {\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  background-color: rgba(0, 0, 0, .65);\r\n  height: 26px;\r\n  width: 26px;\r\n  position: relative;\r\n  left: 8px;\r\n  top: 8px;\r\n  z-index: 1\r\n}\r\n\r\ndiv.blob-text {\r\n  font-weight: 900;\r\n  color: greenyellow\r\n}\r\n\r\ndiv.cursor-move {\r\n  cursor: move\r\n}\r\n\r\ndiv.cursor-crosshair {\r\n  cursor: crosshair\r\n}\r\n\r\nspan.char-fix {\r\n  position: relative;\r\n  top: -.5px\r\n}\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("::ng-deep body.body_background_new_color {\r\n  background-color: rgba(52, 152, 210, .65)\r\n}\r\n\r\ndiv.node {\r\n  border: 1px solid rgba(0, 0, 0, .45);\r\n  background-color: white;\r\n  height: 42px;\r\n  width: 42px;\r\n  position: absolute\r\n}\r\n\r\ndiv.transition {\r\n  transition: left 1.5s ease-in-out 0s, top 1.5s ease-in-out 0s\r\n}\r\n\r\ndiv.blob {\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  background-color: rgba(0, 0, 0, .65);\r\n  height: 26px;\r\n  width: 26px;\r\n  position: relative;\r\n  left: 8px;\r\n  top: 8px;\r\n  z-index: 1\r\n}\r\n\r\ndiv.blob-text {\r\n  font-weight: 900;\r\n  color: greenyellow\r\n}\r\n\r\ndiv.cursor-move {\r\n  cursor: move\r\n}\r\n\r\ndiv.cursor-crosshair {\r\n  cursor: crosshair\r\n}\r\n\r\nspan.char-fix {\r\n  position: relative;\r\n  top: -.5px\r\n}\r\n");
 
 /***/ }),
 
@@ -49,10 +49,13 @@ let DragDropComponent = DragDropComponent_1 = class DragDropComponent {
     constructor(elementRef) {
         this.elementRef = elementRef;
         this.nodes = _repository_data_drag_drop__WEBPACK_IMPORTED_MODULE_2__["DATA"];
-        this.nodes.forEach((node) => {
-            node.L = Math.floor(Math.random() * 97) + '%';
-            node.T = Math.floor(Math.random() * 95) + '%';
-        });
+        const timeoutId = setTimeout(() => {
+            this.nodes.forEach((node) => {
+                node.L = Math.floor(Math.random() * 97) + '%';
+                node.T = Math.floor(Math.random() * 95) + '%';
+            });
+            clearTimeout(timeoutId);
+        }, 250);
     }
     ngAfterViewInit() {
         this.storeClassesOfBody();
@@ -99,6 +102,7 @@ let DragDropComponent = DragDropComponent_1 = class DragDropComponent {
     }
     onMouseDown(event, divElement, i) {
         event.preventDefault();
+        divElement.classList.remove('transition');
         this.pos3 = event.clientX;
         this.pos4 = event.clientY;
         console.log('---- x', this.pos3, '---- y', this.pos4);
@@ -106,6 +110,7 @@ let DragDropComponent = DragDropComponent_1 = class DragDropComponent {
             console.log('stop');
             document.onmouseup = null;
             document.onmousemove = null;
+            divElement.classList.add('transition');
         };
         document.onmousemove = (event2) => {
             event2.preventDefault();
@@ -211,31 +216,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 
 const DATA = [
-    { content: 'A', blob: true, L: '15%', T: '35%' },
-    { content: 'B', blob: false, L: '35%', T: '15%' },
-    { content: 'C', blob: false, L: '25%', T: '5%' },
-    { content: 'D', blob: true, L: '5%', T: '23' },
-    { content: 'E', blob: false, L: '75%', T: '30%' },
-    { content: 'F', blob: true, L: '56%', T: '35%' },
-    { content: 'G', blob: false, L: '34%', T: '27%' },
-    { content: 'H', blob: true, L: '55%', T: '11%' },
-    { content: 'I', blob: false, L: '3%', T: '18%' },
-    { content: 'J', blob: false, L: '44%', T: '9%' },
-    { content: 'K', blob: true, L: '40%', T: '12%' },
-    { content: 'L', blob: true, L: null, T: null },
-    { content: 'M', blob: true, L: null, T: null },
-    { content: 'N', blob: false, L: null, T: null },
-    { content: 'O', blob: false, L: null, T: null },
-    { content: 'P', blob: true, L: null, T: null },
-    { content: 'Q', blob: true, L: null, T: null },
-    { content: 'R', blob: false, L: null, T: null },
-    { content: 'S', blob: true, L: null, T: null },
-    { content: 'T', blob: true, L: null, T: null },
-    { content: 'U', blob: false, L: null, T: null },
-    { content: 'W', blob: true, L: null, T: null },
-    { content: 'X', blob: true, L: null, T: null },
-    { content: 'Y', blob: false, L: null, T: null },
-    { content: 'Z', blob: true, L: null, T: null }
+    { content: 'A', blob: true, L: '50%', T: '50%' },
+    { content: 'B', blob: false, L: '50%', T: '50%' },
+    { content: 'C', blob: false, L: '50%', T: '50%' },
+    { content: 'D', blob: true, L: '50%', T: '50%' },
+    { content: 'E', blob: false, L: '50%', T: '50%' },
+    { content: 'F', blob: true, L: '50%', T: '50%' },
+    { content: 'G', blob: false, L: '50%', T: '50%' },
+    { content: 'H', blob: true, L: '50%', T: '50%' },
+    { content: 'I', blob: false, L: '50%', T: '50%' },
+    { content: 'J', blob: false, L: '50%', T: '50%' },
+    { content: 'K', blob: true, L: '50%', T: '50%' },
+    { content: 'L', blob: true, L: '50%', T: '50%' },
+    { content: 'M', blob: true, L: '50%', T: '50%' },
+    { content: 'N', blob: false, L: '50%', T: '50%' },
+    { content: 'O', blob: false, L: '50%', T: '50%' },
+    { content: 'P', blob: true, L: '50%', T: '50%' },
+    { content: 'Q', blob: true, L: '50%', T: '50%' },
+    { content: 'R', blob: false, L: '50%', T: '50%' },
+    { content: 'S', blob: true, L: '50%', T: '50%' },
+    { content: 'T', blob: true, L: '50%', T: '50%' },
+    { content: 'U', blob: false, L: '50%', T: '50%' },
+    { content: 'W', blob: true, L: '50%', T: '50%' },
+    { content: 'X', blob: true, L: '50%', T: '50%' },
+    { content: 'Y', blob: false, L: '50%', T: '50%' },
+    { content: 'Z', blob: true, L: '50%', T: '50%' }
 ];
 
 

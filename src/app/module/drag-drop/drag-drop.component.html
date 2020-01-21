@@ -11,7 +11,7 @@
        (drop)="onDrop($event, i)"
        (mousedown)="onMouseDown($event, divElement, i)"
        [ngStyle]="{left: node.L, top: node.T}"
-       class="node cursor-move"
+       class="node transition cursor-move"
        draggable="true">
     <ng-container *ngIf="node.blob">
       <div (dragstart)="onDragStart($event, i)"

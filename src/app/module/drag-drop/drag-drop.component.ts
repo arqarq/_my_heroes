@@ -20,10 +20,13 @@ export class DragDropComponent implements AfterViewInit, OnDestroy {
   private pos4: number;
 
   constructor(private elementRef: ElementRef) {
-    this.nodes.forEach((node) => {
-      node.L = Math.floor(Math.random() * 97) + '%';
-      node.T = Math.floor(Math.random() * 95) + '%';
-    });
+    const timeoutId = setTimeout(() => {
+      this.nodes.forEach((node) => {
+        node.L = Math.floor(Math.random() * 97) + '%';
+        node.T = Math.floor(Math.random() * 95) + '%';
+      });
+      clearTimeout(timeoutId);
+    }, 250);
   }
 
   ngAfterViewInit(): void {
@@ -77,6 +80,7 @@ export class DragDropComponent implements AfterViewInit, OnDestroy {
 
   onMouseDown(event: MouseEvent, divElement: HTMLDivElement, i: number) {
     event.preventDefault();
+    divElement.classList.remove('transition');
     this.pos3 = event.clientX;
     this.pos4 = event.clientY;
     console.log('---- x', this.pos3, '---- y', this.pos4);
@@ -84,6 +88,7 @@ export class DragDropComponent implements AfterViewInit, OnDestroy {
       console.log('stop');
       document.onmouseup = null;
       document.onmousemove = null;
+      divElement.classList.add('transition');
     };
     document.onmousemove = (event2: MouseEvent) => {
       event2.preventDefault();
