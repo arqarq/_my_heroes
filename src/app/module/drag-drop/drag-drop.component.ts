@@ -8,7 +8,6 @@ const KEY1 = 'contentOfItemPassed';
   selector: 'app-drag-drop',
   templateUrl: './drag-drop.component.html',
   styleUrls: ['./drag-drop.component.css']
-  // encapsulation: ViewEncapsulation.None
 })
 export class DragDropComponent implements AfterViewInit, OnDestroy {
   private static bodyClasses: string;
