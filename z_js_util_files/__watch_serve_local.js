@@ -3,7 +3,7 @@ const fse = require('fs-extra');
 const cmd1 = 'start npm run build-i18n:en:watch';
 const cmd2 = 'start npm run build-i18n:pl:watch';
 const cmd3 = 'start http-server -p 80 -c-1 dist';
-const MAX_WAIT_MS = 60000;
+const MAX_WAIT_MS = 70000;
 
 function run1() {
   exec(cmd1, (err) => {

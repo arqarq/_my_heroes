@@ -20,6 +20,8 @@ export class App2Component implements OnInit {
   liczba = 1;
   ilePx = 20;
   items = [2, 1];
+  inputText1 = 'abc';
+  inputText2 = 'def';
   private title = 'Formularze';
 
   constructor(private titleService: Title) {
