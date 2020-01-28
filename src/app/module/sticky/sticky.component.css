@@ -1,0 +1,14 @@
+.wrapper {
+  height: 2000px;
+  border: 1px black solid
+}
+
+#handle {
+  background-color: green;
+  border: 2px darkgreen solid;
+  position: relative;
+  top: 150px;
+  left: 1350px;
+  width: 200px;
+  height: 300px
+}

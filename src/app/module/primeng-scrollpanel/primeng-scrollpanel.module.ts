@@ -19,9 +19,7 @@ import { FooterModule } from '../../gen_modules/footer/footer.module';
         component: PrimengScrollpanelComponent,
         pathMatch: 'full'
       }
-    ])
-  ],
-  exports: [RouterModule]
+    ])]
 })
 export class PrimengScrollpanelModule {
 }

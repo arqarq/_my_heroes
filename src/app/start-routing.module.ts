@@ -30,6 +30,13 @@ const ROUTES: Routes = [
     }
   },
   {
+    path: 'sticky',
+    loadChildren: () => import('./module/sticky/sticky.module').then((m) => m.StickyModule),
+    data: {
+      preload: true
+    }
+  },
+  {
     path: 'ng-heroes',
     loadChildren: () => import('./module/heroes/app.module').then((m) => m.AppModule),
     data: {

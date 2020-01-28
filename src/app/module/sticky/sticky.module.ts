@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DragDropComponent } from './drag-drop.component';
+import { StickyComponent } from './sticky.component';
 import { FooterModule } from '../../gen_modules/footer/footer.module';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [DragDropComponent],
+  declarations: [StickyComponent],
   imports: [
     CommonModule,
     FooterModule,
     RouterModule.forChild([
       {
         path: '',
-        component: DragDropComponent,
+        component: StickyComponent,
         pathMatch: 'full'
       }
     ])]
 })
-export class DragDropModule {
+export class StickyModule {
 }
