@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div>\r\n  Przeciągnięcie z wciśniętym <span style=\"font-weight: bold\">Ctrl</span> kopiuje element.\r\n</div>\r\n<div>\r\n  Kliknięcie z wciśniętym <span style=\"font-weight: bold\">Shift</span> usuwa/wstawia element.\r\n</div>\r\n<ng-container *ngFor=\"let node of nodes; let i = index\">\r\n  <div #divElement\r\n       (click)=\"onClick($event, i)\"\r\n       (dragover)=\"onDragOver($event, i)\"\r\n       (drop)=\"onDrop($event, i)\"\r\n       (mousedown)=\"onMouseDown($event, divElement, i)\"\r\n       [ngStyle]=\"{left: node.L, top: node.T, zIndex: getNextZ(i)}\"\r\n       class=\"node transition cursor-move\"\r\n       draggable=\"true\">\r\n    <ng-container *ngIf=\"node.blob\">\r\n      <div (dragstart)=\"onDragStart($event, i)\"\r\n           (mousedown)=\"$event.stopPropagation()\"\r\n           [style.z-index]=\"getNextZ(i) + 1\"\r\n           class=\"blob blob-text cursor-crosshair\"\r\n           draggable=\"true\">\r\n        <span class=\"char-fix\">{{ node.content }}</span>\r\n      </div>\r\n    </ng-container>\r\n  </div>\r\n</ng-container>\r\n<app-foooter></app-foooter>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div>\r\n  Przeciągnięcie z wciśniętym <span style=\"font-weight: bold\">Ctrl</span> kopiuje element.\r\n</div>\r\n<div>\r\n  Kliknięcie z wciśniętym <span style=\"font-weight: bold\">Shift</span> usuwa/wstawia element.\r\n</div>\r\n<ng-container *ngFor=\"let node of nodes; let i = index\">\r\n  <div #divElementOuter\r\n       (click)=\"onClick($event, i)\"\r\n       (dragover)=\"onDragOver($event, i)\"\r\n       (drop)=\"onDrop($event, i, divElementOuter)\"\r\n       (mousedown)=\"onMouseDown($event, divElementOuter, i)\"\r\n       [ngStyle]=\"{left: node.L, top: node.T, zIndex: getNextZ(i)}\"\r\n       class=\"node transition cursor-move\"\r\n       draggable=\"true\">\r\n    <ng-container *ngIf=\"node.blob\">\r\n      <div (dragstart)=\"onDragStart($event, i, divElementOuter)\"\r\n           (mousedown)=\"$event.stopPropagation()\"\r\n           [style.z-index]=\"getZFromOuterEl(divElementOuter)\"\r\n           class=\"blob blob-text cursor-crosshair\"\r\n           draggable=\"true\">\r\n        <span class=\"char-fix\">{{ node.content }}</span>\r\n      </div>\r\n    </ng-container>\r\n  </div>\r\n</ng-container>\r\n<app-foooter></app-foooter>\r\n");
 
 /***/ }),
 
@@ -45,6 +45,7 @@ var DragDropComponent_1;
 
 const KEY0 = 'indexOfItemPassed';
 const KEY1 = 'contentOfItemPassed';
+const KEY2 = 'storedZ';
 let DragDropComponent = DragDropComponent_1 = class DragDropComponent {
     constructor(elementRef) {
         this.elementRef = elementRef;
@@ -64,9 +65,10 @@ let DragDropComponent = DragDropComponent_1 = class DragDropComponent {
     ngOnDestroy() {
         this.restoreClassesOfBody();
     }
-    onDragStart(event, i) {
+    onDragStart(event, i, elOut) {
         console.warn('dragStart: index of dragged element: ' + i);
         this.indexOfNodeRef = i;
+        this.startElementRefOut = elOut;
         event.dataTransfer.setData(KEY0, i + '');
         event.dataTransfer.setData(KEY1, this.nodes[i].content);
     }
@@ -81,12 +83,15 @@ let DragDropComponent = DragDropComponent_1 = class DragDropComponent {
         } // dla nadpisywania elementu
         console.warn('dragOver: overwriting element with index: ' + i);
     }
-    onDrop(event, i) {
+    onDrop(event, i, elOut) {
         const indexPassed = event.dataTransfer.getData(KEY0);
         if (indexPassed) {
             event.preventDefault();
             const contentPassed = event.dataTransfer.getData(KEY1);
             console.warn('drop: index of element to drop onto: ' + i + ' (from: ' + indexPassed + ')');
+            const tempZIndex = elOut.style.zIndex;
+            elOut.style.zIndex = this.startElementRefOut.style.zIndex;
+            this.startElementRefOut.style.zIndex = tempZIndex;
             this.nodes[i].blob = true;
             this.nodes[i].content = contentPassed;
             if (!event.ctrlKey) {
@@ -127,6 +132,9 @@ let DragDropComponent = DragDropComponent_1 = class DragDropComponent {
     }
     getNextZ(index) {
         return index * 2 + 1;
+    }
+    getZFromOuterEl(divElementOuter) {
+        return +divElementOuter.style.zIndex + 1;
     }
     changeBackgroundColorOfBody() {
         this.elementRef.nativeElement.ownerDocument.body.className = DragDropComponent_1.bodyClasses

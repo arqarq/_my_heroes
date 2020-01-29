@@ -5,18 +5,18 @@
   Kliknięcie z wciśniętym <span style="font-weight: bold">Shift</span> usuwa/wstawia element.
 </div>
 <ng-container *ngFor="let node of nodes; let i = index">
-  <div #divElement
+  <div #divElementOuter
        (click)="onClick($event, i)"
        (dragover)="onDragOver($event, i)"
-       (drop)="onDrop($event, i)"
-       (mousedown)="onMouseDown($event, divElement, i)"
+       (drop)="onDrop($event, i, divElementOuter)"
+       (mousedown)="onMouseDown($event, divElementOuter, i)"
        [ngStyle]="{left: node.L, top: node.T, zIndex: getNextZ(i)}"
        class="node transition cursor-move"
        draggable="true">
     <ng-container *ngIf="node.blob">
-      <div (dragstart)="onDragStart($event, i)"
+      <div (dragstart)="onDragStart($event, i, divElementOuter)"
            (mousedown)="$event.stopPropagation()"
-           [style.z-index]="getNextZ(i) + 1"
+           [style.z-index]="getZFromOuterEl(divElementOuter)"
            class="blob blob-text cursor-crosshair"
            draggable="true">
         <span class="char-fix">{{ node.content }}</span>

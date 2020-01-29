@@ -17,6 +17,7 @@ export class DragDropComponent implements AfterViewInit, OnDestroy {
   private pos2: number;
   private pos3: number;
   private pos4: number;
+  private startElementRefOut: HTMLDivElement;
 
   constructor(private elementRef: ElementRef) {
     const timeoutId = setTimeout(() => {
@@ -37,9 +38,10 @@ export class DragDropComponent implements AfterViewInit, OnDestroy {
     this.restoreClassesOfBody();
   }
 
-  onDragStart(event: DragEvent, i: number) {
+  onDragStart(event: DragEvent, i: number, elOut: HTMLDivElement) {
     console.warn('dragStart: index of dragged element: ' + i);
     this.indexOfNodeRef = i;
+    this.startElementRefOut = elOut;
     event.dataTransfer.setData(KEY0, i + '');
     event.dataTransfer.setData(KEY1, this.nodes[i].content);
   }
@@ -56,12 +58,15 @@ export class DragDropComponent implements AfterViewInit, OnDestroy {
     console.warn('dragOver: overwriting element with index: ' + i);
   }
 
-  onDrop(event: DragEvent, i: number) {
+  onDrop(event: DragEvent, i: number, elOut: HTMLDivElement) {
     const indexPassed = event.dataTransfer.getData(KEY0);
     if (indexPassed) {
       event.preventDefault();
       const contentPassed = event.dataTransfer.getData(KEY1);
       console.warn('drop: index of element to drop onto: ' + i + ' (from: ' + indexPassed + ')');
+      const tempZIndex = elOut.style.zIndex;
+      elOut.style.zIndex = this.startElementRefOut.style.zIndex;
+      this.startElementRefOut.style.zIndex = tempZIndex;
       this.nodes[i].blob = true;
       this.nodes[i].content = contentPassed;
       if (!event.ctrlKey) {
@@ -105,6 +110,10 @@ export class DragDropComponent implements AfterViewInit, OnDestroy {
 
   getNextZ(index: number) {
     return index * 2 + 1;
+  }
+
+  getZFromOuterEl(divElementOuter: HTMLDivElement) {
+    return +divElementOuter.style.zIndex + 1;
   }
 
   private changeBackgroundColorOfBody() {
