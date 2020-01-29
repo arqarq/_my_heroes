@@ -100,8 +100,7 @@ PrimengScrollpanelModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate
                     pathMatch: 'full'
                 }
             ])
-        ],
-        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"]]
+        ]
     })
 ], PrimengScrollpanelModule);
 
