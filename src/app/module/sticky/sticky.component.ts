@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnDestroy, OnInit } from '@angular/core';
 
 const TOP_STICKY = 50;
 const TOP_RELATIVE = 150;
@@ -8,11 +8,12 @@ const TOP_RELATIVE = 150;
   templateUrl: './sticky.component.html',
   styleUrls: ['./sticky.component.css']
 })
-export class StickyComponent implements OnInit, OnDestroy {
+export class StickyComponent implements OnInit, AfterViewChecked, OnDestroy {
   private elementById: HTMLDivElement;
   private flag = false;
   // private intervalId;
   private offset;
+  private topInit;
 
   constructor() {
   }
@@ -29,11 +30,14 @@ export class StickyComponent implements OnInit, OnDestroy {
     //     'elementById.clientTop', this.elementById.clientTop,
     //     'elementById.scrollTop', this.elementById.scrollTop);
     // }, 1500);
+    document.onload = () => {
+      this.topInit = this.elementById.getBoundingClientRect().top;
+    };
     window.onscroll = () => {
       // console.log('window.pageYOffset:', window.pageYOffset);
       if (!this.offset) {
         this.offset = this.elementById.offsetTop;
-        console.log('!', this.offset);
+        console.log('!', this.offset, this.elementById.getBoundingClientRect().top, this.topInit);
       }
       if (window.pageYOffset >= this.offset - TOP_STICKY) {
         if (!this.flag) {
@@ -45,6 +49,9 @@ export class StickyComponent implements OnInit, OnDestroy {
         }
       }
     };
+  }
+
+  ngAfterViewChecked() {
   }
 
   ngOnDestroy(): void {
@@ -60,7 +67,7 @@ export class StickyComponent implements OnInit, OnDestroy {
   }
 
   private setSticky() {
-    this.elementById.style.position = 'sticky';
+    this.elementById.style.position = 'fixed';
     this.elementById.style.top = /*'183px'*/TOP_STICKY + 'px';
     this.elementById.style.left = '1383px';
     this.flag = true;

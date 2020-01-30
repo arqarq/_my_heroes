@@ -27,12 +27,7 @@
             "assets": [
               "src/assets"
             ],
-            "fileReplacements": [
-              {
-                "replace": "src/assets/manifest.webmanifest",
-                "with": "src/locale/en/manifest.webmanifest"
-              }
-            ],
+            "fileReplacements": [],
             "styles": [
               "src/styles.css"
             ],
@@ -54,10 +49,6 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
-                },
-                {
-                  "replace": "src/assets/manifest.webmanifest",
-                  "with": "src/locale/en/manifest.webmanifest"
                 }
               ],
               "optimization": true,
@@ -82,10 +73,6 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
-                },
-                {
-                  "replace": "src/assets/manifest.webmanifest",
-                  "with": "src/locale/pl/manifest.webmanifest"
                 }
               ],
               "optimization": true,

@@ -2,7 +2,7 @@
   "$schema": "node_modules/@angular/service-worker/config/schema.json",
   "index": "/index.html",
   "appData": {
-    "ver": "4.29.95"
+    "ver": "4.29.110"
   },
   "assetGroups": [
     {
@@ -10,7 +10,8 @@
       "installMode": "prefetch",
       "resources": {
         "files": [
-          "/favicon.ico",
+          "/assets/favicon.ico",
+          "/assets/manifest.webmanifest",
           "/index.html",
           "/*.css",
           "/*.js"
