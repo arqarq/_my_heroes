@@ -1,6 +1,19 @@
 .wrapper {
   height: 2000px;
-  border: 1px black solid
+  border: 1px rgba(0, 0, 0, .35) solid;
+  position: relative
+}
+
+.wrapper::after {
+  content: '';
+  background: url('/assets/kratka.png') repeat;
+  opacity: .35;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1
 }
 
 #handle {
