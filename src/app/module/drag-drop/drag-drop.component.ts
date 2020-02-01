@@ -90,8 +90,7 @@ export class DragDropComponent implements AfterViewInit, OnDestroy {
     console.log('---- x', this.pos3, '---- y', this.pos4);
     document.onmouseup = () => {
       console.log('stop');
-      document.onmouseup = null;
-      document.onmousemove = null;
+      document.onmousemove = document.onmouseup = null;
       divElement.classList.add('transition');
     };
     document.onmousemove = (event2: MouseEvent) => {

@@ -8,19 +8,21 @@ const TOP_STICKY = 50;
   styleUrls: ['./sticky.component.css']
 })
 export class StickyComponent implements OnInit, OnDestroy {
-  private elementById: HTMLDivElement;
-  private flag = false;
+  private divElement: HTMLDivElement;
+  private divElement2;
+  private flag;
   private offset;
 
   constructor() {
   }
 
   ngOnInit(): void {
-    this.elementById = document.getElementById('handle') as HTMLDivElement;
-    console.log('!', this.elementById.offsetTop, 'ngOnInit:', this.elementById.getBoundingClientRect().top);
+    this.divElement = document.getElementById('handle') as HTMLDivElement;
+    this.divElement2 = document.getElementById('handle2');
+    console.log('!', this.divElement.offsetTop, 'ngOnInit:', this.divElement.getBoundingClientRect().top);
     window.onscroll = () => {
       if (!this.offset) {
-        console.log('!!', this.offset = this.elementById.offsetTop, 'onscroll:', this.elementById.getBoundingClientRect().top);
+        console.log('!!', this.offset = this.divElement.offsetTop, 'onscroll:', this.divElement.getBoundingClientRect().top);
       }
       if (window.pageYOffset >= this.offset + 33 - TOP_STICKY) {
         if (!this.flag) {
@@ -35,20 +37,71 @@ export class StickyComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    window.onscroll = null;
+    window.onresize = window.onscroll = null;
+  }
+
+  onMouseDown(event: MouseEvent) {
+    event.preventDefault();
+    let pos3 = event.clientX;
+    let pos4 = event.clientY;
+    let flag;
+    let flag2;
+    document.onmouseup = () => {
+      document.onmousemove = document.onmouseup = null;
+    };
+    document.onmousemove = (event2: MouseEvent) => {
+      event2.preventDefault();
+      // console.log('tick ----');
+      // tslint:disable-next-line:no-conditional-assignment
+      if (flag = !flag) {
+        // tslint:disable-next-line:no-conditional-assignment
+        if (flag2 = !flag2) {
+          // console.log('tick tock');
+          this.divElement2.style.top = (this.divElement2.offsetTop - pos4 + event2.clientY) + 'px';
+          this.divElement2.style.left = (this.divElement2.offsetLeft - pos3 + event2.clientX) + 'px';
+          this.divElement2.style.bottom = null;
+          this.divElement2.style.right = null;
+          pos3 = event2.clientX;
+          pos4 = event2.clientY;
+        }
+      }
+    };
+    if (!window.onresize) {
+      console.log('set!');
+      let flag3;
+      let flag4;
+      window.onresize = () => {
+        if (this.divElement2.offsetLeft + this.divElement2.offsetWidth / 3 > window.innerWidth) {
+          this.divElement2.style.left = 'unset';
+          this.divElement2.style.right = '0';
+          console.log('fired! X');
+          flag3 = true;
+        }
+        if (this.divElement2.offsetTop + this.divElement2.offsetHeight / 3 > window.innerHeight) {
+          this.divElement2.style.top = 'unset';
+          this.divElement2.style.bottom = '0';
+          console.log('fired! Y');
+          flag4 = true;
+        }
+        // tslint:disable-next-line:no-unused-expression
+        flag3 && flag4 && (window.onresize = null);
+        // tslint:disable-next-line:no-unused-expression
+        flag3 || flag4 || console.log('nothing! X: ok, Y: ok');
+      };
+    }
   }
 
   private setRelative() {
-    this.elementById.style.position = null;
-    this.elementById.style.top = null;
-    this.elementById.style.left = null;
+    this.divElement.style.position = null;
+    this.divElement.style.top = null;
+    this.divElement.style.left = null;
     this.flag = false;
   }
 
   private setSticky() {
-    this.elementById.style.position = 'fixed';
-    this.elementById.style.top = TOP_STICKY + 'px';
-    this.elementById.style.left = '1383px';
+    this.divElement.style.position = 'fixed';
+    this.divElement.style.top = TOP_STICKY + 'px';
+    this.divElement.style.left = '1383px';
     this.flag = true;
   }
 }

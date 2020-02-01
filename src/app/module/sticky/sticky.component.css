@@ -25,3 +25,13 @@
   width: 200px;
   height: 300px
 }
+
+#handle2 {
+  background-color: blue;
+  border: 2px darkblue solid;
+  position: fixed;
+  top: 33px;
+  right: 33px;
+  width: 200px;
+  height: 300px
+}
