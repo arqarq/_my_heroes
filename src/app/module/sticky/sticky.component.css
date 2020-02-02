@@ -1,42 +1,49 @@
 .wrapper {
-  height: 2000px;
   border: 1px rgba(0, 0, 0, .35) solid;
+  height: 2000px;
   position: relative
 }
 
 .wrapper::after {
-  content: "";
   background: url('/assets/kratka.png') repeat;
-  opacity: .35;
-  top: 0;
-  left: 0;
   bottom: 0;
-  right: 0;
+  content: "";
+  left: 0;
+  opacity: .35;
   position: absolute;
+  right: 0;
+  top: 0;
   z-index: -1
 }
 
 #handle {
   background-color: green;
   border: 2px darkgreen solid;
+  height: 300px;
+  left: 1350px;
   position: relative;
   top: 150px;
-  left: 1350px;
-  width: 200px;
-  height: 300px
+  width: 200px
 }
 
 #handle2 {
   background-color: blue;
   border: 2px darkblue solid;
+  height: 300px;
   position: fixed;
-  top: 33px;
   right: 33px;
-  width: 200px;
-  height: 300px
+  top: 33px;
+  width: 200px
 }
 
 #bar {
-  background-color: yellow;
-  height: 30px
+  align-items: center;
+  background-color: darkblue;
+  color: white;
+  cursor: move;
+  display: flex;
+  font-weight: bold;
+  height: 30px;
+  justify-content: center;
+  text-align: center
 }
