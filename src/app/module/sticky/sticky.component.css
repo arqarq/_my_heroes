@@ -5,7 +5,7 @@
 }
 
 .wrapper::after {
-  content: '';
+  content: "";
   background: url('/assets/kratka.png') repeat;
   opacity: .35;
   top: 0;
@@ -34,4 +34,9 @@
   right: 33px;
   width: 200px;
   height: 300px
+}
+
+#bar {
+  background-color: yellow;
+  height: 30px
 }
