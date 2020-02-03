@@ -103,7 +103,7 @@ export class StickyComponent implements OnInit, OnDestroy {
         // tslint:disable-next-line:no-unused-expression
         flag3 && flag4 && !(window.onresize = null) && console.log('unset!');
         // tslint:disable-next-line:no-unused-expression
-        flag3 || flag4 || console.log('nothing! X: ok, Y: ok');
+        flag3 || flag4 || console.log('nothing! X: OK, Y: OK');
       };
     }
   }
