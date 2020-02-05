@@ -11,6 +11,8 @@ export class StickyComponent implements OnInit, OnDestroy {
   private divElement: HTMLDivElement;
   private divElement2;
   private flag;
+  private flag3;
+  private flag4;
   private offset;
 
   constructor() {
@@ -42,31 +44,14 @@ export class StickyComponent implements OnInit, OnDestroy {
 
   onMouseDown(event: MouseEvent) {
     event.preventDefault();
+
     let barSizeVert = window.innerWidth - document.documentElement.offsetWidth;
     let barSizeHor = window.innerHeight - document.documentElement.clientHeight;
     let pos3 = event.clientX;
     let pos4 = event.clientY;
     let flag;
     let flag2;
-    document.onmouseup = () => {
-      document.onmousemove = document.onmouseup = null;
-      const offsetLeft = this.divElement2.offsetLeft;
-      const offsetTop = this.divElement2.offsetTop;
-      const offsetWidth = this.divElement2.offsetWidth;
-      const offsetHeight = this.divElement2.offsetHeight;
-      if (offsetLeft < 0) {
-        this.divElement2.style.left = '0';
-      } else if (offsetLeft > window.innerWidth - barSizeVert - offsetWidth) {
-        this.divElement2.style.right = '0';
-        this.divElement2.style.left = 'unset';
-      }
-      if (offsetTop < 0) {
-        this.divElement2.style.top = '0';
-      } else if (offsetTop > window.innerHeight - barSizeHor - offsetHeight) {
-        this.divElement2.style.bottom = '0';
-        this.divElement2.style.top = 'unset';
-      }
-    };
+
     document.onmousemove = (event2: MouseEvent) => {
       event2.preventDefault();
       // console.log('tick ----');
@@ -81,31 +66,57 @@ export class StickyComponent implements OnInit, OnDestroy {
         pos4 = event2.clientY;
       }
     };
-    if (!window.onresize) {
-      console.log('set!');
-      barSizeVert = window.innerWidth - document.documentElement.offsetWidth;
-      barSizeHor = window.innerHeight - document.documentElement.clientHeight;
-      let flag3;
-      let flag4;
-      window.onresize = () => {
-        if (this.divElement2.offsetLeft + this.divElement2.offsetWidth /*/ 3 */ > window.innerWidth - barSizeVert) {
-          this.divElement2.style.right = '0';
-          this.divElement2.style.left = 'unset';
-          console.log('fired! X');
-          flag3 = true;
-        }
-        if (this.divElement2.offsetTop + this.divElement2.offsetHeight /*/ 3 */ > window.innerHeight - barSizeHor) {
-          this.divElement2.style.bottom = '0';
-          this.divElement2.style.top = 'unset';
-          console.log('fired! Y');
-          flag4 = true;
-        }
-        // tslint:disable-next-line:no-unused-expression
-        flag3 && flag4 && !(window.onresize = null) && console.log('unset!');
-        // tslint:disable-next-line:no-unused-expression
-        flag3 || flag4 || console.log('nothing! X: OK, Y: OK');
-      };
-    }
+    document.onmouseup = () => {
+      document.onmousemove = document.onmouseup = null;
+      const offsetLeft = this.divElement2.offsetLeft;
+      const offsetTop = this.divElement2.offsetTop;
+      const offsetWidth = this.divElement2.offsetWidth;
+      const offsetHeight = this.divElement2.offsetHeight;
+      this.flag3 = this.flag4 = true;
+      if (offsetLeft < 0) {
+        this.divElement2.style.left = '0';
+      } else if (offsetLeft >= window.innerWidth - barSizeVert - offsetWidth) {
+        this.divElement2.style.right = '0';
+        this.divElement2.style.left = 'unset';
+      } else {
+        this.flag3 = false;
+      }
+      if (offsetTop < 0) {
+        this.divElement2.style.top = '0';
+      } else if (offsetTop >= window.innerHeight - barSizeHor - offsetHeight) {
+        this.divElement2.style.bottom = '0';
+        this.divElement2.style.top = 'unset';
+      } else {
+        this.flag4 = false;
+      }
+      if (!window.onresize && !(this.flag3 && this.flag4)) {
+        console.log('set!');
+        window.onresize = () => {
+          barSizeVert = window.innerWidth - document.documentElement.offsetWidth;
+          barSizeHor = window.innerHeight - document.documentElement.clientHeight;
+
+          if (!this.flag3 && this.divElement2.offsetLeft + this.divElement2.offsetWidth /*/ 3 */ > window.innerWidth - barSizeVert) {
+            this.divElement2.style.right = '0';
+            this.divElement2.style.left = 'unset';
+            console.log('fired! X');
+            this.flag3 = true;
+          }
+          if (!this.flag4 && this.divElement2.offsetTop + this.divElement2.offsetHeight /*/ 3 */ > window.innerHeight - barSizeHor) {
+            this.divElement2.style.bottom = '0';
+            this.divElement2.style.top = 'unset';
+            console.log('fired! Y');
+            this.flag4 = true;
+          }
+          // tslint:disable-next-line:no-unused-expression
+          this.flag3 || this.flag4 || console.log('nothing! X: ok, Y: ok');
+          // tslint:disable-next-line:no-unused-expression
+          this.flag3 && this.flag4 && !(window.onresize = this.flag3 = this.flag4 = null) && console.log('unset!');
+        };
+      } else if (window.onresize && this.flag3 && this.flag4) {
+        window.onresize = this.flag3 = this.flag4 = null;
+        console.log('unset!');
+      }
+    };
   }
 
   private setRelative() {

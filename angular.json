@@ -49,6 +49,10 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "src/assets/manifest.webmanifest",
+                  "with": "src/locale/en/manifest.webmanifest"
                 }
               ],
               "optimization": true,
@@ -73,6 +77,10 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "src/assets/manifest.webmanifest",
+                  "with": "src/locale/pl/manifest.webmanifest"
                 }
               ],
               "optimization": true,
@@ -103,7 +111,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "heroes:build",
-            "proxyConfig": "src/proxy.conf.js"
+            "proxyConfig": "proxy.conf.js"
           },
           "configurations": {
             "production": {
@@ -140,7 +148,7 @@
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
+            "karmaConfig": "karma.conf.js",
             "styles": [
               "src/styles.css"
             ],
