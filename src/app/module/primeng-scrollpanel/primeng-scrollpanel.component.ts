@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-primeng-scrollpanel',
-  templateUrl: './primeng-scrollpanel.component.html',
-  styleUrls: ['./primeng-scrollpanel.component.css']
+  templateUrl: './primeng-scrollpanel.component.html'
 })
-export class PrimengScrollpanelComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+export class PrimengScrollpanelComponent {
+  constructor() {
   }
-
 }

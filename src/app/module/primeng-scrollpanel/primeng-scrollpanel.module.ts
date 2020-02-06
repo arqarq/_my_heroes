@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PrimengScrollpanelComponent } from './primeng-scrollpanel.component';
-import { ScrollPanelModule } from './scrollpanel/scrollpanel';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { RouterModule } from '@angular/router';
 import { FooterModule } from '../../gen_modules/footer/footer.module';
 

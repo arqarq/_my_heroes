@@ -1,6 +1,6 @@
 {
   "name": "d00af17f5d630b7296f102d",
-  "version": "4.30.8",
+  "version": "4.31.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -27,7 +27,8 @@
     "aM": "(if exist dist rmdir /q/s dist) && node z_js_util_files\\__setver major && npm run build-i18n && xcopy src\\assets_common dist\\assets\\ /e && firebase deploy",
     "ua": "yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\__setver patch && npm run build-i18n && firebase deploy",
     "uam": "yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\__setver minor && npm run build-i18n && firebase deploy",
-    "uaM": "yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\__setver major && npm run build-i18n && firebase deploy"
+    "uaM": "yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\__setver major && npm run build-i18n && firebase deploy",
+    "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
   },
   "private": true,
   "devDependencies": {
@@ -65,6 +66,7 @@
     "karma-jasmine": "^2.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
     "ngx-webstorage-service": "^4.1.0",
+    "primeng": "^9.0.0-rc.4",
     "protractor": "^5.4.2",
     "rxjs": "^6.5.3",
     "ts-node": "^8.4.1",
