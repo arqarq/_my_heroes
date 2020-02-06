@@ -45,8 +45,8 @@ export class StickyComponent implements OnInit, OnDestroy {
   onMouseDown(event: MouseEvent) {
     event.preventDefault();
 
-    let barSizeVert = window.innerWidth - document.documentElement.offsetWidth;
-    let barSizeHor = window.innerHeight - document.documentElement.clientHeight;
+    let barSizeVert;
+    let barSizeHor;
     let pos3 = event.clientX;
     let pos4 = event.clientY;
     let flag;
@@ -68,11 +68,15 @@ export class StickyComponent implements OnInit, OnDestroy {
     };
     document.onmouseup = () => {
       document.onmousemove = document.onmouseup = null;
+
+      barSizeVert = window.innerWidth - document.documentElement.offsetWidth;
+      barSizeHor = window.innerHeight - document.documentElement.clientHeight;
       const offsetLeft = this.divElement2.offsetLeft;
       const offsetTop = this.divElement2.offsetTop;
       const offsetWidth = this.divElement2.offsetWidth;
       const offsetHeight = this.divElement2.offsetHeight;
       this.flag3 = this.flag4 = true;
+
       if (offsetLeft < 0) {
         this.divElement2.style.left = '0';
       } else if (offsetLeft >= window.innerWidth - barSizeVert - offsetWidth) {

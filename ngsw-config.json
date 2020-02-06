@@ -2,7 +2,7 @@
   "$schema": "node_modules/@angular/service-worker/config/schema.json",
   "index": "/index.html",
   "appData": {
-    "ver": "4.29.150"
+    "ver": "4.30.1"
   },
   "assetGroups": [
     {
@@ -15,9 +15,6 @@
           "/index.html",
           "/*.css",
           "/*.js"
-        ],
-        "urls": [
-          "/../assets/kratka.png"
         ]
       }
     },
