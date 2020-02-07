@@ -6,7 +6,7 @@
   "display": "standalone",
   "orientation": "landscape",
   "scope": "/_my_heroes/",
-  "start_url": "/_my_heroes",
+  "start_url": "/_my_heroes/",
   "icons": [
     {
       "src": "icons/icon-72x72.png",

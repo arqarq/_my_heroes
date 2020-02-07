@@ -9,7 +9,7 @@ div {
 }
 
 .wrapper::after {
-  background: url("~/assets/kratka.png") repeat;
+  background: url("~/../assets/kratka.png") repeat;
   bottom: 0;
   content: "";
   left: 0;
