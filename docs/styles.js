@@ -376,8 +376,8 @@ if (content.locals) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Comarch\IdeaProjects\_my_heroes\src\styles.css */"./src/styles.css");
-module.exports = __webpack_require__(/*! C:\Users\Comarch\IdeaProjects\_my_heroes\node_modules\primeng\resources\primeng.min.css */"./node_modules/primeng/resources/primeng.min.css");
+__webpack_require__(/*! E:\Users\arqarq\IdeaProjects\_my_heroes\src\styles.css */"./src/styles.css");
+module.exports = __webpack_require__(/*! E:\Users\arqarq\IdeaProjects\_my_heroes\node_modules\primeng\resources\primeng.min.css */"./node_modules/primeng/resources/primeng.min.css");
 
 
 /***/ })

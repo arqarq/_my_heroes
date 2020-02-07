@@ -11,7 +11,7 @@ const KEY1 = 'contentOfItemPassed';
 })
 export class DragDropComponent implements AfterViewInit, OnDestroy {
   private static bodyClasses: string;
-  nodes = DATA;
+  readonly nodes = DATA;
   private indexOfNodeRef: number;
   private pos1: number;
   private pos2: number;
@@ -25,6 +25,12 @@ export class DragDropComponent implements AfterViewInit, OnDestroy {
         node.L = Math.floor(Math.random() * 97) + '%';
         node.T = Math.floor(Math.random() * 95) + '%';
       });
+      const timeoutId2 = setTimeout(() => {
+        this.nodes.forEach((node) => {
+          node.blob = Math.random() < .5;
+        });
+        clearTimeout(timeoutId2);
+      }, 1500);
       clearTimeout(timeoutId);
     }, 250);
   }

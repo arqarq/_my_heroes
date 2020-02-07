@@ -54,6 +54,12 @@ let DragDropComponent = DragDropComponent_1 = class DragDropComponent {
                 node.L = Math.floor(Math.random() * 97) + '%';
                 node.T = Math.floor(Math.random() * 95) + '%';
             });
+            const timeoutId2 = setTimeout(() => {
+                this.nodes.forEach((node) => {
+                    node.blob = Math.random() < .5;
+                });
+                clearTimeout(timeoutId2);
+            }, 1500);
             clearTimeout(timeoutId);
         }, 250);
     }
