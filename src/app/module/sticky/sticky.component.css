@@ -1,3 +1,7 @@
+div {
+  --cssVariable: 200px
+}
+
 .wrapper {
   border: 1px rgba(0, 0, 0, .35) solid;
   height: 2000px;
@@ -23,7 +27,7 @@
   left: 1350px;
   position: relative;
   top: 150px;
-  width: 200px
+  width: var(--cssVariable, 2000px)
 }
 
 #handle2 {
@@ -33,7 +37,7 @@
   position: fixed;
   right: 33px;
   top: 33px;
-  width: 200px
+  width: var(--cssVariable)
 }
 
 #bar {
