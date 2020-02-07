@@ -1,6 +1,6 @@
 {
   "name": "d00af17f5d630b7296f102d",
-  "version": "4.32.0",
+  "version": "4.32.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -69,6 +69,7 @@
     "primeng": "^9.0.0-rc.4",
     "protractor": "^5.4.3",
     "rxjs": "^6.5.4",
+    "source-map-explorer": "^2.2.2",
     "ts-node": "^8.6.2",
     "tslib": "^1.10.0",
     "tslint": "^5.20.1",
@@ -76,7 +77,5 @@
     "webpack": "^4.41.5",
     "zone.js": "^0.10.2"
   },
-  "dependencies": {
-    "source-map-explorer": "^2.2.2"
-  }
+  "dependencies": {}
 }
