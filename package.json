@@ -1,6 +1,6 @@
 {
   "name": "d00af17f5d630b7296f102d",
-  "version": "4.32.2",
+  "version": "4.32.4",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -16,13 +16,13 @@
     "build-i18n:pl": "ng build --configuration pl",
     "build-i18n:pl:watch": "ng build --configuration=pl --watch",
     "build-i18n": "npm run build-i18n:en && npm run build-i18n:pl",
-    "build-i18n-github": "(if exist docs rmdir /q/s docs) && npm run build-i18n:en:github && copy docs\\index.html docs\\404.html",
+    "build-i18n-github": "(if exist docs rmdir /q/s docs) && npm run build-i18n:en:github && xcopy src\\assets_common docs\\assets\\ /e && copy docs\\index.html docs\\404.html",
     "build-i18n-watch": "start npm run build-i18n:en:watch && start npm run build-i18n:pl:watch",
     "bi": "(if exist dist rmdir /q/s dist) && npm run build-i18n",
     "biw": "(if exist dist rmdir /q/s dist) && start npm run build-i18n:en:watch && start npm run build-i18n:pl:watch",
     "biws": "(if exist dist rmdir /q/s dist) && xcopy src\\assets_common dist\\assets\\ /e && node z_js_util_files\\__watch_serve_local.js",
     "a": "(if exist dist rmdir /q/s dist) && node z_js_util_files\\__setver patch && npm run build-i18n && xcopy src\\assets_common dist\\assets\\ /e && firebase deploy",
-    "ag": "(if exist dist rmdir /q/s dist) && node z_js_util_files\\__setver patch && npm run build-i18n && npm run build-i18n-github && firebase deploy",
+    "ag": "(if exist dist rmdir /q/s dist) && node z_js_util_files\\__setver patch && npm run build-i18n && npm run build-i18n-github && xcopy src\\assets_common dist\\assets\\ /e && firebase deploy",
     "am": "(if exist dist rmdir /q/s dist) && node z_js_util_files\\__setver minor && npm run build-i18n && xcopy src\\assets_common dist\\assets\\ /e && firebase deploy",
     "aM": "(if exist dist rmdir /q/s dist) && node z_js_util_files\\__setver major && npm run build-i18n && xcopy src\\assets_common dist\\assets\\ /e && firebase deploy",
     "ua": "yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\__setver patch && npm run build-i18n && firebase deploy",

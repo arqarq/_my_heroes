@@ -45,7 +45,6 @@ var DragDropComponent_1;
 
 const KEY0 = 'indexOfItemPassed';
 const KEY1 = 'contentOfItemPassed';
-const KEY2 = 'storedZ';
 let DragDropComponent = DragDropComponent_1 = class DragDropComponent {
     constructor(elementRef) {
         this.elementRef = elementRef;
@@ -113,8 +112,7 @@ let DragDropComponent = DragDropComponent_1 = class DragDropComponent {
         console.log('---- x', this.pos3, '---- y', this.pos4);
         document.onmouseup = () => {
             console.log('stop');
-            document.onmouseup = null;
-            document.onmousemove = null;
+            document.onmousemove = document.onmouseup = null;
             divElement.classList.add('transition');
         };
         document.onmousemove = (event2) => {

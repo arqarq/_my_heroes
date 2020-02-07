@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"wrapper\">\r\n  <div id=\"handle\">\r\n  </div>\r\n</div>\r\n<app-foooter></app-foooter>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"wrapper\">\r\n  <div id=\"handle\">\r\n  </div>\r\n  <div id=\"handle2\">\r\n    <div (mousedown)=\"onMouseDown($event)\"\r\n         draggable=\"true\"\r\n         id=\"bar\">\r\n      Przesuń\r\n    </div>\r\n  </div>\r\n</div>\r\n<app-foooter></app-foooter>\r\n");
 
 /***/ }),
 
@@ -22,7 +22,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".wrapper {\r\n  height: 2000px;\r\n  border: 1px black solid\r\n}\r\n\r\n#handle {\r\n  background-color: green;\r\n  border: 2px darkgreen solid;\r\n  position: relative;\r\n  top: 150px;\r\n  left: 1350px;\r\n  width: 200px;\r\n  height: 300px\r\n}\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("div {\r\n  --cssVariable: 200px\r\n}\r\n\r\n.wrapper {\r\n  border: 1px rgba(0, 0, 0, .35) solid;\r\n  height: 2000px;\r\n  position: relative\r\n}\r\n\r\n.wrapper::after {\r\n  background: url('/assets/kratka.png') repeat;\r\n  bottom: 0;\r\n  content: \"\";\r\n  left: 0;\r\n  opacity: .35;\r\n  position: absolute;\r\n  right: 0;\r\n  top: 0;\r\n  z-index: -1\r\n}\r\n\r\n#handle {\r\n  background-color: green;\r\n  border: 2px darkgreen solid;\r\n  height: 300px;\r\n  left: 1350px;\r\n  position: relative;\r\n  top: 150px;\r\n  width: var(--cssVariable, 2000px)\r\n}\r\n\r\n#handle2 {\r\n  background-color: blue;\r\n  border: 2px darkblue solid;\r\n  height: 300px;\r\n  position: fixed;\r\n  right: 33px;\r\n  top: 33px;\r\n  width: var(--cssVariable)\r\n}\r\n\r\n#bar {\r\n  align-items: center;\r\n  background-color: darkblue;\r\n  color: white;\r\n  cursor: move;\r\n  display: flex;\r\n  font-weight: bold;\r\n  height: 30px;\r\n  justify-content: center;\r\n  text-align: center\r\n}\r\n");
 
 /***/ }),
 
@@ -41,55 +41,121 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const TOP_STICKY = 50;
-const TOP_RELATIVE = 150;
 let StickyComponent = class StickyComponent {
     constructor() {
-        this.flag = false;
     }
     ngOnInit() {
-        this.elementById = document.getElementById('handle');
-        // this.intervalId = setInterval(() => {
-        //   if (!this.flag) {
-        //     this.setSticky();
-        //     return;
-        //   }
-        //   this.setRelative();
-        //   console.log('elementById.offsetTop', this.elementById.offsetTop,
-        //     'elementById.clientTop', this.elementById.clientTop,
-        //     'elementById.scrollTop', this.elementById.scrollTop);
-        // }, 1500);
+        this.divElement = document.getElementById('handle');
+        this.divElement2 = document.getElementById('handle2');
+        console.log('!', this.divElement.offsetTop, 'ngOnInit:', this.divElement.getBoundingClientRect().top);
         window.onscroll = () => {
-            // console.log('window.pageYOffset:', window.pageYOffset);
             if (!this.offset) {
-                this.offset = this.elementById.offsetTop;
-                console.log('!', this.offset);
+                console.log('!!', this.offset = this.divElement.offsetTop, 'onscroll:', this.divElement.getBoundingClientRect().top);
             }
-            if (window.pageYOffset >= this.offset - TOP_STICKY) {
+            if (window.pageYOffset >= this.offset + 33 - TOP_STICKY) {
                 if (!this.flag) {
                     this.setSticky();
                 }
+                return;
             }
-            else {
-                if (this.flag) {
-                    this.setRelative();
-                }
+            if (this.flag) {
+                this.setRelative();
             }
         };
     }
     ngOnDestroy() {
-        // clearInterval(this.intervalId);
-        window.onscroll = null;
+        window.onresize = window.onscroll = null;
+    }
+    onMouseDown(event) {
+        event.preventDefault();
+        let barSizeVert;
+        let barSizeHor;
+        let pos3 = event.clientX;
+        let pos4 = event.clientY;
+        let flag;
+        let flag2;
+        document.onmousemove = (event2) => {
+            event2.preventDefault();
+            // console.log('tick ----');
+            // tslint:disable-next-line:no-conditional-assignment
+            if ((flag = !flag) && (flag2 = !flag2)) {
+                // console.log('tick tock');
+                this.divElement2.style.top = (this.divElement2.offsetTop - pos4 + event2.clientY) + 'px';
+                this.divElement2.style.left = (this.divElement2.offsetLeft - pos3 + event2.clientX) + 'px';
+                this.divElement2.style.bottom = null;
+                this.divElement2.style.right = null;
+                pos3 = event2.clientX;
+                pos4 = event2.clientY;
+            }
+        };
+        document.onmouseup = () => {
+            document.onmousemove = document.onmouseup = null;
+            barSizeVert = window.innerWidth - document.documentElement.offsetWidth;
+            barSizeHor = window.innerHeight - document.documentElement.clientHeight;
+            const offsetLeft = this.divElement2.offsetLeft;
+            const offsetTop = this.divElement2.offsetTop;
+            const offsetWidth = this.divElement2.offsetWidth;
+            const offsetHeight = this.divElement2.offsetHeight;
+            this.flag3 = this.flag4 = true;
+            if (offsetLeft < 0) {
+                this.divElement2.style.left = '0';
+            }
+            else if (offsetLeft >= window.innerWidth - barSizeVert - offsetWidth) {
+                this.divElement2.style.right = '0';
+                this.divElement2.style.left = 'unset';
+            }
+            else {
+                this.flag3 = false;
+            }
+            if (offsetTop < 0) {
+                this.divElement2.style.top = '0';
+            }
+            else if (offsetTop >= window.innerHeight - barSizeHor - offsetHeight) {
+                this.divElement2.style.bottom = '0';
+                this.divElement2.style.top = 'unset';
+            }
+            else {
+                this.flag4 = false;
+            }
+            if (!window.onresize && !(this.flag3 && this.flag4)) {
+                console.log('set!');
+                window.onresize = () => {
+                    barSizeVert = window.innerWidth - document.documentElement.offsetWidth;
+                    barSizeHor = window.innerHeight - document.documentElement.clientHeight;
+                    if (!this.flag3 && this.divElement2.offsetLeft + this.divElement2.offsetWidth /*/ 3 */ > window.innerWidth - barSizeVert) {
+                        this.divElement2.style.right = '0';
+                        this.divElement2.style.left = 'unset';
+                        console.log('fired! X');
+                        this.flag3 = true;
+                    }
+                    if (!this.flag4 && this.divElement2.offsetTop + this.divElement2.offsetHeight /*/ 3 */ > window.innerHeight - barSizeHor) {
+                        this.divElement2.style.bottom = '0';
+                        this.divElement2.style.top = 'unset';
+                        console.log('fired! Y');
+                        this.flag4 = true;
+                    }
+                    // tslint:disable-next-line:no-unused-expression
+                    this.flag3 || this.flag4 || console.log('nothing! X: ok, Y: ok');
+                    // tslint:disable-next-line:no-unused-expression
+                    this.flag3 && this.flag4 && !(window.onresize = null) && console.log('unset!');
+                };
+            }
+            else if (window.onresize && this.flag3 && this.flag4) {
+                window.onresize = null;
+                console.log('unset!');
+            }
+        };
     }
     setRelative() {
-        this.elementById.style.position = 'relative';
-        this.elementById.style.top = TOP_RELATIVE + 'px';
-        this.elementById.style.left = '1350px';
+        this.divElement.style.position = null;
+        this.divElement.style.top = null;
+        this.divElement.style.left = null;
         this.flag = false;
     }
     setSticky() {
-        this.elementById.style.position = 'sticky';
-        this.elementById.style.top = /*'183px'*/ TOP_STICKY + 'px';
-        this.elementById.style.left = '1383px';
+        this.divElement.style.position = 'fixed';
+        this.divElement.style.top = TOP_STICKY + 'px';
+        this.divElement.style.left = '1383px';
         this.flag = true;
     }
 };
