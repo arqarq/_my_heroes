@@ -165,7 +165,7 @@ __webpack_require__.r(__webpack_exports__);
 let AdminDashboardComponent = class AdminDashboardComponent {
     constructor(route, preloadStrategy) {
         this.route = route;
-        this.modules = preloadStrategy.preloadedModules;
+        this.modules = preloadStrategy.preloadedModules.sort();
     }
     ngOnInit() {
         this.sessionId = this.route
