@@ -42,8 +42,7 @@ export class StartComponent implements OnInit {
       this.browserLocaleID = navigator.language.slice(0, 2);
       this.prepareAddress();
     }
-    this.langStoredCode = this.storage.getStringStoredAtGivenKey(LANG_STORAGE_KEY);
-    this.langStored = !!this.langStoredCode;
+    this.langStored = !!(this.langStoredCode = this.storage.getStringStoredAtGivenKey(LANG_STORAGE_KEY));
     this.localeIdNumbersValues = Object.values(this.localeIdNumbers);
   }
 
@@ -68,12 +67,10 @@ export class StartComponent implements OnInit {
   }
 
   private showLangsInConsole() {
-    console.log('----------------------------------------------------------------------' +
-      '---------------------------------------------------------------------- %clang from browser:%c ' +
+    console.log('---------------------------------------------------------------------- %clang from browser:%c ' +
       (!environment.isNode ? navigator.language : 'node'),
       'color: red', 'color: red; font-weight: bolder');
-    console.log('----------------------------------------------------------------------' +
-      '---------------------------------------------------------------------- %craw lang from @ang:%c ' +
+    console.log('---------------------------------------------------------------------- %craw lang from @ang:%c ' +
       (!environment.isNode ? this.localeId : 'node'),
       'color: red', 'color: red; font-weight: bolder');
   }

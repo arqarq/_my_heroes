@@ -28,8 +28,7 @@ export class ChooserComponent implements OnInit {
     private workerService: WoratorService
   ) {
     this.browserLocaleID = navigator.language.slice(0, 2);
-    this.langStoredCode = this.storage.getStringStoredAtGivenKey(LANG_STORAGE_KEY);
-    this.langStored = !!this.langStoredCode;
+    this.langStored = !!(this.langStoredCode = this.storage.getStringStoredAtGivenKey(LANG_STORAGE_KEY));
   }
 
   ngOnInit(): void {

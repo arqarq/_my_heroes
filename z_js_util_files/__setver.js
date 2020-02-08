@@ -1,5 +1,3 @@
-'use strict';
-
 const fse = require('fs-extra');
 const P = 'package.json';
 const N = 'ngsw-config.json';
@@ -38,11 +36,11 @@ let param = process.argv.slice(2);
 if (param.length) {
   param = param[0].toLowerCase();
 }
-const pkgData = fse.readFileSync(P, {encoding: 'utf8'});
+const pkgData = fse.readFileSync(P, 'utf8');
 const pkgObj = JSON.parse(pkgData);
 const pkgVer = pkgObj.version;
 console.log('wersja w \x1b[33m[%s]\x1b[0m: \x1b[33m\x1b[1m%s\x1b[0m', P, pkgVer);
-const ngswData = fse.readFileSync(N, {encoding: 'utf8'});
+const ngswData = fse.readFileSync(N, 'utf8');
 const ngswObj = JSON.parse(ngswData);
 const ngswVer = ngswObj.appData.ver;
 console.log('wersja w \x1b[33m[%s]\x1b[0m: \x1b[33m\x1b[1m%s\x1b[0m', N, ngswVer);

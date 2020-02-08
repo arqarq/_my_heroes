@@ -97,8 +97,7 @@ let ChooserComponent = class ChooserComponent {
         this.localeIdNumbers = _locale_LIDs__WEBPACK_IMPORTED_MODULE_3__["LOCALE_ID_NUMBERS"];
         this.title = 'Wybór';
         this.browserLocaleID = navigator.language.slice(0, 2);
-        this.langStoredCode = this.storage.getStringStoredAtGivenKey(_service_local_storage_service__WEBPACK_IMPORTED_MODULE_4__["LANG_STORAGE_KEY"]);
-        this.langStored = !!this.langStoredCode;
+        this.langStored = !!(this.langStoredCode = this.storage.getStringStoredAtGivenKey(_service_local_storage_service__WEBPACK_IMPORTED_MODULE_4__["LANG_STORAGE_KEY"]));
     }
     ngOnInit() {
         this.setTitle(this.title);

@@ -368,7 +368,7 @@ function __importDefault(mod) {
 /*! exports provided: name, version, scripts, private, dependencies, devDependencies, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"name\":\"d00af17f5d630b7296f102d\",\"version\":\"4.32.23\",\"scripts\":{\"ng\":\"ng\",\"start\":\"ng serve\",\"s\":\"ng serve --aot\",\"s2\":\"ng run heroes:serve2\",\"build\":\"ng build\",\"test\":\"ng test\",\"lint\":\"ng lint\",\"e2e\":\"ng e2e\",\"build-i18n:en\":\"ng build --prod\",\"build-i18n:en:github\":\"ng build --output-path docs --base-href /_my_heroes/ --source-map false\",\"build-i18n:en:watch\":\"ng build --prod --watch\",\"build-i18n:pl\":\"ng build --configuration pl\",\"build-i18n:pl:watch\":\"ng build --configuration=pl --watch\",\"build-i18n\":\"npm run build-i18n:en && npm run build-i18n:pl\",\"build-i18n-github\":\"(if exist docs rmdir /q/s docs) && npm run build-i18n:en:github && xcopy src\\\\assets_common docs\\\\assets\\\\ /e && copy docs\\\\index.html docs\\\\404.html\",\"build-i18n-watch\":\"start npm run build-i18n:en:watch && start npm run build-i18n:pl:watch\",\"bi\":\"(if exist dist rmdir /q/s dist) && npm run build-i18n\",\"biw\":\"(if exist dist rmdir /q/s dist) && start npm run build-i18n:en:watch && start npm run build-i18n:pl:watch\",\"biws\":\"(if exist dist rmdir /q/s dist) && xcopy src\\\\assets_common dist\\\\assets\\\\ /e && node z_js_util_files\\\\__watch_serve_local.js\",\"a\":\"(if exist dist rmdir /q/s dist) && node z_js_util_files\\\\__setver patch && npm run build-i18n && xcopy src\\\\assets_common dist\\\\assets\\\\ /e && firebase deploy\",\"ag\":\"(if exist dist rmdir /q/s dist) && node z_js_util_files\\\\__setver patch && npm run build-i18n && npm run build-i18n-github && xcopy src\\\\assets_common dist\\\\assets\\\\ /e && firebase deploy\",\"am\":\"(if exist dist rmdir /q/s dist) && node z_js_util_files\\\\__setver minor && npm run build-i18n && xcopy src\\\\assets_common dist\\\\assets\\\\ /e && firebase deploy\",\"aM\":\"(if exist dist rmdir /q/s dist) && node z_js_util_files\\\\__setver major && npm run build-i18n && xcopy src\\\\assets_common dist\\\\assets\\\\ /e && firebase deploy\",\"ua\":\"yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\\\__setver patch && npm run build-i18n && firebase deploy\",\"uam\":\"yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\\\__setver minor && npm run build-i18n && firebase deploy\",\"uaM\":\"yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\\\__setver major && npm run build-i18n && firebase deploy\",\"postinstall\":\"ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points\"},\"private\":true,\"dependencies\":{},\"devDependencies\":{\"@angular-builders/custom-webpack\":\"^8.4.1\",\"@angular-devkit/build-angular\":\"^0.900.1\",\"@angular/animations\":\"^9.0.0\",\"@angular/cli\":\"^9.0.1\",\"@angular/common\":\"^9.0.0\",\"@angular/compiler\":\"^9.0.0\",\"@angular/compiler-cli\":\"^9.0.0\",\"@angular/core\":\"^9.0.0\",\"@angular/forms\":\"^9.0.0\",\"@angular/language-service\":\"^9.0.0\",\"@angular/localize\":\"^9.0.0\",\"@angular/platform-browser\":\"^9.0.0\",\"@angular/platform-browser-dynamic\":\"^9.0.0\",\"@angular/pwa\":\"^0.900.1\",\"@angular/router\":\"^9.0.0\",\"@angular/service-worker\":\"^9.0.0\",\"@types/jasmine\":\"^3.5.3\",\"@types/jasminewd2\":\"^2.0.8\",\"@types/node\":\"^13.7.0\",\"angular-in-memory-web-api\":\"^0.9.0\",\"codelyzer\":\"^5.2.1\",\"core-js\":\"^3.6.4\",\"firebase-tools\":\"^7.12.1\",\"fs-extra\":\"^8.1.0\",\"http-server\":\"0.9.0\",\"jasmine-core\":\"^3.5.0\",\"jasmine-spec-reporter\":\"^4.2.1\",\"karma\":\"^4.4.1\",\"karma-chrome-launcher\":\"^3.1.0\",\"karma-cli\":\"^2.0.0\",\"karma-coverage-istanbul-reporter\":\"^2.1.1\",\"karma-jasmine\":\"^3.1.0\",\"karma-jasmine-html-reporter\":\"^1.5.2\",\"ngx-webstorage-service\":\"^4.1.0\",\"primeng\":\"^9.0.0-rc.4\",\"protractor\":\"^5.4.3\",\"rxjs\":\"^6.5.4\",\"source-map-explorer\":\"^2.2.2\",\"ts-node\":\"^8.6.2\",\"tslib\":\"^1.10.0\",\"tslint\":\"^5.20.1\",\"typescript\":\"~3.7\",\"webpack\":\"^4.41.5\",\"zone.js\":\"^0.10.2\"}}");
+module.exports = JSON.parse("{\"name\":\"d00af17f5d630b7296f102d\",\"version\":\"4.32.41\",\"scripts\":{\"ng\":\"ng\",\"start\":\"ng serve\",\"s\":\"ng serve --aot\",\"s2\":\"ng run heroes:serve2\",\"build\":\"ng build\",\"test\":\"ng test\",\"lint\":\"ng lint\",\"e2e\":\"ng e2e\",\"build-i18n:en\":\"ng build --prod\",\"build-i18n:en:github\":\"ng build --output-path docs --base-href /_my_heroes/ --source-map false\",\"build-i18n:en:watch\":\"ng build --prod --watch\",\"build-i18n:pl\":\"ng build --configuration pl\",\"build-i18n:pl:watch\":\"ng build --configuration=pl --watch\",\"build-i18n\":\"npm run build-i18n:en && npm run build-i18n:pl\",\"build-i18n-github\":\"(if exist docs rmdir /q/s docs) && npm run build-i18n:en:github && xcopy src\\\\assets_common docs\\\\assets\\\\ /e && copy docs\\\\index.html docs\\\\404.html\",\"build-i18n-watch\":\"start npm run build-i18n:en:watch && start npm run build-i18n:pl:watch\",\"bi\":\"(if exist dist rmdir /q/s dist) && npm run build-i18n\",\"biw\":\"(if exist dist rmdir /q/s dist) && start npm run build-i18n:en:watch && start npm run build-i18n:pl:watch\",\"biws\":\"node z_js_util_files\\\\__watch_serve_local.js\",\"a\":\"(if exist dist rmdir /q/s dist) && node z_js_util_files\\\\__setver patch && npm run build-i18n && xcopy src\\\\assets_common dist\\\\assets\\\\ /e && firebase deploy\",\"ag\":\"(if exist dist rmdir /q/s dist) && node z_js_util_files\\\\__setver patch && npm run build-i18n && npm run build-i18n-github && xcopy src\\\\assets_common dist\\\\assets\\\\ /e && firebase deploy\",\"am\":\"(if exist dist rmdir /q/s dist) && node z_js_util_files\\\\__setver minor && npm run build-i18n && xcopy src\\\\assets_common dist\\\\assets\\\\ /e && firebase deploy\",\"aM\":\"(if exist dist rmdir /q/s dist) && node z_js_util_files\\\\__setver major && npm run build-i18n && xcopy src\\\\assets_common dist\\\\assets\\\\ /e && firebase deploy\",\"ua\":\"yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\\\__setver patch && npm run build-i18n && firebase deploy\",\"uam\":\"yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\\\__setver minor && npm run build-i18n && firebase deploy\",\"uaM\":\"yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\\\__setver major && npm run build-i18n && firebase deploy\",\"postinstall\":\"ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points\"},\"private\":true,\"dependencies\":{},\"devDependencies\":{\"@angular-builders/custom-webpack\":\"^8.4.1\",\"@angular-devkit/build-angular\":\"^0.900.1\",\"@angular/animations\":\"^9.0.0\",\"@angular/cli\":\"^9.0.1\",\"@angular/common\":\"^9.0.0\",\"@angular/compiler\":\"^9.0.0\",\"@angular/compiler-cli\":\"^9.0.0\",\"@angular/core\":\"^9.0.0\",\"@angular/forms\":\"^9.0.0\",\"@angular/language-service\":\"^9.0.0\",\"@angular/localize\":\"^9.0.0\",\"@angular/platform-browser\":\"^9.0.0\",\"@angular/platform-browser-dynamic\":\"^9.0.0\",\"@angular/pwa\":\"^0.900.1\",\"@angular/router\":\"^9.0.0\",\"@angular/service-worker\":\"^9.0.0\",\"@types/jasmine\":\"^3.5.3\",\"@types/jasminewd2\":\"^2.0.8\",\"@types/node\":\"^13.7.0\",\"angular-in-memory-web-api\":\"^0.9.0\",\"codelyzer\":\"^5.2.1\",\"core-js\":\"^3.6.4\",\"firebase-tools\":\"^7.12.1\",\"fs-extra\":\"^8.1.0\",\"http-server\":\"0.9.0\",\"jasmine-core\":\"^3.5.0\",\"jasmine-spec-reporter\":\"^4.2.1\",\"karma\":\"^4.4.1\",\"karma-chrome-launcher\":\"^3.1.0\",\"karma-cli\":\"^2.0.0\",\"karma-coverage-istanbul-reporter\":\"^2.1.1\",\"karma-jasmine\":\"^3.1.0\",\"karma-jasmine-html-reporter\":\"^1.5.2\",\"ngx-webstorage-service\":\"^4.1.0\",\"primeng\":\"^9.0.0-rc.4\",\"protractor\":\"^5.4.3\",\"rxjs\":\"^6.5.4\",\"source-map-explorer\":\"^2.2.2\",\"ts-node\":\"^8.6.2\",\"tslib\":\"^1.10.0\",\"tslint\":\"^5.20.1\",\"typescript\":\"~3.7\",\"webpack\":\"^4.41.5\",\"zone.js\":\"^0.10.2\"}}");
 
 /***/ }),
 
@@ -2050,8 +2050,7 @@ let StartComponent = class StartComponent {
             this.browserLocaleID = navigator.language.slice(0, 2);
             this.prepareAddress();
         }
-        this.langStoredCode = this.storage.getStringStoredAtGivenKey(_service_local_storage_service__WEBPACK_IMPORTED_MODULE_4__["LANG_STORAGE_KEY"]);
-        this.langStored = !!this.langStoredCode;
+        this.langStored = !!(this.langStoredCode = this.storage.getStringStoredAtGivenKey(_service_local_storage_service__WEBPACK_IMPORTED_MODULE_4__["LANG_STORAGE_KEY"]));
         this.localeIdNumbersValues = Object.values(this.localeIdNumbers);
     }
     ngOnInit() {
@@ -2073,11 +2072,9 @@ let StartComponent = class StartComponent {
         this.ver = String(this.ver).concat(' / @ang ' + (angVer || 'n/a')).concat(' / Ivy on? ' + _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].IVY_ON);
     }
     showLangsInConsole() {
-        console.log('----------------------------------------------------------------------' +
-            '---------------------------------------------------------------------- %clang from browser:%c ' +
+        console.log('---------------------------------------------------------------------- %clang from browser:%c ' +
             (!_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].isNode ? navigator.language : 'node'), 'color: red', 'color: red; font-weight: bolder');
-        console.log('----------------------------------------------------------------------' +
-            '---------------------------------------------------------------------- %craw lang from @ang:%c ' +
+        console.log('---------------------------------------------------------------------- %craw lang from @ang:%c ' +
             (!_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].isNode ? this.localeId : 'node'), 'color: red', 'color: red; font-weight: bolder');
     }
     checkIfUserIsSwitchingLanguage() {
@@ -2266,24 +2263,15 @@ StartModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _package_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../package.json */ "./package.json");
-var _package_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../package.json */ "./package.json", 1);
-/* harmony import */ var _locale_LIDs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../locale/LIDs */ "./src/locale/LIDs.ts");
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-
-
-let isNode = false;
-if (typeof process !== 'undefined' && process.version) {
-    isNode = true;
-}
 const environment = {
     production: false,
-    VERSION: _package_json__WEBPACK_IMPORTED_MODULE_1__["version"],
-    IVY_ON: _locale_LIDs__WEBPACK_IMPORTED_MODULE_2__["IVY_ON"],
-    isNode
+    VERSION: undefined,
+    IVY_ON: undefined,
+    isNode: undefined
 };
 /*
  * For easier debugging in development mode, you can import the following file
@@ -2301,14 +2289,13 @@ const environment = {
 /*!****************************!*\
   !*** ./src/locale/LIDs.ts ***!
   \****************************/
-/*! exports provided: LOCALE_ID_NUMBERS, LOCALE_ID_CURRENCIES, IVY_ON */
+/*! exports provided: LOCALE_ID_NUMBERS, LOCALE_ID_CURRENCIES */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOCALE_ID_NUMBERS", function() { return LOCALE_ID_NUMBERS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOCALE_ID_CURRENCIES", function() { return LOCALE_ID_CURRENCIES; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IVY_ON", function() { return IVY_ON; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 
 const LOCALE_ID_NUMBERS = {
@@ -2326,7 +2313,6 @@ const LOCALE_ID_CURRENCIES = {
         display: 'symbol'
     }
 };
-const IVY_ON = true;
 
 
 /***/ }),
@@ -2345,6 +2331,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser-dynamic */ "./node_modules/@angular/platform-browser-dynamic/__ivy_ngcc__/fesm2015/platform-browser-dynamic.js");
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./environments/environment */ "./src/environments/environment.ts");
 /* harmony import */ var _app_start_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app/start.module */ "./src/app/start.module.ts");
+/* harmony import */ var package_json__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! package.json */ "./package.json");
+var package_json__WEBPACK_IMPORTED_MODULE_5___namespace = /*#__PURE__*/__webpack_require__.t(/*! package.json */ "./package.json", 1);
+
 
 
 
@@ -2353,11 +2342,12 @@ __webpack_require__.r(__webpack_exports__);
 if (_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].production) {
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["enableProdMode"])();
 }
-console.log('----------------------------------------------------------------------' +
-    '---------------------------------------------------------------------- %cnode / browser?%c ' +
+_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].IVY_ON = __webpack_require__(/*! tsconfig.app.json */ "./tsconfig.app.json").angularCompilerOptions.enableIvy;
+_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].isNode = !!(typeof process !== 'undefined' && process.version);
+_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].VERSION = package_json__WEBPACK_IMPORTED_MODULE_5__["version"];
+console.log('---------------------------------------------------------------------- %cnode / browser?%c ' +
     (_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].isNode ? 'node' : 'browser'), 'color: red', 'color: red; font-weight: bolder');
-console.log('----------------------------------------------------------------------' +
-    '---------------------------------------------------------------------- %cPROD?%c ' + _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].production, 'color: red', 'color: red; font-weight: bolder');
+console.log('---------------------------------------------------------------------- %cPROD?%c ' + _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].production, 'color: red', 'color: red; font-weight: bolder');
 Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformBrowserDynamic"])(
 // [{provide: LOCALE_ID, useValue: 'pl'}] // dla 'ng build' wystarczy tylko tu, bez registerLocaleData() w AppModule
 )
@@ -2367,6 +2357,17 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformB
 })
     .catch((err) => console.error(err));
 
+
+/***/ }),
+
+/***/ "./tsconfig.app.json":
+/*!***************************!*\
+  !*** ./tsconfig.app.json ***!
+  \***************************/
+/*! exports provided: extends, compilerOptions, files, include, angularCompilerOptions, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"extends\":\"./tsconfig.json\",\"compilerOptions\":{\"outDir\":\"./out-tsc/app\",\"types\":[\"node\"]},\"files\":[\"src/main.ts\",\"src/polyfills.ts\"],\"include\":[\"src/**/*.d.ts\"],\"angularCompilerOptions\":{\"enableIvy\":true}}");
 
 /***/ }),
 

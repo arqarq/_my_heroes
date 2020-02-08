@@ -1,6 +1,6 @@
 {
   "name": "d00af17f5d630b7296f102d",
-  "version": "4.32.23",
+  "version": "4.32.41",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -20,7 +20,7 @@
     "build-i18n-watch": "start npm run build-i18n:en:watch && start npm run build-i18n:pl:watch",
     "bi": "(if exist dist rmdir /q/s dist) && npm run build-i18n",
     "biw": "(if exist dist rmdir /q/s dist) && start npm run build-i18n:en:watch && start npm run build-i18n:pl:watch",
-    "biws": "(if exist dist rmdir /q/s dist) && xcopy src\\assets_common dist\\assets\\ /e && node z_js_util_files\\__watch_serve_local.js",
+    "biws": "node z_js_util_files\\__watch_serve_local.js",
     "a": "(if exist dist rmdir /q/s dist) && node z_js_util_files\\__setver patch && npm run build-i18n && xcopy src\\assets_common dist\\assets\\ /e && firebase deploy",
     "ag": "(if exist dist rmdir /q/s dist) && node z_js_util_files\\__setver patch && npm run build-i18n && npm run build-i18n-github && xcopy src\\assets_common dist\\assets\\ /e && firebase deploy",
     "am": "(if exist dist rmdir /q/s dist) && node z_js_util_files\\__setver minor && npm run build-i18n && xcopy src\\assets_common dist\\assets\\ /e && firebase deploy",
