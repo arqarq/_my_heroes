@@ -177,19 +177,6 @@ CartComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 /***/ }),
 
-/***/ "./src/app/module/shop/product-alerts/product-alerts.component.css":
-/*!*************************************************************************!*\
-  !*** ./src/app/module/shop/product-alerts/product-alerts.component.css ***!
-  \*************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("");
-
-/***/ }),
-
 /***/ "./src/app/module/shop/product-alerts/product-alerts.component.ts":
 /*!************************************************************************!*\
   !*** ./src/app/module/shop/product-alerts/product-alerts.component.ts ***!
@@ -220,25 +207,11 @@ Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 ProductAlertsComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-product-alerts',
-        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./product-alerts.component.html */ "./node_modules/@angular-devkit/build-angular/node_modules/raw-loader/dist/cjs.js!./src/app/module/shop/product-alerts/product-alerts.component.html")).default,
-        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./product-alerts.component.css */ "./src/app/module/shop/product-alerts/product-alerts.component.css")).default]
+        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./product-alerts.component.html */ "./node_modules/@angular-devkit/build-angular/node_modules/raw-loader/dist/cjs.js!./src/app/module/shop/product-alerts/product-alerts.component.html")).default
     })
 ], ProductAlertsComponent);
 
 
-
-/***/ }),
-
-/***/ "./src/app/module/shop/product-details/product-details.component.css":
-/*!***************************************************************************!*\
-  !*** ./src/app/module/shop/product-details/product-details.component.css ***!
-  \***************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("");
 
 /***/ }),
 
@@ -284,8 +257,7 @@ ProductDetailsComponent.ctorParameters = () => [
 ProductDetailsComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-product-details',
-        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./product-details.component.html */ "./node_modules/@angular-devkit/build-angular/node_modules/raw-loader/dist/cjs.js!./src/app/module/shop/product-details/product-details.component.html")).default,
-        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./product-details.component.css */ "./src/app/module/shop/product-details/product-details.component.css")).default]
+        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./product-details.component.html */ "./node_modules/@angular-devkit/build-angular/node_modules/raw-loader/dist/cjs.js!./src/app/module/shop/product-details/product-details.component.html")).default
     }),
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
         _service_cart_service__WEBPACK_IMPORTED_MODULE_4__["CartService"]])
@@ -508,19 +480,6 @@ MoneyPipe = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 /***/ }),
 
-/***/ "./src/app/module/shop/shipping/shipping.component.css":
-/*!*************************************************************!*\
-  !*** ./src/app/module/shop/shipping/shipping.component.css ***!
-  \*************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("");
-
-/***/ }),
-
 /***/ "./src/app/module/shop/shipping/shipping.component.ts":
 /*!************************************************************!*\
   !*** ./src/app/module/shop/shipping/shipping.component.ts ***!
@@ -549,8 +508,7 @@ ShippingComponent.ctorParameters = () => [
 ShippingComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-shipping',
-        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./shipping.component.html */ "./node_modules/@angular-devkit/build-angular/node_modules/raw-loader/dist/cjs.js!./src/app/module/shop/shipping/shipping.component.html")).default,
-        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./shipping.component.css */ "./src/app/module/shop/shipping/shipping.component.css")).default]
+        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./shipping.component.html */ "./node_modules/@angular-devkit/build-angular/node_modules/raw-loader/dist/cjs.js!./src/app/module/shop/shipping/shipping.component.html")).default
     }),
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_service_cart_service__WEBPACK_IMPORTED_MODULE_2__["CartService"]])
 ], ShippingComponent);
@@ -694,19 +652,6 @@ ShopModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 /***/ }),
 
-/***/ "./src/app/module/shop/top-bar/top-bar.component.css":
-/*!***********************************************************!*\
-  !*** ./src/app/module/shop/top-bar/top-bar.component.css ***!
-  \***********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("");
-
-/***/ }),
-
 /***/ "./src/app/module/shop/top-bar/top-bar.component.ts":
 /*!**********************************************************!*\
   !*** ./src/app/module/shop/top-bar/top-bar.component.ts ***!
@@ -726,8 +671,7 @@ let TopBarComponent = class TopBarComponent {
 TopBarComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-top-bar',
-        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./top-bar.component.html */ "./node_modules/@angular-devkit/build-angular/node_modules/raw-loader/dist/cjs.js!./src/app/module/shop/top-bar/top-bar.component.html")).default,
-        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./top-bar.component.css */ "./src/app/module/shop/top-bar/top-bar.component.css")).default]
+        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./top-bar.component.html */ "./node_modules/@angular-devkit/build-angular/node_modules/raw-loader/dist/cjs.js!./src/app/module/shop/top-bar/top-bar.component.html")).default
     })
 ], TopBarComponent);
 

@@ -2,8 +2,7 @@ import { AfterViewInit, ChangeDetectorRef, Component, ContentChild, Input, OnIni
 
 @Component({
   selector: 'app-rows',
-  templateUrl: './rows.component.html',
-  styleUrls: ['./rows.component.css']
+  templateUrl: './rows.component.html'
 })
 export class RowsComponent implements AfterViewInit, OnInit {
   private static $cdr: ChangeDetectorRef;

@@ -240,19 +240,6 @@ AdminComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 /***/ }),
 
-/***/ "./src/app/module/crisis/admin/clear/clear.component.css":
-/*!***************************************************************!*\
-  !*** ./src/app/module/crisis/admin/clear/clear.component.css ***!
-  \***************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("");
-
-/***/ }),
-
 /***/ "./src/app/module/crisis/admin/clear/clear.component.ts":
 /*!**************************************************************!*\
   !*** ./src/app/module/crisis/admin/clear/clear.component.ts ***!
@@ -272,8 +259,7 @@ let ClearComponent = class ClearComponent {
 ClearComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-clear',
-        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./clear.component.html */ "./node_modules/@angular-devkit/build-angular/node_modules/raw-loader/dist/cjs.js!./src/app/module/crisis/admin/clear/clear.component.html")).default,
-        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./clear.component.css */ "./src/app/module/crisis/admin/clear/clear.component.css")).default]
+        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./clear.component.html */ "./node_modules/@angular-devkit/build-angular/node_modules/raw-loader/dist/cjs.js!./src/app/module/crisis/admin/clear/clear.component.html")).default
     })
 ], ClearComponent);
 
@@ -320,19 +306,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/app/module/crisis/admin/manage-crises/manage-crises.component.css":
-/*!*******************************************************************************!*\
-  !*** ./src/app/module/crisis/admin/manage-crises/manage-crises.component.css ***!
-  \*******************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("");
-
-/***/ }),
-
 /***/ "./src/app/module/crisis/admin/manage-crises/manage-crises.component.ts":
 /*!******************************************************************************!*\
   !*** ./src/app/module/crisis/admin/manage-crises/manage-crises.component.ts ***!
@@ -352,25 +325,11 @@ let ManageCrisesComponent = class ManageCrisesComponent {
 ManageCrisesComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-manage-crises',
-        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./manage-crises.component.html */ "./node_modules/@angular-devkit/build-angular/node_modules/raw-loader/dist/cjs.js!./src/app/module/crisis/admin/manage-crises/manage-crises.component.html")).default,
-        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./manage-crises.component.css */ "./src/app/module/crisis/admin/manage-crises/manage-crises.component.css")).default]
+        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./manage-crises.component.html */ "./node_modules/@angular-devkit/build-angular/node_modules/raw-loader/dist/cjs.js!./src/app/module/crisis/admin/manage-crises/manage-crises.component.html")).default
     })
 ], ManageCrisesComponent);
 
 
-
-/***/ }),
-
-/***/ "./src/app/module/crisis/admin/manage-heroes/manage-heroes.component.css":
-/*!*******************************************************************************!*\
-  !*** ./src/app/module/crisis/admin/manage-heroes/manage-heroes.component.css ***!
-  \*******************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("");
 
 /***/ }),
 
@@ -393,8 +352,7 @@ let ManageHeroesComponent = class ManageHeroesComponent {
 ManageHeroesComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-manage-heroes',
-        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./manage-heroes.component.html */ "./node_modules/@angular-devkit/build-angular/node_modules/raw-loader/dist/cjs.js!./src/app/module/crisis/admin/manage-heroes/manage-heroes.component.html")).default,
-        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./manage-heroes.component.css */ "./src/app/module/crisis/admin/manage-heroes/manage-heroes.component.css")).default]
+        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./manage-heroes.component.html */ "./node_modules/@angular-devkit/build-angular/node_modules/raw-loader/dist/cjs.js!./src/app/module/crisis/admin/manage-heroes/manage-heroes.component.html")).default
     })
 ], ManageHeroesComponent);
 
@@ -655,19 +613,6 @@ AuthService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 /***/ }),
 
-/***/ "./src/app/module/crisis/component/crisis-center-home/crisis-center-home.component.css":
-/*!*********************************************************************************************!*\
-  !*** ./src/app/module/crisis/component/crisis-center-home/crisis-center-home.component.css ***!
-  \*********************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("");
-
-/***/ }),
-
 /***/ "./src/app/module/crisis/component/crisis-center-home/crisis-center-home.component.ts":
 /*!********************************************************************************************!*\
   !*** ./src/app/module/crisis/component/crisis-center-home/crisis-center-home.component.ts ***!
@@ -687,8 +632,7 @@ let CrisisCenterHomeComponent = class CrisisCenterHomeComponent {
 CrisisCenterHomeComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-crisis-center-home',
-        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./crisis-center-home.component.html */ "./node_modules/@angular-devkit/build-angular/node_modules/raw-loader/dist/cjs.js!./src/app/module/crisis/component/crisis-center-home/crisis-center-home.component.html")).default,
-        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./crisis-center-home.component.css */ "./src/app/module/crisis/component/crisis-center-home/crisis-center-home.component.css")).default]
+        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./crisis-center-home.component.html */ "./node_modules/@angular-devkit/build-angular/node_modules/raw-loader/dist/cjs.js!./src/app/module/crisis/component/crisis-center-home/crisis-center-home.component.html")).default
     })
 ], CrisisCenterHomeComponent);
 

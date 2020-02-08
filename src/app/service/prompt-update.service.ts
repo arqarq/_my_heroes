@@ -1,9 +1,11 @@
 import { SwUpdate } from '@angular/service-worker';
 import { Injectable, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { CheckForUpdateService } from './check-for-update.service';
+import { ForServicesModule } from './for-services.module';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: ForServicesModule
 })
 export class PromptUpdateService implements OnDestroy {
   private subscription: Subscription;
@@ -15,7 +17,9 @@ export class PromptUpdateService implements OnDestroy {
       console.log('available version is', event.available.hash);
       if (PromptUpdateService.promptUser()) {
         updates.activateUpdate().then(() => document.location.reload());
+        return;
       }
+      CheckForUpdateService.subscription.unsubscribe();
     });
   }
 

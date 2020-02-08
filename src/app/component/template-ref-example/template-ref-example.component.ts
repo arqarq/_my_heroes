@@ -4,8 +4,7 @@ import { WoratorService } from '../../service/worator.service';
 
 @Component({
   selector: 'app-template-ref-example',
-  templateUrl: './template-ref-example.component.html',
-  styleUrls: ['./template-ref-example.component.css']
+  templateUrl: './template-ref-example.component.html'
 })
 export class TemplateRefExampleComponent {
   rows: {name: string}[] = [];

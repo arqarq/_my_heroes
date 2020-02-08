@@ -368,7 +368,7 @@ function __importDefault(mod) {
 /*! exports provided: name, version, scripts, private, dependencies, devDependencies, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"name\":\"d00af17f5d630b7296f102d\",\"version\":\"4.32.41\",\"scripts\":{\"ng\":\"ng\",\"start\":\"ng serve\",\"s\":\"ng serve --aot\",\"s2\":\"ng run heroes:serve2\",\"build\":\"ng build\",\"test\":\"ng test\",\"lint\":\"ng lint\",\"e2e\":\"ng e2e\",\"build-i18n:en\":\"ng build --prod\",\"build-i18n:en:github\":\"ng build --output-path docs --base-href /_my_heroes/ --source-map false\",\"build-i18n:en:watch\":\"ng build --prod --watch\",\"build-i18n:pl\":\"ng build --configuration pl\",\"build-i18n:pl:watch\":\"ng build --configuration=pl --watch\",\"build-i18n\":\"npm run build-i18n:en && npm run build-i18n:pl\",\"build-i18n-github\":\"(if exist docs rmdir /q/s docs) && npm run build-i18n:en:github && xcopy src\\\\assets_common docs\\\\assets\\\\ /e && copy docs\\\\index.html docs\\\\404.html\",\"build-i18n-watch\":\"start npm run build-i18n:en:watch && start npm run build-i18n:pl:watch\",\"bi\":\"(if exist dist rmdir /q/s dist) && npm run build-i18n\",\"biw\":\"(if exist dist rmdir /q/s dist) && start npm run build-i18n:en:watch && start npm run build-i18n:pl:watch\",\"biws\":\"node z_js_util_files\\\\__watch_serve_local.js\",\"a\":\"(if exist dist rmdir /q/s dist) && node z_js_util_files\\\\__setver patch && npm run build-i18n && xcopy src\\\\assets_common dist\\\\assets\\\\ /e && firebase deploy\",\"ag\":\"(if exist dist rmdir /q/s dist) && node z_js_util_files\\\\__setver patch && npm run build-i18n && npm run build-i18n-github && xcopy src\\\\assets_common dist\\\\assets\\\\ /e && firebase deploy\",\"am\":\"(if exist dist rmdir /q/s dist) && node z_js_util_files\\\\__setver minor && npm run build-i18n && xcopy src\\\\assets_common dist\\\\assets\\\\ /e && firebase deploy\",\"aM\":\"(if exist dist rmdir /q/s dist) && node z_js_util_files\\\\__setver major && npm run build-i18n && xcopy src\\\\assets_common dist\\\\assets\\\\ /e && firebase deploy\",\"ua\":\"yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\\\__setver patch && npm run build-i18n && firebase deploy\",\"uam\":\"yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\\\__setver minor && npm run build-i18n && firebase deploy\",\"uaM\":\"yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\\\__setver major && npm run build-i18n && firebase deploy\",\"postinstall\":\"ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points\"},\"private\":true,\"dependencies\":{},\"devDependencies\":{\"@angular-builders/custom-webpack\":\"^8.4.1\",\"@angular-devkit/build-angular\":\"^0.900.1\",\"@angular/animations\":\"^9.0.0\",\"@angular/cli\":\"^9.0.1\",\"@angular/common\":\"^9.0.0\",\"@angular/compiler\":\"^9.0.0\",\"@angular/compiler-cli\":\"^9.0.0\",\"@angular/core\":\"^9.0.0\",\"@angular/forms\":\"^9.0.0\",\"@angular/language-service\":\"^9.0.0\",\"@angular/localize\":\"^9.0.0\",\"@angular/platform-browser\":\"^9.0.0\",\"@angular/platform-browser-dynamic\":\"^9.0.0\",\"@angular/pwa\":\"^0.900.1\",\"@angular/router\":\"^9.0.0\",\"@angular/service-worker\":\"^9.0.0\",\"@types/jasmine\":\"^3.5.3\",\"@types/jasminewd2\":\"^2.0.8\",\"@types/node\":\"^13.7.0\",\"angular-in-memory-web-api\":\"^0.9.0\",\"codelyzer\":\"^5.2.1\",\"core-js\":\"^3.6.4\",\"firebase-tools\":\"^7.12.1\",\"fs-extra\":\"^8.1.0\",\"http-server\":\"0.9.0\",\"jasmine-core\":\"^3.5.0\",\"jasmine-spec-reporter\":\"^4.2.1\",\"karma\":\"^4.4.1\",\"karma-chrome-launcher\":\"^3.1.0\",\"karma-cli\":\"^2.0.0\",\"karma-coverage-istanbul-reporter\":\"^2.1.1\",\"karma-jasmine\":\"^3.1.0\",\"karma-jasmine-html-reporter\":\"^1.5.2\",\"ngx-webstorage-service\":\"^4.1.0\",\"primeng\":\"^9.0.0-rc.4\",\"protractor\":\"^5.4.3\",\"rxjs\":\"^6.5.4\",\"source-map-explorer\":\"^2.2.2\",\"ts-node\":\"^8.6.2\",\"tslib\":\"^1.10.0\",\"tslint\":\"^5.20.1\",\"typescript\":\"~3.7\",\"webpack\":\"^4.41.5\",\"zone.js\":\"^0.10.2\"}}");
+module.exports = JSON.parse("{\"name\":\"d00af17f5d630b7296f102d\",\"version\":\"4.32.53\",\"scripts\":{\"ng\":\"ng\",\"start\":\"ng serve\",\"s\":\"ng serve --aot\",\"s2\":\"ng run heroes:serve2\",\"build\":\"ng build\",\"test\":\"ng test\",\"lint\":\"ng lint\",\"e2e\":\"ng e2e\",\"build-i18n:en\":\"ng build --prod\",\"build-i18n:en:github\":\"ng build --output-path docs --base-href /_my_heroes/ --source-map false\",\"build-i18n:en:watch\":\"ng build --prod --watch\",\"build-i18n:pl\":\"ng build --configuration pl\",\"build-i18n:pl:watch\":\"ng build --configuration=pl --watch\",\"build-i18n\":\"npm run build-i18n:en && npm run build-i18n:pl\",\"build-i18n-github\":\"(if exist docs rmdir /q/s docs) && npm run build-i18n:en:github && xcopy src\\\\assets_common docs\\\\assets\\\\ /e && copy docs\\\\index.html docs\\\\404.html\",\"build-i18n-watch\":\"start npm run build-i18n:en:watch && start npm run build-i18n:pl:watch\",\"bi\":\"(if exist dist rmdir /q/s dist) && npm run build-i18n\",\"biw\":\"(if exist dist rmdir /q/s dist) && start npm run build-i18n:en:watch && start npm run build-i18n:pl:watch\",\"biws\":\"node z_js_util_files\\\\__watch_serve_local.js\",\"a\":\"(if exist dist rmdir /q/s dist) && node z_js_util_files\\\\__setver patch && npm run build-i18n && xcopy src\\\\assets_common dist\\\\assets\\\\ /e && firebase deploy\",\"ag\":\"(if exist dist rmdir /q/s dist) && node z_js_util_files\\\\__setver patch && npm run build-i18n && npm run build-i18n-github && xcopy src\\\\assets_common dist\\\\assets\\\\ /e && firebase deploy\",\"am\":\"(if exist dist rmdir /q/s dist) && node z_js_util_files\\\\__setver minor && npm run build-i18n && xcopy src\\\\assets_common dist\\\\assets\\\\ /e && firebase deploy\",\"aM\":\"(if exist dist rmdir /q/s dist) && node z_js_util_files\\\\__setver major && npm run build-i18n && xcopy src\\\\assets_common dist\\\\assets\\\\ /e && firebase deploy\",\"ua\":\"yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\\\__setver patch && npm run build-i18n && firebase deploy\",\"uam\":\"yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\\\__setver minor && npm run build-i18n && firebase deploy\",\"uaM\":\"yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\\\__setver major && npm run build-i18n && firebase deploy\",\"postinstall\":\"ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points\"},\"private\":true,\"dependencies\":{},\"devDependencies\":{\"@angular-builders/custom-webpack\":\"^8.4.1\",\"@angular-devkit/build-angular\":\"^0.900.1\",\"@angular/animations\":\"^9.0.0\",\"@angular/cli\":\"^9.0.1\",\"@angular/common\":\"^9.0.0\",\"@angular/compiler\":\"^9.0.0\",\"@angular/compiler-cli\":\"^9.0.0\",\"@angular/core\":\"^9.0.0\",\"@angular/forms\":\"^9.0.0\",\"@angular/language-service\":\"^9.0.0\",\"@angular/localize\":\"^9.0.0\",\"@angular/platform-browser\":\"^9.0.0\",\"@angular/platform-browser-dynamic\":\"^9.0.0\",\"@angular/pwa\":\"^0.900.1\",\"@angular/router\":\"^9.0.0\",\"@angular/service-worker\":\"^9.0.0\",\"@types/jasmine\":\"^3.5.3\",\"@types/jasminewd2\":\"^2.0.8\",\"@types/node\":\"^13.7.0\",\"angular-in-memory-web-api\":\"^0.9.0\",\"codelyzer\":\"^5.2.1\",\"core-js\":\"^3.6.4\",\"firebase-tools\":\"^7.12.1\",\"fs-extra\":\"^8.1.0\",\"http-server\":\"0.9.0\",\"jasmine-core\":\"^3.5.0\",\"jasmine-spec-reporter\":\"^4.2.1\",\"karma\":\"^4.4.1\",\"karma-chrome-launcher\":\"^3.1.0\",\"karma-cli\":\"^2.0.0\",\"karma-coverage-istanbul-reporter\":\"^2.1.1\",\"karma-jasmine\":\"^3.1.0\",\"karma-jasmine-html-reporter\":\"^1.5.2\",\"ngx-webstorage-service\":\"^4.1.0\",\"primeng\":\"^9.0.0-rc.4\",\"protractor\":\"^5.4.3\",\"rxjs\":\"^6.5.4\",\"source-map-explorer\":\"^2.2.2\",\"ts-node\":\"^8.6.2\",\"tslib\":\"^1.10.0\",\"tslint\":\"^5.20.1\",\"typescript\":\"~3.7\",\"webpack\":\"^4.41.5\",\"zone.js\":\"^0.10.2\"}}");
 
 /***/ }),
 
@@ -399,19 +399,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/app/component/notfound404/notfound404.component.css":
-/*!*****************************************************************!*\
-  !*** ./src/app/component/notfound404/notfound404.component.css ***!
-  \*****************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("");
-
-/***/ }),
-
 /***/ "./src/app/component/notfound404/notfound404.component.ts":
 /*!****************************************************************!*\
   !*** ./src/app/component/notfound404/notfound404.component.ts ***!
@@ -431,8 +418,7 @@ let NotFound404Component = class NotFound404Component {
 NotFound404Component = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-notfound404',
-        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./notfound404.component.html */ "./node_modules/@angular-devkit/build-angular/node_modules/raw-loader/dist/cjs.js!./src/app/component/notfound404/notfound404.component.html")).default,
-        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./notfound404.component.css */ "./src/app/component/notfound404/notfound404.component.css")).default]
+        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./notfound404.component.html */ "./node_modules/@angular-devkit/build-angular/node_modules/raw-loader/dist/cjs.js!./src/app/component/notfound404/notfound404.component.html")).default
     })
 ], NotFound404Component);
 
@@ -662,19 +648,6 @@ function getMultiValuesWithDifferentDelay(del = 20, del2 = 20, intervalMs = 100,
 
 /***/ }),
 
-/***/ "./src/app/component/template-ref-example/rows.component.css":
-/*!*******************************************************************!*\
-  !*** ./src/app/component/template-ref-example/rows.component.css ***!
-  \*******************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("");
-
-/***/ }),
-
 /***/ "./src/app/component/template-ref-example/rows.component.ts":
 /*!******************************************************************!*\
   !*** ./src/app/component/template-ref-example/rows.component.ts ***!
@@ -728,26 +701,12 @@ Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 RowsComponent = RowsComponent_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-rows',
-        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./rows.component.html */ "./node_modules/@angular-devkit/build-angular/node_modules/raw-loader/dist/cjs.js!./src/app/component/template-ref-example/rows.component.html")).default,
-        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./rows.component.css */ "./src/app/component/template-ref-example/rows.component.css")).default]
+        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./rows.component.html */ "./node_modules/@angular-devkit/build-angular/node_modules/raw-loader/dist/cjs.js!./src/app/component/template-ref-example/rows.component.html")).default
     }),
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]])
 ], RowsComponent);
 
 
-
-/***/ }),
-
-/***/ "./src/app/component/template-ref-example/template-ref-example.component.css":
-/*!***********************************************************************************!*\
-  !*** ./src/app/component/template-ref-example/template-ref-example.component.css ***!
-  \***********************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("");
 
 /***/ }),
 
@@ -807,8 +766,7 @@ TemplateRefExampleComponent.ctorParameters = () => [
 TemplateRefExampleComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-template-ref-example',
-        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./template-ref-example.component.html */ "./node_modules/@angular-devkit/build-angular/node_modules/raw-loader/dist/cjs.js!./src/app/component/template-ref-example/template-ref-example.component.html")).default,
-        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./template-ref-example.component.css */ "./src/app/component/template-ref-example/template-ref-example.component.css")).default]
+        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./template-ref-example.component.html */ "./node_modules/@angular-devkit/build-angular/node_modules/raw-loader/dist/cjs.js!./src/app/component/template-ref-example/template-ref-example.component.html")).default
     }),
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_service_worator_service__WEBPACK_IMPORTED_MODULE_3__["WoratorService"]])
 ], TemplateRefExampleComponent);
@@ -1174,35 +1132,67 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_service_worker__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/service-worker */ "./node_modules/@angular/service-worker/__ivy_ngcc__/fesm2015/service-worker.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _for_services_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./for-services.module */ "./src/app/service/for-services.module.ts");
+var CheckForUpdateService_1;
 
 
 
 
 
-let CheckForUpdateService = class CheckForUpdateService {
+
+
+let CheckForUpdateService = CheckForUpdateService_1 = class CheckForUpdateService {
     constructor(appRef, updates) {
         console.log('\t\t\tCheckForUpdateService instantiated!!!');
         // Allow the app to stabilize first, before starting polling for updates with `interval()`.
         const appIsStable$ = appRef.isStable.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["first"])(isStable => isStable === true));
         const everySixHours$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["interval"])(15 * 1000);
         const everySixHoursOnceAppIsStable$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["concat"])(appIsStable$, everySixHours$);
-        this.subscription = everySixHoursOnceAppIsStable$.subscribe(() => updates.checkForUpdate());
+        if (_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].production) {
+            CheckForUpdateService_1.subscription = everySixHoursOnceAppIsStable$.subscribe(() => updates.checkForUpdate());
+        }
     }
     ngOnDestroy() {
-        this.subscription.unsubscribe();
+        CheckForUpdateService_1.subscription.unsubscribe();
     }
 };
+CheckForUpdateService.subscription = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subscription"]();
 CheckForUpdateService.ctorParameters = () => [
     { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ApplicationRef"] },
     { type: _angular_service_worker__WEBPACK_IMPORTED_MODULE_2__["SwUpdate"] }
 ];
-CheckForUpdateService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+CheckForUpdateService = CheckForUpdateService_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: 'root'
+        providedIn: _for_services_module__WEBPACK_IMPORTED_MODULE_6__["ForServicesModule"]
     }),
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ApplicationRef"],
         _angular_service_worker__WEBPACK_IMPORTED_MODULE_2__["SwUpdate"]])
 ], CheckForUpdateService);
+
+
+
+/***/ }),
+
+/***/ "./src/app/service/for-services.module.ts":
+/*!************************************************!*\
+  !*** ./src/app/service/for-services.module.ts ***!
+  \************************************************/
+/*! exports provided: ForServicesModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ForServicesModule", function() { return ForServicesModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+
+
+let ForServicesModule = class ForServicesModule {
+};
+ForServicesModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({})
+], ForServicesModule);
 
 
 
@@ -1437,6 +1427,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _angular_service_worker__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/service-worker */ "./node_modules/@angular/service-worker/__ivy_ngcc__/fesm2015/service-worker.js");
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _for_services_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./for-services.module */ "./src/app/service/for-services.module.ts");
+
 
 
 
@@ -1464,7 +1456,7 @@ LogUpdateService.ctorParameters = () => [
 ];
 LogUpdateService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: 'root'
+        providedIn: _for_services_module__WEBPACK_IMPORTED_MODULE_4__["ForServicesModule"]
     }),
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_service_worker__WEBPACK_IMPORTED_MODULE_2__["SwUpdate"]])
 ], LogUpdateService);
@@ -1684,7 +1676,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_service_worker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/service-worker */ "./node_modules/@angular/service-worker/__ivy_ngcc__/fesm2015/service-worker.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _check_for_update_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./check-for-update.service */ "./src/app/service/check-for-update.service.ts");
+/* harmony import */ var _for_services_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./for-services.module */ "./src/app/service/for-services.module.ts");
 var PromptUpdateService_1;
+
+
 
 
 
@@ -1696,7 +1692,9 @@ let PromptUpdateService = PromptUpdateService_1 = class PromptUpdateService {
             console.log('available version is', event.available.hash);
             if (PromptUpdateService_1.promptUser()) {
                 updates.activateUpdate().then(() => document.location.reload());
+                return;
             }
+            _check_for_update_service__WEBPACK_IMPORTED_MODULE_3__["CheckForUpdateService"].subscription.unsubscribe();
         });
     }
     static promptUser() {
@@ -1715,34 +1713,10 @@ PromptUpdateService.ctorParameters = () => [
 ];
 PromptUpdateService = PromptUpdateService_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({
-        providedIn: 'root'
+        providedIn: _for_services_module__WEBPACK_IMPORTED_MODULE_4__["ForServicesModule"]
     }),
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_service_worker__WEBPACK_IMPORTED_MODULE_1__["SwUpdate"]])
 ], PromptUpdateService);
-
-
-
-/***/ }),
-
-/***/ "./src/app/service/selective-preloading-strategy-service.module.ts":
-/*!*************************************************************************!*\
-  !*** ./src/app/service/selective-preloading-strategy-service.module.ts ***!
-  \*************************************************************************/
-/*! exports provided: SelectivePreloadingStrategyServiceModule */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SelectivePreloadingStrategyServiceModule", function() { return SelectivePreloadingStrategyServiceModule; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-
-
-let SelectivePreloadingStrategyServiceModule = class SelectivePreloadingStrategyServiceModule {
-};
-SelectivePreloadingStrategyServiceModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])()
-], SelectivePreloadingStrategyServiceModule);
 
 
 
@@ -1761,7 +1735,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
-/* harmony import */ var _selective_preloading_strategy_service_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./selective-preloading-strategy-service.module */ "./src/app/service/selective-preloading-strategy-service.module.ts");
+/* harmony import */ var _for_services_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./for-services.module */ "./src/app/service/for-services.module.ts");
 
 
 
@@ -1785,7 +1759,7 @@ let SelectivePreloadingStrategyService = class SelectivePreloadingStrategyServic
 };
 SelectivePreloadingStrategyService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: _selective_preloading_strategy_service_module__WEBPACK_IMPORTED_MODULE_3__["SelectivePreloadingStrategyServiceModule"]
+        providedIn: _for_services_module__WEBPACK_IMPORTED_MODULE_3__["ForServicesModule"]
     })
 ], SelectivePreloadingStrategyService);
 
@@ -1870,7 +1844,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 /* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./component */ "./src/app/component/index.ts");
 /* harmony import */ var _service_selective_preloading_strategy_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./service/selective-preloading-strategy.service */ "./src/app/service/selective-preloading-strategy.service.ts");
-/* harmony import */ var _service_selective_preloading_strategy_service_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./service/selective-preloading-strategy-service.module */ "./src/app/service/selective-preloading-strategy-service.module.ts");
+/* harmony import */ var _service_for_services_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./service/for-services.module */ "./src/app/service/for-services.module.ts");
 /* harmony import */ var _module_crisis_component_compose_message_compose_message_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./module/crisis/component/compose-message/compose-message.component */ "./src/app/module/crisis/component/compose-message/compose-message.component.ts");
 
 
@@ -1967,7 +1941,7 @@ let StartRoutingModule = class StartRoutingModule {
 StartRoutingModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
         imports: [
-            _service_selective_preloading_strategy_service_module__WEBPACK_IMPORTED_MODULE_5__["SelectivePreloadingStrategyServiceModule"],
+            _service_for_services_module__WEBPACK_IMPORTED_MODULE_5__["ForServicesModule"],
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(ROUTES, {
                 enableTracing: false,
                 // preloadingStrategy: PreloadAllModules
@@ -2028,7 +2002,9 @@ __webpack_require__.r(__webpack_exports__);
 
 let StartComponent = class StartComponent {
     constructor(lcr, // instancja
-    localeId, storage, el, sw, // wywołaj constructor
+    localeId, storage, 
+    // private el: ElementRef, // (1) niepotrzebne
+    sw, // wywołaj constructor
     cu, // wywołaj constructor
     pu // wywołaj constructor
     // private router: Router,
@@ -2037,7 +2013,6 @@ let StartComponent = class StartComponent {
         this.lcr = lcr;
         this.localeId = localeId;
         this.storage = storage;
-        this.el = el;
         this.localeIdNumbers = _locale_LIDs__WEBPACK_IMPORTED_MODULE_2__["LOCALE_ID_NUMBERS"];
         this.ver = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].VERSION;
         this.showLangsInConsole();
@@ -2046,7 +2021,7 @@ let StartComponent = class StartComponent {
             this.browserLocaleID = this.localeId;
         }
         else {
-            // this.setLangInHTMLElement(); // niepotrzebne - przygotowane osobne pliki 'index.html' dla lokalizacji
+            // this.setLangInHTMLElement(); // (1) niepotrzebne - przygotowane osobne pliki 'index.html' dla lokalizacji
             this.browserLocaleID = navigator.language.slice(0, 2);
             this.prepareAddress();
         }
@@ -2056,13 +2031,9 @@ let StartComponent = class StartComponent {
     ngOnInit() {
         this.checkIfUserIsSwitchingLanguage();
         this.showAngularVersion();
-        // console.log('------------------------');
         // console.log(strings[0] + '//' + strings[2] + '/es');
-        // console.log('------------------------');
         // console.log(this.location.path());
-        // console.log('------------------------');
         // console.log(this.router.url);
-        // console.log('------------------------');
         // window.location.href = strings[0] + '//' + strings[2] + '/en';
         // this.router.navigate(['es', 'choose']);
     }
@@ -2131,18 +2102,11 @@ let StartComponent = class StartComponent {
             return newAddress.substr(0, newAddress.length - 1);
         }
     }
-    setLangInHTMLElement() {
-        const lang = document.createAttribute('lang');
-        lang.value = this.localeId;
-        this.el.nativeElement.parentElement.parentElement.attributes.setNamedItem(lang);
-        // document.documentElement.lang = 'es'; // inny sposób
-    }
 };
 StartComponent.ctorParameters = () => [
     { type: _service_lang_change_relay_service__WEBPACK_IMPORTED_MODULE_5__["LangChangeRelayService"] },
     { type: String, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"], args: [_angular_core__WEBPACK_IMPORTED_MODULE_1__["LOCALE_ID"],] }] },
     { type: _service_local_storage_service__WEBPACK_IMPORTED_MODULE_4__["LocalStorageService"] },
-    { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] },
     { type: _service_log_update_service__WEBPACK_IMPORTED_MODULE_6__["LogUpdateService"] },
     { type: _service_check_for_update_service__WEBPACK_IMPORTED_MODULE_7__["CheckForUpdateService"] },
     { type: _service_prompt_update_service__WEBPACK_IMPORTED_MODULE_8__["PromptUpdateService"] // wywołaj constructor
@@ -2156,7 +2120,6 @@ StartComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     }),
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__param"])(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_core__WEBPACK_IMPORTED_MODULE_1__["LOCALE_ID"])),
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_service_lang_change_relay_service__WEBPACK_IMPORTED_MODULE_5__["LangChangeRelayService"], String, _service_local_storage_service__WEBPACK_IMPORTED_MODULE_4__["LocalStorageService"],
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"],
         _service_log_update_service__WEBPACK_IMPORTED_MODULE_6__["LogUpdateService"],
         _service_check_for_update_service__WEBPACK_IMPORTED_MODULE_7__["CheckForUpdateService"],
         _service_prompt_update_service__WEBPACK_IMPORTED_MODULE_8__["PromptUpdateService"] // wywołaj constructor
@@ -2193,6 +2156,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _service_index_services__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./service/index-services */ "./src/app/service/index-services.ts");
 /* harmony import */ var _directive_additional_directive__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./directive/additional.directive */ "./src/app/directive/additional.directive.ts");
 /* harmony import */ var _gen_modules_footer_footer_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./gen_modules/footer/footer.module */ "./src/app/gen_modules/footer/footer.module.ts");
+/* harmony import */ var _service_for_services_module__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./service/for-services.module */ "./src/app/service/for-services.module.ts");
+
 
 
 
@@ -2231,7 +2196,8 @@ StartModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             // App2Module, // (forms) nie ma żadnego routera, więc psuje jak jest tu umieszczony, i także "lazy child"
             // CrisisModule // jest użyty 1 komponent w outlecie popup, ale "lazy" więc nie w declarations, i może być po '/**'
             _angular_service_worker__WEBPACK_IMPORTED_MODULE_5__["ServiceWorkerModule"].register('ngsw-worker.js', { enabled: _environments_environment__WEBPACK_IMPORTED_MODULE_8__["environment"].production }),
-            _gen_modules_footer_footer_module__WEBPACK_IMPORTED_MODULE_13__["FooterModule"]
+            _gen_modules_footer_footer_module__WEBPACK_IMPORTED_MODULE_13__["FooterModule"],
+            _service_for_services_module__WEBPACK_IMPORTED_MODULE_14__["ForServicesModule"]
         ],
         declarations: [
             _index__WEBPACK_IMPORTED_MODULE_10__["StartComponent"],

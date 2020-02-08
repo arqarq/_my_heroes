@@ -1,4 +1,4 @@
-import { Component, ElementRef, Inject, LOCALE_ID, OnInit } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { LOCALE_ID_NUMBERS } from '../locale/LIDs';
 import { environment } from '../environments/environment';
 import { LANG_INIT_STORAGE_KEY, LANG_STORAGE_KEY, LANG_USER_IS_SWITCHING, LocalStorageService } from './service/local-storage.service';
@@ -25,7 +25,7 @@ export class StartComponent implements OnInit {
     public lcr: LangChangeRelayService, // instancja
     @Inject(LOCALE_ID) readonly localeId: string,
     private storage: LocalStorageService,
-    private el: ElementRef,
+    // private el: ElementRef, // (1) niepotrzebne
     sw: LogUpdateService, // wywołaj constructor
     cu: CheckForUpdateService, // wywołaj constructor
     pu: PromptUpdateService // wywołaj constructor
@@ -38,7 +38,7 @@ export class StartComponent implements OnInit {
     if (environment.isNode) {
       this.browserLocaleID = this.localeId;
     } else {
-      // this.setLangInHTMLElement(); // niepotrzebne - przygotowane osobne pliki 'index.html' dla lokalizacji
+      // this.setLangInHTMLElement(); // (1) niepotrzebne - przygotowane osobne pliki 'index.html' dla lokalizacji
       this.browserLocaleID = navigator.language.slice(0, 2);
       this.prepareAddress();
     }
@@ -49,13 +49,9 @@ export class StartComponent implements OnInit {
   ngOnInit() {
     this.checkIfUserIsSwitchingLanguage();
     this.showAngularVersion();
-    // console.log('------------------------');
     // console.log(strings[0] + '//' + strings[2] + '/es');
-    // console.log('------------------------');
     // console.log(this.location.path());
-    // console.log('------------------------');
     // console.log(this.router.url);
-    // console.log('------------------------');
     // window.location.href = strings[0] + '//' + strings[2] + '/en';
     // this.router.navigate(['es', 'choose']);
   }
@@ -134,10 +130,10 @@ export class StartComponent implements OnInit {
     }
   }
 
-  private setLangInHTMLElement() {
-    const lang = document.createAttribute('lang');
-    lang.value = this.localeId;
-    this.el.nativeElement.parentElement.parentElement.attributes.setNamedItem(lang);
-    // document.documentElement.lang = 'es'; // inny sposób
-  }
+  // private setLangInHTMLElement() { // (1) niepotrzebne
+  //   const lang = document.createAttribute('lang');
+  //   lang.value = this.localeId;
+  //   this.el.nativeElement.parentElement.parentElement.attributes.setNamedItem(lang);
+  //   // document.documentElement.lang = 'es'; // inny sposób
+  // }
 }

@@ -6,8 +6,7 @@ import { CartService } from '../service/cart.service';
 
 @Component({
   selector: 'app-product-details',
-  templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.css']
+  templateUrl: './product-details.component.html'
 })
 export class ProductDetailsComponent implements OnInit {
   product: ProductParamsType;

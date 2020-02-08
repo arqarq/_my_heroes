@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { PreloadingStrategy, Route } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { SelectivePreloadingStrategyServiceModule } from './selective-preloading-strategy-service.module';
+import { ForServicesModule } from './for-services.module';
 
 @Injectable({
-  providedIn: SelectivePreloadingStrategyServiceModule
+  providedIn: ForServicesModule
 })
 export class SelectivePreloadingStrategyService implements PreloadingStrategy {
   preloadedModules: string[] = [];

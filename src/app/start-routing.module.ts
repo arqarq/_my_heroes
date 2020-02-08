@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes, UrlMatchResult, UrlSegment } from '@angular/router';
 import { NotFound404Component, ObservComponent, TemplateRefExampleComponent } from './component';
 import { SelectivePreloadingStrategyService } from './service/selective-preloading-strategy.service';
-import { SelectivePreloadingStrategyServiceModule } from './service/selective-preloading-strategy-service.module';
+import { ForServicesModule } from './service/for-services.module';
 import { ComposeMessageComponent } from './module/crisis/component/compose-message/compose-message.component';
 
 export function isComposeMatched(url: UrlSegment[]): UrlMatchResult {
@@ -92,7 +92,7 @@ const ROUTES: Routes = [
 
 @NgModule({
   imports: [
-    SelectivePreloadingStrategyServiceModule,
+    ForServicesModule,
     RouterModule.forRoot(ROUTES, {
       enableTracing: false,
       // preloadingStrategy: PreloadAllModules

@@ -5,8 +5,7 @@ import { ShippingOptions } from '../shop.types';
 
 @Component({
   selector: 'app-shipping',
-  templateUrl: './shipping.component.html',
-  styleUrls: ['./shipping.component.css']
+  templateUrl: './shipping.component.html'
 })
 export class ShippingComponent {
   shippingCosts: Observable<ShippingOptions[]>;

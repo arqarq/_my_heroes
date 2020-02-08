@@ -2,13 +2,14 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
 import { environment } from '../../environments/environment';
 import { Subscription } from 'rxjs';
+import { ForServicesModule } from './for-services.module';
 
 interface VersionTag {
   ver: string;
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: ForServicesModule
 })
 export class LogUpdateService implements OnDestroy {
   private subscription: Subscription;

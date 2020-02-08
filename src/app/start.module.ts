@@ -18,6 +18,7 @@ import {
 import { InMemoryDataService } from './service/index-services';
 import { AdditionalDirective } from './directive/additional.directive';
 import { FooterModule } from './gen_modules/footer/footer.module';
+import { ForServicesModule } from './service/for-services.module';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { FooterModule } from './gen_modules/footer/footer.module';
       'ngsw-worker.js',
       {enabled: environment.production}
     ),
-    FooterModule
+    FooterModule,
+    ForServicesModule
   ],
   declarations: [
     StartComponent,
@@ -53,7 +55,7 @@ import { FooterModule } from './gen_modules/footer/footer.module';
   bootstrap: [StartComponent]
 })
 export class StartModule {
-  readonly replacer;
+  private readonly replacer;
 
   constructor(private router: Router) {
     this.replacer = (key, value) => (typeof value === 'function') ? value.name : value;

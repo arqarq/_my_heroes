@@ -2,12 +2,14 @@ import { ApplicationRef, Injectable, OnDestroy } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
 import { first } from 'rxjs/operators';
 import { concat, interval, Subscription } from 'rxjs';
+import { environment } from '../../environments/environment';
+import { ForServicesModule } from './for-services.module';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: ForServicesModule
 })
 export class CheckForUpdateService implements OnDestroy {
-  private subscription: Subscription;
+  static subscription = new Subscription();
 
   constructor(
     appRef: ApplicationRef,
@@ -19,10 +21,12 @@ export class CheckForUpdateService implements OnDestroy {
     const everySixHours$ = interval(15 * 1000);
     const everySixHoursOnceAppIsStable$ = concat(appIsStable$, everySixHours$);
 
-    this.subscription = everySixHoursOnceAppIsStable$.subscribe(() => updates.checkForUpdate());
+    if (environment.production) {
+      CheckForUpdateService.subscription = everySixHoursOnceAppIsStable$.subscribe(() => updates.checkForUpdate());
+    }
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    CheckForUpdateService.subscription.unsubscribe();
   }
 }
