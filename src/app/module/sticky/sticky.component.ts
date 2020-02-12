@@ -27,14 +27,12 @@ export class StickyComponent implements OnInit, OnDestroy {
         console.log('!!', this.offset = this.divElement.offsetTop, 'onscroll:', this.divElement.getBoundingClientRect().top);
       }
       if (window.pageYOffset >= this.offset + 33 - TOP_STICKY) {
-        if (!this.flag) {
-          this.setSticky();
-        }
+        // tslint:disable-next-line:no-unused-expression
+        !this.flag && this.setSticky();
         return;
       }
-      if (this.flag) {
-        this.setRelative();
-      }
+      // tslint:disable-next-line:no-unused-expression
+      this.flag && this.setRelative();
     };
   }
 
