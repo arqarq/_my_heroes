@@ -59,8 +59,13 @@
 <section>
   <div>
     <button (click)="dodajLiczbe()"
+            style="margin-right: 15px"
             type="button">
       dodaj liczbę
+    </button>
+    <button (click)="toggleDisable()"
+            type="button">
+      toggle disable via ElementRef
     </button>
   </div>
   <div>

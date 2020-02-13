@@ -1,4 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterContentChecked,
+  AfterContentInit,
+  AfterViewChecked,
+  AfterViewInit,
+  Component,
+  DoCheck,
+  ElementRef,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Decorator, Decorator2, HTMLInputToPercent } from '../../util/HTMLInputToPercent';
 
@@ -10,7 +23,9 @@ import { Decorator, Decorator2, HTMLInputToPercent } from '../../util/HTMLInputT
 @HTMLInputToPercent()
 @Decorator
 @Decorator2('Hey!a')
-export class App2Component implements OnInit {
+export class App2Component implements OnChanges, OnInit, DoCheck, AfterContentInit,
+  AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
+  @ViewChild('input0') inputElement: ElementRef;
   weryfik = App2Component[`weryfik`];
   und: Array<number>;
   und2: Array<number> = [];
@@ -23,8 +38,17 @@ export class App2Component implements OnInit {
   inputText1 = 'abc';
   inputText2 = 'def';
   private title = 'Formularze';
+  private lifecycleLog: string[] = [];
+  private lifecycleLogCount = new Map<string, number>();
+  private i = 0;
 
   constructor(private titleService: Title) {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.countLifecycleCalls(this.ngOnChanges.name);
+    this.lifecycleLog.push(++this.i + '/' + this.ngOnChanges.name + '(' + this.gM(this.ngOnChanges.name) + ')/' +
+      (typeof this.inputElement !== 'undefined') + '/' + this.inputElement?.nativeElement.offsetHeight);
   }
 
   ngOnInit(): void {
@@ -34,10 +58,66 @@ export class App2Component implements OnInit {
     App2Component[`word3`]('a b c d e');
     App2Component[`word4`]('a b c d e');
     App2Component[`word5`]('a b c d e');
+    this.countLifecycleCalls(this.ngOnInit.name);
+    this.lifecycleLog.push(++this.i + '/' + this.ngOnInit.name + '(' + this.gM(this.ngOnInit.name) + ')/' +
+      (typeof this.inputElement !== 'undefined') + '/' + this.inputElement?.nativeElement.offsetHeight);
+  }
+
+  ngDoCheck(): void {
+    this.countLifecycleCalls(this.ngDoCheck.name);
+    this.lifecycleLog.push(++this.i + '/' + this.ngDoCheck.name + '(' + this.gM(this.ngDoCheck.name) + ')/' +
+      (typeof this.inputElement !== 'undefined') + '/' + this.inputElement?.nativeElement.offsetHeight);
+  }
+
+  ngAfterContentInit(): void {
+    this.countLifecycleCalls(this.ngAfterContentInit.name);
+    this.lifecycleLog.push(++this.i + '/' + this.ngAfterContentInit.name + '(' + this.gM(this.ngAfterContentInit.name) + ')/' +
+      (typeof this.inputElement !== 'undefined') + '/' + this.inputElement?.nativeElement.offsetHeight);
+  }
+
+  ngAfterContentChecked(): void {
+    this.countLifecycleCalls(this.ngAfterContentChecked.name);
+    this.lifecycleLog.push(++this.i + '/' + this.ngAfterContentChecked.name + '(' + this.gM(this.ngAfterContentChecked.name) + ')/' +
+      (typeof this.inputElement !== 'undefined') + '/' + this.inputElement?.nativeElement.offsetHeight);
+  }
+
+  ngAfterViewInit(): void {
+    this.countLifecycleCalls(this.ngAfterViewInit.name);
+    this.lifecycleLog.push(++this.i + '/' + this.ngAfterViewInit.name + '(' + this.gM(this.ngAfterViewInit.name) + ')/' +
+      (typeof this.inputElement !== 'undefined') + '/' + this.inputElement?.nativeElement.offsetHeight);
+    console.log('divElement', this.inputElement);
+  }
+
+  ngAfterViewChecked(): void {
+    this.countLifecycleCalls(this.ngAfterViewChecked.name);
+    this.lifecycleLog.push(++this.i + '/' + this.ngAfterViewChecked.name + '(' + this.gM(this.ngAfterViewChecked.name) + ')/' +
+      (typeof this.inputElement !== 'undefined') + '/' + this.inputElement?.nativeElement.offsetHeight);
+  }
+
+  ngOnDestroy(): void {
+    this.countLifecycleCalls(this.ngOnDestroy.name);
+    this.lifecycleLog.push(++this.i + '/' + this.ngOnDestroy.name + '(' + this.gM(this.ngOnDestroy.name) + ')/' +
+      (typeof this.inputElement !== 'undefined') + '/' + this.inputElement?.nativeElement.offsetHeight);
+    console.log('---', Object.keys({lifecycleLog: this.lifecycleLog})[0] + ':');
+    this.lifecycleLog.forEach((value) => console.log(value));
+    console.log('--- EOL');
   }
 
   dodajLiczbe() {
     this.dane.push(this.liczba++);
+  }
+
+  toggleDisable() {
+    this.inputElement.nativeElement.disabled = !this.inputElement.nativeElement.disabled;
+  }
+
+  private countLifecycleCalls(name: string) {
+    this.lifecycleLogCount.has(name) ?
+      this.lifecycleLogCount.set(name, this.lifecycleLogCount.get(name) + 1) : this.lifecycleLogCount.set(name, 1);
+  }
+
+  private gM(name: string) {
+    return this.lifecycleLogCount.get(name);
   }
 
   /*weryfikacja(el: HTMLInputElement) {
