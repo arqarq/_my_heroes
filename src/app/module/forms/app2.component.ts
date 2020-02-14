@@ -4,6 +4,7 @@ import {
   AfterViewChecked,
   AfterViewInit,
   Component,
+  ContentChild,
   DoCheck,
   ElementRef,
   OnChanges,
@@ -14,6 +15,7 @@ import {
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Decorator, Decorator2, HTMLInputToPercent } from '../../util/HTMLInputToPercent';
+import { FoooterComponent } from '../../gen_modules/footer/foooter.component';
 
 @Component({
   selector: 'app-root2',
@@ -25,6 +27,7 @@ import { Decorator, Decorator2, HTMLInputToPercent } from '../../util/HTMLInputT
 @Decorator2('Hey!a')
 export class App2Component implements OnChanges, OnInit, DoCheck, AfterContentInit,
   AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
+  @ContentChild(FoooterComponent) appFooter: FoooterComponent;
   @ViewChild('input0') inputElement: ElementRef;
   weryfik = App2Component[`weryfik`];
   und: Array<number>;

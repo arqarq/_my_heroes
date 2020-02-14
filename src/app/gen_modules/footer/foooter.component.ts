@@ -10,7 +10,7 @@ export class FoooterComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log('-- ngOnChanges:', JSON.parse(JSON.stringify(changes, (key, value) => {
-      return value ? value : value === undefined ? 'undef' : 'null';
+      return value ? value : value === false ? false : value === undefined ? 'undef' : 'null';
     })));
   }
 }
