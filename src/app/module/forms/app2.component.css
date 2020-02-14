@@ -59,3 +59,8 @@ span#test0::before {
   position: absolute;
   right: calc(50% + 1.75ch)
 }
+
+.monospace {
+  font-size: .8333em;
+  font-family: Lucida Console, monospace
+}

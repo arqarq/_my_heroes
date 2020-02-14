@@ -60,13 +60,9 @@
   <div>
     <button (click)="dodajLiczbe()"
             style="margin-right: 15px"
-            type="button">
-      dodaj liczbę
-    </button>
+            type="button">dodaj liczbę</button>
     <button (click)="toggleDisable()"
-            type="button">
-      toggle disable via ElementRef
-    </button>
+            type="button">toggle disable via ElementRef</button>
   </div>
   <div>
     <p *ngFor="let dana of dane; let index = index"
@@ -106,21 +102,29 @@
   <div>
     <div class="first"
          style="display: inline-block">
+      <label class="monospace"
+             for="inputId1">1.</label>
       <input (input)="inputText2 = $any($event.target).value"
              [(ngModel)]="inputText1"
+             id="inputId1"
              placeholder="—"
              style="width: 50px; text-align: center; font-size: .8333em">
     </div>
-    <div style="display: inline-block; margin-left: 4px; font-size: .8333em; font-family: Lucida Console, monospace">
+    <div class="monospace"
+         style="display: inline-block; margin-left: 4px">
       [(ngModel)]: {{ '"' + (inputText1 || 'null') + '"' }}
     </div>
   </div>
   <div style="display: inline-block; margin-block-start: .25em">
+    <label class="monospace"
+           for="inputId2">2.</label>
     <input [ngModel]="inputText2"
+           id="inputId2"
            placeholder="—"
            style="width: 50px; text-align: center; font-size: .8333em">
   </div>
-  <div style="display: inline-block; margin-left: 4px; font-size: .8333em; font-family: Lucida Console, monospace">
+  <div class="monospace"
+       style="display: inline-block; margin-left: 4px">
     [ ngModel ]: {{ '"' + (inputText2 || 'null') + '"' }}
   </div>
 </section>
