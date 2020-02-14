@@ -37,6 +37,8 @@ export class App2Component implements OnChanges, OnInit, DoCheck, AfterContentIn
   items = [2, 1];
   inputText1 = 'abc';
   inputText2 = 'def';
+  b = 'b';
+  d = 'd';
   private title = 'Formularze';
   private lifecycleLog: string[] = [];
   private lifecycleLogCount = new Map<string, number>();
@@ -61,6 +63,11 @@ export class App2Component implements OnChanges, OnInit, DoCheck, AfterContentIn
     this.countLifecycleCalls(this.ngOnInit.name);
     this.lifecycleLog.push(++this.i + '/' + this.ngOnInit.name + '(' + this.gM(this.ngOnInit.name) + ')/' +
       (typeof this.inputElement !== 'undefined') + '/' + this.inputElement?.nativeElement.offsetHeight);
+    const timeout = setTimeout(() => {
+      clearTimeout(timeout);
+      this.b = 'c';
+      this.d = 'e';
+    }, 10000);
   }
 
   ngDoCheck(): void {

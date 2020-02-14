@@ -59,7 +59,7 @@
 <section>
   <div>
     <button (click)="dodajLiczbe()"
-            style="margin-right: 15px"
+            style="margin-right: 10px"
             type="button">dodaj liczbę</button>
     <button (click)="toggleDisable()"
             type="button">toggle disable via ElementRef</button>
@@ -128,4 +128,5 @@
     [ ngModel ]: {{ '"' + (inputText2 || 'null') + '"' }}
   </div>
 </section>
-<app-foooter></app-foooter>
+<app-foooter [a]="b"
+             [aa]="d"></app-foooter>
