@@ -1,4 +1,11 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, ContentChildren, Directive, Input, OnChanges, QueryList, SimpleChanges } from '@angular/core';
+
+// tslint:disable-next-line:directive-selector
+@Directive({selector: '[pane]'})
+export class PaneDirective {
+  @Input() id: string;
+  @Input() text: string;
+}
 
 @Component({
   selector: 'app-foooter',
@@ -7,6 +14,7 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 export class FoooterComponent implements OnChanges {
   @Input() a: string;
   @Input() aa: string;
+  @ContentChildren(PaneDirective) pane: QueryList<PaneDirective>;
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log('-- ngOnChanges:', JSON.parse(JSON.stringify(changes, (key, value) => {

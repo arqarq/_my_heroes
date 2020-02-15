@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<p>\r\n  Dashboard\r\n</p>\r\n<a id=\"anchor\"></a>\r\n<p>\r\n  Reading from path:<br>\r\n  - Session ID: {{ sessionId | async }},<br>\r\n  - Token: {{ token | async }}\r\n</p>\r\n<p style=\"margin-bottom: 0\">Preloaded modules:</p>\r\n<ul style=\"margin-top: 0; padding: 0 0 0 20px\">\r\n  <li *ngFor=\"let module of modules\">\r\n    {{ module }}\r\n  </li>\r\n</ul>\r\n<!--Preloaded Modules-->\r\n<!--<ul>-->\r\n<!--  <li *ngFor=\"let module of modules\">{{ module }}</li>-->\r\n<!--</ul>-->\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<p>\n  Dashboard\n</p>\n<a id=\"anchor\"></a>\n<p>\n  Reading from path:<br>\n  - Session ID: {{ sessionId | async }},<br>\n  - Token: {{ token | async }}\n</p>\n<p style=\"margin-bottom: 0\">Preloaded modules:</p>\n<ul style=\"margin-top: 0; padding: 0 0 0 20px\">\n  <li *ngFor=\"let module of modules\">\n    {{ module }}\n  </li>\n</ul>\n<!--Preloaded Modules-->\n<!--<ul>-->\n<!--  <li *ngFor=\"let module of modules\">{{ module }}</li>-->\n<!--</ul>-->\n");
 
 /***/ }),
 
@@ -35,7 +35,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<p>\r\n  Usunięto 'queryParams' i 'fragment' ze ścieżki!\r\n</p>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<p>\n  Usunięto 'queryParams' i 'fragment' ze ścieżki!\n</p>\n");
 
 /***/ }),
 
@@ -48,7 +48,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<p>\r\n  Manage your crises here<br>\r\n  (ustawiono domyślne 'queryParams' i 'fragment')\r\n</p>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<p>\n  Manage your crises here<br>\n  (ustawiono domyślne 'queryParams' i 'fragment')\n</p>\n");
 
 /***/ }),
 
@@ -61,7 +61,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<p>\r\n  Manage your heroes here<br>\r\n  (ustawiono inne 'queryParams' i 'fragment')\r\n</p>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<p>\n  Manage your heroes here<br>\n  (ustawiono inne 'queryParams' i 'fragment')\n</p>\n");
 
 /***/ }),
 

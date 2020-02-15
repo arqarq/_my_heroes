@@ -128,10 +128,12 @@
     [ ngModel ]: {{ '"' + (inputText2 || 'null') + '"' }}
   </div>
 </section>
-<section>
-  <div style="border: 2px dotted grey; border-radius: 3px">
-    {{ this.appFooter.a + '/' + this.appFooter.aa }}
-  </div>
-</section>
 <app-foooter [a]="b"
-             [aa]="d"></app-foooter>
+             [aa]="d">
+  <div id="."
+       pane></div>
+  <div pane
+       text="he"></div>
+  <div pane
+       text="re"></div>
+</app-foooter>
