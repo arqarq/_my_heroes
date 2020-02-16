@@ -127,22 +127,6 @@ export class App2Component implements OnChanges, OnInit, DoCheck, AfterContentIn
     return this.lifecycleLogCount.get(name);
   }
 
-  /*weryfikacja(el: HTMLInputElement) {
-    let val: any = el.value;
-    if (/^[0-9]+\.$/.test(val)) {
-      console.log('1. regex: ' + val);
-      val = val.slice(0, -1);
-    }
-    val = +val;
-    if (!(val > 0 && val < 101) || (val % 1 !== 0)) {
-      console.log('2. zerowanie nullem: ' + val);
-      el.value = null;
-      return;
-    }
-    console.log('3. ok: ' + val);
-    el.value = val + '';
-  }*/
-
   private setTitle(newTitle: string) {
     this.titleService.setTitle(newTitle);
   }

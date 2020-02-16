@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "d00af17f5d630b7296f102d"
+  },
+  "targets": {
+    "d00af17f5d630b7296f102d": {
+      "hosting": {
+        "heroes": [
+          "d00af17f5d630b7296f102d"
+        ]
+      }
+    }
   }
 }
