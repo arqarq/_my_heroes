@@ -31,7 +31,8 @@
     "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
   },
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
     "@angular-builders/custom-webpack": "^8.4.1",
     "@angular-devkit/architect": "^0.900.2",
@@ -58,6 +59,7 @@
     "codelyzer": "^5.2.1",
     "core-js": "^3.6.4",
     "firebase": "^7.8.2",
+    "firebase-admin": "^8.9.2",
     "firebase-tools": "^7.12.1",
     "fs-extra": "^8.1.0",
     "fuzzy": "^0.1.3",
