@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SelectivePreloadingStrategyService } from '../../../../service/selective-preloading-strategy.service';
+import { CloudFirebaseService } from '../../../../service/cloud-firebase.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -15,6 +16,7 @@ export class AdminDashboardComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private dbService: CloudFirebaseService,
     preloadStrategy: SelectivePreloadingStrategyService
   ) {
     this.modules = preloadStrategy.preloadedModules.sort();
@@ -28,5 +30,9 @@ export class AdminDashboardComponent implements OnInit {
     this.token = this.route
       .fragment
       .pipe(map(fragment => fragment || 'None'));
+  }
+
+  readFromPersistence(key: string) {
+    return this.dbService.getFieldFromDoc(key);
   }
 }
