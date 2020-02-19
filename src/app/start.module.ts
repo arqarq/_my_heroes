@@ -19,6 +19,9 @@ import { InMemoryDataService } from './service/index-services';
 import { AdditionalDirective } from './directive/additional.directive';
 import { FooterModule } from './gen_modules/footer/footer.module';
 import { ForServicesModule } from './service/for-services.module';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
   imports: [
@@ -40,7 +43,10 @@ import { ForServicesModule } from './service/for-services.module';
       {enabled: environment.production}
     ),
     FooterModule,
-    ForServicesModule
+    ForServicesModule,
+    AngularFireModule.initializeApp(environment.firebaseConf),
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   declarations: [
     StartComponent,

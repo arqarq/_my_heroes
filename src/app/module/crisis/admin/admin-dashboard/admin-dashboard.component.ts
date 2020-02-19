@@ -13,26 +13,28 @@ export class AdminDashboardComponent implements OnInit {
   sessionId: Observable<string>;
   token: Observable<string>;
   modules: string[];
+  pole: string;
 
   constructor(
     private route: ActivatedRoute,
-    private dbService: CloudFirebaseService,
+    private db: CloudFirebaseService,
     preloadStrategy: SelectivePreloadingStrategyService
   ) {
     this.modules = preloadStrategy.preloadedModules.sort();
   }
 
   ngOnInit() {
-    this.sessionId = this.route
-      .queryParamMap
-      .pipe(map(params => params.get('session_id') || 'None')
-      );
-    this.token = this.route
-      .fragment
-      .pipe(map(fragment => fragment || 'None'));
+    this.sessionId = this.route.queryParamMap
+      .pipe(map((params) => params.get('session_id') || 'None'));
+    this.token = this.route.fragment
+      .pipe(map((fragment) => fragment || 'None'));
+    this.readFromPersistence('pole').subscribe((value) => {
+      this.pole = value;
+      console.log('---db read:', value);
+    });
   }
 
   readFromPersistence(key: string) {
-    return this.dbService.getFieldFromDoc(key);
+    return this.db.getDataFromDoc(key);
   }
 }
