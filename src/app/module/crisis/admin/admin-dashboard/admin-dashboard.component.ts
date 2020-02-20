@@ -30,7 +30,6 @@ export class AdminDashboardComponent implements OnInit {
       .pipe(map((fragment) => fragment || 'None'));
     this.readFromPersistence('pole').subscribe((value) => {
       this.pole = value;
-      console.log('---db read:', value);
     });
   }
 
