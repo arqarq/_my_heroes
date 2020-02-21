@@ -1,4 +1,4 @@
-const serviceAccountObj = require('./db-auth.js');
+const serviceAccountObj = require('./db-auth2.js');
 const admin = require('firebase-admin');
 // const functions = require('firebase-functions');
 
@@ -49,6 +49,6 @@ data = [
   {content: 'Y', blob: false, L: '50%', T: '50%'},
   {content: 'Z', blob: true, L: '50%', T: '50%'}
 ];
-doc.set({test: data, test2: null, test3: false}, {merge: true}).then(() => {
+doc.set({test: data, test2: null, test4: false}, {merge: true}).then(() => {
   doc.get().then((value) => console.log(value.data()))
 });
