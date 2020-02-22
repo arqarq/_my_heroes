@@ -8,7 +8,7 @@
   - Token: {{ token | async }}
 </p>
 <p>
-  Read from persistence: &#123; pole: {{ this.pole || '—' }} }
+  Read from persistence: &#123; pole: {{ (this.pole$ | async) || '—' }} }
 </p>
 <p style="margin-bottom: 0">Preloaded modules:</p>
 <ul style="margin-top: 0; padding: 0 0 0 20px">

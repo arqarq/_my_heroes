@@ -13,11 +13,11 @@ export class AdminDashboardComponent implements OnInit {
   sessionId: Observable<string>;
   token: Observable<string>;
   modules: string[];
-  pole: string;
+  pole$: Observable<string>;
 
   constructor(
     private route: ActivatedRoute,
-    private db: CloudFirebaseService,
+    private cloudFirebaseService: CloudFirebaseService,
     preloadStrategy: SelectivePreloadingStrategyService
   ) {
     this.modules = preloadStrategy.preloadedModules.sort();
@@ -28,12 +28,10 @@ export class AdminDashboardComponent implements OnInit {
       .pipe(map((params) => params.get('session_id') || 'None'));
     this.token = this.route.fragment
       .pipe(map((fragment) => fragment || 'None'));
-    this.readFromPersistence('pole').subscribe((value) => {
-      this.pole = value;
-    });
+    this.pole$ = this.readFromPersistence('pole');
   }
 
-  readFromPersistence(key: string) {
-    return this.db.getDataFromDoc(key);
+  private readFromPersistence(key: string) {
+    return this.cloudFirebaseService.getDataFromDoc(key);
   }
 }
