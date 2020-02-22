@@ -1,14 +1,15 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { of, Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { ForServicesModule } from './for-services.module';
 
 @Injectable({
-  providedIn: 'any'
+  providedIn: ForServicesModule
 })
-export class CloudFirebaseService implements OnDestroy {
+export class CloudFirebaseService {
   private s1 = new Subscription();
   private doc: AngularFirestoreDocument;
   private baseUrl = 'https://us-central1-d00af17f5d630b7296f102d.cloudfunctions.net/createToken';
@@ -21,9 +22,11 @@ export class CloudFirebaseService implements OnDestroy {
   ) {
     this.s1 = this.generateToken(this.uid).subscribe((value) => {
       this.dbAuth.auth.signInWithCustomToken(value).then((value2) => {
-        console.log('--- db:', value2);
-        this.dbAuth.auth.onAuthStateChanged(() => {
+        // console.log('--- db:', value2);
+        console.log('--- db: signed in');
+        this.dbAuth.auth.onAuthStateChanged((user) => {
           this.doc = db.collection('kolekcja').doc('dokument');
+          console.log('--- db: document set, user anonymous?', user.isAnonymous);
         });
       }).catch((reason) => {
         console.log('--- db:', reason.message);
@@ -31,18 +34,20 @@ export class CloudFirebaseService implements OnDestroy {
     });
   }
 
-  getDataFromDoc(key: string) {
+  getDataFromDoc(key: string) { // TODO Observer
     return this.doc ?
       this.doc.snapshotChanges().pipe(map((value) => {
-        return value.payload.get(key) as string;
+        const temp = value.payload.get(key);
+        console.log('--- db:', temp);
+        return temp as string;
       })) :
       of(`<problem z db>`);
   }
 
-  ngOnDestroy(): void {
+  logout() {
     this.dbAuth.auth.signOut().then((function a() {
       this.s1.unsubscribe();
-      console.log('--- db: signed out');
+      console.log('--- db: signed out', 'subsc_unsub?', this.s1.closed);
     }).bind(this));
   }
 

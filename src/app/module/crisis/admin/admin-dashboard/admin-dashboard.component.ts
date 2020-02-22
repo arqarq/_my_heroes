@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -9,7 +9,7 @@ import { CloudFirebaseService } from '../../../../service/cloud-firebase.service
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html'
 })
-export class AdminDashboardComponent implements OnInit {
+export class AdminDashboardComponent implements OnInit, OnDestroy {
   sessionId: Observable<string>;
   token: Observable<string>;
   modules: string[];
@@ -29,6 +29,10 @@ export class AdminDashboardComponent implements OnInit {
     this.token = this.route.fragment
       .pipe(map((fragment) => fragment || 'None'));
     this.pole$ = this.readFromPersistence('pole');
+  }
+
+  ngOnDestroy() {
+    this.cloudFirebaseService.logout();
   }
 
   private readFromPersistence(key: string) {
