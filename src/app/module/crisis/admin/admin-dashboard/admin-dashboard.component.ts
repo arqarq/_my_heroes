@@ -28,6 +28,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
       .pipe(map((params) => params.get('session_id') || 'None'));
     this.token = this.route.fragment
       .pipe(map((fragment) => fragment || 'None'));
+    this.cloudFirebaseService.login();
     this.pole$ = this.readFromPersistence('pole');
   }
 

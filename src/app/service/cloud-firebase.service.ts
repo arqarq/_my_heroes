@@ -11,6 +11,7 @@ import { ForServicesModule } from './for-services.module';
 })
 export class CloudFirebaseService {
   private s1 = new Subscription();
+  private s2 = new Subscription();
   private doc: AngularFirestoreDocument;
   private baseUrl = 'https://us-central1-d00af17f5d630b7296f102d.cloudfunctions.net/createToken';
   private uid = 'qazqaz';
@@ -47,8 +48,19 @@ export class CloudFirebaseService {
   logout() {
     this.dbAuth.auth.signOut().then((function a() {
       this.s1.unsubscribe();
+      this.s2.unsubscribe();
       console.log('--- db: signed out', 'subsc_unsub?', this.s1.closed);
     }).bind(this));
+  }
+
+  login() {
+    if (this.doc) {
+      this.s2 = this.generateToken(this.uid).subscribe((value) => {
+        this.dbAuth.auth.signInWithCustomToken(value).then((value2) => {
+          console.log('--- db: signed in again');
+        });
+      });
+    }
   }
 
   private generateToken(uid: string) {
