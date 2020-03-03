@@ -14,6 +14,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
   token: Observable<string>;
   modules: string[];
   pole$: Observable<string>;
+  authState$: Observable<any>;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,6 +31,10 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
       .pipe(map((fragment) => fragment || 'None'));
     this.cloudFirebaseService.login();
     this.pole$ = this.readFromPersistence('pole');
+    this.authState$ = this.cloudFirebaseService.getAuthStateObserver().pipe(map((value) => {
+      const obj = JSON.parse(JSON.stringify(value));
+      return obj ? 'lastLoginAt: ' + obj.lastLoginAt + '/createdAt: ' + obj.createdAt : null;
+    }));
   }
 
   ngOnDestroy() {

@@ -35,6 +35,10 @@ export class CloudFirebaseService {
     });
   }
 
+  getAuthStateObserver() {
+    return this.dbAuth.authState;
+  }
+
   getDataFromDoc(key: string) { // TODO Observer
     return this.doc ?
       this.doc.snapshotChanges().pipe(map((value) => {

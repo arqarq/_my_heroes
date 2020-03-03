@@ -1,5 +1,5 @@
 <p>
-  app-root2 works! // tu forms // {{ und?.length || '-' }}/{{ t }} {{ und2.length }}/{{ tt }}
+  app-root2 works! // tu forms // {{ und?.length || '-' }}/{{ t }} {{ und2.length }}/{{ tt }}/{{ obs$ | async }}
 </p>
 <section [ngStyle]="{background: 'yellow'}"
          [style]="{'margin-block-end': '1em'}">
@@ -78,7 +78,7 @@
            id="inputId0"
            placeholder="—"
            style="width: 50px; text-align: center; font-size: .8333em"
-           type="text"/>
+           type="text">
     <label [style]="{fontSize: input0.style.fontSize}"
            for="inputId0"
            style="margin: 0"> %</label>

@@ -14,6 +14,8 @@ import {
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Decorator, Decorator2, HTMLInputToPercent } from '../../util/HTMLInputToPercent';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root2',
@@ -39,6 +41,7 @@ export class App2Component implements OnChanges, OnInit, DoCheck, AfterContentIn
   inputText2 = 'def';
   b = 'b';
   d = 'd';
+  obs$;
   private title = 'Formularze';
   private lifecycleLog: string[] = [];
   private lifecycleLogCount = new Map<string, number>();
@@ -68,6 +71,14 @@ export class App2Component implements OnChanges, OnInit, DoCheck, AfterContentIn
       this.b = 'c';
       this.d = 'e';
     }, 10000);
+    this.obs$ = new Observable<{value2: string}>((subscriber) => {
+      subscriber.next({value2: '—'});
+      const timeout2 = setTimeout(() => {
+        subscriber.next({value2: 'abc'});
+        subscriber.complete();
+        clearTimeout(timeout2);
+      }, 5000);
+    }).pipe(map((value) => value.value2));
   }
 
   ngDoCheck(): void {

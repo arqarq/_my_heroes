@@ -10,6 +10,9 @@
 <p>
   Read from persistence: &#123; pole: <b>{{ (this.pole$ | async) || '—' }}</b> }
 </p>
+<p>
+  authState$: <b>{{ (this.authState$ | async) || 'null' }}</b>
+</p>
 <p style="margin-bottom: 0">Preloaded modules:</p>
 <ul style="margin-top: 0; padding: 0 0 0 20px">
   <li *ngFor="let module of modules">
