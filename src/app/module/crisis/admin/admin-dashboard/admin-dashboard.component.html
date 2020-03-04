@@ -8,10 +8,15 @@
   - Token: {{ token | async }}
 </p>
 <p>
-  Read from persistence: &#123; pole: <b>{{ (this.pole$ | async) || '—' }}</b> }
+  Read from persistence: &#123; pole: <b>{{ (pole$ | async) || '—' }}</b> }
 </p>
 <p>
-  authState$: <b>{{ (this.authState$ | async) || 'null' }}</b>
+  authState$: <b>{{ (authState$ | async) || 'null' }}</b>
+  <br>
+  currentUser: <b>{{ cloudFirebaseService.getCurrentUser() | json }}</b>
+</p>
+<p>
+  docObj$: <b>{{ (docObj$ | async) || 'null' }}</b>
 </p>
 <p style="margin-bottom: 0">Preloaded modules:</p>
 <ul style="margin-top: 0; padding: 0 0 0 20px">

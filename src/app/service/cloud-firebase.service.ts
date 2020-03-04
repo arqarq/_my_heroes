@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { of, Subscription } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ForServicesModule } from './for-services.module';
 
@@ -27,7 +27,7 @@ export class CloudFirebaseService {
         console.log('--- db: signed in');
         this.dbAuth.auth.onAuthStateChanged((user) => {
           this.doc = db.collection('kolekcja').doc('dokument');
-          console.log('--- db: document set, user anonymous?', user.isAnonymous);
+          console.log('--- db: document set, onAuthStateChanged, user anonymous?', user?.isAnonymous);
         });
       }).catch((reason) => {
         console.log('--- db:', reason.message);
@@ -37,6 +37,20 @@ export class CloudFirebaseService {
 
   getAuthStateObserver() {
     return this.dbAuth.authState;
+  }
+
+  getDataObj() {
+    return new Observable((subscriber) => {
+      subscriber.next(this.doc);
+    });
+  }
+
+  getCurrentUser() {
+    if (this.dbAuth.auth.currentUser) {
+      const obj = JSON.parse(JSON.stringify(this.dbAuth.auth.currentUser));
+      return {lastLoginAt: obj.lastLoginAt, createdAt: obj.createdAt};
+    }
+    return null;
   }
 
   getDataFromDoc(key: string) { // TODO Observer
@@ -53,7 +67,7 @@ export class CloudFirebaseService {
     this.dbAuth.auth.signOut().then((function a() {
       this.s1.unsubscribe();
       this.s2.unsubscribe();
-      console.log('--- db: signed out', 'subsc_unsub?', this.s1.closed);
+      console.log('--- db: signed out', 'subsc1_unsub?', this.s1.closed);
     }).bind(this));
   }
 
