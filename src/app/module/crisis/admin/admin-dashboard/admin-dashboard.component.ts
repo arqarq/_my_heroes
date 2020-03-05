@@ -33,7 +33,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sessionId = this.route.queryParamMap.pipe(map((params) => params.get('session_id') || 'None'));
     this.token = this.route.fragment.pipe(map((fragment) => fragment || 'None'));
-    this.pole$ = this.readFromPersistence(FIELD_NAME_IN_PERSISTENCE);
+    this.pole$ = this.cloudFirebaseService.getDataFromDoc(FIELD_NAME_IN_PERSISTENCE);
     this.pole2$ = this.cloudFirebaseService.getDataFromDoc2(FIELD_NAME_IN_PERSISTENCE);
     this.authState$ = this.cloudFirebaseService.getAuthStateObserver().pipe(map((value) => {
       const obj = JSON.parse(JSON.stringify(value));
@@ -59,9 +59,5 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     clearTimeout(this.interval);
-  }
-
-  private readFromPersistence(key: string) {
-    return this.cloudFirebaseService.getDataFromDoc(key);
   }
 }

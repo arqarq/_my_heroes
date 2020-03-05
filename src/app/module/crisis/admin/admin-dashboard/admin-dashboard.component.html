@@ -15,7 +15,9 @@
           type="button">Cloud Firestore logout</button>
 </div>
 <p>
-  Read from persistence: &#123; pole: <b>{{ (pole2$ | async) || '—' }}</b> }
+  Read from persistence (pole$): &#123; pole: <b>{{ (pole$ | async) || '—' }}</b> }
+  <br>
+  Read from persistence (pole2$): &#123; pole: <b>{{ (pole2$ | async) || '—' }}</b> }
 </p>
 <p>
   authState$: <b>{{ (authState$ | async) || 'null' }}</b>
@@ -23,7 +25,9 @@
   currentUser: <b>{{ cloudFirebaseService.getCurrentUser() | json }}</b>
 </p>
 <p>
-  docObj$: <b>{{ (docObj2$ | async) || 'null' }}</b>
+  docObj$: <b>{{ (docObj$ | async) || 'null' }}</b>
+  <br>
+  docObj2$: <b>{{ (docObj2$ | async) || 'null' }}</b>
 </p>
 <hr>
 <p style="margin-bottom: 0">
