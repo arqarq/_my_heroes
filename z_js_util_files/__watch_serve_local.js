@@ -5,7 +5,6 @@ const cmd0 = {cmd: 'xcopy src\\assets_common dist\\assets\\ /e', opis: 'kopiowan
 const cmd1 = {cmd: 'start npm run build-i18n:en:watch', opis: 'build en and watch'};
 const cmd2 = {cmd: 'start npm run build-i18n:pl:watch', opis: 'build pl and watch'};
 const cmd3 = {cmd: 'start http-server -p 80 -c-1 dist', opis: 'start server'};
-const MAX_WAIT_MS = 200000;
 
 function run(cmd) {
   const process = exec(cmd.cmd, (err) => printError(err, cmd.opis));
@@ -34,7 +33,3 @@ const interval = setInterval(() => {
     run(cmd3)
   }
 }, 2000);
-const timeout2 = setTimeout(() => {
-  clearTimeout(timeout2);
-  clearInterval(interval)
-}, MAX_WAIT_MS);

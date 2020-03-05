@@ -1,14 +1,21 @@
 <p>
   Dashboard
 </p>
-<a id="anchor"></a>
 <p>
   Reading from path:<br>
   - Session ID: {{ sessionId | async }},<br>
   - Token: {{ token | async }}
 </p>
+<hr>
+<div>
+  <button (click)="cloudFirebaseService.login()"
+          style="margin-right: 10px"
+          type="button">Cloud Firestore login</button>
+  <button (click)="cloudFirebaseService.logout()"
+          type="button">Cloud Firestore logout</button>
+</div>
 <p>
-  Read from persistence: &#123; pole: <b>{{ (pole$ | async) || '—' }}</b> }
+  Read from persistence: &#123; pole: <b>{{ (pole2$ | async) || '—' }}</b> }
 </p>
 <p>
   authState$: <b>{{ (authState$ | async) || 'null' }}</b>
@@ -16,9 +23,12 @@
   currentUser: <b>{{ cloudFirebaseService.getCurrentUser() | json }}</b>
 </p>
 <p>
-  docObj$: <b>{{ (docObj$ | async) || 'null' }}</b>
+  docObj$: <b>{{ (docObj2$ | async) || 'null' }}</b>
 </p>
-<p style="margin-bottom: 0">Preloaded modules:</p>
+<hr>
+<p style="margin-bottom: 0">
+  Preloaded modules:
+</p>
 <ul style="margin-top: 0; padding: 0 0 0 20px">
   <li *ngFor="let module of modules">
     {{ module }}
