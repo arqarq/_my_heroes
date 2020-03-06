@@ -6,12 +6,20 @@ import { Observable, Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ForServicesModule } from './for-services.module';
 
+interface TockType {
+  a?: boolean;
+  b?: boolean;
+}
+
 @Injectable({
   providedIn: ForServicesModule
 })
 export class CloudFirebaseService {
+  key: string;
+  tock: TockType = {};
   doc: AngularFirestoreDocument;
   docRefNotChanged: AngularFirestoreDocument;
+  docTest$: Observable<string>;
   private baseUrl = 'https://us-central1-d00af17f5d630b7296f102d.cloudfunctions.net/createToken';
   private uid = 'qazqaz';
   private s1 = new Subscription();
@@ -24,6 +32,8 @@ export class CloudFirebaseService {
     this.login();
     this.dbAuth.auth.onAuthStateChanged((user) => {
       this.doc = db.collection('kolekcja').doc('dokument');
+      this.docTest$ = db.collection('kolekcja').doc('dokument').valueChanges().pipe(
+        map((value) => value[this.key]));
       console.log('--- db: doc set, onAuthStateChanged, user anonymous?', user?.isAnonymous);
     });
   }
@@ -35,11 +45,6 @@ export class CloudFirebaseService {
   getDataObj() {
     return new Observable((subscriber) => {
       subscriber.next(this.doc);
-      const timeout = setTimeout(() => {
-        subscriber.next(null);
-        subscriber.complete();
-        clearTimeout(timeout);
-      }, 1000000);
     });
   }
 
@@ -85,6 +90,21 @@ export class CloudFirebaseService {
         console.log('--- db*:', reason.message);
       });
     });
+  }
+
+  generateChangeInDB() {
+    this.doc.set({rand: Math.random()}, {merge: true}).then(() => {
+      this.tick(true);
+    }).catch(() => this.tick());
+  }
+
+  private tick(success?: boolean) {
+    this.tock.b = success;
+    this.tock.a = true;
+    const timeout = setTimeout(() => {
+      this.tock.a = false;
+      clearTimeout(timeout);
+    }, 1000);
   }
 
   private generateToken(uid: string) {

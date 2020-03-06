@@ -7,12 +7,22 @@
   - Token: {{ token | async }}
 </p>
 <hr>
-<div>
+<div style="position: relative">
   <button (click)="cloudFirebaseService.login()"
           style="margin-right: 10px"
           type="button">Cloud Firestore login</button>
   <button (click)="cloudFirebaseService.logout()"
+          style="margin-right: 10px"
           type="button">Cloud Firestore logout</button>
+  <button (click)="setOtherField()"
+          type="button">Cloud Firestore change key in object</button>
+  <ng-container *ngIf="cloudFirebaseService.tock.a">
+    <div class="confirm-signal">
+      <span *ngIf="cloudFirebaseService.tock.b"
+            [style]="{color: 'green'}">OK!</span><span *ngIf="!cloudFirebaseService.tock.b"
+                                                       [style]="{color: 'red'}">ERR!</span>
+    </div>
+  </ng-container>
 </div>
 <p>
   Read from persistence (pole$): &#123; pole: <b>{{ (pole$ | async) || '—' }}</b> }
@@ -28,6 +38,8 @@
   docObj$: <b>{{ (docObj$ | async) || 'null' }}</b>
   <br>
   docObj2$: <b>{{ (docObj2$ | async) || 'null' }}</b>
+  <br>
+  docTest$: <b>{{ (cloudFirebaseService.docTest$ | async) || 'null' }}</b>
 </p>
 <hr>
 <p style="margin-bottom: 0">

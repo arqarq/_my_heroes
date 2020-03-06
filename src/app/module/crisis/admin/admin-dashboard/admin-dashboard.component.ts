@@ -6,10 +6,12 @@ import { SelectivePreloadingStrategyService } from '../../../../service/selectiv
 import { CloudFirebaseService } from '../../../../service/cloud-firebase.service';
 
 const FIELD_NAME_IN_PERSISTENCE = 'pole';
+const FIELD_NAME_IN_PERSISTENCE2 = 'pole2';
 
 @Component({
   selector: 'app-admin-dashboard',
-  templateUrl: './admin-dashboard.component.html'
+  templateUrl: './admin-dashboard.component.html',
+  styles: ['.confirm-signal {font-weight: bold; position: absolute; top: 5px; left: 559px}']
 })
 export class AdminDashboardComponent implements OnInit, OnDestroy {
   sessionId: Observable<string>;
@@ -21,6 +23,8 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
   docObj$: Observable<any>;
   docObj2$: Observable<any>;
   private interval;
+  private flag: boolean;
+  private key = FIELD_NAME_IN_PERSISTENCE;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,16 +32,17 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
     preloadStrategy: SelectivePreloadingStrategyService
   ) {
     this.modules = preloadStrategy.preloadedModules.sort();
+    this.cloudFirebaseService.key = this.key;
   }
 
   ngOnInit() {
     this.sessionId = this.route.queryParamMap.pipe(map((params) => params.get('session_id') || 'None'));
     this.token = this.route.fragment.pipe(map((fragment) => fragment || 'None'));
-    this.pole$ = this.cloudFirebaseService.getDataFromDoc(FIELD_NAME_IN_PERSISTENCE);
-    this.pole2$ = this.cloudFirebaseService.getDataFromDoc2(FIELD_NAME_IN_PERSISTENCE);
+    this.pole$ = this.cloudFirebaseService.getDataFromDoc(this.key);
+    this.pole2$ = this.cloudFirebaseService.getDataFromDoc2(this.key);
     this.authState$ = this.cloudFirebaseService.getAuthStateObserver().pipe(map((value) => {
       const obj = JSON.parse(JSON.stringify(value));
-      return obj ? 'lastLoginAt: ' + obj.lastLoginAt + '/createdAt: ' + obj.createdAt : null;
+      return obj ? 'lastLoginAt: ' + obj.lastLoginAt + ' / createdAt: ' + obj.createdAt : null;
     }));
     this.docObj$ = this.cloudFirebaseService.getDataObj().pipe(
       delay(2000),
@@ -50,7 +55,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
         const path = doc ? doc.ref.path : null;
         let data = '?';
         doc.ref.get()
-          .then((value) => data = value.get(FIELD_NAME_IN_PERSISTENCE))
+          .then((value) => data = value.get(this.key))
           .catch((reason) => data = reason.toString())
           .finally(() => subscriber.next('path: "' + path + '" / data: ' + data));
       }, 500);
@@ -59,5 +64,13 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     clearTimeout(this.interval);
+  }
+
+  setOtherField() {
+    // tslint:disable-next-line:no-conditional-assignment
+    (this.flag = !this.flag) ?
+      this.cloudFirebaseService.key = this.key = FIELD_NAME_IN_PERSISTENCE2 :
+      this.cloudFirebaseService.key = this.key = FIELD_NAME_IN_PERSISTENCE;
+    this.cloudFirebaseService.generateChangeInDB();
   }
 }
