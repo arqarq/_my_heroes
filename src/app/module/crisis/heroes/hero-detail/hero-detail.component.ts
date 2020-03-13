@@ -17,7 +17,7 @@ export class HeroDetailComponent extends CanDeactivateGuard implements OnInit, O
   hero: Hero;
   hero$: Observable<Hero>;
   editName: string;
-  private subscription: Subscription;
+  private subscription = new Subscription();
 
   constructor(
     private route: ActivatedRoute,
@@ -49,26 +49,22 @@ export class HeroDetailComponent extends CanDeactivateGuard implements OnInit, O
 
   save(hero: Hero): void {
     hero.name = this.editName;
-    this.heroService.updateHero(hero)
-      .subscribe(() => this.goToHeroesList(hero.id.toString()));
+    this.subscription.add(this.heroService.updateHero(hero).subscribe(() => this.goToHeroesList(hero.id.toString())));
   }
 
   ngOnInitDontUse() {
-    this.hero$ = this.route.paramMap
-      .pipe(switchMap((params: ParamMap) =>
-        this.heroService.getHero(params.get('id'))));
+    this.hero$ = this.route.paramMap.pipe(switchMap((params: ParamMap) =>
+      this.heroService.getHero(params.get('id'))));
   }
 
-  ngOnInit(): void {
-    this.subscription = this.route.data.subscribe(
-      (data: {hero: Hero}) => {
-        this.hero = data.hero;
-        this.editName = this.hero.name;
-      }
-    );
+  ngOnInit() {
+    this.subscription.add(this.route.data.subscribe((data: {hero: Hero}) => {
+      this.hero = data.hero;
+      this.editName = this.hero.name;
+    }));
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 }

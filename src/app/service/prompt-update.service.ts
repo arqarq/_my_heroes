@@ -8,11 +8,11 @@ import { ForServicesModule } from './for-services.module';
   providedIn: ForServicesModule
 })
 export class PromptUpdateService implements OnDestroy {
-  private subscription: Subscription;
+  private subscription = new Subscription();
 
   constructor(updates: SwUpdate) {
     console.log('\t\t\tPromptUpdateService instantiated!!!');
-    this.subscription = updates.available.subscribe((event) => {
+    this.subscription.add(updates.available.subscribe((event) => {
       console.log('current version is', event.current.hash);
       console.log('available version is', event.available.hash);
       if (PromptUpdateService.promptUser()) {
@@ -20,7 +20,7 @@ export class PromptUpdateService implements OnDestroy {
         return;
       }
       CheckForUpdateService.subscription.unsubscribe();
-    });
+    }));
   }
 
   private static promptUser() {
@@ -31,7 +31,7 @@ export class PromptUpdateService implements OnDestroy {
     return confirm === ConfirmOptions.YES;
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 }

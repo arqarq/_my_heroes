@@ -14,8 +14,7 @@ export class HeroListComponent implements OnInit, OnDestroy {
   heroes$: Hero[]; // --aot
   qty: number; // --aot
   selectedId: number;
-  private subscription: Subscription;
-  private subscription2: Subscription;
+  private subscription = new Subscription();
 
   constructor(
     private heroService: MarvelService<Hero>,
@@ -29,52 +28,47 @@ export class HeroListComponent implements OnInit, OnDestroy {
     if (!name) {
       return;
     }
-    this.subscription = this.heroService.addHero({name} as Hero)
-      .subscribe((oneHero) => {
-        this.heroes$.push(oneHero);
-        this.qty++;
-      });
+    this.subscription.add(this.heroService.addHero({name} as Hero).subscribe((oneHero) => {
+      this.heroes$.push(oneHero);
+      this.qty++;
+    }));
   }
 
   delete(hero: Hero): void {
     this.heroes$ = this.heroes$.filter(h => h !== hero);
-    this.subscription = this.heroService.deleteHero(hero).subscribe(
+    this.subscription.add(this.heroService.deleteHero(hero).subscribe(
       () => {
         this.qty--;
-      });
+      }));
   }
 
   ngOnInitDontUse() {
-    this.subscription = this.route.paramMap.pipe(
+    this.subscription.add(this.route.paramMap.pipe(
       switchMap(params => {
         this.selectedId = +params.get('id');
         // console.log(this.selectedId);
         // setTimeout(() => console.log('time'), 50);
-        this.subscription2 = this.heroService.getHeroes()
-          .subscribe(heroTable => {
-            this.heroes$ = heroTable;
-            this.qty = heroTable.length;
-          });
+        this.subscription.add(this.heroService.getHeroes().subscribe(heroTable => {
+          this.heroes$ = heroTable;
+          this.qty = heroTable.length;
+        }));
         return new Observable<any>();
       })
-    ).subscribe(); // trzeba zasubskrybować zmienną Observable, aby wykonało lambdy
+    ).subscribe()); // trzeba zasubskrybować zmienną Observable, aby wykonało lambdy
   }
 
   ngOnInit() {
-    this.subscription = this.route.data
-      .subscribe((data: {heroesHere: Hero[]}) => {
-        this.heroes$ = data.heroesHere;
-        this.qty = this.heroes$.length;
-      });
-    this.subscription2 = this.route.paramMap
-      .subscribe(params => {
-          this.selectedId = +params.get('id');
-        }
-      );
+    this.subscription.add(this.route.data.subscribe((data: {heroesHere: Hero[]}) => {
+      this.heroes$ = data.heroesHere;
+      this.qty = this.heroes$.length;
+    }));
+    this.subscription.add(this.route.paramMap.subscribe(params => {
+        this.selectedId = +params.get('id');
+      }
+    ));
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
-    this.subscription2.unsubscribe();
   }
 }

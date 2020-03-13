@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   temp: {[key: string]: string};
   private sessionIdd: string;
   private tokenn: string;
-  private subscription: Subscription;
+  private subscription = new Subscription();
 
   constructor(
     public authService: AuthService, // public for AOT
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   login() {
     this.message = 'Trying to log in...';
-    this.subscription = this.authService.login().subscribe(() => {
+    this.subscription.add(this.authService.login().subscribe(() => {
       this.setMessage();
       if (this.authService.isLoggedIn) {
         // Get the redirect URL from our auth service
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           [...redirect.split('/')],
           {queryParamsHandling: 'preserve', preserveFragment: true});
       }
-    });
+    }));
     this.temp = this.extractObj();
     this.store(this.temp);
   }
@@ -90,13 +90,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.temp = this.storage.getQueryParamsAndFragment();
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.setTemp();
   }
 
-  ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

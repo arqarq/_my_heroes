@@ -22,11 +22,11 @@ export class CheckForUpdateService implements OnDestroy {
     const everySixHoursOnceAppIsStable$ = concat(appIsStable$, everySixHours$);
 
     if (environment.production) {
-      CheckForUpdateService.subscription = everySixHoursOnceAppIsStable$.subscribe(() => updates.checkForUpdate());
+      CheckForUpdateService.subscription.add(everySixHoursOnceAppIsStable$.subscribe(() => updates.checkForUpdate()));
     }
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     CheckForUpdateService.subscription.unsubscribe();
   }
 }

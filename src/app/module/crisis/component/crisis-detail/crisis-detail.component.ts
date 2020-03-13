@@ -19,7 +19,7 @@ export class CrisisDetailComponent extends CanDeactivateGuard implements OnInit,
   crisis: Crisis;
   editName: string;
   private crisis$: Observable<Crisis>;
-  private subscription: Subscription;
+  private subscription = new Subscription();
 
   constructor(
     private route: ActivatedRoute,
@@ -40,9 +40,9 @@ export class CrisisDetailComponent extends CanDeactivateGuard implements OnInit,
 
   save() {
     this.crisis.name = this.editName;
-    this.crisisService.updateHero(this.crisis).subscribe(
+    this.subscription.add(this.crisisService.updateHero(this.crisis).subscribe(
       () => this.gotoCrises()
-    );
+    ));
   }
 
   gotoCrises() {
@@ -100,8 +100,7 @@ export class CrisisDetailComponent extends CanDeactivateGuard implements OnInit,
       error: undefined, // gdy błąd subscriber jest unsubscribed, dlatego if wyżej, żeby nie było wywołania na null
       complete: undefined
     };
-    this.subscription = this.crisis$.subscribe(observer
-    );
+    this.subscription.add(this.crisis$.subscribe(observer));
     // TODO RESOLVE
     // this.subscription = this.route.data
     //   .subscribe((data: {crisis: Crisis}) => {
@@ -111,13 +110,13 @@ export class CrisisDetailComponent extends CanDeactivateGuard implements OnInit,
   }
 
   ngOnInit(): void {
-    this.subscription = this.route.data.subscribe(
+    this.subscription.add(this.route.data.subscribe(
       (data: {crisisHere: Crisis}) => {
         this.crisis = data.crisisHere;
         this.editName = this.crisis.name;
         this.crisesList.selectedId = this.crisis.id;
       }
-    );
+    ));
   }
 
   ngOnDestroy(): void {

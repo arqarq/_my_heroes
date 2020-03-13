@@ -1,11 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { combineLatest, forkJoin, merge, Observable, onErrorResumeNext, Subscription } from 'rxjs';
-import {
-  getDelayedValueObservable,
-  getMultiValueObservable,
-  getMultiValuesWithDifferentDelay,
-  getSingleValueObservable
-} from './observ';
+import { getDelayedValueObservable, getMultiValueObservable, getMultiValuesWithDifferentDelay, getSingleValueObservable } from './observ';
 import { map, tap, withLatestFrom } from 'rxjs/operators';
 
 @Component({
@@ -37,7 +32,7 @@ export class ObservComponent implements OnInit, OnDestroy {
   values$$$$$: Observable<{val: number, id: string}>;
   values$$$$$$: Observable<{val: number, id: string}>;
   values$$$$$$$: Observable<{one: number; two: number; id: string}>;
-  private thirdSubscription: Subscription;
+  private subscription = new Subscription();
 
   constructor() {
     this.first$ = getSingleValueObservable();
@@ -96,16 +91,13 @@ export class ObservComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.thirdSubscription.unsubscribe();
+    this.subscription.unsubscribe();
   }
 
   ngOnInit() {
-    getSingleValueObservable()
-      .subscribe(value => this.first = value);
-    getDelayedValueObservable()
-      .subscribe(value => this.second = value);
-    this.thirdSubscription = getMultiValueObservable()
-      .subscribe(value => this.third = value);
+    this.subscription.add(getSingleValueObservable().subscribe((value) => this.first = value));
+    this.subscription.add(getDelayedValueObservable().subscribe((value) => this.second = value));
+    this.subscription.add(getMultiValueObservable().subscribe((value) => this.third = value));
   }
 
   toggleHidden(putIdHere: string, place: symbol, putIdOfTheElementToMeasure?: string) {
@@ -120,11 +112,11 @@ export class ObservComponent implements OnInit, OnDestroy {
           divById.style.height = '0';
           const toId2 = setTimeout(() => {
             this[place] = false;
-            return () => clearTimeout(toId2);
+            clearTimeout(toId2);
           }, 600);
         }
       }
-      return () => clearTimeout(toId);
+      clearTimeout(toId);
     }, 100);
   }
 }

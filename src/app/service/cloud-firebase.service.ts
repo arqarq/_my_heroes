@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ForServicesModule } from './for-services.module';
 
@@ -22,7 +22,7 @@ export class CloudFirebaseService {
   docTest$: Observable<string>;
   private baseUrl = 'https://us-central1-d00af17f5d630b7296f102d.cloudfunctions.net/createToken';
   private uid = 'qazqaz';
-  private s1 = new Subscription();
+  private s1;
 
   constructor(
     private dbAuth: AngularFireAuth,
@@ -32,9 +32,13 @@ export class CloudFirebaseService {
     this.login();
     this.dbAuth.auth.onAuthStateChanged((user) => {
       this.doc = db.collection('kolekcja').doc('dokument');
-      this.docTest$ = db.collection('kolekcja').doc('dokument').valueChanges().pipe(
-        map((value) => value[this.key]));
-      console.log('--- db: doc set, onAuthStateChanged, user anonymous?', user?.isAnonymous);
+      if (this.dbAuth.auth.currentUser) {
+        this.docTest$ = db.collection('kolekcja').doc('dokument').valueChanges().pipe(
+          map((value) => value[this.key]));
+      } else {
+        this.docTest$ = of(null);
+      }
+      console.log('--- db: doc set, onAuthStateChanged, user?', user ? true : null);
     });
   }
 
@@ -75,7 +79,7 @@ export class CloudFirebaseService {
   logout() {
     this.dbAuth.auth.signOut().then((function a() {
       this.s1.unsubscribe();
-      console.log('--- db: signed out', 'subscriptions_unsubscribed (closed)?', this.s1.closed);
+      console.log('--- db: signed out, subscription_unsubscribed (closed)?', this.s1.closed);
     }).bind(this));
   }
 
@@ -85,7 +89,7 @@ export class CloudFirebaseService {
         console.log('--- db*: signed in, creationTime:', value2.user.metadata.creationTime + ', lastSignInTime:',
           value2.user.metadata.lastSignInTime);
         this.docRefNotChanged = this.db.collection('kolekcja').doc('dokument');
-        console.log('--- db*: docRefNotChanged set, user anonymous?', value2.user.isAnonymous);
+        console.log('--- db*: docRefNotChanged set, user?', value2.user ? true : null);
       }).catch((reason) => {
         console.log('--- db*:', reason.message);
       });

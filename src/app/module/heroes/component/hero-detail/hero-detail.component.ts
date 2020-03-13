@@ -1,17 +1,19 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Hero, HERO_NOUN } from '../../../../model/hero';
 import { ActivatedRoute } from '@angular/router';
 import { MarvelService } from '../../../../service/marvel.service';
 import { Location } from '@angular/common';
 import { finalize } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-hero-detail',
   templateUrl: './hero-detail.component.html',
   styleUrls: ['./hero-detail.component.css']
 })
-export class HeroDetailComponent implements OnInit {
+export class HeroDetailComponent implements OnInit, OnDestroy {
   @Input() hero: Hero;
+  private subscription = new Subscription();
 
   constructor(
     private route: ActivatedRoute,
@@ -35,11 +37,14 @@ export class HeroDetailComponent implements OnInit {
   }
 
   save(): void {
-    this.heroService.updateHero(this.hero)
-      .subscribe(() => this.goBack());
+    this.subscription.add(this.heroService.updateHero(this.hero).subscribe(() => this.goBack()));
   }
 
   ngOnInit() {
     this.getHero();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

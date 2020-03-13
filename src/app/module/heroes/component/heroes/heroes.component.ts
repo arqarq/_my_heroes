@@ -17,7 +17,7 @@ export class HeroesComponent implements OnInit, OnDestroy {
   // };
   // heroes = HEROES;
   heroes: Hero[];
-  private subscription: Subscription;
+  private subscription = new Subscription();
 
   constructor(private heroService: MarvelService<Hero>) {
     heroService.setNouns(HERO_NOUN);
@@ -25,8 +25,7 @@ export class HeroesComponent implements OnInit, OnDestroy {
 
   getHeroes(): void {
     // this.heroes = this.heroService.getHeroes();
-    this.subscription = this.heroService.getHeroes()
-      .subscribe(heroesTable => this.heroes = heroesTable);
+    this.subscription.add(this.heroService.getHeroes().subscribe(heroesTable => this.heroes = heroesTable));
   }
 
   // onSelect(hero: Hero): void {
@@ -44,15 +43,12 @@ export class HeroesComponent implements OnInit, OnDestroy {
     if (!name) {
       return;
     }
-    this.subscription = this.heroService.addHero({name} as Hero)
-      .subscribe(heroO => {
-        this.heroes.push(heroO);
-      });
+    this.subscription.add(this.heroService.addHero({name} as Hero).subscribe(heroO => this.heroes.push(heroO)));
   }
 
   delete(hero: Hero): void {
     this.heroes = this.heroes.filter(h => h !== hero);
-    this.subscription = this.heroService.deleteHero(hero).subscribe();
+    this.subscription.add(this.heroService.deleteHero(hero).subscribe());
   }
 
   ngOnInit() {
