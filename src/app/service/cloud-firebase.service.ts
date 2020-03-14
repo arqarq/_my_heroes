@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -25,25 +25,24 @@ export class CloudFirebaseService {
   private s1;
 
   constructor(
-    private dbAuth: AngularFireAuth,
+    public dbAuth: AngularFireAuth,
     private db: AngularFirestore,
-    private httpClient: HttpClient
+    private http: HttpClient
   ) {
     this.login();
     this.dbAuth.auth.onAuthStateChanged((user) => {
       this.doc = db.collection('kolekcja').doc('dokument');
       if (this.dbAuth.auth.currentUser) {
-        this.docTest$ = db.collection('kolekcja').doc('dokument').valueChanges().pipe(
-          map((value) => value[this.key]));
+        this.docTest$ = db
+          .collection('kolekcja')
+          .doc('dokument')
+          .valueChanges()
+          .pipe(map((value) => value[this.key]));
       } else {
-        this.docTest$ = of(null);
+        this.docTest$ = of('NULL_C');
       }
       console.log('--- db: doc set, onAuthStateChanged, user?', user ? true : null);
     });
-  }
-
-  getAuthStateObserver() {
-    return this.dbAuth.authState;
   }
 
   getDataObj() {
@@ -60,25 +59,34 @@ export class CloudFirebaseService {
     return null;
   }
 
-  getDataFromDoc(key: string) {
-    return this.doc.snapshotChanges().pipe(map((value) => {
-      const temp = value.payload.get(key);
-      console.log('--- db, getData1:', temp);
-      return temp as string;
+  getDataFromDoc() {
+    return this.dbAuth.authState.pipe(switchMap((value) => {
+      if (value) {
+        return this.doc.snapshotChanges().pipe(map((value2) => {
+          const temp = value2.payload.get(this.key);
+          console.log('--- db, getData1:', temp);
+          return temp as string;
+        }));
+      }
+      return of('NULL_A');
     }));
   }
 
   getDataFromDoc2(key: string) {
-    return this.docRefNotChanged.snapshotChanges().pipe(map((value) => {
-      const temp = value.payload.get(key);
-      console.log('--- db, getData2:', temp);
-      return temp as string;
+    return this.dbAuth.authState.pipe(switchMap((value) => {
+      return value ?
+        this.docRefNotChanged.snapshotChanges().pipe(map((value2) => {
+          const temp = value2.payload.get(key);
+          console.log('--- db, getData2:', temp);
+          return temp as string;
+        })) :
+        of('NULL_B');
     }));
   }
 
   logout() {
     this.dbAuth.auth.signOut().then((function a() {
-      this.s1.unsubscribe();
+      // this.s1.unsubscribe();
       console.log('--- db: signed out, subscription_unsubscribed (closed)?', this.s1.closed);
     }).bind(this));
   }
@@ -112,7 +120,7 @@ export class CloudFirebaseService {
   }
 
   private generateToken(uid: string) {
-    const url = `${this.baseUrl}?uid=${uid}`;
-    return this.httpClient.get(url, {responseType: 'text'});
+    const url = this.baseUrl + `?uid=${uid}`;
+    return this.http.get(url, {responseType: 'text'});
   }
 }

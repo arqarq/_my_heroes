@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
-import { LocalStorageService } from '../../../../service/index-services';
+import { LocalStorageService } from '../../../../service';
 import { AuthServiceModule } from './auth-service.module';
 
 @Injectable({

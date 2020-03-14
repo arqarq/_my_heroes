@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, UrlMatchResult, UrlSegment } from '@angular/router';
 import { NotFound404Component, ObservComponent, TemplateRefExampleComponent } from './component';
-import { SelectivePreloadingStrategyService } from './service/selective-preloading-strategy.service';
+import { SelectivePreloadingStrategyService } from './service';
 import { ForServicesModule } from './service/for-services.module';
 import { ComposeMessageComponent } from './module/crisis/component/compose-message/compose-message.component';
 

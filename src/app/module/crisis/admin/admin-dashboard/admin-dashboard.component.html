@@ -2,9 +2,7 @@
   Dashboard
 </p>
 <p>
-  Reading from path:<br>
-  - Session ID: {{ sessionId | async }},<br>
-  - Token: {{ token | async }}
+  Reading from path:<br>- Session ID: {{ sessionId | async }},<br>- Token: {{ token | async }}
 </p>
 <hr>
 <div style="position: relative">
@@ -39,7 +37,7 @@
   <br>
   docObj2$: <b>{{ (docObj2$ | async) || 'null' }}</b>
   <br>
-  docTest$: <b>{{ (cloudFirebaseService.docTest$ | async) || 'NULL' }}</b>
+  docTest$: <b>{{ (cloudFirebaseService.docTest$ | async) || 'null' }}</b>
 </p>
 <hr>
 <p style="margin-bottom: 0">

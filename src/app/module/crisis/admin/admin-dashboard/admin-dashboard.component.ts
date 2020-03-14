@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
-import { SelectivePreloadingStrategyService } from '../../../../service/selective-preloading-strategy.service';
-import { CloudFirebaseService } from '../../../../service/cloud-firebase.service';
+import { AngularFirestoreDocument } from '@angular/fire/firestore';
+import { CloudFirebaseService, SelectivePreloadingStrategyService } from '../../../../service';
 
 const FIELD_NAME_IN_PERSISTENCE = 'pole';
 const FIELD_NAME_IN_PERSISTENCE2 = 'pole2';
@@ -38,15 +38,15 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sessionId = this.route.queryParamMap.pipe(map((params) => params.get('session_id') || 'None'));
     this.token = this.route.fragment.pipe(map((fragment) => fragment || 'None'));
-    this.pole$ = this.cloudFirebaseService.getDataFromDoc(this.key);
+    this.pole$ = this.cloudFirebaseService.getDataFromDoc();
     this.pole2$ = this.cloudFirebaseService.getDataFromDoc2(this.key);
-    this.authState$ = this.cloudFirebaseService.getAuthStateObserver().pipe(map((value) => {
+    this.authState$ = this.cloudFirebaseService.dbAuth.authState.pipe(map((value) => {
       const obj = JSON.parse(JSON.stringify(value));
       return obj ? 'lastLoginAt: ' + obj.lastLoginAt + ' / createdAt: ' + obj.createdAt : null;
     }));
     this.docObj$ = this.cloudFirebaseService.getDataObj().pipe(
       delay(2000),
-      map<any, string>((value) => {
+      map<AngularFirestoreDocument, string>((value) => {
         return value ? 'path: ' + value.ref.path : null;
       }));
     this.docObj2$ = new Observable((subscriber) => {

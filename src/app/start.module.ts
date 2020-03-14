@@ -15,7 +15,7 @@ import {
   StartComponent,
   TemplateRefExampleComponent
 } from './index';
-import { InMemoryDataService } from './service/index-services';
+import { InMemoryDataService } from './service';
 import { AdditionalDirective } from './directive/additional.directive';
 import { FooterModule } from './gen_modules/footer/footer.module';
 import { ForServicesModule } from './service/for-services.module';
