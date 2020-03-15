@@ -44,20 +44,21 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
       const obj = JSON.parse(JSON.stringify(value));
       return obj ? 'lastLoginAt: ' + obj.lastLoginAt + ' / createdAt: ' + obj.createdAt : null;
     }));
-    this.docObj$ = this.cloudFirebaseService.getDataObj().pipe(
-      delay(2000),
-      map<AngularFirestoreDocument, string>((value) => {
-        return value ? 'path: ' + value.ref.path : null;
-      }));
+    this.docObj$ = new Observable((subscriber) => {
+      subscriber.next(this.cloudFirebaseService.doc);
+    }).pipe(delay(2000), map<AngularFirestoreDocument, string>((value) => {
+      return value ? 'path: ' + value.ref.path : null;
+    }));
     this.docObj2$ = new Observable((subscriber) => {
       function output(p, d) {
         subscriber.next('path: ' + p + ' | data: ' + d);
       }
 
       this.interval = setInterval(() => {
+        let data = '? ';
+
         const doc = this.cloudFirebaseService.doc;
         const path = doc ? doc.ref.path : null;
-        let data = '? ';
         doc.ref.get()
           .then((value) => data = value.get(this.key))
           .catch((reason) => data += reason.toString())

@@ -45,12 +45,6 @@ export class CloudFirebaseService {
     });
   }
 
-  getDataObj() {
-    return new Observable((subscriber) => {
-      subscriber.next(this.doc);
-    });
-  }
-
   getCurrentUser() {
     if (this.dbAuth.auth.currentUser) {
       const obj = JSON.parse(JSON.stringify(this.dbAuth.auth.currentUser));
