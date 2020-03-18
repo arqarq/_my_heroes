@@ -21,6 +21,7 @@
                                                        [style]="{color: 'red'}">ERR!</span>
     </div>
   </ng-container>
+  <app-confirm-signal [okOrError]="true"></app-confirm-signal>
 </div>
 <p>
   Read from persistence (pole$): &#123; pole: <b>{{ (pole$ | async) || '—' }}</b> }

@@ -78,6 +78,12 @@ export class CloudFirebaseService {
     }));
   }
 
+  save(propertyName: string, value: any) {
+    return this.doc.set({[propertyName]: value}, {merge: true})
+      .then(() => console.log('save success: (' + propertyName + '/' + value + ')'))
+      .catch((reason) => console.log('error: ' + reason));
+  }
+
   logout() {
     this.dbAuth.auth.signOut().then((function a() {
       // this.s1.unsubscribe();

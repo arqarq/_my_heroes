@@ -1,0 +1,10 @@
+<ng-container [ngSwitch]="okOrError">
+  <div class="confirm-signal">
+    <ng-container *ngSwitchCase="true">
+      <span [style]="{color: 'green'}">OK!</span>
+    </ng-container>
+    <ng-container *ngSwitchCase="false">
+      <span [style]="{color: 'red'}">ERR!</span>
+    </ng-container>
+  </div>
+</ng-container>

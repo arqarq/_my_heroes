@@ -1,9 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
 import { AngularFirestoreDocument } from '@angular/fire/firestore';
 import { CloudFirebaseService, SelectivePreloadingStrategyService } from '../../../../service';
+import { ConfirmSignalComponent } from './confirm-signal.component';
 
 const FIELD_NAME_IN_PERSISTENCE = 'pole';
 const FIELD_NAME_IN_PERSISTENCE2 = 'pole2';
@@ -13,7 +14,8 @@ const FIELD_NAME_IN_PERSISTENCE2 = 'pole2';
   templateUrl: './admin-dashboard.component.html',
   styles: ['.confirm-signal {font-weight: bold; position: absolute; top: 5px; left: 559px}']
 })
-export class AdminDashboardComponent implements OnInit, OnDestroy {
+export class AdminDashboardComponent implements OnInit, OnDestroy, AfterViewInit {
+  @ViewChildren(ConfirmSignalComponent) confirmSignalElements: QueryList<ConfirmSignalComponent>;
   sessionId: Observable<string>;
   token: Observable<string>;
   modules: string[];
@@ -23,6 +25,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
   docObj$: Observable<any>;
   docObj2$: Observable<any>;
   private interval;
+  private interval2;
   private flag: boolean;
   private key = FIELD_NAME_IN_PERSISTENCE;
 
@@ -69,6 +72,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     clearTimeout(this.interval);
+    clearTimeout(this.interval2);
   }
 
   setOtherField() {
@@ -77,5 +81,11 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
       this.cloudFirebaseService.key = this.key = FIELD_NAME_IN_PERSISTENCE2 :
       this.cloudFirebaseService.key = this.key = FIELD_NAME_IN_PERSISTENCE;
     this.cloudFirebaseService.generateChangeInDB();
+  }
+
+  ngAfterViewInit() {
+    this.interval2 = setInterval(() => {
+      this.confirmSignalElements.first.okOrError = !this.confirmSignalElements.first.okOrError;
+    }, 1000);
   }
 }
