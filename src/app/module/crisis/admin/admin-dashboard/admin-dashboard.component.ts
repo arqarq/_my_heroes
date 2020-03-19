@@ -5,6 +5,7 @@ import { delay, map } from 'rxjs/operators';
 import { AngularFirestoreDocument } from '@angular/fire/firestore';
 import { CloudFirebaseService, SelectivePreloadingStrategyService } from '../../../../service';
 import { ConfirmSignalComponent } from './confirm-signal.component';
+import { CloudFirebaseRepository } from '../../../../repository/cloud-firebase-repository.service';
 
 const FIELD_NAME_IN_PERSISTENCE = 'pole';
 const FIELD_NAME_IN_PERSISTENCE2 = 'pole2';
@@ -32,6 +33,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy, AfterViewInit
   constructor(
     private route: ActivatedRoute,
     public cloudFirebaseService: CloudFirebaseService,
+    private cFRepositoryService: CloudFirebaseRepository,
     preloadStrategy: SelectivePreloadingStrategyService
   ) {
     this.modules = preloadStrategy.preloadedModules.sort();
@@ -80,7 +82,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy, AfterViewInit
     (this.flag = !this.flag) ?
       this.cloudFirebaseService.key = this.key = FIELD_NAME_IN_PERSISTENCE2 :
       this.cloudFirebaseService.key = this.key = FIELD_NAME_IN_PERSISTENCE;
-    this.cloudFirebaseService.generateChangeInDB();
+    this.cFRepositoryService.generateChangeInDB();
   }
 
   ngAfterViewInit() {

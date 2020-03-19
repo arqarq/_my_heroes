@@ -78,12 +78,6 @@ export class CloudFirebaseService {
     }));
   }
 
-  save(propertyName: string, value: any) {
-    return this.doc.set({[propertyName]: value}, {merge: true})
-      .then(() => console.log('save success: (' + propertyName + '/' + value + ')'))
-      .catch((reason) => console.log('error: ' + reason));
-  }
-
   logout() {
     this.dbAuth.auth.signOut().then((function a() {
       // this.s1.unsubscribe();
@@ -104,13 +98,7 @@ export class CloudFirebaseService {
     });
   }
 
-  generateChangeInDB() {
-    this.doc.set({rand: Math.random()}, {merge: true}).then(() => {
-      this.tick(true);
-    }).catch(() => this.tick());
-  }
-
-  private tick(success?: boolean) {
+  tick(success?: boolean) {
     this.tock.b = success;
     this.tock.a = true;
     const timeout = setTimeout(() => {
