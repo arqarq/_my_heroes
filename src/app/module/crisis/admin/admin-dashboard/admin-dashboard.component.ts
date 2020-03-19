@@ -85,9 +85,21 @@ export class AdminDashboardComponent implements OnInit, OnDestroy, AfterViewInit
     this.cFRepositoryService.generateChangeInDB();
   }
 
+  setWithConfirm(nameOfKonfirm: string) {
+    // tslint:disable-next-line:no-conditional-assignment
+    (this.flag = !this.flag) ?
+      this.cloudFirebaseService.key = this.key = FIELD_NAME_IN_PERSISTENCE2 :
+      this.cloudFirebaseService.key = this.key = FIELD_NAME_IN_PERSISTENCE;
+    this.cFRepositoryService.generateChangeInDB$().then(() => this.beep(nameOfKonfirm, true)).catch(() => this.beep(nameOfKonfirm));
+  }
+
   ngAfterViewInit() {
-    this.interval2 = setInterval(() => {
-      this.confirmSignalElements.first.okOrError = !this.confirmSignalElements.first.okOrError;
-    }, 1000);
+    // this.interval2 = setInterval(() => {
+    //   this.confirmSignalElements.first.okOrError = !this.confirmSignalElements.first.okOrError;
+    // }, 1000);
+  }
+
+  private beep(nameOfKonfirm: string, success?: boolean) {
+    this.confirmSignalElements.find((item) => item.name === nameOfKonfirm).start(success);
   }
 }

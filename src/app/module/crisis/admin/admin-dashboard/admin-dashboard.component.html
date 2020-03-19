@@ -12,16 +12,27 @@
   <button (click)="cloudFirebaseService.logout()"
           style="margin-right: 10px"
           type="button">Cloud Firestore logout</button>
-  <button (click)="setOtherField()"
-          type="button">Cloud Firestore change key in object</button>
-  <ng-container *ngIf="cloudFirebaseService.tock.a">
-    <div class="confirm-signal">
-      <span *ngIf="cloudFirebaseService.tock.b"
-            [style]="{color: 'green'}">OK!</span><span *ngIf="!cloudFirebaseService.tock.b"
-                                                       [style]="{color: 'red'}">ERR!</span>
-    </div>
-  </ng-container>
-  <app-confirm-signal [okOrError]="true"></app-confirm-signal>
+  <!--<button (click)="setOtherField()"-->
+  <!--        type="button">Cloud Firestore change key in object</button>-->
+  <!--<ng-container *ngIf="cloudFirebaseService.tock.a">-->
+  <!--  <div class="confirm-signal">-->
+  <!--      <span *ngIf="cloudFirebaseService.tock.b"-->
+  <!--            [style]="{color: 'green'}">OK!</span><span *ngIf="!cloudFirebaseService.tock.b"-->
+  <!--                                                       [style]="{color: 'red'}">ERR!</span>-->
+  <!--  </div>-->
+  <!--</ng-container>-->
+  <!--<app-confirm-signal [name]="'konfirm1'"-->
+  <!--                    [okOrError]="true"></app-confirm-signal>-->
+  <button (click)="setWithConfirm('appConfirmSignalId0')"
+          style="margin-right: 10px"
+          type="button">Cloud Firestore change key in object (1s)</button>
+  <app-confirm-signal leftPx="539"
+                      name="appConfirmSignalId0"></app-confirm-signal>
+  <button (click)="setWithConfirm('appConfirmSignalId1')"
+          type="button">Cloud Firestore change key in object (2s)</button>
+  <app-confirm-signal [timeoutMs]="2000"
+                      leftPx="812"
+                      name="appConfirmSignalId1"></app-confirm-signal>
 </div>
 <p>
   Read from persistence (pole$): &#123; pole: <b>{{ (pole$ | async) || '—' }}</b> }

@@ -22,4 +22,8 @@ export class CloudFirebaseRepository {
       this.cFService.tick(true);
     }).catch(() => this.cFService.tick());
   }
+
+  generateChangeInDB$() {
+    return this.cFService.doc.set({rand: Math.random()}, MERGE);
+  }
 }
