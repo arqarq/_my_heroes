@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes, UrlMatchResult, UrlSegment } from '@angular/router';
 import { NotFound404Component, ObservComponent, TemplateRefExampleComponent } from './component';
 import { SelectivePreloadingStrategyService } from './service';
-import { ForServicesModule } from './service/for-services.module';
 import { ComposeMessageComponent } from './module/crisis/component/compose-message/compose-message.component';
 
-export function isComposeMatched(url: UrlSegment[]): UrlMatchResult {
-  console.log('CrisisRoutingModule # isComposeMatched() # url: ' + url);
-  return url.length && url[0].path.startsWith('compose') ? {consumed: url} : null;
+function isComposeMatched(url: UrlSegment[]): UrlMatchResult {
+  const result = url.length && url[0].path.startsWith('compose') ? {consumed: url} : null;
+  console.log('CrisisRoutingModule # isComposeMatched() # url:', JSON.parse(JSON.stringify(url)));
+  return result;
 }
 
 const ROUTES: Routes = [
@@ -17,6 +17,16 @@ const ROUTES: Routes = [
     data: {
       preload: true
     }
+  },
+  {
+    path: 'form-template',
+    loadChildren: () => import('./module/forms-template/forms-template.module').then((m) => m.FormsTemplateModule)
+  },
+  {
+    path: 'form-reactive',
+    loadChildren: () => import('./module/forms-reactive/forms-reactive.module').then((m) => {
+      return m.FormsReactiveModule;
+    })
   },
   {
     path: 'scrollpanel',
@@ -92,7 +102,6 @@ const ROUTES: Routes = [
 
 @NgModule({
   imports: [
-    ForServicesModule,
     RouterModule.forRoot(ROUTES, {
       enableTracing: false,
       // preloadingStrategy: PreloadAllModules

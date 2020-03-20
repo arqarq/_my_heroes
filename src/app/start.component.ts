@@ -6,7 +6,7 @@ import { LangChangeRelayService } from './service/lang-change-relay.service';
 import { LogUpdateService } from './service/log-update.service';
 import { CheckForUpdateService } from './service/check-for-update.service';
 import { PromptUpdateService } from './service/prompt-update.service';
-import { CloudFirebaseService } from './service/cloud-firebase.service';
+import { CloudFirebaseService } from './service/';
 
 @Component({
   selector: 'app-start',
