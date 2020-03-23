@@ -8,9 +8,6 @@ import { WoratorService } from '../../service/worator.service';
 @Component({
   selector: 'app-chooser',
   templateUrl: './chooser.component.html',
-  styles: [
-    '.activated {color: yellow}'
-  ],
   styleUrls: ['./chooser.component.css']
 })
 export class ChooserComponent implements OnInit {

@@ -75,18 +75,6 @@ button:disabled {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-div.bottom-right {
-  position: fixed;
-  bottom: 0;
-  right: 0
-}
-
-div.bottom-right-generic {
-  background-color: lightgrey;
-  border-radius: 5px 0 0 0;
-  padding: 5px
-}
-
 h2.inline-block,
 h2.inline-block + div {
   display: inline-block;

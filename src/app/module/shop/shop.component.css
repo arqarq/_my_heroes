@@ -21,41 +21,42 @@
 }
 
 /* Text */
-::ng-deep h1 {
+:host ::ng-deep h1 {
   font-size: 32px;
 }
 
-::ng-deep h2 {
+:host ::ng-deep h2 {
   font-size: 20px;
 }
 
-::ng-deep h1, h2 {
+:host ::ng-deep h1,
+:host ::ng-deep h2 {
   font-weight: lighter
 }
 
-::ng-deep h3.detail {
+:host ::ng-deep h3.detail {
   color: #1976D2;
   font-weight: bold
 }
 
 /* Hyperlink */
-::ng-deep a {
+:host ::ng-deep a {
   cursor: pointer;
   color: #1976D2;
   text-decoration: none;
 }
 
-::ng-deep a:hover {
+:host ::ng-deep a:hover {
   opacity: 0.8;
 }
 
 /* Input */
-::ng-deep input {
+:host ::ng-deep input {
   font-size: 14px;
   border-radius: 2px;
   padding: 8px;
   margin-bottom: 4px;
-  border: 1px solid #BDBDBD;
+  border: 1px solid #BDBDBD
 }
 
 /* Button */
@@ -124,24 +125,4 @@ app-top-bar {
   margin-bottom: 8px;
   border-radius: 2px;
   background-color: #EEEEEE;
-}
-
-/*-------------*/
-nav a {
-  padding: 5px 10px;
-  text-decoration: none;
-  margin-top: 10px;
-  margin-right: 10px;
-  display: inline-block;
-  background-color: #eee;
-  border-radius: 4px
-}
-
-nav a:visited, a:link {
-  color: #607d8b
-}
-
-nav a:hover {
-  color: #039be5;
-  background-color: #cfd8dc
 }

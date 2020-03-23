@@ -1,0 +1,16 @@
+section {
+  border: 1px solid black;
+  border-radius: 4px;
+  /*background-color: #E0E1E1;*/
+  padding: 50px;
+  width: 400px
+}
+
+div.button {
+  display: inline-block;
+  width: 100px
+}
+
+input {
+  width: 150px
+}

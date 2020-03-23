@@ -9,7 +9,11 @@ export class PaneDirective {
 
 @Component({
   selector: 'app-foooter',
-  templateUrl: './foooter.component.html'
+  templateUrl: './foooter.component.html',
+  styles: [
+    'section.bottom-right {position: fixed; bottom: 0; right: 0}',
+    'section.bottom-right-generic {background-color: lightgrey; border-radius: 5px 0 0 0; padding: 5px}'
+  ]
 })
 export class FoooterComponent implements OnChanges {
   @Input() a: string;

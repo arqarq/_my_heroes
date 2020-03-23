@@ -12,6 +12,7 @@ import { MoneyPipe } from './service/money.pipe';
 import { ShippingComponent } from './shipping/shipping.component';
 import { ShopComponent } from './shop.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
+import { FooterModule } from '../../gen_modules/footer/footer.module';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,9 @@ import { TopBarComponent } from './top-bar/top-bar.component';
           }
         ]
       }
-    ])],
+    ]),
+    FooterModule
+  ],
   providers: [CurrencyPipe]
 })
 export class ShopModule {

@@ -8,13 +8,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { HeroSearchComponent } from './component/hero-search/hero-search.component';
 import { MessagesModule } from '../../gen_modules/messages/messages.module';
+import { FooterModule } from '../../gen_modules/footer/footer.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     MessagesModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FooterModule
   ],
   declarations: [
     AppComponent,

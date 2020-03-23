@@ -11,6 +11,7 @@ import { AuthGuardModule } from './admin/service/auth.guard.module';
 import { AuthServiceModule } from './auth/service/auth-service.module';
 import { DialogServiceModule } from './service/dialog-service.module';
 import { CanDeactivateGuardModule } from './service/can-deactivate-guard.module';
+import { FooterModule } from '../../gen_modules/footer/footer.module';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { CanDeactivateGuardModule } from './service/can-deactivate-guard.module'
     AuthGuardModule, // circular dependency solved
     CanDeactivateGuardModule, // circular dependency solved
     DialogServiceModule, // circular dependency solved
-    CrisisRoutingModule
+    CrisisRoutingModule,
+    FooterModule
   ],
   declarations: [
     CrisisCenterComponent,

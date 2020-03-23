@@ -104,9 +104,7 @@ const ROUTES: Routes = [
     CrisisDetailResolverServiceModule, // circular dependency solved
     RouterModule.forChild(ROUTES)
   ],
-  exports: [
-    RouterModule
-  ]
+  exports: [RouterModule]
 })
 export class CrisisRoutingModule {
 }
