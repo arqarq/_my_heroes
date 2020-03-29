@@ -1,8 +1,22 @@
+:host ::ng-deep * {
+  --widthDefault: 150px;
+  border: 1px solid black
+}
+
+::ng-deep body {
+  background-image: url("https://surveymonkey-assets.s3.amazonaws.com/smtheme/stock/7d00e426-ce61-5e7d-9106-a6e4e0311e0f.png")
+}
+
 section {
-  border: 1px solid black;
-  border-radius: 4px;
-  /*background-color: #E0E1E1;*/
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+  left: 50%;
+  margin-right: -50%;
   padding: 50px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
   width: 400px
 }
 
@@ -11,6 +25,21 @@ div.button {
   width: 100px
 }
 
-input {
-  width: 150px
+label.form-template {
+  display: block;
+  width: calc(var(--widthDefault, 150px) * 2)
+}
+
+input.form-template {
+  border-style: solid;
+  border-width: 1px;
+  width: var(--widthDefault, 150px)
+}
+
+input.left {
+  border-radius: 12px 0 0 12px
+}
+
+input.right {
+  border-radius: 0 12px 12px 0
 }
