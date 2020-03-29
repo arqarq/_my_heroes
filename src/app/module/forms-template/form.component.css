@@ -15,14 +15,25 @@ section {
   margin-right: -50%;
   padding: 50px;
   position: absolute;
-  top: 50%;
+  top: 25%;
   transform: translate(-50%, -50%);
-  width: 400px
+  width: calc(var(--widthDefault, 150px) * 8 / 3)
+}
+
+div.buttons-block {
+  align-items: center;
+  display: flex;
+  justify-content: space-between
 }
 
 div.button {
-  display: inline-block;
-  width: 100px
+  width: calc(var(--widthDefault, 150px) * 2 / 3)
+}
+
+div.button button {
+  background-color: #1976D2;
+  color: white;
+  width: 100%
 }
 
 label.form-template {

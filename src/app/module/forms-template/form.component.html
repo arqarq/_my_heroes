@@ -19,14 +19,17 @@
                                    id="id4"
                                    type="text"><input class="form-template right"
                                                       type="text">
-  <div class="button">
-    Anuluj
-  </div>
-  <div class="button">
-    Reset
-  </div>
-  <div class="button">
-    Zapisz
+  <div class="buttons-block">
+    <div class="button">
+      <button (click)="anuluj()"
+              type="button">Anuluj</button>
+    </div>
+    <div class="button">
+      <button type="reset">Reset</button>
+    </div>
+    <div class="button">
+      <button type="submit">Zapisz<br>formularz w<br>Google CF</button>
+    </div>
   </div>
 </section>
 <app-foooter></app-foooter>
