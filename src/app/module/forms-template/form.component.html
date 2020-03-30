@@ -1,24 +1,32 @@
 <section>
-  <label class="form-template"
-         for="id">A</label><input class="form-template left"
-                                  id="id"
-                                  type="text"><input class="form-template right"
-                                                     type="text">
-  <label class="form-template"
-         for="id2">B</label><input class="form-template left"
-                                   id="id2"
-                                   type="text"><input class="form-template right"
-                                                      type="text">
-  <label class="form-template"
-         for="id3">C</label><input class="form-template left"
-                                   id="id3"
-                                   type="text"><input class="form-template right"
-                                                      type="text">
-  <label class="form-template"
-         for="id4">D</label><input class="form-template left"
-                                   id="id4"
-                                   type="text"><input class="form-template right"
-                                                      type="text">
+  <div class="form-container">
+    <div>
+      <div class="form-row">
+        <label class="form-row-label"
+               for="id">A</label>
+        <input class="form-row-input left block"
+               id="id"
+               type="text">
+        <input class="form-row-input right block"
+               type="text">
+      </div>
+      <label class="form-row-label"
+             for="id2">B</label><input class="form-row-input left"
+                                       id="id2"
+                                       type="text"><input class="form-row-input right"
+                                                          type="text">
+      <label class="form-row-label"
+             for="id3">C</label><input class="form-row-input left"
+                                       id="id3"
+                                       type="text"><input class="form-row-input right"
+                                                          type="text">
+      <label class="form-row-label"
+             for="id4">D</label><input class="form-row-input left"
+                                       id="id4"
+                                       type="text"><input class="form-row-input right"
+                                                          type="text">
+    </div>
+  </div>
   <div class="buttons-block">
     <div class="button">
       <button (click)="anuluj()"
@@ -28,7 +36,7 @@
       <button type="reset">Reset</button>
     </div>
     <div class="button">
-      <button type="submit">Zapisz<br>formularz w<br>Google CF</button>
+      <button type="submit">Zapisz<br>formularz</button>
     </div>
   </div>
 </section>
