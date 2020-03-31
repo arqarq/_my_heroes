@@ -21,14 +21,14 @@ section {
 }
 
 div.form-container {
-  align-items: center;
+  align-items: center; /*opt*/
   display: flex;
-  height: 225px;
-  justify-content: center
+  /*height: 225px;*/
+  justify-content: center /*opt*/
 }
 
 div.form-container > div {
-  width: 95%
+  width: 100% /*opt*/
 }
 
 div.form-row {
@@ -60,18 +60,20 @@ label.form-row-label {
 
 input.form-row-input {
   border: 1px black solid;
+  box-sizing: border-box;
   height: 1.5rem;
   padding-left: 5px;
   padding-right: 5px;
-  width: calc(var(--widthDefault, 150px) * 20 / 18)
+  /*width: calc(var(--widthDefault, 150px) * 20 / 18)*/
+  width: 50%
 }
 
 input.left {
-  border-radius: 4px 0 0 4px
+  border-radius: 2px 0 0 2px
 }
 
 input.right {
-  border-radius: 0 4px 4px 0
+  border-radius: 0 2px 2px 0
 }
 
 input.block {
