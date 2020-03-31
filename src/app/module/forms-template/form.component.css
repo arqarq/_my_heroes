@@ -1,4 +1,5 @@
 :host ::ng-deep * {
+  --formMargin: 5px;
   --widthDefault: 150px;
   border: 1px solid black
 }
@@ -55,6 +56,7 @@ div.button button {
 
 label.form-row-label {
   display: block;
+  padding-left: var(--formMargin, 5px);
   width: calc(var(--widthDefault, 150px) * 2)
 }
 
@@ -62,8 +64,8 @@ input.form-row-input {
   border: 1px black solid;
   box-sizing: border-box;
   height: 1.5rem;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: var(--formMargin, 5px);
+  padding-right: var(--formMargin, 5px);
   /*width: calc(var(--widthDefault, 150px) * 20 / 18)*/
   width: 50%
 }
