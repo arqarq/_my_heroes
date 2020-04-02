@@ -56,6 +56,25 @@ div.button button {
   width: calc(100% - var(--formMargin, 5px) * 2)
 }
 
+div.form-row-check {
+  align-items: center;
+  color: orangered;
+  display: flex;
+  font-size: .9rem;
+  font-weight: 600;
+  height: 2rem;
+  justify-content: flex-start; /*opt*/
+  padding-bottom: var(--formMargin, 5px);
+  padding-left: var(--formMargin, 5px);
+  width: 100%
+}
+
+i.material-icons {
+  font-size: 1.5rem;
+  font-weight: inherit;
+  padding-right: var(--formMargin, 5px)
+}
+
 label.form-row-label {
   display: block;
   padding-left: var(--formMargin, 5px);
@@ -80,6 +99,6 @@ input.right {
   border-radius: 0 2px 2px 0
 }
 
-input.block {
+.block {
   display: block
 }

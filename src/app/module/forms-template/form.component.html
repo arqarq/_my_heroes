@@ -2,25 +2,38 @@
   <div class="form-container">
     <div>
       <div class="form-row">
-        <label class="form-row-label"
+        <label class="form-row-label block"
                for="id">A</label>
         <input class="form-row-input left block"
                id="id"
                type="text">
         <input class="form-row-input right block"
                type="text">
+        <ng-container [ngSwitch]="false">
+          <ng-container *ngSwitchCase="true">
+            <div class="form-row-check">
+              <i class="material-icons block">highlight_off</i>
+              <div>
+                Formularz zawiera błąd.
+              </div>
+            </div>
+          </ng-container>
+          <!--<ng-container *ngSwitchCase="false">-->
+          <!--  <div class="form-row-check"></div>-->
+          <!--</ng-container>-->
+        </ng-container>
       </div>
-      <label class="form-row-label"
+      <label class="form-row-label block"
              for="id2">B</label><input class="form-row-input left"
                                        id="id2"
                                        type="text"><input class="form-row-input right"
                                                           type="text">
-      <label class="form-row-label"
+      <label class="form-row-label block"
              for="id3">C</label><input class="form-row-input left"
                                        id="id3"
                                        type="text"><input class="form-row-input right"
                                                           type="text">
-      <label class="form-row-label"
+      <label class="form-row-label block"
              for="id4">D</label><input class="form-row-input left"
                                        id="id4"
                                        type="text"><input class="form-row-input right"
