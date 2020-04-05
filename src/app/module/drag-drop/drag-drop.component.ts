@@ -1,5 +1,6 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DATA } from '../../repository/data-drag-drop';
+import { StartComponent } from '../../';
 
 const KEY0 = 'indexOfItemPassed';
 const KEY1 = 'contentOfItemPassed';
@@ -9,8 +10,7 @@ const KEY1 = 'contentOfItemPassed';
   templateUrl: './drag-drop.component.html',
   styleUrls: ['./drag-drop.component.css']
 })
-export class DragDropComponent implements AfterViewInit, OnDestroy {
-  private static bodyClasses: string;
+export class DragDropComponent implements OnInit, OnDestroy {
   readonly nodes = DATA;
   private indexOfNodeRef: number;
   private pos1: number;
@@ -19,7 +19,7 @@ export class DragDropComponent implements AfterViewInit, OnDestroy {
   private pos4: number;
   private startElementRefOut: HTMLDivElement;
 
-  constructor(private elementRef: ElementRef) {
+  constructor() {
     const timeoutId = setTimeout(() => {
       this.nodes.forEach((node) => {
         node.L = Math.floor(Math.random() * 97) + '%';
@@ -35,13 +35,12 @@ export class DragDropComponent implements AfterViewInit, OnDestroy {
     }, 250);
   }
 
-  ngAfterViewInit(): void {
-    this.storeClassesOfBody();
-    this.changeBackgroundColorOfBody();
+  ngOnInit() {
+    StartComponent.bodyRef.classList.add('body_background_new_color');
   }
 
-  ngOnDestroy(): void {
-    this.restoreClassesOfBody();
+  ngOnDestroy() {
+    StartComponent.restoreClassesOfBody();
   }
 
   onDragStart(event: DragEvent, i: number, elOut: HTMLDivElement) {
@@ -119,23 +118,5 @@ export class DragDropComponent implements AfterViewInit, OnDestroy {
 
   getZFromOuterEl(divElementOuter: HTMLDivElement) {
     return +divElementOuter.style.zIndex + 1;
-  }
-
-  private changeBackgroundColorOfBody() {
-    this.elementRef.nativeElement.ownerDocument.body.className = DragDropComponent.bodyClasses
-      ? DragDropComponent.bodyClasses + ' body_background_new_color'
-      : 'body_background_new_color';
-  }
-
-  private storeClassesOfBody() {
-    DragDropComponent.bodyClasses = this.elementRef.nativeElement.ownerDocument.body.className;
-  }
-
-  private restoreClassesOfBody() {
-    if (DragDropComponent.bodyClasses) {
-      this.elementRef.nativeElement.ownerDocument.body.className = DragDropComponent.bodyClasses;
-      return;
-    }
-    this.elementRef.nativeElement.ownerDocument.body.removeAttribute('class');
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { LOCALE_ID_NUMBERS } from '../locale/LIDs';
 import { environment } from '../environments/environment';
 import { LANG_INIT_STORAGE_KEY, LANG_STORAGE_KEY, LANG_USER_IS_SWITCHING, LocalStorageService } from './service/local-storage.service';
@@ -14,6 +14,8 @@ import { CloudFirebaseService } from './service/';
   styleUrls: ['./start.component.css']
 })
 export class StartComponent implements OnInit {
+  static bodyRef;
+  private static bodyClassesStore;
   ver: string;
   readonly langStored: boolean;
   readonly localeIdNumbers = LOCALE_ID_NUMBERS;
@@ -26,6 +28,7 @@ export class StartComponent implements OnInit {
     public lcr: LangChangeRelayService, // instancja
     @Inject(LOCALE_ID) readonly localeId: string,
     private storage: LocalStorageService,
+    private elementRef: ElementRef,
     // private el: ElementRef, // (1) niepotrzebne
     sw: LogUpdateService, // wywołaj constructor
     cu: CheckForUpdateService, // wywołaj constructor
@@ -34,6 +37,8 @@ export class StartComponent implements OnInit {
     // private router: Router,
     // private location: Location
   ) {
+    StartComponent.bodyRef = this.elementRef.nativeElement.ownerDocument.body;
+    StartComponent.bodyClassesStore = StartComponent.bodyRef.className;
     this.ver = environment.VERSION;
     this.showLangsInConsole();
     this.localeId = this.localeId.slice(0, 2); // 'en-US' -> 'en' w Ivy jak wyjdzie 9.0.0
@@ -46,6 +51,14 @@ export class StartComponent implements OnInit {
     }
     this.langStored = !!(this.langStoredCode = this.storage.getStringStoredAtGivenKey(LANG_STORAGE_KEY));
     this.localeIdNumbersValues = Object.values(this.localeIdNumbers);
+  }
+
+  static restoreClassesOfBody() { // tylko usunięcie klasy CSS przez remove() zostawia pusty atrybut 'class' w <body>
+    if (StartComponent.bodyClassesStore) {
+      StartComponent.bodyRef.className = StartComponent.bodyClassesStore;
+      return;
+    }
+    StartComponent.bodyRef.removeAttribute('class');
   }
 
   ngOnInit() {

@@ -4,7 +4,7 @@
   border: 1px solid black
 }
 
-::ng-deep body {
+::ng-deep body.body_background_image {
   background-image: url("https://surveymonkey-assets.s3.amazonaws.com/smtheme/stock/7d00e426-ce61-5e7d-9106-a6e4e0311e0f.png")
 }
 
