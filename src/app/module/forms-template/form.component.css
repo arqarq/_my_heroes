@@ -17,7 +17,7 @@ section {
   padding: 25px;
   position: absolute;
   top: 25%;
-  transform: translate(-50%, -50%);
+  /*transform: translate(-50%, -50%);*/
   width: calc(var(--widthDefault, 150px) * 8 / 3)
 }
 
