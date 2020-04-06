@@ -1,5 +1,8 @@
 :host ::ng-deep * {
+  --buttonRadius: 4px;
+  --elementRadius: 2px;
   --formMargin: 5px;
+  --outerRadius: 12px;
   --widthDefault: 150px;
   border: 1px solid black
 }
@@ -8,9 +11,25 @@
   background-image: url("https://surveymonkey-assets.s3.amazonaws.com/smtheme/stock/7d00e426-ce61-5e7d-9106-a6e4e0311e0f.png")
 }
 
+@font-face {
+  font-family: Google Serif;
+  src: url("https://fonts.gstatic.com/s/googlesans/v14/4UaGrENHsxJlGDuGo1OIlL3Awp5MKg.woff2")
+}
+
+@font-face {
+  font-family: Google Sans;
+  src: url("https://fonts.gstatic.com/s/googlesans/v14/4UaGrENHsxJlGDuGo1OIlL3Owp4.woff2")
+}
+
+@font-face {
+  font-family: Google Sans;
+  src: url("https://fonts.gstatic.com/s/googlesans/v14/4UabrENHsxJlGDuGo1OIlLU94YtzCwY.woff2");
+  font-weight: bold
+}
+
 section {
   background-color: #fff;
-  border-radius: 12px;
+  border-radius: var(--outerRadius, 12px);
   box-shadow: 0 0 5px rgba(0, 0, 0, .5);
   left: 50%;
   margin-right: -50%;
@@ -41,7 +60,7 @@ div.buttons-block {
   align-items: center;
   display: flex;
   justify-content: space-around;
-  padding-top: var(--formMargin, 5px)
+  padding-top: calc(var(--formMargin, 5px) * 5)
 }
 
 div.button {
@@ -50,10 +69,28 @@ div.button {
 }
 
 div.button button {
-  background-color: #1976D2;
+  background-color: #1a73e8;
+  border-radius: var(--buttonRadius, 4px);
   color: white;
   /*width: 90%*/
+  outline: none;
   width: calc(100% - var(--formMargin, 5px) * 2)
+}
+
+div.button button:hover {
+  background-color: #287ae6;
+  box-shadow: 0 1px 1px 0 rgba(66, 133, 244, 0.45), 0 1px 3px 1px rgba(66, 133, 244, 0.3)
+}
+
+div.button button:focus {
+  background: #5094ed
+}
+
+span.button-text {
+  font-family: Google Sans, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: .25px
 }
 
 div.form-row-check {
@@ -62,11 +99,14 @@ div.form-row-check {
   display: flex;
   font-size: .9rem;
   font-weight: 600;
-  height: 2rem;
+  /*height: 2rem;*/
   justify-content: flex-start; /*opt*/
-  padding-bottom: var(--formMargin, 5px);
   padding-left: var(--formMargin, 5px);
   width: 100%
+}
+
+div.form-row-check:first-of-type {
+  padding-top: var(--formMargin, 5px)
 }
 
 i.material-icons {
@@ -81,6 +121,10 @@ label.form-row-label {
   width: calc(var(--widthDefault, 150px) * 2)
 }
 
+label.form-row-label:not(:first-child) {
+  padding-top: var(--formMargin, 5px)
+}
+
 input.form-row-input {
   border: 1px black solid;
   box-sizing: border-box;
@@ -92,11 +136,11 @@ input.form-row-input {
 }
 
 input.left {
-  border-radius: 2px 0 0 2px
+  border-radius: var(--elementRadius, 2px) 0 0 var(--elementRadius, 2px)
 }
 
 input.right {
-  border-radius: 0 2px 2px 0
+  border-radius: 0 var(--elementRadius, 2px) var(--elementRadius, 2px) 0
 }
 
 .block {

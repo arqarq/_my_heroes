@@ -4,18 +4,24 @@
     <div>
       <div class="form-row">
         <label class="form-row-label block"
-               for="id">A</label>
+               for="id">Apq</label>
         <input class="form-row-input left block"
                id="id"
                type="text">
         <input class="form-row-input right block"
                type="text">
-        <ng-container [ngSwitch]="false">
+        <ng-container [ngSwitch]="true">
           <ng-container *ngSwitchCase="true">
             <div class="form-row-check">
               <i class="material-icons block">highlight_off</i>
               <div>
                 Formularz zawiera błąd.
+              </div>
+            </div>
+            <div class="form-row-check">
+              <i class="material-icons block">highlight_off</i>
+              <div>
+                Formularz zawiera inny błąd.
               </div>
             </div>
           </ng-container>
@@ -25,10 +31,10 @@
         </ng-container>
       </div>
       <label class="form-row-label block"
-             for="id2">B</label><input class="form-row-input left"
-                                       id="id2"
-                                       type="text"><input class="form-row-input right"
-                                                          type="text">
+             for="id2">Bpq</label><input class="form-row-input left"
+                                         id="id2"
+                                         type="text"><input class="form-row-input right"
+                                                            type="text">
       <label class="form-row-label block"
              for="id3">C</label><input class="form-row-input left"
                                        id="id3"
@@ -44,13 +50,13 @@
   <div class="buttons-block">
     <div class="button">
       <button (click)="anuluj()"
-              type="button">Anuluj</button>
+              type="button"><span class="button-text">Anuluj</span></button>
     </div>
     <div class="button">
-      <button type="reset">Reset</button>
+      <button type="reset"><span class="button-text">Reset</span></button>
     </div>
     <div class="button">
-      <button type="submit">Zapisz<br>formularz</button>
+      <button type="submit"><span class="button-text">Zapisz<br>formularz</span></button>
     </div>
   </div>
 </section>
