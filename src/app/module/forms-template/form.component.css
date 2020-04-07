@@ -1,8 +1,11 @@
 :host ::ng-deep * {
   --buttonRadius: 4px;
-  --elementRadius: 2px;
+  --elementRadius: 4px;
   --formMargin: 5px;
+  --inputBorderColor: black;
+  --inputFocusBorderColor: #1a73e8;
   --outerRadius: 12px;
+  --sectionBackgroundColor: #fff;
   --widthDefault: 150px;
   border: 1px solid black
 }
@@ -27,8 +30,12 @@
   font-weight: bold
 }
 
+.block {
+  display: block
+}
+
 section {
-  background-color: #fff;
+  background-color: var(--sectionBackgroundColor, #fff);
   border-radius: var(--outerRadius, 12px);
   box-shadow: 0 0 5px rgba(0, 0, 0, .5);
   left: 50%;
@@ -74,6 +81,7 @@ div.button button {
   color: white;
   /*width: 90%*/
   outline: none;
+  text-decoration: none;
   width: calc(100% - var(--formMargin, 5px) * 2)
 }
 
@@ -84,6 +92,10 @@ div.button button:hover {
 
 div.button button:focus {
   background: #5094ed
+}
+
+button::-moz-focus-inner {
+  border: 0
 }
 
 span.button-text {
@@ -117,6 +129,7 @@ i.material-icons {
 
 label.form-row-label {
   display: block;
+  padding-bottom: 1px; /*opt*/
   padding-left: var(--formMargin, 5px);
   width: calc(var(--widthDefault, 150px) * 2)
 }
@@ -126,23 +139,40 @@ label.form-row-label:not(:first-child) {
 }
 
 input.form-row-input {
-  border: 1px black solid;
   box-sizing: border-box;
-  height: 1.5rem;
+  height: 2rem;
+  outline: none;
   padding-left: var(--formMargin, 5px);
   padding-right: var(--formMargin, 5px);
   /*width: calc(var(--widthDefault, 150px) * 20 / 18)*/
+  transition: border-color 150ms cubic-bezier(.4, 0, .2, 1);
   width: 50%
 }
 
+input.left:focus, input.right:focus {
+  border-color: var(--inputFocusBorderColor, #1a73e8)
+}
+
+input.left:focus + input.right {
+  border-left-color: var(--inputFocusBorderColor, #1a73e8)
+}
+
+div.form-row:focus-within input.left {
+  border-right-color: var(--inputFocusBorderColor, #1a73e8)
+}
+
 input.left {
-  border-radius: var(--elementRadius, 2px) 0 0 var(--elementRadius, 2px)
+  border-bottom: 2px var(--inputBorderColor, black) solid;
+  border-left: 2px var(--inputBorderColor, black) solid;
+  border-radius: var(--elementRadius, 4px) 0 0 var(--elementRadius, 4px);
+  border-right: 1px var(--inputBorderColor, black) solid;
+  border-top: 2px var(--inputBorderColor, black) solid
 }
 
 input.right {
-  border-radius: 0 var(--elementRadius, 2px) var(--elementRadius, 2px) 0
-}
-
-.block {
-  display: block
+  border-bottom: 2px var(--inputBorderColor, black) solid;
+  border-left: 1px var(--inputBorderColor, black) solid;
+  border-radius: 0 var(--elementRadius, 4px) var(--elementRadius, 4px) 0;
+  border-right: 2px var(--inputBorderColor, black) solid;
+  border-top: 2px var(--inputBorderColor, black) solid
 }
