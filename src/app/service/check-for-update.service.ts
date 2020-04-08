@@ -5,9 +5,7 @@ import { concat, interval, Subscription } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { ForServicesModule } from './for-services.module';
 
-@Injectable({
-  providedIn: ForServicesModule
-})
+@Injectable({providedIn: ForServicesModule})
 export class CheckForUpdateService implements OnDestroy {
   static subscription = new Subscription();
 
@@ -16,8 +14,9 @@ export class CheckForUpdateService implements OnDestroy {
     updates: SwUpdate
   ) {
     console.log('\t\t\tCheckForUpdateService instantiated!!!');
+
     // Allow the app to stabilize first, before starting polling for updates with `interval()`.
-    const appIsStable$ = appRef.isStable.pipe(first(isStable => isStable === true));
+    const appIsStable$ = appRef.isStable.pipe(first((isStable) => isStable));
     const everySixHours$ = interval(15 * 1000);
     const everySixHoursOnceAppIsStable$ = concat(appIsStable$, everySixHours$);
 

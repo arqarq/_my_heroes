@@ -8,9 +8,7 @@ interface VersionTag {
   ver: string;
 }
 
-@Injectable({
-  providedIn: ForServicesModule
-})
+@Injectable({providedIn: ForServicesModule})
 export class LogUpdateService implements OnDestroy {
   private subscription = new Subscription();
 

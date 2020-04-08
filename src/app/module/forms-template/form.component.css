@@ -4,30 +4,39 @@
   --formMargin: 5px;
   --inputBorderColor: black;
   --inputFocusBorderColor: #1a73e8;
+  --inputTextColor: #202124;
+  --labelTextColor: #202124;
   --outerRadius: 12px;
   --sectionBackgroundColor: #fff;
-  --widthDefault: 150px;
-  border: 1px solid black
+  --widthDefault: 150px
+  /*border: 1px solid black*/
 }
 
 ::ng-deep body.body_background_image {
-  background-image: url("https://surveymonkey-assets.s3.amazonaws.com/smtheme/stock/7d00e426-ce61-5e7d-9106-a6e4e0311e0f.png")
+  background-image: url(https://surveymonkey-assets.s3.amazonaws.com/smtheme/stock/7d00e426-ce61-5e7d-9106-a6e4e0311e0f.png)
 }
 
 @font-face {
   font-family: Google Serif;
-  src: url("https://fonts.gstatic.com/s/googlesans/v14/4UaGrENHsxJlGDuGo1OIlL3Awp5MKg.woff2")
+  src: url(https://fonts.gstatic.com/s/googlesans/v14/4UaGrENHsxJlGDuGo1OIlL3Awp5MKg.woff2)
 }
 
 @font-face {
   font-family: Google Sans;
-  src: url("https://fonts.gstatic.com/s/googlesans/v14/4UaGrENHsxJlGDuGo1OIlL3Owp4.woff2")
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/googlesans/v14/4UaGrENHsxJlGDuGo1OIlL3Owp4.woff2)
 }
 
 @font-face {
   font-family: Google Sans;
-  src: url("https://fonts.gstatic.com/s/googlesans/v14/4UabrENHsxJlGDuGo1OIlLU94YtzCwY.woff2");
-  font-weight: bold
+  font-weight: bold;
+  src: url(https://fonts.gstatic.com/s/googlesans/v14/4UabrENHsxJlGDuGo1OIlLU94YtzCwY.woff2)
+}
+
+@font-face {
+  font-family: Roboto;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Mu4mxK.woff2)
 }
 
 .block {
@@ -98,6 +107,22 @@ button::-moz-focus-inner {
   border: 0
 }
 
+span.label-text {
+  color: var(--labelTextColor, #202124);
+  font-family: Google Sans, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: .1px
+}
+
+input.input-text {
+  color: var(--inputTextColor, #202124);
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: .2px
+}
+
 span.button-text {
   font-family: Google Sans, Arial, sans-serif;
   font-size: 14px;
@@ -128,8 +153,7 @@ i.material-icons {
 }
 
 label.form-row-label {
-  display: block;
-  padding-bottom: 1px; /*opt*/
+  padding-bottom: var(--formMargin, 5px);
   padding-left: var(--formMargin, 5px);
   width: calc(var(--widthDefault, 150px) * 2)
 }
@@ -142,8 +166,7 @@ input.form-row-input {
   box-sizing: border-box;
   height: 2rem;
   outline: none;
-  padding-left: var(--formMargin, 5px);
-  padding-right: var(--formMargin, 5px);
+  padding: 2px var(--formMargin, 5px) 1px;
   /*width: calc(var(--widthDefault, 150px) * 20 / 18)*/
   transition: border-color 150ms cubic-bezier(.4, 0, .2, 1);
   width: 50%

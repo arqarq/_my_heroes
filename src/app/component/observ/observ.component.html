@@ -1,7 +1,5 @@
-<cite>
-  <a href="https://coryrylan.com/blog/subscribing-to-multiple-observables-in-angular-components"
-     target="_blank">
-    https://coryrylan.com/blog/subscribing-to-multiple-observables-in-angular-components</a></cite>
+<cite><a href="https://coryrylan.com/blog/subscribing-to-multiple-observables-in-angular-components"
+         target="_blank">https://coryrylan.com/blog/subscribing-to-multiple-observables-in-angular-components</a></cite>
 <h2>
   Manual Subscriptions
 </h2>
@@ -15,10 +13,7 @@
   </p>
 </ng-container>
 <h2>
-  Async Pipe
-  <button (click)="show = !show">
-    Toggle
-  </button>
+  Async Pipe<button (click)="show = !show">Toggle</button>
 </h2>
 <ng-container *ngIf="show">
   <p>
@@ -30,10 +25,7 @@
   </p>
 </ng-container>
 <h2>
-  ForkJoin and *ngIf
-  <button (click)="show2 = !show2">
-    Toggle
-  </button>
+  ForkJoin and *ngIf<button (click)="show2 = !show2">Toggle</button>
 </h2>
 <ng-container *ngIf="show2">
   <ng-container *ngIf="values$ | async; let arek">
@@ -48,10 +40,7 @@
   </ng-container>
 </ng-container>
 <h2>
-  Combine Latest and *ngIf
-  <button (click)="show3 = !show3">
-    Toggle
-  </button>
+  Combine Latest and *ngIf<button (click)="show3 = !show3">Toggle</button>
 </h2>
 <ng-container *ngIf="show3">
   <ng-container *ngIf="values$$ | async; let arek">
@@ -65,10 +54,7 @@
   </ng-container>
 </ng-container>
 <h2>
-  Subscribing with Async Pipe Objects
-  <button (click)="show4 = !show4">
-    Toggle
-  </button>
+  Subscribing with Async Pipe Objects<button (click)="show4 = !show4">Toggle</button>
 </h2>
 <ng-container *ngIf="show4">
   <ng-container *ngIf="{first: this.first$$ | async, second: second$$ | async, third: third$$ | async} as arek">
@@ -82,8 +68,7 @@
   </ng-container>
 </ng-container>
 <h2>
-  <b>Additional</b>: onErrorResumeNext()
-  <button (click)="show5 = !show5">Toggle</button>
+  <b>Additional</b>: onErrorResumeNext()<button (click)="show5 = !show5">Toggle</button>
 </h2>
 <ng-container *ngIf="show5">
 <pre>
@@ -97,10 +82,7 @@ this.values$$$ = onErrorResumeNext&lt;string>(
   </ng-container>
 </ng-container>
 <h2>
-  <b>Additional</b>: withLatestFrom()
-  <button (click)="show6 = !show6">
-    Toggle
-  </button>
+  <b>Additional</b>: withLatestFrom()<button (click)="show6 = !show6">Toggle</button>
 </h2>
 <ng-container *ngIf="show6">
 <pre>
@@ -116,10 +98,7 @@ this.values$$$$ = getMultiValueObservable().pipe(
   </p>
 </ng-container>
 <h2>
-  <b>Additional</b>: different delay Observable&lt;number>
-  <button (click)="toggleHidden('hide7', sym7, 'pre7')">
-    Toggle
-  </button>
+  <b>Additional</b>: different delay Observable&lt;number><button (click)="toggleHidden('hide7', sym7, 'pre7')">Toggle</button>
 </h2>
 <ng-container *ngIf="this[sym7]">
   <div class="toHide"
