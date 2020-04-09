@@ -2,15 +2,19 @@ import { Component } from '@angular/core';
 import { RowsComponent } from './rows.component';
 import { WoratorService } from '../../service/worator.service';
 
+interface RowsType {
+  name: string
+}
+
 @Component({
   selector: 'app-template-ref-example',
   templateUrl: './template-ref-example.component.html'
 })
 export class TemplateRefExampleComponent {
-  rows: {name: string}[] = [];
+  rows: RowsType[] = [];
   flag: boolean;
   tock: boolean;
-  private timeoutId: NodeJS.Timeout;
+  private timeoutId;
 
   constructor(private webWorker: WoratorService) {
     this.createRows(15);
@@ -25,11 +29,10 @@ export class TemplateRefExampleComponent {
   onClick() {
     this.flag = true;
     this.timeoutId = setTimeout(() => {
+      clearTimeout(this.timeoutId);
       this.flag = false;
       this.tock = !this.tock;
-      return () => clearTimeout(this.timeoutId);
     }, 100);
-    console.log('clicked');
   }
 
   getName(row: {name: string}): string {

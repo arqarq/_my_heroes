@@ -5,15 +5,13 @@ import { ForServicesModule } from './for-services.module';
 
 @Injectable({providedIn: ForServicesModule})
 export class PromptUpdateService {
-  private static updating;
-
   constructor(updates: SwUpdate) {
     console.log('\t\t\tPromptUpdateService instantiated!!!');
     CheckForUpdateService.subscription.add(updates.available.subscribe((event) => {
       console.log('current version is', event.current.hash);
       console.log('available version is', event.available.hash);
-      if (PromptUpdateService.updating || PromptUpdateService.promptUser()) {
-        updates.activateUpdate().then(() => document.location.reload());
+      if (PromptUpdateService.promptUser()) {
+        updates.checkForUpdate().then(() => updates.activateUpdate().then(() => document.location.reload()));
         return;
       }
       CheckForUpdateService.subscription.unsubscribe();
@@ -26,7 +24,6 @@ export class PromptUpdateService {
     while (confirm !== ConfirmOptions.YES && confirm !== ConfirmOptions.NO) {
       confirm = prompt(`Update app? ['${ConfirmOptions.YES}' or '${ConfirmOptions.NO}']`);
     }
-    this.updating = true;
     return confirm === ConfirmOptions.YES;
   }
 }

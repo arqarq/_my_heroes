@@ -21,8 +21,7 @@ export class LogUpdateService implements OnDestroy {
     this.subscription.add(updates.activated.subscribe((event) => {
       console.log('old version was', event.previous.hash);
       console.log('new version is', event.current.hash);
-      alert('old version: ' + environment.VERSION +
-        '\nnew version: ' + (event.current.appData as VersionTag).ver);
+      alert('old version: ' + environment.VERSION + '\nnew version: ' + (event.current.appData as VersionTag).ver);
     }));
   }
 

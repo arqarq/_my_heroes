@@ -1,8 +1,6 @@
 <h5 (click)="onClick()"
     style="cursor: pointer; margin-bottom: 5px">
-  Click me
-  <span *ngIf="flag && !tock" style="color: red"><b>tick</b></span>
-  <span *ngIf="flag && tock" style="color: red"><b>tock</b></span>
+  Click me <span *ngIf="flag && !tock" style="color: red"><b>tick</b></span><span *ngIf="flag && tock" style="color: red"><b>tock</b></span>
 </h5>
 <h5 (click)="onClick2()"
     style="cursor: pointer; margin: 5px auto">
