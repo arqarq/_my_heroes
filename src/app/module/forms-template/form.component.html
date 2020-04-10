@@ -2,49 +2,53 @@
          [appTranslate2dWithFixForHalfPixelInChrome]="sectionRef">
   <div class="form-container">
     <div>
-      <div class="form-row">
-        <label class="form-row-label block"
-               for="id"><span class="label-text">Apq</span></label>
-        <input class="form-row-input left block input-text"
-               id="id"
-               type="text">
-        <input class="form-row-input right block input-text"
-               type="text">
-        <ng-container [ngSwitch]="true">
-          <ng-container *ngSwitchCase="true">
-            <div class="form-row-check">
-              <i class="material-icons block">highlight_off</i>
-              <div>
-                Formularz zawiera błąd.
+      <ng-container *ngFor="let d of dataScientist; let i = index">
+        <div class="form-row">
+          <label class="form-row-label block"
+                 for="id_{{ i }}"><span class="label-text">{{ d.label }}</span></label>
+          <input [(ngModel)]="d.field"
+                 class="form-row-input left block input-text"
+                 id="id_{{ i }}"
+                 type="text">
+          <input [(ngModel)]="d.value"
+                 class="form-row-input right block input-text"
+                 type="text">
+          <ng-container [ngSwitch]="true">
+            <ng-container *ngSwitchCase="true">
+              <div class="form-row-check">
+                <i class="material-icons block">highlight_off</i>
+                <div>
+                  Formularz zawiera błąd.
+                </div>
               </div>
-            </div>
-            <div class="form-row-check">
-              <i class="material-icons block">highlight_off</i>
-              <div>
-                Formularz zawiera inny błąd.
+              <div class="form-row-check">
+                <i class="material-icons block">highlight_off</i>
+                <div>
+                  Formularz zawiera inny błąd.
+                </div>
               </div>
-            </div>
+            </ng-container>
+            <!--<ng-container *ngSwitchCase="false">-->
+            <!--  <div class="form-row-check"></div>-->
+            <!--</ng-container>-->
           </ng-container>
-          <!--<ng-container *ngSwitchCase="false">-->
-          <!--  <div class="form-row-check"></div>-->
-          <!--</ng-container>-->
-        </ng-container>
-      </div>
-      <label class="form-row-label block"
-             for="id2"><span class="label-text">Bpq</span></label><input class="form-row-input left"
-                                                                         id="id2"
-                                                                         type="text"><input class="form-row-input right"
-                                                                                            type="text">
-      <label class="form-row-label block"
-             for="id3"><span class="label-text">C</span></label><input class="form-row-input left"
-                                                                       id="id3"
-                                                                       type="text"><input class="form-row-input right"
-                                                                                          type="text">
-      <label class="form-row-label block"
-             for="id4"><span class="label-text">D</span></label><input class="form-row-input left"
-                                                                       id="id4"
-                                                                       type="text"><input class="form-row-input right"
-                                                                                          type="text">
+        </div>
+      </ng-container>
+      <!--<label class="form-row-label block"-->
+      <!--       for="id2"><span class="label-text">Bpq</span></label><input class="form-row-input left"-->
+      <!--                                                                   id="id2"-->
+      <!--                                                                   type="text"><input class="form-row-input right"-->
+      <!--                                                                                      type="text">-->
+      <!--<label class="form-row-label block"-->
+      <!--       for="id3"><span class="label-text">C</span></label><input class="form-row-input left"-->
+      <!--                                                                 id="id3"-->
+      <!--                                                                 type="text"><input class="form-row-input right"-->
+      <!--                                                                                    type="text">-->
+      <!--<label class="form-row-label block"-->
+      <!--       for="id4"><span class="label-text">D</span></label><input class="form-row-input left"-->
+      <!--                                                                 id="id4"-->
+      <!--                                                                 type="text"><input class="form-row-input right"-->
+      <!--                                                                                    type="text">-->
     </div>
   </div>
   <div class="buttons-block">
@@ -56,7 +60,8 @@
       <button type="reset"><span class="button-text">Reset</span></button>
     </div>
     <div class="button">
-      <button type="submit"><span class="button-text">Zapisz<br>formularz</span></button>
+      <button (click)="saveForm()"
+              type="submit"><span class="button-text">Zapisz<br>formularz</span></button>
     </div>
   </div>
 </section>

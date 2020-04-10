@@ -158,7 +158,7 @@ label.form-row-label {
   width: calc(var(--widthDefault, 150px) * 2)
 }
 
-label.form-row-label:not(:first-child) {
+div ~ div.form-row label.form-row-label { /* pierwszy operand w '~' może być tylko 'type selector' */
   padding-top: var(--formMargin, 5px)
 }
 
