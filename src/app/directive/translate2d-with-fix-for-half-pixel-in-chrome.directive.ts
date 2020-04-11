@@ -4,7 +4,7 @@ import { AfterViewInit, Directive, Input } from '@angular/core';
 export class Translate2dWithFixForHalfPixelInChromeDirective implements AfterViewInit {
   private $xPerc = -50;
   private $yPerc = -50;
-  private $appTranslate2dWithFixForHalfPixelInChrome: {nativeElement?: HTMLElement} = {};
+  private $appTranslate2dWithFixForHalfPixelInChrome: HTMLElement;
 
   @Input()
   private set xPerc(value) {
@@ -18,7 +18,7 @@ export class Translate2dWithFixForHalfPixelInChromeDirective implements AfterVie
 
   @Input()
   private set appTranslate2dWithFixForHalfPixelInChrome(value: HTMLElement) {
-    this.$appTranslate2dWithFixForHalfPixelInChrome.nativeElement = value;
+    this.$appTranslate2dWithFixForHalfPixelInChrome = value;
   }
 
   ngAfterViewInit() {
@@ -28,11 +28,11 @@ export class Translate2dWithFixForHalfPixelInChromeDirective implements AfterVie
   private translateWithFixForHalfPixelInChrome() {
     // console.log('height: ' + this.$appTranslate2dWithFixForHalfPixelInChrome.nativeElement.offsetHeight + ', width: ' +
     //   this.$appTranslate2dWithFixForHalfPixelInChrome.nativeElement.offsetWidth);
-    const currentInlineStyle = this.$appTranslate2dWithFixForHalfPixelInChrome.nativeElement.getAttribute('style');
+    const currentInlineStyle = this.$appTranslate2dWithFixForHalfPixelInChrome.getAttribute('style');
     let transform = currentInlineStyle ? currentInlineStyle + ' transform: ' : 'transform: ';
-    transform += 'translate(' + Math.floor(this.$appTranslate2dWithFixForHalfPixelInChrome.nativeElement.offsetWidth * this.$xPerc / 100) +
-      'px, ' + Math.floor(this.$appTranslate2dWithFixForHalfPixelInChrome.nativeElement.offsetHeight * this.$yPerc / 100) + 'px);';
-    this.$appTranslate2dWithFixForHalfPixelInChrome.nativeElement.setAttribute('style', transform);
+    transform += 'translate(' + Math.floor(this.$appTranslate2dWithFixForHalfPixelInChrome.offsetWidth * this.$xPerc / 100) +
+      'px, ' + Math.floor(this.$appTranslate2dWithFixForHalfPixelInChrome.offsetHeight * this.$yPerc / 100) + 'px);';
+    this.$appTranslate2dWithFixForHalfPixelInChrome.setAttribute('style', transform);
     // console.log(this.$appTranslate2dWithFixForHalfPixelInChrome.nativeElement.getAttribute('style'));
   }
 }
