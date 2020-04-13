@@ -34,6 +34,7 @@ export class FormComponent implements OnInit, OnDestroy {
     },
     {
       label: 'Dpq',
+      textarea: true,
       field: 'G',
       value: 'H'
     }
@@ -55,5 +56,10 @@ export class FormComponent implements OnInit, OnDestroy {
   }
 
   saveForm() {
+    console.log(this.dataScientist);
+  }
+
+  checkForMultiLine(data: string): boolean {
+    return data.search(new RegExp(/[\r\n]/)) !== -1 || data.length > 16;
   }
 }

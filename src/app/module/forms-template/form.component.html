@@ -1,5 +1,6 @@
 <section #sectionRef
-         [appTranslate2dWithFixForHalfPixelInChrome]="sectionRef">
+         [appTranslate2dWithFixForHalfPixelInChrome]="sectionRef"
+         yPerc="0">
   <div class="form-container">
     <div>
       <ng-container *ngFor="let d of dataScientist; let i = index">
@@ -10,9 +11,18 @@
                  class="form-row-input left block input-text"
                  id="id_{{ i }}"
                  type="text">
-          <input [(ngModel)]="d.value"
-                 class="form-row-input right block input-text"
-                 type="text">
+          <ng-container [ngSwitch]="!d.textarea">
+            <ng-container *ngSwitchCase="true">
+              <input [(ngModel)]="d.value"
+                     class="form-row-input right block input-text"
+                     type="text">
+            </ng-container>
+            <ng-container *ngSwitchCase="false">
+              <textarea [(ngModel)]="d.value"
+                        [class.height-for-multiline]="checkForMultiLine(d.value)"
+                        class="form-row-input right block input-text"></textarea>
+            </ng-container>
+          </ng-container>
           <ng-container [ngSwitch]="true">
             <ng-container *ngSwitchCase="true">
               <div class="form-row-check">

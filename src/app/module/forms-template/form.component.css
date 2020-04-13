@@ -1,5 +1,6 @@
 :host ::ng-deep * {
   --buttonRadius: 4px;
+  --elementHeight: 2rem;
   --elementRadius: 4px;
   --formMargin: 5px;
   --inputBorderColor: black;
@@ -51,7 +52,7 @@ section {
   margin-right: -50%;
   padding: 25px;
   position: absolute;
-  top: 25%;
+  top: 5%;
   /*transform: translate(-50%, -50%);*/
   width: calc(var(--widthDefault, 150px) * 8 / 3)
 }
@@ -115,7 +116,8 @@ span.label-text {
   letter-spacing: .1px
 }
 
-input.input-text {
+input.input-text,
+textarea.input-text {
   color: var(--inputTextColor, #202124);
   font-family: Roboto, Arial, sans-serif;
   font-size: 14px;
@@ -162,9 +164,11 @@ div ~ div.form-row label.form-row-label { /* pierwszy operand w '~' może być t
   padding-top: var(--formMargin, 5px)
 }
 
-input.form-row-input {
+input.form-row-input,
+textarea.form-row-input {
   box-sizing: border-box;
-  height: 2rem;
+  height: var(--elementHeight, 2rem);
+  margin: 0;
   outline: none;
   padding: 2px var(--formMargin, 5px) 1px;
   /*width: calc(var(--widthDefault, 150px) * 20 / 18)*/
@@ -172,11 +176,24 @@ input.form-row-input {
   width: 50%
 }
 
-input.left:focus, input.right:focus {
+textarea.form-row-input {
+  max-width: 50%;
+  min-height: var(--elementHeight, 2rem);
+  min-width: 50%;
+  padding: 6px var(--formMargin, 5px) 1px
+}
+
+textarea.height-for-multiline {
+  height: calc(var(--elementHeight, 2rem) * 2);
+  min-height: calc(var(--elementHeight, 2rem) * 2)
+}
+
+input.left:focus, input.right:focus, textarea.right:focus {
   border-color: var(--inputFocusBorderColor, #1a73e8)
 }
 
-input.left:focus + input.right {
+input.left:focus + input.right,
+input.left:focus + textarea.right {
   border-left-color: var(--inputFocusBorderColor, #1a73e8)
 }
 
@@ -192,7 +209,8 @@ input.left {
   border-top: 2px var(--inputBorderColor, black) solid
 }
 
-input.right {
+input.right,
+textarea.right {
   border-bottom: 2px var(--inputBorderColor, black) solid;
   border-left: 1px var(--inputBorderColor, black) solid;
   border-radius: 0 var(--elementRadius, 4px) var(--elementRadius, 4px) 0;
