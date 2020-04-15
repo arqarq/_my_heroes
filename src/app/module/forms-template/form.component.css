@@ -2,6 +2,7 @@
   --buttonRadius: 4px;
   --elementHeight: 2rem;
   --elementRadius: 4px;
+  --fix: 1px;
   --formMargin: 5px;
   --inputBorderColor: black;
   --inputFocusBorderColor: #1a73e8;
@@ -40,6 +41,12 @@
   src: url(https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Mu4mxK.woff2)
 }
 
+@font-face {
+  font-family: Roboto Mono;
+  font-weight: 500;
+  src: url(https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap)
+}
+
 .block {
   display: block
 }
@@ -70,7 +77,8 @@ div.form-container > div {
 
 div.form-row {
   display: flex;
-  flex-wrap: wrap
+  flex-wrap: wrap;
+  justify-content: space-between
 }
 
 div.buttons-block {
@@ -102,6 +110,32 @@ div.button button:hover {
 
 div.button button:focus {
   background: #5094ed
+}
+
+div.add-button {
+  color: var(--labelTextColor, #202124);
+  font-family: Roboto Mono, monospace;
+  font-size: 18px;
+  font-weight: 500;
+  /*letter-spacing: -2.1px;*/
+  padding-left: var(--formMargin, 5px);
+  padding-right: var(--formMargin, 5px);
+  padding-top: calc(var(--formMargin, 5px) - var(--fix, 1px));
+  transition: transform .1s ease-in
+}
+
+div.add-button::before {
+  content: "[+]";
+  /*padding-right: 2px*/
+}
+
+div.add-button-minus::before {
+  content: "[-]";
+  /*padding-right: 2px*/
+}
+
+div.add-button-activated {
+  transform: rotateY(1turn)
 }
 
 button::-moz-focus-inner {
@@ -171,7 +205,6 @@ textarea.form-row-input {
   margin: 0;
   outline: none;
   padding: 2px var(--formMargin, 5px) 1px;
-  /*width: calc(var(--widthDefault, 150px) * 20 / 18)*/
   transition: border-color 150ms cubic-bezier(.4, 0, .2, 1);
   width: 50%
 }
@@ -180,7 +213,7 @@ textarea.form-row-input {
   max-width: 50%;
   min-height: var(--elementHeight, 2rem);
   min-width: 50%;
-  padding: 6px var(--formMargin, 5px) 1px
+  padding: calc(var(--formMargin, 5px) + var(--fix, 1px)) var(--formMargin, 5px) 1px
 }
 
 textarea.height-for-multiline {

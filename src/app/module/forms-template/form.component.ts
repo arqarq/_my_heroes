@@ -5,6 +5,9 @@ import { StartComponent } from '../../';
 interface DataScientist {
   label: string,
   textarea?: boolean,
+  addButton?: boolean,
+  addButtonActivated?: boolean,
+  toggle?: boolean,
   field?: string,
   value?: string
 }
@@ -35,10 +38,12 @@ export class FormComponent implements OnInit, OnDestroy {
     {
       label: 'Dpq',
       textarea: true,
+      addButton: true,
       field: 'G',
       value: 'H'
     }
   ];
+  private counter = 0;
 
   constructor(private router: Router) {
   }
@@ -61,5 +66,26 @@ export class FormComponent implements OnInit, OnDestroy {
 
   checkForMultiLine(data: string): boolean {
     return data.search(new RegExp(/[\r\n]/)) !== -1 || data.length > 16;
+  }
+
+  addRow(index: number) {
+    this.toggleRotateY(index);
+    if (!this.dataScientist[index + 1]) {
+      const label = String.fromCharCode('E'.charCodeAt(0) + this.counter++) + 'pq';
+      const newItem: DataScientist = {
+        label,
+        addButton: true,
+        addButtonActivated: false
+      };
+      this.dataScientist[index + 1] = newItem;
+      this.dataScientist[index].addButtonActivated = true;
+      return;
+    }
+    this.dataScientist.splice(index + 1, 1);
+    this.dataScientist[index].addButtonActivated = !!this.dataScientist[index + 1];
+  }
+
+  private toggleRotateY(index: number) {
+    return this.dataScientist[index].toggle = !this.dataScientist[index].toggle;
   }
 }
