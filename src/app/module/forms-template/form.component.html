@@ -10,8 +10,12 @@
           <ng-container *ngIf="d.addButton">
             <div (click)="addRow(i)"
                  [class.add-button-activated]="d.toggle"
-                 [class.add-button-minus]="d.addButtonActivated"
-                 class="add-button"></div>
+                 class="add-button">
+              <ng-container [ngSwitch]="!d.addButtonActivated">
+                <ng-container *ngSwitchCase="false"><span>[-]</span></ng-container>
+                <ng-container *ngSwitchCase="true"><span>[+]</span></ng-container>
+              </ng-container>
+            </div>
           </ng-container>
           <input [(ngModel)]="d.field"
                  class="form-row-input left block input-text"

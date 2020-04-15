@@ -26,6 +26,7 @@ export class FormComponent implements OnInit, OnDestroy {
     },
     {
       label: 'Bpq',
+      textarea: true,
       field: 'C',
       value: 'D'
     },
@@ -37,7 +38,6 @@ export class FormComponent implements OnInit, OnDestroy {
     },
     {
       label: 'Dpq',
-      textarea: true,
       addButton: true,
       field: 'G',
       value: 'H'
