@@ -72,12 +72,11 @@ export class FormComponent implements OnInit, OnDestroy {
     this.toggleRotateY(index);
     if (!this.dataScientist[index + 1]) {
       const label = String.fromCharCode('E'.charCodeAt(0) + this.counter++) + 'pq';
-      const newItem: DataScientist = {
+      this.dataScientist[index + 1] = {
         label,
         addButton: true,
         addButtonActivated: false
       };
-      this.dataScientist[index + 1] = newItem;
       this.dataScientist[index].addButtonActivated = true;
       return;
     }
