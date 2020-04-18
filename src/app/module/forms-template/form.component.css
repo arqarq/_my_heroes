@@ -126,7 +126,7 @@ div.add-button span {
 }
 
 div.add-button-activated {
-  transform: rotateY(-2turn)
+  transform: rotateY(-.5turn)
 }
 
 div.add-button::before {

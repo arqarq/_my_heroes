@@ -65,7 +65,7 @@ export class FormComponent implements OnInit, OnDestroy {
   }
 
   checkForMultiLine(data: string): boolean {
-    return data.search(new RegExp(/[\r\n]/)) !== -1 || data.length > 16;
+    return data ? data.search(new RegExp(/[\r\n]/)) !== -1 || data.length > 16 : false;
   }
 
   addRow(index: number) {

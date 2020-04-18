@@ -1,73 +1,77 @@
-<section #sectionRef
-         [appTranslate2dWithFixForHalfPixelInChrome]="sectionRef"
-         yPerc="0">
-  <div class="form-container">
-    <div>
-      <ng-container *ngFor="let d of dataScientist; let i = index">
-        <div class="form-row">
-          <label class="form-row-label block"
-                 for="id_{{ i }}"><span class="label-text">{{ d.label }}</span></label>
-          <ng-container *ngIf="d.addButton">
-            <div (click)="addRow(i)"
-                 [class.add-button-activated]="d.toggle"
-                 class="add-button">
-              <ng-container [ngSwitch]="!d.addButtonActivated">
-                <ng-container *ngSwitchCase="false"><span>[-]</span></ng-container>
-                <ng-container *ngSwitchCase="true"><span>[+]</span></ng-container>
-              </ng-container>
-            </div>
-          </ng-container>
-          <input [(ngModel)]="d.field"
-                 class="form-row-input left block input-text"
-                 id="id_{{ i }}"
-                 type="text">
-          <ng-container [ngSwitch]="!d.textarea">
-            <ng-container *ngSwitchCase="true">
-              <input [(ngModel)]="d.value"
-                     class="form-row-input right block input-text"
-                     type="text">
+<form (ngSubmit)="saveForm()">
+  <section #sectionRef
+           [appTranslate2dWithFixForHalfPixelInChrome]="sectionRef"
+           yPerc="0">
+    <div class="form-container">
+      <div>
+        <ng-container *ngFor="let d of dataScientist; let i = index">
+          <div class="form-row">
+            <label class="form-row-label block"
+                   for="id_{{ i }}"><span class="label-text">{{ d.label }}</span></label>
+            <ng-container *ngIf="d.addButton">
+              <div (click)="addRow(i)"
+                   [class.add-button-activated]="d.toggle"
+                   class="add-button">
+                <ng-container [ngSwitch]="!d.addButtonActivated">
+                  <ng-container *ngSwitchCase="false"><span>[-]</span></ng-container>
+                  <ng-container *ngSwitchCase="true"><span>[+]</span></ng-container>
+                </ng-container>
+              </div>
             </ng-container>
-            <ng-container *ngSwitchCase="false">
+            <input [(ngModel)]="d.field"
+                   class="form-row-input left block input-text"
+                   id="id_{{ i }}"
+                   name="field_{{ i }}"
+                   type="text">
+            <ng-container [ngSwitch]="!d.textarea">
+              <ng-container *ngSwitchCase="true">
+                <input [(ngModel)]="d.value"
+                       class="form-row-input right block input-text"
+                       name="value_{{ i }}"
+                       type="text">
+              </ng-container>
+              <ng-container *ngSwitchCase="false">
               <textarea [(ngModel)]="d.value"
                         [class.height-for-multiline]="checkForMultiLine(d.value)"
-                        class="form-row-input right block input-text"></textarea>
+                        class="form-row-input right block input-text"
+                        name="value_{{ i }}"></textarea>
+              </ng-container>
             </ng-container>
-          </ng-container>
-          <ng-container [ngSwitch]="false">
-            <ng-container *ngSwitchCase="true">
-              <div class="form-row-check">
-                <i class="material-icons block">highlight_off</i>
-                <div>
-                  Formularz zawiera błąd.
+            <ng-container [ngSwitch]="false">
+              <ng-container *ngSwitchCase="true">
+                <div class="form-row-check">
+                  <i class="material-icons block">highlight_off</i>
+                  <div>
+                    Formularz zawiera błąd.
+                  </div>
                 </div>
-              </div>
-              <div class="form-row-check">
-                <i class="material-icons block">highlight_off</i>
-                <div>
-                  Formularz zawiera inny błąd.
+                <div class="form-row-check">
+                  <i class="material-icons block">highlight_off</i>
+                  <div>
+                    Formularz zawiera inny błąd.
+                  </div>
                 </div>
-              </div>
+              </ng-container>
+              <!--<ng-container *ngSwitchCase="false">-->
+              <!--  <div class="form-row-check"></div>-->
+              <!--</ng-container>-->
             </ng-container>
-            <!--<ng-container *ngSwitchCase="false">-->
-            <!--  <div class="form-row-check"></div>-->
-            <!--</ng-container>-->
-          </ng-container>
-        </div>
-      </ng-container>
+          </div>
+        </ng-container>
+      </div>
     </div>
-  </div>
-  <div class="buttons-block">
-    <div class="button">
-      <button (click)="anuluj()"
-              type="button"><span class="button-text">Anuluj</span></button>
+    <div class="buttons-block">
+      <div class="button">
+        <button (click)="anuluj()"
+                type="button"><span class="button-text">Anuluj</span></button>
+      </div>
+      <div class="button">
+        <button type="reset"><span class="button-text">Reset</span></button>
+      </div>
+      <div class="button">
+        <button type="submit"><span class="button-text">Zapisz<br>formularz</span></button>
+      </div>
     </div>
-    <div class="button">
-      <button type="reset"><span class="button-text">Reset</span></button>
-    </div>
-    <div class="button">
-      <button (click)="saveForm()"
-              type="submit"><span class="button-text">Zapisz<br>formularz</span></button>
-    </div>
-  </div>
-</section>
+  </section>
+</form>
 <app-foooter></app-foooter>
