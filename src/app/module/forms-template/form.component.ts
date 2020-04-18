@@ -43,6 +43,8 @@ export class FormComponent implements OnInit, OnDestroy {
       value: 'H'
     }
   ];
+  copyOfDataForDefaultValues: DataScientist[];
+  private copyOfDataForResetAsString: string;
   private counter = 0;
 
   constructor(private router: Router) {
@@ -54,10 +56,16 @@ export class FormComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     StartComponent.bodyRef.classList.add('body_background_image');
+    this.copyOfDataForResetAsString = JSON.stringify(this.dataScientist);
+    this.copyOfDataForDefaultValues = JSON.parse(this.copyOfDataForResetAsString);
   }
 
   ngOnDestroy() {
     StartComponent.restoreClassesOfBody();
+  }
+
+  resetForm() {
+    this.dataScientist = JSON.parse(this.copyOfDataForResetAsString);
   }
 
   saveForm() {
