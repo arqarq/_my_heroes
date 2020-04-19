@@ -1,16 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { StartComponent } from '../../';
-
-interface DataScientist {
-  label: string,
-  textarea?: boolean,
-  addButton?: boolean,
-  addButtonActivated?: boolean,
-  toggle?: boolean,
-  field?: string,
-  value?: string
-}
+import { CloudFirebaseRepository } from '../../repository/cloud-firebase-repository.service';
+import { DATA_SCIENTIST_INIT } from '../../repository/data-drag-drop';
 
 @Component({
   selector: 'app-form',
@@ -18,36 +10,18 @@ interface DataScientist {
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit, OnDestroy {
-  dataScientist: DataScientist[] = [
-    {
-      label: 'Apq',
-      field: 'A',
-      value: 'B'
-    },
-    {
-      label: 'Bpq',
-      textarea: true,
-      field: 'C',
-      value: 'D'
-    },
-    {
-      label: 'Cpq',
-      textarea: true,
-      field: 'E',
-      value: 'F'
-    },
-    {
-      label: 'Dpq',
-      addButton: true,
-      field: 'G',
-      value: 'H'
-    }
-  ];
-  copyOfDataForDefaultValues: DataScientist[];
+  dataScientist = DATA_SCIENTIST_INIT;
+  copyOfDataForDefaultValues;
+  toggleArray: boolean[] = [];
   private copyOfDataForResetAsString: string;
   private counter = 0;
+  private readonly docIndex;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private cFR: CloudFirebaseRepository
+  ) {
+    this.docIndex = this.cFR.setCollectionAndDocument('forms', 'form-template-driven');
   }
 
   anuluj() {
@@ -56,8 +30,8 @@ export class FormComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     StartComponent.bodyRef.classList.add('body_background_image');
-    this.copyOfDataForResetAsString = JSON.stringify(this.dataScientist);
-    this.copyOfDataForDefaultValues = JSON.parse(this.copyOfDataForResetAsString);
+    this.makeCopiesOfFormData();
+    this.initDataInDB();
   }
 
   ngOnDestroy() {
@@ -70,6 +44,7 @@ export class FormComponent implements OnInit, OnDestroy {
 
   saveForm() {
     console.log(this.dataScientist);
+    this.cFR.saveDocumentDataAtIndex(this.dataScientist, this.docIndex).then(() => this.makeCopiesOfFormData());
   }
 
   checkForMultiLine(data: string): boolean {
@@ -82,17 +57,40 @@ export class FormComponent implements OnInit, OnDestroy {
       const label = String.fromCharCode('E'.charCodeAt(0) + this.counter++) + 'pq';
       this.dataScientist[index + 1] = {
         label,
+        field: '',
+        value: '',
         addButton: true,
         addButtonActivated: false
       };
       this.dataScientist[index].addButtonActivated = true;
-      return;
+    } else {
+      this.dataScientist.splice(index + 1, 1);
+      this.dataScientist[index].addButtonActivated = !!this.dataScientist[index + 1];
+      this.toggleArray.splice(index + 1, 1);
     }
-    this.dataScientist.splice(index + 1, 1);
-    this.dataScientist[index].addButtonActivated = !!this.dataScientist[index + 1];
+    this.makeCopiesOfFormData();
+  }
+
+  private makeCopiesOfFormData() {
+    this.copyOfDataForResetAsString = JSON.stringify(this.dataScientist);
+    this.copyOfDataForDefaultValues = JSON.parse(this.copyOfDataForResetAsString);
   }
 
   private toggleRotateY(index: number) {
-    return this.dataScientist[index].toggle = !this.dataScientist[index].toggle;
+    // return this.dataScientist[index].toggle = !this.dataScientist[index].toggle;
+    return this.toggleArray[index] = !this.toggleArray[index];
+  }
+
+  private initDataInDB() {
+    this.cFR.getDocumentDataAtIndex(this.docIndex).then((docSnapshot) => {
+      if (!docSnapshot.exists) {
+        this.cFR.saveDocumentDataAtIndex(this.dataScientist, this.docIndex);
+        return;
+      }
+      this.cFR.getDocumentDataAtIndex(this.docIndex).then((docSnapshot2) => {
+        this.dataScientist = docSnapshot2.data().formData;
+        this.makeCopiesOfFormData();
+      });
+    });
   }
 }

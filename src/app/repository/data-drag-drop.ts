@@ -25,3 +25,39 @@ export const DATA = [
   {content: 'Y', blob: false, L: '50%', T: '50%'},
   {content: 'Z', blob: true, L: '50%', T: '50%'}
 ];
+
+interface DataScientist {
+  label: string,
+  textarea?: boolean,
+  addButton?: boolean,
+  addButtonActivated?: boolean,
+  // toggle?: boolean,
+  field: string,
+  value: string
+}
+
+export const DATA_SCIENTIST_INIT: DataScientist[] = [
+  {
+    label: 'Apq',
+    field: 'A',
+    value: 'B'
+  },
+  {
+    label: 'Bpq',
+    textarea: true,
+    field: 'C',
+    value: 'D'
+  },
+  {
+    label: 'Cpq',
+    textarea: true,
+    field: 'E',
+    value: 'F'
+  },
+  {
+    label: 'Dpq',
+    addButton: true,
+    field: 'G',
+    value: 'H'
+  }
+];

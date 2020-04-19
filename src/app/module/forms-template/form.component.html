@@ -11,7 +11,7 @@
                    for="id_{{ i }}"><span class="label-text">{{ d.label }}</span></label>
             <ng-container *ngIf="d.addButton">
               <div (click)="addRow(i)"
-                   [class.add-button-activated]="d.toggle"
+                   [class.add-button-activated]="toggleArray[i]"
                    class="add-button">
                 <ng-container [ngSwitch]="!d.addButtonActivated">
                   <ng-container *ngSwitchCase="false"><span>[-]</span></ng-container>

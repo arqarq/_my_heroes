@@ -4,9 +4,7 @@ import { ForServicesModule } from '../service/for-services.module';
 
 const MERGE = {merge: true};
 
-@Injectable({
-  providedIn: ForServicesModule
-})
+@Injectable({providedIn: ForServicesModule})
 export class CloudFirebaseRepository {
   constructor(private cFService: CloudFirebaseService) {
   }
@@ -15,6 +13,18 @@ export class CloudFirebaseRepository {
     return this.cFService.doc.set({[propertyName]: value}, MERGE)
       .then(() => console.log('SAVE success: (' + propertyName + '/' + value + ')'))
       .catch((reason) => console.log('SAVE error: ' + reason));
+  }
+
+  getDocumentDataAtIndex(docIndex: number) {
+    return this.cFService.docs[docIndex].get().toPromise();
+  }
+
+  saveDocumentDataAtIndex(data, docIndex: number) {
+    return this.cFService.docs[docIndex].set({formData: data});
+  }
+
+  setCollectionAndDocument(collectionName: string, docName: string): number {
+    return this.cFService.setCollectionAndDocument(collectionName, docName);
   }
 
   generateChangeInDB() {

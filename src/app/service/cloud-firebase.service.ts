@@ -11,13 +11,12 @@ interface TockType {
   b?: boolean;
 }
 
-@Injectable({
-  providedIn: ForServicesModule
-})
+@Injectable({providedIn: ForServicesModule})
 export class CloudFirebaseService {
   key: string;
   tock: TockType = {};
   doc: AngularFirestoreDocument;
+  docs: AngularFirestoreDocument[] = [];
   docRefNotChanged: AngularFirestoreDocument;
   docTest$: Observable<string>;
   private baseUrl = 'https://us-central1-d00af17f5d630b7296f102d.cloudfunctions.net/createToken';
@@ -31,7 +30,7 @@ export class CloudFirebaseService {
   ) {
     this.login();
     this.dbAuth.auth.onAuthStateChanged((user) => {
-      this.doc = db.collection('kolekcja').doc('dokument');
+      this.setFirstDocument();
       if (this.dbAuth.auth.currentUser) {
         this.docTest$ = db
           .collection('kolekcja')
@@ -66,7 +65,7 @@ export class CloudFirebaseService {
     }));
   }
 
-  getDataFromDoc2(key: string) {
+  getDataFromDocRefNotChanged(key: string) {
     return this.dbAuth.authState.pipe(switchMap((value) => {
       return value ?
         this.docRefNotChanged.snapshotChanges().pipe(map((value2) => {
@@ -105,6 +104,16 @@ export class CloudFirebaseService {
       this.tock.a = false;
       clearTimeout(timeout);
     }, 1000);
+  }
+
+  setCollectionAndDocument(collectionName: string, docName: string): number {
+    const firstNonUndefinedIndex = this.docs.findIndex((value) => !value);
+    this.docs[firstNonUndefinedIndex] = this.db.collection(collectionName).doc(docName);
+    return firstNonUndefinedIndex;
+  }
+
+  private setFirstDocument() {
+    this.doc = this.db.collection('kolekcja').doc('dokument');
   }
 
   private generateToken(uid: string) {

@@ -44,7 +44,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy, AfterViewInit
     this.sessionId = this.route.queryParamMap.pipe(map((params) => params.get('session_id') || 'None'));
     this.token = this.route.fragment.pipe(map((fragment) => fragment || 'None'));
     this.pole$ = this.cloudFirebaseService.getDataFromDoc();
-    this.pole2$ = this.cloudFirebaseService.getDataFromDoc2(this.key);
+    this.pole2$ = this.cloudFirebaseService.getDataFromDocRefNotChanged(this.key);
     this.authState$ = this.cloudFirebaseService.dbAuth.authState.pipe(map((value) => {
       const obj = JSON.parse(JSON.stringify(value));
       return obj ? 'lastLoginAt: ' + obj.lastLoginAt + ' / createdAt: ' + obj.createdAt : null;
