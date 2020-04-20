@@ -48,12 +48,12 @@ export class FormComponent implements OnInit, OnDestroy {
     console.log(this.dataScientist);
     this.cFR.saveDocumentDataAtIndex(this.dataScientist, this.docIndex).then(() => {
       this.makeCopiesOfFormData();
-      this.beep(true)
+      this.beep(true);
     }).catch(() => this.beep());
   }
 
   checkForMultiLine(data: string): boolean {
-    return data ? data.search(new RegExp(/[\r\n]/)) !== -1 || data.length > 16 : false;
+    return data ? data.search(new RegExp(/[\r\n]/)) !== -1 || data.length > 15 : false;
   }
 
   addRow(index: number) {

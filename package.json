@@ -1,6 +1,6 @@
 {
   "name": "d00af17f5d630b7296f102d",
-  "version": "4.37.46",
+  "version": "4.37.47",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
