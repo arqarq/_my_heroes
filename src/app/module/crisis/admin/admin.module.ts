@@ -2,20 +2,20 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent, AdminDashboardComponent, ClearComponent, ManageCrisesComponent, ManageHeroesComponent } from './index';
-import { ConfirmSignalComponent } from './admin-dashboard/confirm-signal.component';
+import { ForComponentsModule } from '../../../component/for-components.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    ForComponentsModule
   ],
   declarations: [
     AdminComponent,
     AdminDashboardComponent,
     ManageCrisesComponent,
     ManageHeroesComponent,
-    ClearComponent,
-    ConfirmSignalComponent
+    ClearComponent
   ]
   // providers: [ // old way DI
   //   AuthGuard

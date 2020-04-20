@@ -72,8 +72,11 @@
       <div class="button">
         <button type="reset"><span class="button-text">Reset</span></button>
       </div>
-      <div class="button">
+      <div class="button"
+           style="position: relative">
         <button type="submit"><span class="button-text">Zapisz<br>formularz</span></button>
+        <app-confirm-signal [timeoutMs]="2000"
+                            leftPx="89"></app-confirm-signal>
       </div>
     </div>
   </section>

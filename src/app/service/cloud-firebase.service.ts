@@ -4,14 +4,13 @@ import { map, switchMap } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { ForServicesModule } from './for-services.module';
 
 interface TockType {
   a?: boolean;
   b?: boolean;
 }
 
-@Injectable({providedIn: ForServicesModule})
+@Injectable({providedIn: 'root'})
 export class CloudFirebaseService {
   key: string;
   tock: TockType = {};
@@ -40,7 +39,7 @@ export class CloudFirebaseService {
       } else {
         this.docTest$ = of('NULL_C');
       }
-      console.log('--- db: doc set, onAuthStateChanged, user?', user ? true : null);
+      console.log('--- db: docs set, onAuthStateChanged, user?', user ? true : null);
     });
   }
 

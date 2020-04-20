@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Translate2dWithFixForHalfPixelInChromeDirective } from '../../directive/translate2d-with-fix-for-half-pixel-in-chrome.directive';
 import { FormsModule } from '@angular/forms';
+import { ForComponentsModule } from '../../component/for-components.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
         component: FormComponent,
         pathMatch: 'full'
       }
-    ])
+    ]),
+    ForComponentsModule
   ],
   declarations: [
     FormComponent,

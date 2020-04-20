@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
 import { AngularFirestoreDocument } from '@angular/fire/firestore';
 import { CloudFirebaseService, SelectivePreloadingStrategyService } from '../../../../service';
-import { ConfirmSignalComponent } from './confirm-signal.component';
+import { ConfirmSignalComponent } from '../../../../component';
 import { CloudFirebaseRepository } from '../../../../repository/cloud-firebase-repository.service';
 
 const FIELD_NAME_IN_PERSISTENCE = 'pole';

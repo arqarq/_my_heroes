@@ -1,8 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { StartComponent } from '../../';
 import { CloudFirebaseRepository } from '../../repository/cloud-firebase-repository.service';
 import { DATA_SCIENTIST_INIT } from '../../repository/data-drag-drop';
+import { ConfirmSignalComponent } from '../../component';
 
 @Component({
   selector: 'app-form',
@@ -10,6 +11,7 @@ import { DATA_SCIENTIST_INIT } from '../../repository/data-drag-drop';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit, OnDestroy {
+  @ViewChild(ConfirmSignalComponent) confirmSignalElement: ConfirmSignalComponent;
   dataScientist = DATA_SCIENTIST_INIT;
   copyOfDataForDefaultValues;
   toggleArray: boolean[] = [];
@@ -44,7 +46,10 @@ export class FormComponent implements OnInit, OnDestroy {
 
   saveForm() {
     console.log(this.dataScientist);
-    this.cFR.saveDocumentDataAtIndex(this.dataScientist, this.docIndex).then(() => this.makeCopiesOfFormData());
+    this.cFR.saveDocumentDataAtIndex(this.dataScientist, this.docIndex).then(() => {
+      this.makeCopiesOfFormData();
+      this.beep(true)
+    }).catch(() => this.beep());
   }
 
   checkForMultiLine(data: string): boolean {
@@ -91,6 +96,10 @@ export class FormComponent implements OnInit, OnDestroy {
         this.dataScientist = docSnapshot2.data().formData;
         this.makeCopiesOfFormData();
       });
-    });
+    }).catch(() => this.beep());
+  }
+
+  private beep(success?: boolean) {
+    this.confirmSignalElement.start(success);
   }
 }
