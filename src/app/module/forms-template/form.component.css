@@ -26,6 +26,7 @@
   --elementHeight: 2rem;
   --elementRadius: 4px;
   --fix: 1px;
+  --fix2px: 2px;
   --formMargin: 5px;
   --inputBorderColor: black;
   --inputFocusBorderColor: #1a73e8;
@@ -182,14 +183,15 @@ div.form-row-check {
   width: 100%
 }
 
-div.form-row-check:first-of-type {
+/*div.form-row-check:first-of-type,*/
+:not(.form-row-check) + div.form-row-check {
   padding-top: var(--formMargin, 5px)
 }
 
 i.material-icons {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: inherit;
-  padding-right: var(--formMargin, 5px)
+  padding-right: calc(var(--formMargin, 5px) - var(--fix2px, 2px))
 }
 
 label.form-row-label {

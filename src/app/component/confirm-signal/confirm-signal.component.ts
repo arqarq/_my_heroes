@@ -11,15 +11,17 @@ export class ConfirmSignalComponent {
   @Input() topPx: string;
   @Input() leftPx: string;
   okOrError: boolean;
+  private interval;
 
   constructor() {
   }
 
   start(success = false) {
     this.okOrError = success;
-    const interval = setInterval(() => {
+    clearInterval(this.interval);
+    this.interval = setInterval(() => {
       this.okOrError = undefined;
-      clearInterval(interval);
+      clearInterval(this.interval);
     }, this.timeoutMs);
   }
 }
