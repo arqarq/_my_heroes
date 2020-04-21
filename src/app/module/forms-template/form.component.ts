@@ -4,6 +4,7 @@ import { StartComponent } from '../../';
 import { CloudFirebaseRepository } from '../../repository/cloud-firebase-repository.service';
 import { DATA_SCIENTIST_INIT } from '../../repository/data-drag-drop';
 import { ConfirmSignalComponent } from '../../component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-form',
@@ -18,6 +19,7 @@ export class FormComponent implements OnInit, OnDestroy {
   private copyOfDataForResetAsString: string;
   private counter = 0;
   private readonly docIndex;
+  private subscription = new Subscription();
 
   constructor(
     private router: Router,
@@ -38,6 +40,7 @@ export class FormComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     StartComponent.restoreClassesOfBody();
+    this.subscription.unsubscribe();
   }
 
   resetForm() {
@@ -87,16 +90,15 @@ export class FormComponent implements OnInit, OnDestroy {
   }
 
   private initDataInDB() {
-    this.cFR.getDocumentDataAtIndex(this.docIndex).then((docSnapshot) => {
+    this.subscription.add(this.cFR.getDocumentDataAtIndex(this.docIndex).subscribe((docSnapshot) => {
       if (!docSnapshot.exists) {
-        this.cFR.saveDocumentDataAtIndex(this.dataScientist, this.docIndex);
+        this.cFR.saveDocumentDataAtIndex(this.dataScientist, this.docIndex).then(() => this.beep(true)).catch(() => this.beep());
         return;
       }
-      this.cFR.getDocumentDataAtIndex(this.docIndex).then((docSnapshot2) => {
-        this.dataScientist = docSnapshot2.data().formData;
-        this.makeCopiesOfFormData();
-      });
-    }).catch(() => this.beep());
+      this.dataScientist = docSnapshot.data().formData;
+      this.makeCopiesOfFormData();
+      this.beep(true);
+    }));
   }
 
   private beep(success?: boolean) {

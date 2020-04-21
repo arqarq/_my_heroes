@@ -16,7 +16,7 @@ export class CloudFirebaseRepository {
   }
 
   getDocumentDataAtIndex(docIndex: number) {
-    return this.cFService.docs[docIndex].get().toPromise();
+    return this.cFService.docs[docIndex].get();
   }
 
   saveDocumentDataAtIndex(data, docIndex: number) {
