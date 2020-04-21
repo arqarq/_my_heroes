@@ -36,4 +36,8 @@ export class CloudFirebaseRepository {
   generateChangeInDB$() {
     return this.cFService.doc.set({rand: Math.random()}, MERGE);
   }
+
+  checkIfLoggedIn(): boolean {
+    return !!this.cFService.getCurrentUser();
+  }
 }

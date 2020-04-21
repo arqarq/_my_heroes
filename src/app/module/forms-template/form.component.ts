@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { StartComponent } from '../../';
 import { CloudFirebaseRepository } from '../../repository/cloud-firebase-repository.service';
@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
-export class FormComponent implements OnInit, OnDestroy {
+export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(ConfirmSignalComponent) confirmSignalElement: ConfirmSignalComponent;
   dataScientist = DATA_SCIENTIST_INIT;
   copyOfDataForDefaultValues;
@@ -35,6 +35,9 @@ export class FormComponent implements OnInit, OnDestroy {
   ngOnInit() {
     StartComponent.bodyRef.classList.add('body_background_image');
     this.makeCopiesOfFormData();
+  }
+
+  ngAfterViewInit() {
     this.initDataInDB();
   }
 
@@ -44,7 +47,8 @@ export class FormComponent implements OnInit, OnDestroy {
   }
 
   resetForm() {
-    this.dataScientist = JSON.parse(this.copyOfDataForResetAsString);
+    this.dataScientist.splice(0);
+    this.dataScientist.push(...JSON.parse(this.copyOfDataForResetAsString));
   }
 
   saveForm() {
@@ -90,15 +94,19 @@ export class FormComponent implements OnInit, OnDestroy {
   }
 
   private initDataInDB() {
-    this.subscription.add(this.cFR.getDocumentDataAtIndex(this.docIndex).subscribe((docSnapshot) => {
-      if (!docSnapshot.exists) {
-        this.cFR.saveDocumentDataAtIndex(this.dataScientist, this.docIndex).then(() => this.beep(true)).catch(() => this.beep());
-        return;
-      }
-      this.dataScientist = docSnapshot.data().formData;
-      this.makeCopiesOfFormData();
-      this.beep(true);
-    }));
+    if (this.cFR.checkIfLoggedIn()) {
+      this.subscription.add(this.cFR.getDocumentDataAtIndex(this.docIndex).subscribe((docSnapshot) => {
+        if (!docSnapshot.exists) {
+          this.cFR.saveDocumentDataAtIndex(this.dataScientist, this.docIndex).then(() => this.beep(true)).catch(() => this.beep());
+          return;
+        }
+        this.dataScientist = docSnapshot.data().formData;
+        this.makeCopiesOfFormData();
+        this.beep(true);
+      }));
+      return;
+    }
+    Promise.resolve().then(() => this.beep());
   }
 
   private beep(success?: boolean) {

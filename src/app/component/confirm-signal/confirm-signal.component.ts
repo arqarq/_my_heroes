@@ -17,8 +17,8 @@ export class ConfirmSignalComponent {
   }
 
   start(success = false) {
-    this.okOrError = success;
     clearInterval(this.interval);
+    this.okOrError = success;
     this.interval = setInterval(() => {
       this.okOrError = undefined;
       clearInterval(this.interval);
