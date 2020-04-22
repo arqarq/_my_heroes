@@ -1,6 +1,6 @@
 {
   "name": "d00af17f5d630b7296f102d",
-  "version": "4.37.51",
+  "version": "4.37.54",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -82,7 +82,7 @@
     "ts-node": "^8.6.2",
     "tslib": "^1.10.0",
     "tslint": "^6.1.0",
-    "typescript": "~3.7.5",
+    "typescript": "^3.8.3",
     "webpack": "^4.41.5",
     "zone.js": "^0.10.2"
   }

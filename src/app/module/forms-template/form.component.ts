@@ -106,10 +106,10 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
       }));
       return;
     }
-    Promise.resolve().then(() => this.beep());
+    this.beep()
   }
 
   private beep(success?: boolean) {
-    this.confirmSignalElement.start(success);
+    this.confirmSignalElement.start(success)
   }
 }
