@@ -3,9 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
 import { AngularFirestoreDocument } from '@angular/fire/firestore';
-import { CloudFirebaseService, SelectivePreloadingStrategyService } from '../../../../service';
+import { CloudFirebaseRepository, SelectivePreloadingStrategyService } from '../../../../service';
 import { ConfirmSignalComponent } from '../../../../component';
-import { CloudFirebase } from '../../../../repository/cloud-firebase.service';
+import { CloudFirebaseService } from '../../../../service/cloud-firebase.service';
 
 const FIELD_NAME_IN_PERSISTENCE = 'pole';
 const FIELD_NAME_IN_PERSISTENCE2 = 'pole2';
@@ -31,25 +31,25 @@ export class AdminDashboardComponent implements OnInit, OnDestroy, AfterViewInit
 
   constructor(
     private route: ActivatedRoute,
-    public cloudFirebaseService: CloudFirebaseService,
-    private cFService: CloudFirebase,
+    public cFRepository: CloudFirebaseRepository,
+    private cFService: CloudFirebaseService,
     preloadStrategy: SelectivePreloadingStrategyService
   ) {
     this.modules = preloadStrategy.preloadedModules.sort();
-    this.cloudFirebaseService.key = this.key;
+    this.cFRepository.key = this.key;
   }
 
   ngOnInit() {
     this.sessionId = this.route.queryParamMap.pipe(map((params) => params.get('session_id') || 'None'));
     this.token = this.route.fragment.pipe(map((fragment) => fragment || 'None'));
-    this.pole$ = this.cloudFirebaseService.getDataFromDoc();
-    this.pole2$ = this.cloudFirebaseService.getDataFromDocRefNotChanged(this.key);
-    this.authState$ = this.cloudFirebaseService.dbAuth.authState.pipe(map((value) => {
+    this.pole$ = this.cFRepository.getDataFromDoc();
+    this.pole2$ = this.cFRepository.getDataFromDocRefNotChanged(this.key);
+    this.authState$ = this.cFRepository.dbAuth.authState.pipe(map((value) => {
       const obj = JSON.parse(JSON.stringify(value));
       return obj ? 'lastLoginAt: ' + obj.lastLoginAt + ' / createdAt: ' + obj.createdAt : null;
     }));
     this.docObj$ = new Observable((subscriber) => {
-      subscriber.next(this.cloudFirebaseService.doc);
+      subscriber.next(this.cFRepository.doc);
     }).pipe(delay(2000), map<AngularFirestoreDocument, string>((value) => {
       return value ? 'path: ' + value.ref.path : null;
     }));
@@ -61,7 +61,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy, AfterViewInit
       this.interval = setInterval(() => {
         let data = '? ';
 
-        const doc = this.cloudFirebaseService.doc;
+        const doc = this.cFRepository.doc;
         const path = doc ? doc.ref.path : null;
         doc.ref.get()
           .then((value) => data = value.get(this.key))
@@ -78,8 +78,8 @@ export class AdminDashboardComponent implements OnInit, OnDestroy, AfterViewInit
   setWithConfirm(nameOfKonfirm: string) {
     // tslint:disable-next-line:no-conditional-assignment
     (this.flag = !this.flag) ?
-      this.cloudFirebaseService.key = this.key = FIELD_NAME_IN_PERSISTENCE2 :
-      this.cloudFirebaseService.key = this.key = FIELD_NAME_IN_PERSISTENCE;
+      this.cFRepository.key = this.key = FIELD_NAME_IN_PERSISTENCE2 :
+      this.cFRepository.key = this.key = FIELD_NAME_IN_PERSISTENCE;
     this.cFService.generateChangeInDB$().then(() => this.beep(nameOfKonfirm, true)).catch(() => this.beep(nameOfKonfirm));
   }
 

@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { StartComponent } from '../../';
-import { CloudFirebase } from '../../repository/cloud-firebase.service';
+import { CloudFirebaseService } from '../../service/cloud-firebase.service';
 import { DATA_SCIENTIST_INIT } from '../../repository/data-drag-drop';
 import { ConfirmSignalComponent } from '../../component';
 import { Subscription } from 'rxjs';
@@ -23,7 +23,7 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private cFService: CloudFirebase
+    private cFService: CloudFirebaseService
   ) {
     if (typeof this.docIndex !== 'number') {
       FormComponent.$docIndex = this.cFService.setCollectionAndDocument('forms', 'form-template-driven');
@@ -34,6 +34,10 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
     return FormComponent.$docIndex;
   }
 
+  private static showIfLoggedIn(value) {
+    console.log('- - - - - - isLoggedIn:', value)
+  }
+
   anuluj() {
     this.router.navigate(['choose']);
   }
@@ -41,6 +45,7 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     StartComponent.bodyRef.classList.add('body_background_image');
     this.makeCopiesOfFormData();
+    this.subscription.add(this.cFService.checkIfLoggedIn2().subscribe({next: FormComponent.showIfLoggedIn}))
   }
 
   ngAfterViewInit() {

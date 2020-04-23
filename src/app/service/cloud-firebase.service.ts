@@ -1,104 +1,45 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { map, switchMap } from 'rxjs/operators';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { CloudFirebaseRepository } from './index';
+import { AngularFirestoreDocument } from '@angular/fire/firestore';
+
+const MERGE = {merge: true};
 
 @Injectable({providedIn: 'root'})
 export class CloudFirebaseService {
-  key: string;
-  doc: AngularFirestoreDocument;
-  docRefNotChanged: AngularFirestoreDocument;
-  docTest$: Observable<string>;
-  private currentUser = new BehaviorSubject(null)
-  private baseUrl = 'https://us-central1-d00af17f5d630b7296f102d.cloudfunctions.net/createToken';
-  private uid = 'qazqaz';
-  private s1
-  private s2 = new Subscription()
+  private docs: AngularFirestoreDocument[] = [];
 
-  constructor(
-    public dbAuth: AngularFireAuth,
-    public db: AngularFirestore,
-    private http: HttpClient
-  ) {
-    this.login();
-    this.s2.add(this.dbAuth.authState.subscribe((user) => {
-      if (user) {
-        this.setFirstDocument();
-        this.docTest$ = db.collection('kolekcja').doc('dokument')
-          .valueChanges()
-          .pipe(map((value) => value[this.key]));
-        console.log('--- db**: docs set, onAuthStateChanged, user?', user ? true : null)
-        return
-      }
-      this.docTest$ = of('NULL_C')
-      console.log('--- db**: docs not set, onAuthStateChanged, user?', user ? true : null)
-    }));
-    this.s2.add(this.dbAuth.user.subscribe((user) => this.currentUser.next(user)))
+  constructor(private cFRepository: CloudFirebaseRepository) {
   }
 
-  getCurrentUser() {
-    const cU = this.currentUser.getValue();
-
-    if (cU) {
-      const obj = JSON.parse(JSON.stringify(cU));
-      return {lastLoginAt: obj.lastLoginAt, createdAt: obj.createdAt};
-    }
-    return null
+  save(propertyName: string, value: any) {
+    return this.cFRepository.doc.set({[propertyName]: value}, MERGE)
+      .then(() => console.log('SAVE success: (' + propertyName + '/' + value + ')'))
+      .catch((reason) => console.log('SAVE error: ' + reason));
   }
 
-  getDataFromDoc() {
-    return this.dbAuth.authState.pipe(switchMap((value) => {
-      if (value) {
-        return this.doc.snapshotChanges().pipe(map((value2) => {
-          const temp = value2.payload.get(this.key);
-          console.log('--- db, getData1:', temp);
-          return temp as string;
-        }));
-      }
-      return of('NULL_A');
-    }));
+  getDocumentDataAtIndex(docIndex: number) {
+    return this.docs[docIndex].get();
   }
 
-  getDataFromDocRefNotChanged(key: string) {
-    return this.dbAuth.authState.pipe(switchMap((value) => {
-      return value ?
-        this.docRefNotChanged.snapshotChanges().pipe(map((value2) => {
-          const temp = value2.payload.get(key);
-          console.log('--- db, getData2:', temp);
-          return temp as string;
-        })) :
-        of('NULL_B');
-    }));
+  saveDocumentDataAtIndex(data, docIndex: number) {
+    return this.docs[docIndex].set({formData: data});
   }
 
-  logout() {
-    this.dbAuth.signOut().then((function a() {
-      // this.s1.unsubscribe();
-      console.log('--- db: signed out, subscription_unsubscribed (closed)?', this.s1.closed);
-    }).bind(this));
+  setCollectionAndDocument(collectionName: string, docName: string): number {
+    const firstNonUndefinedIndex = this.docs.length
+    this.docs[firstNonUndefinedIndex] = this.cFRepository.db.collection(collectionName).doc(docName)
+    return firstNonUndefinedIndex;
   }
 
-  login() {
-    this.s1 = this.generateToken(this.uid).subscribe((value) => {
-      this.dbAuth.signInWithCustomToken(value).then((value2) => {
-        console.log('--- db*: signed in, creationTime:', value2.user.metadata.creationTime + ', lastSignInTime:',
-          value2.user.metadata.lastSignInTime);
-        this.docRefNotChanged = this.db.collection('kolekcja').doc('dokument');
-        console.log('--- db*: docRefNotChanged set, user?', value2.user ? true : null);
-      }).catch((reason) => {
-        console.log('--- db*:', reason.message);
-      });
-    });
+  generateChangeInDB$() {
+    return this.cFRepository.doc.set({rand: Math.random()}, MERGE);
   }
 
-  private setFirstDocument() {
-    this.doc = this.db.collection('kolekcja').doc('dokument');
+  checkIfLoggedIn(): boolean {
+    return !!this.cFRepository.getCurrentUser();
   }
 
-  private generateToken(uid: string) {
-    const url = this.baseUrl + `?uid=${uid}`;
-    return this.http.get(url, {responseType: 'text'});
+  checkIfLoggedIn2() {
+    return this.cFRepository.checkIfUserLoggedIn()
   }
 }

@@ -7,4 +7,4 @@ export { LocalStorageService } from './local-storage.service';
 // export { MessageService } from './message.service';
 // export { PromptUpdateService } from './prompt-update.service';
 export { SelectivePreloadingStrategyService } from './selective-preloading-strategy.service';
-export { CloudFirebaseService } from './cloud-firebase.service';
+export { CloudFirebaseRepository } from '../repository/cloud-firebase-repository.service';

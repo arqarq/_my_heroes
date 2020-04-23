@@ -6,7 +6,7 @@ import { LangChangeRelayService } from './service/lang-change-relay.service';
 import { LogUpdateService } from './service/log-update.service';
 import { CheckForUpdateService } from './service/check-for-update.service';
 import { PromptUpdateService } from './service/prompt-update.service';
-import { CloudFirebaseService } from './service/';
+import { CloudFirebaseRepository } from './service/';
 
 @Component({
   selector: 'app-start',
@@ -33,7 +33,7 @@ export class StartComponent implements OnInit {
     sw: LogUpdateService, // wywołaj constructor
     cu: CheckForUpdateService, // wywołaj constructor
     pu: PromptUpdateService, // wywołaj constructor
-    db: CloudFirebaseService
+    db: CloudFirebaseRepository
     // private router: Router,
     // private location: Location
   ) {

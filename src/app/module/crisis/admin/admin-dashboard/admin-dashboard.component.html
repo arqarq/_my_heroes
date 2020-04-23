@@ -6,10 +6,10 @@
 </p>
 <hr>
 <div style="position: relative">
-  <button (click)="cloudFirebaseService.login()"
+  <button (click)="cFRepository.login()"
           style="margin-right: 10px"
           type="button">Cloud Firestore login</button>
-  <button (click)="cloudFirebaseService.logout()"
+  <button (click)="cFRepository.logout()"
           style="margin-right: 10px"
           type="button">Cloud Firestore logout</button>
   <!--<button (click)="setOtherField()"-->
@@ -42,14 +42,14 @@
 <p>
   authState$: <b>{{ (authState$ | async) || 'null' }}</b>
   <br>
-  currentUser: <b>{{ cloudFirebaseService.getCurrentUser() | json }}</b>
+  currentUser: <b>{{ cFRepository.getCurrentUser() | json }}</b>
 </p>
 <p>
   docObj$: <b>{{ (docObj$ | async) || 'null' }}</b>
   <br>
   docObj2$: <b>{{ (docObj2$ | async) || 'null' }}</b>
   <br>
-  docTest$: <b>{{ (cloudFirebaseService.docTest$ | async) || 'null' }}</b>
+  docTest$: <b>{{ (cFRepository.docTest$ | async) || 'null' }}</b>
 </p>
 <hr>
 <p style="margin-bottom: 0">
