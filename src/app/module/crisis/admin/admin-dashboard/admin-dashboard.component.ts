@@ -5,7 +5,7 @@ import { delay, map } from 'rxjs/operators';
 import { AngularFirestoreDocument } from '@angular/fire/firestore';
 import { CloudFirebaseService, SelectivePreloadingStrategyService } from '../../../../service';
 import { ConfirmSignalComponent } from '../../../../component';
-import { CloudFirebaseRepository } from '../../../../repository/cloud-firebase-repository.service';
+import { CloudFirebase } from '../../../../repository/cloud-firebase.service';
 
 const FIELD_NAME_IN_PERSISTENCE = 'pole';
 const FIELD_NAME_IN_PERSISTENCE2 = 'pole2';
@@ -26,14 +26,13 @@ export class AdminDashboardComponent implements OnInit, OnDestroy, AfterViewInit
   docObj$: Observable<any>;
   docObj2$: Observable<any>;
   private interval;
-  private interval2;
   private flag: boolean;
   private key = FIELD_NAME_IN_PERSISTENCE;
 
   constructor(
     private route: ActivatedRoute,
     public cloudFirebaseService: CloudFirebaseService,
-    private cFRepositoryService: CloudFirebaseRepository,
+    private cFService: CloudFirebase,
     preloadStrategy: SelectivePreloadingStrategyService
   ) {
     this.modules = preloadStrategy.preloadedModules.sort();
@@ -73,16 +72,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy, AfterViewInit
   }
 
   ngOnDestroy() {
-    clearTimeout(this.interval);
-    clearTimeout(this.interval2);
-  }
-
-  setOtherField() {
-    // tslint:disable-next-line:no-conditional-assignment
-    (this.flag = !this.flag) ?
-      this.cloudFirebaseService.key = this.key = FIELD_NAME_IN_PERSISTENCE2 :
-      this.cloudFirebaseService.key = this.key = FIELD_NAME_IN_PERSISTENCE;
-    this.cFRepositoryService.generateChangeInDB();
+    clearTimeout(this.interval)
   }
 
   setWithConfirm(nameOfKonfirm: string) {
@@ -90,7 +80,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy, AfterViewInit
     (this.flag = !this.flag) ?
       this.cloudFirebaseService.key = this.key = FIELD_NAME_IN_PERSISTENCE2 :
       this.cloudFirebaseService.key = this.key = FIELD_NAME_IN_PERSISTENCE;
-    this.cFRepositoryService.generateChangeInDB$().then(() => this.beep(nameOfKonfirm, true)).catch(() => this.beep(nameOfKonfirm));
+    this.cFService.generateChangeInDB$().then(() => this.beep(nameOfKonfirm, true)).catch(() => this.beep(nameOfKonfirm));
   }
 
   ngAfterViewInit() {

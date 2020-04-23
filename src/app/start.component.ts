@@ -81,7 +81,7 @@ export class StartComponent implements OnInit {
     console.log('---------------------------------------------------------------------- %clang from browser:%c ' +
       (!environment.isNode ? navigator.language : 'node'),
       'color: red', 'color: red; font-weight: bolder');
-    console.log('---------------------------------------------------------------------- %craw lang from @ang:%c ' +
+    console.log('---------------------------------------------------------------------- %craw lang from @ng:%c ' +
       (!environment.isNode ? this.localeId : 'node'),
       'color: red', 'color: red; font-weight: bolder');
   }

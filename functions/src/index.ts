@@ -12,7 +12,7 @@ admin.initializeApp();
 export const createToken = functions.https.onRequest((req, resp) => {
   resp.set('Access-Control-Allow-Origin', '*');
   const authService = new AuthService(admin);
-  authService.createToken(req.query['uid'])
+  authService.createToken(req.query['uid'] as string)
     .then((value: any) => resp.send(value))
     .catch((reason: any) => console.log('Error creating custom token:', reason));
 });

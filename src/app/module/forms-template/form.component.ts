@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { StartComponent } from '../../';
-import { CloudFirebaseRepository } from '../../repository/cloud-firebase-repository.service';
+import { CloudFirebase } from '../../repository/cloud-firebase.service';
 import { DATA_SCIENTIST_INIT } from '../../repository/data-drag-drop';
 import { ConfirmSignalComponent } from '../../component';
 import { Subscription } from 'rxjs';
@@ -12,20 +12,26 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
+  private static $docIndex;
   @ViewChild(ConfirmSignalComponent) confirmSignalElement: ConfirmSignalComponent;
   dataScientist = DATA_SCIENTIST_INIT;
   copyOfDataForDefaultValues;
   toggleArray: boolean[] = [];
   private copyOfDataForResetAsString: string;
   private counter = 0;
-  private readonly docIndex;
   private subscription = new Subscription();
 
   constructor(
     private router: Router,
-    private cFR: CloudFirebaseRepository
+    private cFService: CloudFirebase
   ) {
-    this.docIndex = this.cFR.setCollectionAndDocument('forms', 'form-template-driven');
+    if (typeof this.docIndex !== 'number') {
+      FormComponent.$docIndex = this.cFService.setCollectionAndDocument('forms', 'form-template-driven');
+    }
+  }
+
+  private get docIndex() {
+    return FormComponent.$docIndex;
   }
 
   anuluj() {
@@ -53,7 +59,7 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
 
   saveForm() {
     console.log(this.dataScientist);
-    this.cFR.saveDocumentDataAtIndex(this.dataScientist, this.docIndex).then(() => {
+    this.cFService.saveDocumentDataAtIndex(this.dataScientist, this.docIndex).then(() => {
       this.makeCopiesOfFormData();
       this.beep(true);
     }).catch(() => this.beep());
@@ -94,10 +100,10 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private initDataInDB() {
-    if (this.cFR.checkIfLoggedIn()) {
-      this.subscription.add(this.cFR.getDocumentDataAtIndex(this.docIndex).subscribe((docSnapshot) => {
+    if (this.cFService.checkIfLoggedIn()) {
+      this.subscription.add(this.cFService.getDocumentDataAtIndex(this.docIndex).subscribe((docSnapshot) => {
         if (!docSnapshot.exists) {
-          this.cFR.saveDocumentDataAtIndex(this.dataScientist, this.docIndex).then(() => this.beep(true)).catch(() => this.beep());
+          this.cFService.saveDocumentDataAtIndex(this.dataScientist, this.docIndex).then(() => this.beep(true)).catch(() => this.beep());
           return;
         }
         this.dataScientist = docSnapshot.data().formData;

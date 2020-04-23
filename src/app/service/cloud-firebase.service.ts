@@ -2,53 +2,50 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { map, switchMap } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-
-interface TockType {
-  a?: boolean;
-  b?: boolean;
-}
 
 @Injectable({providedIn: 'root'})
 export class CloudFirebaseService {
   key: string;
-  tock: TockType = {};
   doc: AngularFirestoreDocument;
-  docs: AngularFirestoreDocument[] = [];
   docRefNotChanged: AngularFirestoreDocument;
   docTest$: Observable<string>;
+  private currentUser = new BehaviorSubject(null)
   private baseUrl = 'https://us-central1-d00af17f5d630b7296f102d.cloudfunctions.net/createToken';
   private uid = 'qazqaz';
-  private s1;
+  private s1
+  private s2 = new Subscription()
 
   constructor(
     public dbAuth: AngularFireAuth,
-    private db: AngularFirestore,
+    public db: AngularFirestore,
     private http: HttpClient
   ) {
     this.login();
-    this.dbAuth.auth.onAuthStateChanged((user) => {
-      this.setFirstDocument();
-      if (this.dbAuth.auth.currentUser) {
-        this.docTest$ = db
-          .collection('kolekcja')
-          .doc('dokument')
+    this.s2.add(this.dbAuth.authState.subscribe((user) => {
+      if (user) {
+        this.setFirstDocument();
+        this.docTest$ = db.collection('kolekcja').doc('dokument')
           .valueChanges()
           .pipe(map((value) => value[this.key]));
-      } else {
-        this.docTest$ = of('NULL_C');
+        console.log('--- db**: docs set, onAuthStateChanged, user?', user ? true : null)
+        return
       }
-      console.log('--- db: docs set, onAuthStateChanged, user?', user ? true : null);
-    });
+      this.docTest$ = of('NULL_C')
+      console.log('--- db**: docs not set, onAuthStateChanged, user?', user ? true : null)
+    }));
+    this.s2.add(this.dbAuth.user.subscribe((user) => this.currentUser.next(user)))
   }
 
   getCurrentUser() {
-    if (this.dbAuth.auth.currentUser) {
-      const obj = JSON.parse(JSON.stringify(this.dbAuth.auth.currentUser));
+    const cU = this.currentUser.getValue();
+
+    if (cU) {
+      const obj = JSON.parse(JSON.stringify(cU));
       return {lastLoginAt: obj.lastLoginAt, createdAt: obj.createdAt};
     }
-    return null;
+    return null
   }
 
   getDataFromDoc() {
@@ -77,7 +74,7 @@ export class CloudFirebaseService {
   }
 
   logout() {
-    this.dbAuth.auth.signOut().then((function a() {
+    this.dbAuth.signOut().then((function a() {
       // this.s1.unsubscribe();
       console.log('--- db: signed out, subscription_unsubscribed (closed)?', this.s1.closed);
     }).bind(this));
@@ -85,7 +82,7 @@ export class CloudFirebaseService {
 
   login() {
     this.s1 = this.generateToken(this.uid).subscribe((value) => {
-      this.dbAuth.auth.signInWithCustomToken(value).then((value2) => {
+      this.dbAuth.signInWithCustomToken(value).then((value2) => {
         console.log('--- db*: signed in, creationTime:', value2.user.metadata.creationTime + ', lastSignInTime:',
           value2.user.metadata.lastSignInTime);
         this.docRefNotChanged = this.db.collection('kolekcja').doc('dokument');
@@ -94,21 +91,6 @@ export class CloudFirebaseService {
         console.log('--- db*:', reason.message);
       });
     });
-  }
-
-  tick(success?: boolean) {
-    this.tock.b = success;
-    this.tock.a = true;
-    const timeout = setTimeout(() => {
-      this.tock.a = false;
-      clearTimeout(timeout);
-    }, 1000);
-  }
-
-  setCollectionAndDocument(collectionName: string, docName: string): number {
-    const firstNonUndefinedIndex = this.docs.findIndex((value) => !value);
-    this.docs[firstNonUndefinedIndex] = this.db.collection(collectionName).doc(docName);
-    return firstNonUndefinedIndex;
   }
 
   private setFirstDocument() {
