@@ -10,6 +10,12 @@ trim_trailing_whitespace = true
 end_of_line = crlf
 max_line_length = 140
 
+[*.js]
+ij_javascript_force_semicolon_style = false
+
+[*.ts]
+ij_typescript_force_semicolon_style = false
+
 [*.md]
 max_line_length = off
 trim_trailing_whitespace = false
