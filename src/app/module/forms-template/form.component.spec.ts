@@ -18,12 +18,15 @@ describe('FormComponent', () => {
       add: () => void (0)
     },
     restoreClassesOfBody() {
+    },
+    removeAttribute() {
     }
   }
   let component: FormComponent
   let router: Partial<Router>
   let cFService: Partial<CloudFirebaseService>
   let fixture: ComponentFixture<FormComponent>
+  let element
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -43,6 +46,12 @@ describe('FormComponent', () => {
     fixture = TestBed.createComponent(FormComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
+    element = fixture.debugElement.nativeElement;
+  })
+
+  afterEach(() => {
+    fixture.destroy()
+    element.remove()
   })
 
   it('should create', () => {
