@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular
 import { Router } from '@angular/router';
 import { StartComponent } from '../../';
 import { CloudFirebaseService } from '../../service/cloud-firebase.service';
-import { DATA_SCIENTIST_INIT } from '../../repository/data-drag-drop';
+import { DATA_SCIENTIST_INIT, DataScientist } from '../../repository/data-drag-drop';
 import { ConfirmSignalComponent } from '../../component';
 import { Subscription } from 'rxjs';
 
@@ -15,7 +15,7 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
   private static $docIndex;
   @ViewChild(ConfirmSignalComponent) confirmSignalElement: ConfirmSignalComponent;
   dataScientist = DATA_SCIENTIST_INIT;
-  copyOfDataForDefaultValues;
+  copyOfDataForDefaultValues: DataScientist[];
   toggleArray: boolean[] = [];
   private copyOfDataForResetAsString: string;
   private counter = 0;

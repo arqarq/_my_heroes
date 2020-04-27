@@ -26,7 +26,7 @@ export const DATA = [
   {content: 'Z', blob: true, L: '50%', T: '50%'}
 ];
 
-interface DataScientist {
+export interface DataScientist {
   label: string,
   textarea?: boolean,
   addButton?: boolean,

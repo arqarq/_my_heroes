@@ -19,8 +19,9 @@
                 </ng-container>
               </div>
             </ng-container>
-            <input [(ngModel)]="d.field"
+            <input (input)="d.field = $any($event.target).value"
                    [defaultValue]="copyOfDataForDefaultValues[i].field"
+                   [value]="d.field"
                    class="form-row-input left block input-text"
                    id="id_{{ i }}"
                    name="field_{{ i }}"
