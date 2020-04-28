@@ -28,6 +28,7 @@
     "ua": "yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\__setver patch && npm run build-i18n && firebase deploy",
     "uam": "yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\__setver minor && npm run build-i18n && firebase deploy",
     "uaM": "yarn upgrade && (if exist dist rmdir /q/s dist) && node z_js_util_files\\__setver major && npm run build-i18n && firebase deploy",
+    "i": "yarn install && yarn upgrade && yarn install",
     "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
   },
   "private": true,
