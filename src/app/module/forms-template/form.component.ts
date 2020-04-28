@@ -88,7 +88,9 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       };
       if (this.dataScientist[index].option) {
-        this.dataScientist[index].option.addButtonActivated = true;
+        this.dataScientist[index].option.addButtonActivated = true
+      } else {
+        this.dataScientist[index].option = {addButtonActivated: true}
       }
     } else {
       this.dataScientist.splice(index + 1, 1);
