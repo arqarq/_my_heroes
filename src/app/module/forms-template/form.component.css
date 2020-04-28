@@ -231,13 +231,28 @@ input.left:focus, input.right:focus, textarea.right:focus {
   border-color: var(--inputFocusBorderColor, #1a73e8)
 }
 
+input.left.ng-invalid[required],
+input.right.ng-invalid[required],
+textarea.right.ng-invalid[required] {
+  border-color: red !important
+}
+
 input.left:focus + input.right,
 input.left:focus + textarea.right {
   border-left-color: var(--inputFocusBorderColor, #1a73e8)
 }
 
+input.left.ng-invalid[required] + input.right,
+input.left.ng-invalid[required] + textarea.right {
+  border-left-color: red
+}
+
 div.form-row:focus-within input.left {
   border-right-color: var(--inputFocusBorderColor, #1a73e8)
+}
+
+div.form-row.right-invalid-fix input.left {
+  border-right-color: red !important
 }
 
 input.left {

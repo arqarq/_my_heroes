@@ -28,36 +28,50 @@ export const DATA = [
 
 export interface DataScientist {
   label: string,
-  textarea?: boolean,
-  addButton?: boolean,
-  addButtonActivated?: boolean,
   // toggle?: boolean,
   field: string,
-  value: string
+  value: string,
+  option?: {
+    addButton?: boolean,
+    addButtonActivated?: boolean,
+    fieldRequired?: boolean,
+    valueRequired?: boolean,
+    textarea?: boolean
+  }
 }
 
 export const DATA_SCIENTIST_INIT: DataScientist[] = [
   {
     label: 'Apq',
     field: 'A',
-    value: 'B'
+    value: 'B',
+    option: {
+      fieldRequired: true,
+      valueRequired: true
+    }
   },
   {
     label: 'Bpq',
-    textarea: true,
     field: 'C',
-    value: 'D'
+    value: 'D',
+    option: {
+      textarea: true
+    }
   },
   {
     label: 'Cpq',
-    textarea: true,
     field: 'E',
-    value: 'F'
+    value: 'F',
+    option: {
+      textarea: true
+    }
   },
   {
     label: 'Dpq',
-    addButton: true,
     field: 'G',
-    value: 'H'
+    value: 'H',
+    option: {
+      addButton: true
+    }
   }
 ];

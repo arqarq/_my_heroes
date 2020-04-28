@@ -6,32 +6,34 @@
     <div class="form-container">
       <div>
         <ng-container *ngFor="let d of dataScientist; let i = index">
-          <div class="form-row">
+          <div [class.right-invalid-fix]="true"
+               class="form-row">
             <label class="form-row-label block"
                    for="id_{{ i }}"><span class="label-text">{{ d.label }}</span></label>
-            <ng-container *ngIf="d.addButton">
+            <ng-container *ngIf="d.option?.addButton">
               <div (click)="addRow(i)"
                    [class.add-button-activated]="toggleArray[i]"
                    class="add-button">
-                <ng-container [ngSwitch]="!d.addButtonActivated">
+                <ng-container [ngSwitch]="!d.option?.addButtonActivated">
                   <ng-container *ngSwitchCase="false"><span>[-]</span></ng-container>
                   <ng-container *ngSwitchCase="true"><span>[+]</span></ng-container>
                 </ng-container>
               </div>
             </ng-container>
-            <input (input)="d.field = $any($event.target).value"
+            <input [(ngModel)]="d.field"
                    [defaultValue]="copyOfDataForDefaultValues[i].field"
-                   [value]="d.field"
+                   [required]="true"
                    class="form-row-input left block input-text"
                    id="id_{{ i }}"
                    name="field_{{ i }}"
                    type="text">
-            <ng-container [ngSwitch]="!d.textarea">
+            <ng-container [ngSwitch]="!d.option?.textarea">
               <ng-container *ngSwitchCase="true">
                 <input [(ngModel)]="d.value"
                        [defaultValue]="copyOfDataForDefaultValues[i].value"
                        class="form-row-input right block input-text"
                        name="value_{{ i }}"
+                       required
                        type="text">
               </ng-container>
               <ng-container *ngSwitchCase="false">
@@ -39,7 +41,8 @@
                         [class.height-for-multiline]="checkForMultiLine(d.value)"
                         [defaultValue]="copyOfDataForDefaultValues[i].value"
                         class="form-row-input right block input-text"
-                        name="value_{{ i }}"></textarea>
+                        name="value_{{ i }}"
+                        required></textarea>
               </ng-container>
             </ng-container>
             <ng-container [ngSwitch]="false">
