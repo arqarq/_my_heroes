@@ -28,7 +28,6 @@ export const DATA = [
 
 export interface DataScientist {
   label: string,
-  // toggle?: boolean,
   field: string,
   value: string,
   option?: {
@@ -55,8 +54,9 @@ export const DATA_SCIENTIST_INIT: DataScientist[] = [
     field: 'C',
     value: 'D',
     option: {
-      textarea: true,
-      valueRequired: true
+      fieldRequired: true,
+      valueRequired: true,
+      textarea: true
     }
   },
   {
@@ -64,6 +64,7 @@ export const DATA_SCIENTIST_INIT: DataScientist[] = [
     field: 'E',
     value: 'F',
     option: {
+      fieldRequired: true,
       textarea: true
     }
   },
@@ -72,7 +73,8 @@ export const DATA_SCIENTIST_INIT: DataScientist[] = [
     field: 'G',
     value: 'H',
     option: {
-      addButton: true
+      addButton: true,
+      fieldRequired: true
     }
   }
 ]

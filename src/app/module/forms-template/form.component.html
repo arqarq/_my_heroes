@@ -1,5 +1,5 @@
 <form (ngSubmit)="saveForm()"
-      (reset)="resetForm()">
+      (reset)="onFormReset()">
   <section #sectionRef
            [appTranslate2dWithFixForHalfPixelInChrome]="sectionRef"
            yPerc="0">
@@ -40,34 +40,35 @@
                        type="text">
               </ng-container>
               <ng-container *ngSwitchCase="false">
-              <textarea #value="ngModel"
-                        (ngModelChange)="d.value = $event; setInputRightInvalidFix(value.invalid, i)"
-                        [class.height-for-multiline]="checkForMultiLine(d.value)"
-                        [defaultValue]="copyOfDataForDefaultValues[i].value"
-                        [ngModel]="d.value"
-                        [required]="d.option?.valueRequired"
-                        class="form-row-input right block input-text"
-                        name="value_{{ i }}"></textarea>
+                <textarea #value="ngModel"
+                          (ngModelChange)="d.value = $event; setInputRightInvalidFix(value.invalid, i)"
+                          [class.height-for-multiline]="checkForMultiLine(d.value)"
+                          [defaultValue]="copyOfDataForDefaultValues[i].value"
+                          [ngModel]="d.value"
+                          [required]="d.option?.valueRequired"
+                          class="form-row-input right block input-text"
+                          name="value_{{ i }}"></textarea>
               </ng-container>
             </ng-container>
-            <ng-container [ngSwitch]="false">
+            <ng-container [ngSwitch]="field.invalid">
               <ng-container *ngSwitchCase="true">
                 <div class="form-row-check">
                   <i class="material-icons block">highlight_off</i>
                   <div>
-                    Formularz zawiera błąd.
-                  </div>
-                </div>
-                <div class="form-row-check">
-                  <i class="material-icons block">highlight_off</i>
-                  <div>
-                    Formularz zawiera inny błąd.
+                    Lewe pole jest wymagane.
                   </div>
                 </div>
               </ng-container>
-              <!--<ng-container *ngSwitchCase="false">-->
-              <!--  <div class="form-row-check"></div>-->
-              <!--</ng-container>-->
+            </ng-container>
+            <ng-container [ngSwitch]="getInputRightInvalidFix(i)">
+              <ng-container *ngSwitchCase="true">
+                <div class="form-row-check">
+                  <i class="material-icons block">highlight_off</i>
+                  <div>
+                    Prawe pole jest wymagane.
+                  </div>
+                </div>
+              </ng-container>
             </ng-container>
           </div>
         </ng-container>

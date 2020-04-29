@@ -2,9 +2,10 @@ import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core
 import { FormComponent } from './form.component';
 import { Router } from '@angular/router';
 import { CloudFirebaseService } from '../../service/cloud-firebase.service';
-import { StartModule } from '../../start.module';
 import { StartComponent } from '../../start.component';
 import { Observable } from 'rxjs';
+import { FormsModule } from '@angular/forms';
+import { DATA_SCIENTIST_INIT } from '../../repository/data-drag-drop';
 
 function createNewEvent(eventName: string, bubbles = false, cancelable = false) {
   const evt = document.createEvent('CustomEvent')
@@ -37,12 +38,12 @@ describe('FormComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [FormComponent],
-      imports: [StartModule],
+      imports: [FormsModule],
       providers: [
         {provide: Router, useValue: {}},
         {provide: CloudFirebaseService, useValue: cloudFirebaseServiceStub}
       ]
-    }).compileComponents();
+    }).compileComponents()
   }))
 
   beforeEach(() => {
@@ -51,7 +52,8 @@ describe('FormComponent', () => {
     cFService = TestBed.inject(CloudFirebaseService)
     fixture = TestBed.createComponent(FormComponent)
     component = fixture.componentInstance
-    element = fixture.nativeElement;
+    component.dataScientist = JSON.parse(JSON.stringify(DATA_SCIENTIST_INIT))
+    element = fixture.nativeElement
     fixture.detectChanges()
   })
 

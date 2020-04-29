@@ -57,13 +57,13 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  resetForm() {
-    this.dataScientist.splice(0);
-    this.dataScientist.push(...JSON.parse(this.copyOfDataForResetAsString));
+  onFormReset() {
+    this.dataScientist.splice(0)
+    this.dataScientist.push(...JSON.parse(this.copyOfDataForResetAsString))
+    this.inputRightInvalidFixArray.splice(0)
   }
 
   saveForm() {
-    console.log(this.dataScientist);
     this.cFService.saveDocumentDataAtIndex(this.dataScientist, this.docIndex).then(() => {
       this.makeCopiesOfFormData();
       this.beep(true);
@@ -109,7 +109,6 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getInputRightInvalidFix(i: number) {
-    console.log('----------------------', i, this.inputRightInvalidFixArray[i])
     return this.inputRightInvalidFixArray[i]
   }
 
@@ -119,8 +118,7 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private toggleRotateY(index: number) {
-    // return this.dataScientist[index].toggle = !this.dataScientist[index].toggle;
-    return this.toggleArray[index] = !this.toggleArray[index];
+    return this.toggleArray[index] = !this.toggleArray[index]
   }
 
   private initDataInDB() {
