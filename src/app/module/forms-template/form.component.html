@@ -6,7 +6,7 @@
     <div class="form-container">
       <div>
         <ng-container *ngFor="let d of dataScientist; let i = index">
-          <div [class.right-invalid-fix]="true"
+          <div [class.right-invalid-fix]="getInputRightInvalidFix(i)"
                class="form-row">
             <label class="form-row-label block"
                    for="id_{{ i }}"><span class="label-text">{{ d.label }}</span></label>
@@ -20,29 +20,34 @@
                 </ng-container>
               </div>
             </ng-container>
-            <input [(ngModel)]="d.field"
+            <input #field="ngModel"
+                   [(ngModel)]="d.field"
                    [defaultValue]="copyOfDataForDefaultValues[i].field"
-                   [required]="true"
+                   [required]="d.option?.fieldRequired"
                    class="form-row-input left block input-text"
                    id="id_{{ i }}"
                    name="field_{{ i }}"
                    type="text">
             <ng-container [ngSwitch]="!d.option?.textarea">
               <ng-container *ngSwitchCase="true">
-                <input [(ngModel)]="d.value"
+                <input #value="ngModel"
+                       (ngModelChange)="d.value = $event; setInputRightInvalidFix(value.invalid, i)"
                        [defaultValue]="copyOfDataForDefaultValues[i].value"
+                       [ngModel]="d.value"
+                       [required]="d.option?.valueRequired"
                        class="form-row-input right block input-text"
                        name="value_{{ i }}"
-                       required
                        type="text">
               </ng-container>
               <ng-container *ngSwitchCase="false">
-              <textarea [(ngModel)]="d.value"
+              <textarea #value="ngModel"
+                        (ngModelChange)="d.value = $event; setInputRightInvalidFix(value.invalid, i)"
                         [class.height-for-multiline]="checkForMultiLine(d.value)"
                         [defaultValue]="copyOfDataForDefaultValues[i].value"
+                        [ngModel]="d.value"
+                        [required]="d.option?.valueRequired"
                         class="form-row-input right block input-text"
-                        name="value_{{ i }}"
-                        required></textarea>
+                        name="value_{{ i }}"></textarea>
               </ng-container>
             </ng-container>
             <ng-container [ngSwitch]="false">

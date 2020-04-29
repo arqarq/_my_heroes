@@ -28,8 +28,10 @@
   --fix: 1px;
   --fix2px: 2px;
   --formMargin: 5px;
+  --formRowCheckTextColor: orangered;
   --inputBorderColor: black;
   --inputFocusBorderColor: #1a73e8;
+  --inputInvalidBorderColor: red;
   --inputTextColor: #202124;
   --labelTextColor: #202124;
   --outerRadius: 12px;
@@ -173,7 +175,7 @@ span.button-text {
 
 div.form-row-check {
   align-items: center;
-  color: orangered;
+  color: var(--formRowCheckTextColor, orangered);
   display: flex;
   font-size: .9rem;
   font-weight: 600;
@@ -234,7 +236,8 @@ input.left:focus, input.right:focus, textarea.right:focus {
 input.left.ng-invalid[required],
 input.right.ng-invalid[required],
 textarea.right.ng-invalid[required] {
-  border-color: red !important
+  border-color: var(--inputInvalidBorderColor, red) !important;
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28)
 }
 
 input.left:focus + input.right,
@@ -244,7 +247,7 @@ input.left:focus + textarea.right {
 
 input.left.ng-invalid[required] + input.right,
 input.left.ng-invalid[required] + textarea.right {
-  border-left-color: red
+  border-left-color: var(--inputInvalidBorderColor, red)
 }
 
 div.form-row:focus-within input.left {

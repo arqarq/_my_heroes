@@ -17,8 +17,8 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
   dataScientist = DATA_SCIENTIST_INIT;
   copyOfDataForDefaultValues: DataScientist[];
   toggleArray: boolean[] = [];
+  private inputRightInvalidFixArray = []
   private copyOfDataForResetAsString: string;
-  private counter = 0;
   private subscription = new Subscription();
 
   constructor(
@@ -77,7 +77,9 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
   addRow(index: number) {
     this.toggleRotateY(index);
     if (!this.dataScientist[index + 1]) {
-      const label = String.fromCharCode('E'.charCodeAt(0) + this.counter++) + 'pq';
+      const charCodeAt0 = this.dataScientist[index].label.charCodeAt(0)
+      const char = charCodeAt0 ? charCodeAt0 : 'D'.charCodeAt(0)
+      const label = String.fromCharCode(char + 1) + 'pq'
       this.dataScientist[index + 1] = {
         label,
         field: '',
@@ -100,6 +102,15 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
       this.toggleArray.splice(index + 1, 1);
     }
     this.makeCopiesOfFormData();
+  }
+
+  setInputRightInvalidFix(invalid: boolean, i: number) {
+    this.inputRightInvalidFixArray[i] = invalid
+  }
+
+  getInputRightInvalidFix(i: number) {
+    console.log('----------------------', i, this.inputRightInvalidFixArray[i])
+    return this.inputRightInvalidFixArray[i]
   }
 
   private makeCopiesOfFormData() {

@@ -24,7 +24,7 @@ export const DATA = [
   {content: 'X', blob: true, L: '50%', T: '50%'},
   {content: 'Y', blob: false, L: '50%', T: '50%'},
   {content: 'Z', blob: true, L: '50%', T: '50%'}
-];
+]
 
 export interface DataScientist {
   label: string,
@@ -55,7 +55,8 @@ export const DATA_SCIENTIST_INIT: DataScientist[] = [
     field: 'C',
     value: 'D',
     option: {
-      textarea: true
+      textarea: true,
+      valueRequired: true
     }
   },
   {
@@ -74,4 +75,4 @@ export const DATA_SCIENTIST_INIT: DataScientist[] = [
       addButton: true
     }
   }
-];
+]
