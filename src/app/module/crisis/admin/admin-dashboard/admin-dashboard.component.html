@@ -29,10 +29,17 @@
   <app-confirm-signal leftPx="539"
                       name="appConfirmSignalId0"></app-confirm-signal>
   <button (click)="setWithConfirm('appConfirmSignalId1')"
+          style="margin-right: 10px"
           type="button">Cloud Firestore change key in object (2s)</button>
   <app-confirm-signal [timeoutMs]="2000"
                       leftPx="812"
                       name="appConfirmSignalId1"></app-confirm-signal>
+  <button (click)="deleteDefaultDocForTemplateDrivenForm('appConfirmSignalId3')"
+          pTooltip="default document for template driven form."
+          type="button">Delete...</button>
+  <app-confirm-signal [timeoutMs]="2000"
+                      leftPx="892"
+                      name="appConfirmSignalId3"></app-confirm-signal>
 </div>
 <p>
   Read from persistence (pole$): &#123; pole: <b>{{ (pole$ | async) || '—' }}</b> }

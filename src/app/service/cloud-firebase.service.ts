@@ -18,17 +18,30 @@ export class CloudFirebaseService {
   }
 
   getDocumentDataAtIndex(docIndex: number) {
-    return this.docs[docIndex].get();
+    return this.docs[docIndex].get()
+  }
+
+  deleteDocumentAtIndex(docIndex: number) {
+    if (this.docs[docIndex]) {
+      return this.docs[docIndex].delete().then(() => {
+        this.docs[docIndex] = undefined
+      })
+    }
+    return Promise.reject()
   }
 
   saveDocumentDataAtIndex(data, docIndex: number) {
     return this.docs[docIndex].set({formData: data});
   }
 
-  setCollectionAndDocument(collectionName: string, docName: string): number {
-    const firstNonUndefinedIndex = this.docs.length
-    this.docs[firstNonUndefinedIndex] = this.cFRepository.db.collection(collectionName).doc(docName)
-    return firstNonUndefinedIndex;
+  setCollectionAndDocument(collectionName: string, docName: string, index): number {
+    if (typeof index !== 'number') {
+      const firstNonUndefinedIndex = this.docs.length;
+      this.docs[firstNonUndefinedIndex] = this.cFRepository.db.collection(collectionName).doc(docName)
+      return firstNonUndefinedIndex;
+    }
+    this.docs[index] = this.cFRepository.db.collection(collectionName).doc(docName)
+    return index
   }
 
   generateChangeInDB$() {

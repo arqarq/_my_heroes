@@ -3,80 +3,85 @@
   <section #sectionRef
            [appTranslate2dWithFixForHalfPixelInChrome]="sectionRef"
            yPerc="0">
-    <div class="form-container">
-      <div>
-        <ng-container *ngFor="let d of dataScientist; let i = index">
-          <div [class.right-invalid-fix]="getInputRightInvalidFix(i)"
-               class="form-row">
-            <label class="form-row-label block"
-                   for="id_{{ i }}"><span class="label-text">{{ d.label }}</span></label>
-            <ng-container *ngIf="d.option?.addButton">
-              <div (click)="addRow(i)"
-                   [class.add-button-activated]="toggleArray[i]"
-                   class="add-button">
-                <ng-container [ngSwitch]="!d.option?.addButtonActivated">
-                  <ng-container *ngSwitchCase="false"><span>[-]</span></ng-container>
-                  <ng-container *ngSwitchCase="true"><span>[+]</span></ng-container>
-                </ng-container>
-              </div>
-            </ng-container>
-            <input #field="ngModel"
-                   [(ngModel)]="d.field"
-                   [defaultValue]="copyOfDataForDefaultValues[i].field"
-                   [required]="d.option?.fieldRequired"
-                   class="form-row-input left block input-text"
-                   id="id_{{ i }}"
-                   name="field_{{ i }}"
-                   type="text">
-            <ng-container [ngSwitch]="!d.option?.textarea">
-              <ng-container *ngSwitchCase="true">
-                <input #value="ngModel"
-                       (ngModelChange)="d.value = $event; setInputRightInvalidFix(value.invalid, i)"
-                       [defaultValue]="copyOfDataForDefaultValues[i].value"
-                       [ngModel]="d.value"
-                       [required]="d.option?.valueRequired"
-                       class="form-row-input right block input-text"
-                       name="value_{{ i }}"
-                       type="text">
-              </ng-container>
-              <ng-container *ngSwitchCase="false">
-                <textarea #value="ngModel"
-                          (ngModelChange)="d.value = $event; setInputRightInvalidFix(value.invalid, i)"
-                          [class.height-for-multiline]="checkForMultiLine(d.value)"
-                          [defaultValue]="copyOfDataForDefaultValues[i].value"
-                          [ngModel]="d.value"
-                          [required]="d.option?.valueRequired"
-                          class="form-row-input right block input-text"
-                          name="value_{{ i }}"></textarea>
-              </ng-container>
-            </ng-container>
-            <ng-container [ngSwitch]="field.invalid">
-              <ng-container *ngSwitchCase="true">
-                <div class="form-row-check">
-                  <i class="material-icons block">highlight_off</i>
-                  <div>
-                    Lewe pole jest wymagane.
-                  </div>
-                </div>
-              </ng-container>
-            </ng-container>
-            <ng-container [ngSwitch]="getInputRightInvalidFix(i)">
-              <ng-container *ngSwitchCase="true">
-                <div class="form-row-check">
-                  <i class="material-icons block">highlight_off</i>
-                  <div>
-                    Prawe pole jest wymagane.
-                  </div>
-                </div>
-              </ng-container>
+    <ng-container *ngFor="let d of dataScientist; let i = index">
+      <div [class.right-invalid-fix]="!!inputRightInvalidFixArray[i]"
+           class="form-row">
+        <label class="form-row-label block"
+               for="id_{{ i }}"><span class="label-text">{{ d.label }}</span></label>
+        <ng-container *ngIf="d.options?.addButton">
+          <div (click)="addRow(i)"
+               [class.add-button-activated]="toggleArray[i]"
+               class="add-button">
+            <ng-container [ngSwitch]="!d.options?.addButtonActivated">
+              <ng-container *ngSwitchCase="false"><span>[-]</span></ng-container>
+              <ng-container *ngSwitchCase="true"><span>[+]</span></ng-container>
             </ng-container>
           </div>
         </ng-container>
+        <input #field="ngModel"
+               (ngModelChange)="setInputLeftInvalid(field, i)"
+               [(ngModel)]="d.field"
+               [defaultValue]="copyOfDataForDefaultValues[i].field"
+               [maxlength]="d.options?.fieldMaxlength"
+               [minlength]="d.options?.fieldMinlength"
+               [required]="d.options?.fieldRequired"
+               class="form-row-input left block input-text"
+               id="id_{{ i }}"
+               name="field_{{ i }}"
+               type="text">
+        <ng-container [ngSwitch]="!d.options?.textarea">
+          <ng-container *ngSwitchCase="true">
+            <input #value="ngModel"
+                   (ngModelChange)="setInputRightInvalidFix(value, i)"
+                   [(ngModel)]="d.value"
+                   [defaultValue]="copyOfDataForDefaultValues[i].value"
+                   [maxlength]="d.options?.valueMaxlength"
+                   [minlength]="d.options?.valueMinlength"
+                   [required]="d.options?.valueRequired"
+                   class="form-row-input right block input-text"
+                   name="value_{{ i }}"
+                   type="text">
+          </ng-container>
+          <ng-container *ngSwitchCase="false">
+                <textarea #value="ngModel"
+                          (ngModelChange)="setInputRightInvalidFix(value, i)"
+                          [(ngModel)]="d.value"
+                          [class.height-for-multiline]="checkForMultiLine(d.value)"
+                          [defaultValue]="copyOfDataForDefaultValues[i].value"
+                          [maxlength]="d.options?.valueMaxlength"
+                          [minlength]="d.options?.valueMinlength"
+                          [required]="d.options?.valueRequired"
+                          class="form-row-input right block input-text"
+                          name="value_{{ i }}"></textarea>
+          </ng-container>
+        </ng-container>
       </div>
-    </div>
+      <div id="for-first-of-type-pseudo-class">
+        <ng-container [ngSwitch]="!!inputLeftInvalidArray[i]">
+          <ng-container *ngSwitchCase="true">
+            <div class="form-row-check">
+              <i class="material-icons block">highlight_off</i>
+              <div>
+                {{ inputLeftInvalidArray[i] }}
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+        <ng-container [ngSwitch]="!!inputRightInvalidFixArray[i]">
+          <ng-container *ngSwitchCase="true">
+            <div class="form-row-check">
+              <i class="material-icons block">highlight_off</i>
+              <div>
+                {{ inputRightInvalidFixArray[i] }}
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+    </ng-container>
     <div class="buttons-block">
       <div class="button">
-        <button (click)="anuluj()"
+        <button (click)="cancel()"
                 type="button"><span class="button-text">Anuluj</span></button>
       </div>
       <div class="button">
@@ -85,7 +90,7 @@
       <div class="button"
            style="position: relative">
         <button type="submit"><span class="button-text">Zapisz<br>formularz</span></button>
-        <app-confirm-signal [timeoutMs]="2000"
+        <app-confirm-signal [timeoutMs]="800"
                             leftPx="89"></app-confirm-signal>
       </div>
     </div>

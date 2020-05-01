@@ -62,17 +62,6 @@ section {
   width: calc(var(--widthDefault, 150px) * 8 / 3)
 }
 
-div.form-container {
-  align-items: center; /*opt*/
-  display: flex;
-  /*height: 225px;*/
-  justify-content: center /*opt*/
-}
-
-div.form-container > div {
-  width: 100% /*opt*/
-}
-
 div.form-row {
   display: flex;
   flex-wrap: wrap;
@@ -145,7 +134,7 @@ div.add-button-minus::before {
   /*content: "[-]"*/
 }
 
-button::-moz-focus-inner {
+button::-moz-focus-inner { /*FF fix for button outline on select*/
   border: 0
 }
 
@@ -185,8 +174,8 @@ div.form-row-check {
   width: 100%
 }
 
-/*div.form-row-check:first-of-type,*/
-:not(.form-row-check) + div.form-row-check {
+/*:not(.form-row-check) + div.form-row-check,*/
+div.form-row-check:first-of-type {
   padding-top: var(--formMargin, 5px)
 }
 

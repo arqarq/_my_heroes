@@ -6,6 +6,7 @@ import { AngularFirestoreDocument } from '@angular/fire/firestore';
 import { CloudFirebaseRepository, SelectivePreloadingStrategyService } from '../../../../service';
 import { ConfirmSignalComponent } from '../../../../component';
 import { CloudFirebaseService } from '../../../../service/cloud-firebase.service';
+import { FormComponent } from '../../../forms-template/form.component';
 
 const FIELD_NAME_IN_PERSISTENCE = 'pole';
 const FIELD_NAME_IN_PERSISTENCE2 = 'pole2';
@@ -80,13 +81,21 @@ export class AdminDashboardComponent implements OnInit, OnDestroy, AfterViewInit
     (this.flag = !this.flag) ?
       this.cFRepository.key = this.key = FIELD_NAME_IN_PERSISTENCE2 :
       this.cFRepository.key = this.key = FIELD_NAME_IN_PERSISTENCE;
-    this.cFService.generateChangeInDB$().then(() => this.beep(nameOfKonfirm, true)).catch(() => this.beep(nameOfKonfirm));
+    this.cFService.generateChangeInDB$()
+      .then(() => this.beep(nameOfKonfirm, true))
+      .catch(() => this.beep(nameOfKonfirm));
   }
 
   ngAfterViewInit() {
     // this.interval2 = setInterval(() => {
     //   this.confirmSignalElements.first.okOrError = !this.confirmSignalElements.first.okOrError;
     // }, 1000);
+  }
+
+  deleteDefaultDocForTemplateDrivenForm(nameOfKonfirm: string) {
+    this.cFService.deleteDocumentAtIndex(FormComponent.$docIndex)
+      .then(() => this.beep(nameOfKonfirm, true))
+      .catch(() => this.beep(nameOfKonfirm))
   }
 
   private beep(nameOfKonfirm: string, success?: boolean) {

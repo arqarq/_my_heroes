@@ -1,10 +1,12 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { StartComponent } from '../../';
 import { CloudFirebaseService } from '../../service/cloud-firebase.service';
-import { DATA_SCIENTIST_INIT, DataScientist } from '../../repository/data-drag-drop';
 import { ConfirmSignalComponent } from '../../component';
 import { Subscription } from 'rxjs';
+import { NgModel } from '@angular/forms';
+import { DataScientist, ERROR_MESSAGE, ErrorType, NewRowDefinition } from '../../util/data-types';
+import { DATA_SCIENTIST_INIT } from '../../repository/data-form-template';
 
 @Component({
   selector: 'app-form',
@@ -12,22 +14,22 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
-  private static $docIndex;
+  static $docIndex;
   @ViewChild(ConfirmSignalComponent) confirmSignalElement: ConfirmSignalComponent;
-  dataScientist = DATA_SCIENTIST_INIT;
-  copyOfDataForDefaultValues: DataScientist[];
-  toggleArray: boolean[] = [];
-  private inputRightInvalidFixArray = []
-  private copyOfDataForResetAsString: string;
-  private subscription = new Subscription();
+  @ViewChildren(NgModel) ngModels: QueryList<NgModel>
+  dataScientist = DATA_SCIENTIST_INIT
+  copyOfDataForDefaultValues: DataScientist[]
+  toggleArray: boolean[] = []
+  inputLeftInvalidArray = []
+  inputRightInvalidFixArray = []
+  private copyOfDataForResetAsString: string
+  private subscription = new Subscription()
 
   constructor(
     private router: Router,
     private cFService: CloudFirebaseService
   ) {
-    if (typeof this.docIndex !== 'number') {
-      FormComponent.$docIndex = this.cFService.setCollectionAndDocument('forms', 'form-template-driven');
-    }
+    FormComponent.$docIndex = this.cFService.setCollectionAndDocument('forms', 'form-template-driven', FormComponent.$docIndex)
   }
 
   private get docIndex() {
@@ -38,7 +40,7 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
     console.log('- - - - - - isLoggedIn:', value)
   }
 
-  anuluj() {
+  cancel() {
     this.router.navigate(['choose']);
   }
 
@@ -49,7 +51,7 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.initDataInDB();
+    this.initDataInDB()
   }
 
   ngOnDestroy() {
@@ -60,7 +62,7 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
   onFormReset() {
     this.dataScientist.splice(0)
     this.dataScientist.push(...JSON.parse(this.copyOfDataForResetAsString))
-    this.inputRightInvalidFixArray.splice(0)
+    this.forceOnModelChangeOnAllElementsWithNgModelDirective()
   }
 
   saveForm() {
@@ -80,36 +82,70 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
       const charCodeAt0 = this.dataScientist[index].label.charCodeAt(0)
       const char = charCodeAt0 ? charCodeAt0 : 'D'.charCodeAt(0)
       const label = String.fromCharCode(char + 1) + 'pq'
-      this.dataScientist[index + 1] = {
-        label,
-        field: '',
-        value: '',
-        option: {
-          addButton: true,
-          addButtonActivated: false
-        }
-      };
-      if (this.dataScientist[index].option) {
-        this.dataScientist[index].option.addButtonActivated = true
+      this.dataScientist[index + 1] = new NewRowDefinition(label, '', '', {addButton: true})
+      if (this.dataScientist[index].options) {
+        this.dataScientist[index].options.addButtonActivated = true
       } else {
-        this.dataScientist[index].option = {addButtonActivated: true}
+        this.dataScientist[index].options = {addButtonActivated: true}
       }
+      this.forceOnModelChangeOnAllElementsWithNgModelDirective()
     } else {
       this.dataScientist.splice(index + 1, 1);
-      if (this.dataScientist[index].option) {
-        this.dataScientist[index].option.addButtonActivated = !!this.dataScientist[index + 1];
+      if (this.dataScientist[index].options) {
+        this.dataScientist[index].options.addButtonActivated = !!this.dataScientist[index + 1];
       }
       this.toggleArray.splice(index + 1, 1);
     }
     this.makeCopiesOfFormData();
   }
 
-  setInputRightInvalidFix(invalid: boolean, i: number) {
-    this.inputRightInvalidFixArray[i] = invalid
+  setInputLeftInvalid(ngModel: NgModel, i: number) {
+    const err = ngModel.errors as ErrorType
+    if (!err) {
+      this.inputLeftInvalidArray[i] = undefined
+      return
+    }
+    if (err.maxlength) {
+      this.inputLeftInvalidArray[i] = ERROR_MESSAGE.leftMaxlength + err.maxlength.requiredLength + '.'
+      return
+    }
+    if (err.minlength) {
+      this.inputLeftInvalidArray[i] = ERROR_MESSAGE.leftMinlength + err.minlength.requiredLength + '.'
+      return;
+    }
+    if (err.required) {
+      this.inputLeftInvalidArray[i] = ERROR_MESSAGE.leftRequired
+      return
+    }
+    this.inputLeftInvalidArray[i] = ERROR_MESSAGE.generic
   }
 
-  getInputRightInvalidFix(i: number) {
-    return this.inputRightInvalidFixArray[i]
+  setInputRightInvalidFix(ngModel: NgModel, i: number) {
+    const err = ngModel.errors as ErrorType
+    if (!err) {
+      this.inputRightInvalidFixArray[i] = undefined
+      return
+    }
+    if (err.maxlength) {
+      this.inputRightInvalidFixArray[i] = ERROR_MESSAGE.rightMaxlength + err.maxlength.requiredLength + '.'
+      return
+    }
+    if (err.minlength) {
+      this.inputRightInvalidFixArray[i] = ERROR_MESSAGE.rightMinlength + err.minlength.requiredLength + '.'
+      return;
+    }
+    if (err.required) {
+      this.inputRightInvalidFixArray[i] = ERROR_MESSAGE.rightRequired
+      return
+    }
+    this.inputRightInvalidFixArray[i] = ERROR_MESSAGE.generic
+  }
+
+  private forceOnModelChangeOnAllElementsWithNgModelDirective() {
+    const timeout = setTimeout(() => { // next event cycle
+      this.ngModels.forEach((item) => item.viewToModelUpdate(item.value)) // forcing ngModelChange() for each
+      clearTimeout(timeout)
+    }, 1)
   }
 
   private makeCopiesOfFormData() {
@@ -124,16 +160,21 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
   private initDataInDB() {
     if (this.cFService.checkIfLoggedIn()) {
       this.subscription.add(this.cFService.getDocumentDataAtIndex(this.docIndex).subscribe((docSnapshot) => {
-        if (!docSnapshot.exists) {
-          this.cFService.saveDocumentDataAtIndex(this.dataScientist, this.docIndex).then(() => this.beep(true)).catch(() => this.beep());
-          return;
+        if (docSnapshot.exists) {
+          this.dataScientist = docSnapshot.data().formData;
+          this.makeCopiesOfFormData();
+          this.forceOnModelChangeOnAllElementsWithNgModelDirective()
+          this.beep(true)
+        } else {
+          this.cFService.saveDocumentDataAtIndex(this.dataScientist, this.docIndex)
+            .then(() => this.beep(true))
+            .catch(() => this.beep())
+            .finally(() => this.forceOnModelChangeOnAllElementsWithNgModelDirective())
         }
-        this.dataScientist = docSnapshot.data().formData;
-        this.makeCopiesOfFormData();
-        this.beep(true);
-      }));
-      return;
+      }))
+      return
     }
+    this.forceOnModelChangeOnAllElementsWithNgModelDirective()
     this.beep()
   }
 
