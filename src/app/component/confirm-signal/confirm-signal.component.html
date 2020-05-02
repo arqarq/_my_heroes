@@ -1,14 +1,16 @@
-<ng-container [ngSwitch]="okOrError">
-  <ng-container *ngSwitchCase="true">
-    <div [style]="{top: topPx + 'px', left: leftPx + 'px'}"
-         class="confirm-signal">
-      <span [style]="{color: 'green'}">&nbsp;&nbsp;OK!</span>
-    </div>
+<div style="position: relative">
+  <ng-container [ngSwitch]="okOrError">
+    <ng-container *ngSwitchCase="true">
+      <div [style]="{top: topPx + 'px', left: leftPx + 'px', right: rightPx + 'px'}"
+           class="confirm-signal">
+        <span [style]="{color: 'green'}">OK!</span>
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="false">
+      <div [style]="{top: topPx + 'px', left: leftPx + 'px', right: rightPx + 'px'}"
+           class="confirm-signal">
+        <span [style]="{color: 'red'}">ERR!</span>
+      </div>
+    </ng-container>
   </ng-container>
-  <ng-container *ngSwitchCase="false">
-    <div [style]="{top: topPx + 'px', left: leftPx + 'px'}"
-         class="confirm-signal">
-      <span [style]="{color: 'red'}">ERR!</span>
-    </div>
-  </ng-container>
-</ng-container>
+</div>

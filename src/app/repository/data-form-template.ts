@@ -1,6 +1,10 @@
-import { DataScientist } from '../util/data-types';
+import { DataScientist } from '../util/data-types'
 
-export const DATA_SCIENTIST_INIT: DataScientist[] = [
+export function getInitialData() {
+  return JSON.parse(JSON.stringify(DATA_SCIENTIST_INIT))
+}
+
+const DATA_SCIENTIST_INIT: DataScientist[] = [
   {
     label: 'Apq',
     field: 'AAA',

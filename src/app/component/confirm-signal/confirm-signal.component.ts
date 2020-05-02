@@ -11,6 +11,7 @@ export class ConfirmSignalComponent {
   @Input() timeoutMs = 1000
   @Input() topPx: string
   @Input() leftPx: string
+  @Input() rightPx: string
   okOrError: boolean
   private timeout
 

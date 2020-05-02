@@ -6,7 +6,7 @@ import { ConfirmSignalComponent } from '../../component';
 import { Subscription } from 'rxjs';
 import { NgModel } from '@angular/forms';
 import { DataScientist, ERROR_MESSAGE, ErrorType, NewRowDefinition } from '../../util/data-types';
-import { DATA_SCIENTIST_INIT } from '../../repository/data-form-template';
+import { getInitialData } from '../../repository/data-form-template';
 
 @Component({
   selector: 'app-form',
@@ -17,7 +17,7 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
   static $docIndex;
   @ViewChild(ConfirmSignalComponent) confirmSignalElement: ConfirmSignalComponent;
   @ViewChildren(NgModel) ngModels: QueryList<NgModel>
-  dataScientist = DATA_SCIENTIST_INIT
+  dataScientist: DataScientist[]
   copyOfDataForDefaultValues: DataScientist[]
   toggleArray: boolean[] = []
   inputLeftInvalidArray = []
@@ -29,15 +29,12 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
     private router: Router,
     private cFService: CloudFirebaseService
   ) {
+    this.dataScientist = getInitialData()
     FormComponent.$docIndex = this.cFService.setCollectionAndDocument('forms', 'form-template-driven', FormComponent.$docIndex)
   }
 
   private get docIndex() {
     return FormComponent.$docIndex;
-  }
-
-  private static showIfLoggedIn(value) {
-    console.log('- - - - - - isLoggedIn:', value)
   }
 
   cancel() {
@@ -47,7 +44,6 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     StartComponent.bodyRef.classList.add('body_background_image');
     this.makeCopiesOfFormData();
-    this.subscription.add(this.cFService.checkIfLoggedIn2().subscribe({next: FormComponent.showIfLoggedIn}))
   }
 
   ngAfterViewInit() {

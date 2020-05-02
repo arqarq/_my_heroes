@@ -5,12 +5,10 @@
   Reading from path:<br>- Session ID: {{ sessionId | async }},<br>- Token: {{ token | async }}
 </p>
 <hr>
-<div style="position: relative">
+<div style="display: flex; flex-wrap: wrap">
   <button (click)="cFRepository.login()"
-          style="margin-right: 10px"
           type="button">Cloud Firestore login</button>
   <button (click)="cFRepository.logout()"
-          style="margin-right: 10px"
           type="button">Cloud Firestore logout</button>
   <!--<button (click)="setOtherField()"-->
   <!--        type="button">Cloud Firestore change key in object</button>-->
@@ -23,23 +21,27 @@
   <!--</ng-container>-->
   <!--<app-confirm-signal [name]="'konfirm1'"-->
   <!--                    [okOrError]="true"></app-confirm-signal>-->
+  <div class="flex-breaker"></div>
   <button (click)="setWithConfirm('appConfirmSignalId0')"
-          style="margin-right: 10px"
-          type="button">Cloud Firestore change key in object (1s)</button>
-  <app-confirm-signal leftPx="539"
-                      name="appConfirmSignalId0"></app-confirm-signal>
-  <button (click)="setWithConfirm('appConfirmSignalId1')"
-          style="margin-right: 10px"
-          type="button">Cloud Firestore change key in object (2s)</button>
-  <app-confirm-signal [timeoutMs]="2000"
-                      leftPx="812"
-                      name="appConfirmSignalId1"></app-confirm-signal>
-  <button (click)="deleteDefaultDocForTemplateDrivenForm('appConfirmSignalId3')"
+          type="button">Cloud Firestore change key in object</button>
+  <app-confirm-signal name="appConfirmSignalId0"
+                      rightPx="11"
+                      topPx="25"></app-confirm-signal>
+  <button (click)="deleteDefaultDocForTemplateDrivenForm('appConfirmSignalId1')"
           pTooltip="default document for template driven form."
           type="button">Delete...</button>
   <app-confirm-signal [timeoutMs]="2000"
-                      leftPx="892"
-                      name="appConfirmSignalId3"></app-confirm-signal>
+                      name="appConfirmSignalId1"
+                      rightPx="11"
+                      topPx="25"></app-confirm-signal>
+  <button (click)="deleteDefaultDocForTemplateDrivenForm('appConfirmSignalId2')"
+          disabled
+          pTooltip="default document for reactive form."
+          type="button">Delete...</button>
+  <app-confirm-signal [timeoutMs]="2000"
+                      name="appConfirmSignalId2"
+                      rightPx="11"
+                      topPx="25"></app-confirm-signal>
 </div>
 <p>
   Read from persistence (pole$): &#123; pole: <b>{{ (pole$ | async) || '—' }}</b> }

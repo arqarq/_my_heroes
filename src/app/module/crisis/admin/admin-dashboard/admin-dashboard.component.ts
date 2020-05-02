@@ -14,7 +14,11 @@ const FIELD_NAME_IN_PERSISTENCE2 = 'pole2';
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
-  styles: ['.confirm-signal {font-weight: bold; position: absolute; top: 5px; left: 559px}']
+  styles: [
+    '.confirm-signal {font-weight: bold; position: absolute; top: 5px; left: 559px}',
+    'button[type=button] {margin-right: 10px}',
+    '.flex-breaker {flex-basis: 100%; height: 0; margin-top: 5px; margin-bottom: 5px}'
+  ]
 })
 export class AdminDashboardComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChildren(ConfirmSignalComponent) confirmSignalElements: QueryList<ConfirmSignalComponent>;

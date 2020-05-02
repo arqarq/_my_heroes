@@ -1,5 +1,5 @@
 <div [hidden]="lcr.langSwitched">
-  <nav style="font-size: small">
+  <nav style="font-size: small; position: relative">
     <a #first
        (click)="switchLocaleByUser(first)"
        [class.not-allowed]="localeId === localeIdNumbers[1033]"
@@ -19,6 +19,9 @@
            [(ngModel)]="langStored"
            id="chbox"
            type="checkbox">
+    &bull; DB
+    <span [class.logged-in]="dbLoggedIn$ | async"
+          class="db-check">&bull;</span>
   </nav>
   <p>
     Wybierz:

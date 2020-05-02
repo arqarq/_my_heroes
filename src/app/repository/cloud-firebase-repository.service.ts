@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { map, switchMap, take } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { User } from 'firebase'
 
 @Injectable({providedIn: 'root'})
 export class CloudFirebaseRepository {
@@ -11,7 +12,7 @@ export class CloudFirebaseRepository {
   doc: AngularFirestoreDocument
   docRefNotChanged: AngularFirestoreDocument
   docTest$: Observable<string>
-  private currentUser = new BehaviorSubject(null)
+  private currentUser = new BehaviorSubject<User>(null)
   private baseUrl = 'https://us-central1-d00af17f5d630b7296f102d.cloudfunctions.net/createToken'
   private uid = 'qazqaz'
   private s1
@@ -49,7 +50,7 @@ export class CloudFirebaseRepository {
   }
 
   checkIfUserLoggedIn(): Observable<boolean> {
-    return this.currentUser.pipe(take(1), map((value) => !!value))
+    return this.currentUser.asObservable().pipe(map((value) => !!value))
   }
 
   getDataFromDoc() {

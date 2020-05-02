@@ -4,6 +4,7 @@ import { LOCALE_ID_NUMBERS } from '../../../locale/LIDs';
 import { LANG_INIT_STORAGE_KEY, LANG_STORAGE_KEY, LANG_USER_IS_SWITCHING, LocalStorageService } from '../../service/local-storage.service';
 import { LangChangeRelayService } from '../../service/lang-change-relay.service';
 import { WoratorService } from '../../service/worator.service';
+import { CloudFirebaseService } from '../../service/cloud-firebase.service'
 
 @Component({
   selector: 'app-chooser',
@@ -15,6 +16,7 @@ export class ChooserComponent implements OnInit {
   readonly localeIdNumbers = LOCALE_ID_NUMBERS;
   readonly browserLocaleID: string;
   readonly langStoredCode: string;
+  readonly dbLoggedIn$
   private title = 'Wybór';
 
   constructor(
@@ -22,10 +24,12 @@ export class ChooserComponent implements OnInit {
     private titleService: Title,
     @Inject(LOCALE_ID) public localeId: string,
     private storage: LocalStorageService,
-    private workerService: WoratorService
+    private workerService: WoratorService,
+    private cFService: CloudFirebaseService
   ) {
     this.browserLocaleID = navigator.language.slice(0, 2);
     this.langStored = !!(this.langStoredCode = this.storage.getStringStoredAtGivenKey(LANG_STORAGE_KEY));
+    this.dbLoggedIn$ = this.cFService.checkIfLoggedIn2()
   }
 
   ngOnInit(): void {
