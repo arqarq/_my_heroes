@@ -96,7 +96,7 @@ div.button button:hover {
 }
 
 div.button button:focus {
-  background: #5094ed
+  background-color: #5094ed
 }
 
 div.add-button {
@@ -136,6 +136,13 @@ div.add-button-minus::before {
 
 button::-moz-focus-inner { /*FF fix for button outline on select*/
   border: 0
+}
+
+button[disabled] {
+  background-color: #f1f3f4 !important;
+  box-shadow: none !important;
+  color: rgba(60, 64, 67, .38) !important;
+  cursor: default
 }
 
 span.label-text {

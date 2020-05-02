@@ -1,4 +1,5 @@
-<form (ngSubmit)="saveForm()"
+<form #form="ngForm"
+      (ngSubmit)="saveForm()"
       (reset)="onFormReset()">
   <section #sectionRef
            [appTranslate2dWithFixForHalfPixelInChrome]="sectionRef"
@@ -81,14 +82,18 @@
     </ng-container>
     <div class="buttons-block">
       <div class="button">
-        <button (click)="cancel()"
+        <button #button
+                (click)="cancel()"
                 type="button"><span class="button-text">Anuluj</span></button>
       </div>
       <div class="button">
-        <button type="reset"><span class="button-text">Reset</span></button>
+        <button #button
+                type="reset"><span class="button-text">Reset</span></button>
       </div>
       <div class="button">
-        <button type="submit"><span class="button-text">Zapisz<br>formularz</span></button>
+        <button #button
+                [disabled]="!form.form.valid"
+                type="submit"><span class="button-text">Zapisz<br>formularz</span></button>
         <app-confirm-signal [timeoutMs]="800"
                             rightPx="6"></app-confirm-signal>
       </div>

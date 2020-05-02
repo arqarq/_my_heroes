@@ -6,7 +6,7 @@ import { ConfirmSignalComponent } from '../../component';
 import { Subscription } from 'rxjs';
 import { NgModel } from '@angular/forms';
 import { DataScientist, ERROR_MESSAGE, ErrorType, NewRowDefinition } from '../../util/data-types';
-import { getInitialData } from '../../repository/data-form-template';
+import { getInitialData } from '../../repository/data-form-template'
 
 @Component({
   selector: 'app-form',
@@ -17,6 +17,7 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
   static $docIndex;
   @ViewChild(ConfirmSignalComponent) confirmSignalElement: ConfirmSignalComponent;
   @ViewChildren(NgModel) ngModels: QueryList<NgModel>
+  @ViewChildren('button') buttons: QueryList<any>
   dataScientist: DataScientist[]
   copyOfDataForDefaultValues: DataScientist[]
   toggleArray: boolean[] = []
@@ -48,6 +49,7 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.initDataInDB()
+    this.modifyButtonsEvents()
   }
 
   ngOnDestroy() {
@@ -176,5 +178,22 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private beep(success?: boolean) {
     this.confirmSignalElement.start(success)
+  }
+
+  private modifyButtonsEvents() {
+    function blurHandler() {
+      this.blur()
+    }
+
+    function keyupHandler(ev: KeyboardEvent) {
+      if (ev.code === 'Enter') {
+        this.blur()
+      }
+    }
+
+    this.buttons.forEach((item) => {
+      item.nativeElement.addEventListener('mouseup', blurHandler, false)
+      item.nativeElement.addEventListener('keyup', keyupHandler, false)
+    })
   }
 }
