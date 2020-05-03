@@ -38,6 +38,16 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
     return FormComponent.$docIndex;
   }
 
+  blurHandler = function () {
+    this.blur()
+  }
+
+  keyupHandler = function (ev: KeyboardEvent) {
+    if (ev.code === 'Enter') {
+      this.blur()
+    }
+  }
+
   cancel() {
     this.router.navigate(['choose']);
   }
@@ -53,8 +63,9 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    StartComponent.restoreClassesOfBody();
-    this.subscription.unsubscribe();
+    StartComponent.restoreClassesOfBody()
+    this.removeButtonsEvents()
+    this.subscription.unsubscribe()
   }
 
   onFormReset() {
@@ -181,19 +192,16 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private modifyButtonsEvents() {
-    function blurHandler() {
-      this.blur()
-    }
-
-    function keyupHandler(ev: KeyboardEvent) {
-      if (ev.code === 'Enter') {
-        this.blur()
-      }
-    }
-
     this.buttons.forEach((item) => {
-      item.nativeElement.addEventListener('mouseup', blurHandler, false)
-      item.nativeElement.addEventListener('keyup', keyupHandler, false)
+      item.nativeElement.addEventListener('mouseup', this.blurHandler, false)
+      item.nativeElement.addEventListener('keyup', this.keyupHandler, false)
+    })
+  }
+
+  private removeButtonsEvents() {
+    this.buttons.forEach((item) => {
+      item.nativeElement.removeEventListener('mouseup', this.blurHandler)
+      item.nativeElement.removeEventListener('keyup', this.keyupHandler)
     })
   }
 }
