@@ -5,7 +5,6 @@ import { CloudFirebaseService } from '../../service/cloud-firebase.service';
 import { StartComponent } from '../../start.component';
 import { Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
-import { DATA_SCIENTIST_INIT } from '../../repository/data-drag-drop';
 
 function createNewEvent(eventName: string, bubbles = false, cancelable = false) {
   const evt = document.createEvent('CustomEvent')
@@ -52,7 +51,6 @@ describe('FormComponent', () => {
     cFService = TestBed.inject(CloudFirebaseService)
     fixture = TestBed.createComponent(FormComponent)
     component = fixture.componentInstance
-    component.dataScientist = JSON.parse(JSON.stringify(DATA_SCIENTIST_INIT))
     element = fixture.nativeElement
     fixture.detectChanges()
   })
