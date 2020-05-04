@@ -24,10 +24,10 @@ div {
   background-color: green;
   border: 2px darkgreen solid;
   height: 300px;
-  left: 1350px;
+  left: 350px;
   position: relative;
   top: 150px;
-  width: var(--cssVariable, 2000px)
+  width: var(--cssVariable, 200px)
 }
 
 #handle2 {

@@ -15,9 +15,6 @@ export class StickyComponent implements OnInit, OnDestroy {
   private flag4;
   private offset;
 
-  constructor() {
-  }
-
   ngOnInit(): void {
     this.divElement = document.getElementById('handle') as HTMLDivElement;
     this.divElement2 = document.getElementById('handle2');
@@ -131,7 +128,7 @@ export class StickyComponent implements OnInit, OnDestroy {
   private setSticky() {
     this.divElement.style.position = 'fixed';
     this.divElement.style.top = TOP_STICKY + 'px';
-    this.divElement.style.left = '1383px';
+    this.divElement.style.left = '383px'
     this.flag = true;
   }
 }
