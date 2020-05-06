@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { StartComponent } from '../../';
 import { CloudFirebaseService } from '../../service/cloud-firebase.service';
@@ -17,7 +17,7 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
   static $docIndex;
   @ViewChild(ConfirmSignalComponent) confirmSignalElement: ConfirmSignalComponent;
   @ViewChildren(NgModel) ngModels: QueryList<NgModel>
-  @ViewChildren('button') buttons: QueryList<any>
+  @ViewChildren('button') buttons: QueryList<ElementRef>
   dataScientist: DataScientist[]
   copyOfDataForDefaultValues: DataScientist[]
   toggleArray: boolean[] = []

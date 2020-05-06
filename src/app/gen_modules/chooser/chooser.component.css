@@ -22,7 +22,7 @@ a.selected {
   opacity: 0.75
 }
 
-a.not-allowed {
+a.not-allowed:hover {
   cursor: not-allowed
 }
 
@@ -42,4 +42,31 @@ input[type=checkbox] {
 
 .logged-in {
   color: forestgreen
+}
+
+nav#selection a:hover {
+  background-color: rgba(216, 229, 250, .4);
+  outline: 2px rgba(216, 229, 250, .4) solid
+}
+
+p#bar {
+  /*outline: 1px blue solid;*/
+}
+
+p#bar::before {
+  background-color: brown;
+  content: "";
+  display: block;
+  height: calc(1em + 0px);
+  left: -4px;
+  opacity: 0;
+  /*outline: 1px green solid;*/
+  position: absolute;
+  transition: transform .25s ease-in-out, opacity .45s ease-in-out;
+  width: 2px
+}
+
+p#bar.start::before {
+  opacity: 1;
+  transform: translateY(10em) scaleY(10)
 }

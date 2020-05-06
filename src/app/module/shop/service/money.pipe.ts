@@ -2,9 +2,7 @@ import { Inject, LOCALE_ID, Pipe, PipeTransform } from '@angular/core';
 import { LOCALE_ID_CURRENCIES } from '../../../../locale/LIDs';
 import { CurrencyPipe } from '@angular/common';
 
-@Pipe({
-  name: 'money'
-})
+@Pipe({name: 'money'})
 export class MoneyPipe implements PipeTransform {
   constructor(
     private currencyPipe?: CurrencyPipe, // wymagany provider w module, ale instancja ma już ustawione LOCALE_ID

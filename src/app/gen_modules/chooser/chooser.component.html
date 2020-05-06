@@ -1,5 +1,6 @@
-<div [hidden]="lcr.langSwitched">
-  <nav style="font-size: small; position: relative">
+<div [hidden]="lcr.langSwitched"
+     style="position: relative">
+  <nav style="font-size: small">
     <a #first
        (click)="switchLocaleByUser(first)"
        [class.not-allowed]="localeId === localeIdNumbers[1033]"
@@ -23,21 +24,28 @@
     <span [class.logged-in]="dbLoggedIn$ | async"
           class="db-check">&bull;</span>
   </nav>
-  <p>
+  <p #paragraphElement
+     id="bar">
     Wybierz:
   </p>
-  <nav>
-    <a routerLink="/crisis">Crisis Center</a><br>
-    <a routerLink="/dragdrop">drag&drop Test</a><br>
-    <a routerLink="/forms">Formularze</a><br>
-    <a routerLink="/form-template">Formularz — template driven with Google CF</a><br>
-    <a routerLink="/form-reactive">Formularz — reactive with Google CF</a><br>
-    <a routerLink="/ng-heroes">Heroes</a><br>
-    <a routerLink="/ng-observables">Observables</a><br>
-    <a routerLink="/scrollpanel">PrimeNG's <span style="text-decoration: line-through">not working</span> &lt;p-scrollPanel></a><br>
-    <a routerLink="/shop">Shop</a><br>
-    <a routerLink="/sticky">Sticky</a><br>
-    <a routerLink="/ng-templaterefexample">TemplateRef Example</a>
+  <nav id="selection">
+    <ng-container *ngFor="let item of chooserItems">
+      <a (mouseover)="mouseOver($any($event.target).id)"
+         [id]="item.id"
+         [innerHTML]="item.safe ? (item.data[1] | safeHtml) : item.data[1]"
+         [routerLink]="item.data[0]"></a><br>
+    </ng-container>
+    <!--<a routerLink="/crisis">Crisis Center</a><br>-->
+    <!--<a routerLink="/dragdrop">drag&drop Test</a><br>-->
+    <!--<a routerLink="/forms">Formularze</a><br>-->
+    <!--<a routerLink="/form-template">Formularz — template driven with Google CF</a><br>-->
+    <!--<a routerLink="/form-reactive">Formularz — reactive with Google CF</a><br>-->
+    <!--<a routerLink="/ng-heroes">Heroes</a><br>-->
+    <!--<a routerLink="/ng-observables">Observables</a><br>-->
+    <!--<a routerLink="/scrollpanel">PrimeNG's <span style="text-decoration: line-through">not working</span> &lt;p-scrollPanel></a><br>-->
+    <!--<a routerLink="/shop">Shop</a><br>-->
+    <!--<a routerLink="/sticky">Sticky</a><br>-->
+    <!--<a routerLink="/ng-templaterefexample">TemplateRef Example</a>-->
   </nav>
   <p id="owl">
     🦉
