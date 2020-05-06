@@ -18,9 +18,10 @@ export class ChooserComponent implements OnInit {
   readonly browserLocaleID: string;
   readonly langStoredCode: string;
   readonly dbLoggedIn$
+  styleForBar
+  t
   @ViewChild('paragraphElement') private paragraphElement: ElementRef
   private title = 'Wybór';
-  private flag
 
   constructor(
     public lcr: LangChangeRelayService,
@@ -64,13 +65,25 @@ export class ChooserComponent implements OnInit {
   }
 
   mouseOver(id) {
-    if (this.flag) {
-      this.paragraphElement.nativeElement.classList.remove('start')
-      this.flag = !this.flag
-      return
-    }
-    this.paragraphElement.nativeElement.classList.add('start')
-    this.flag = !this.flag
+    clearTimeout(this.t)
+    // if (this.flag) {
+    //   this.paragraphElement.nativeElement.classList.remove('start')
+    //   this.flag = !this.flag
+    //   return
+    // }
+    // this.paragraphElement.nativeElement.classList.add('start')
+    // this.flag = !this.flag
+    // return
+    this.styleForBar = {transform: 'translateY(calc(' + id + 'em + ' + id * 4 + 'px))'}
+    this.paragraphElement.nativeElement.classList.remove('stop')
+  }
+
+  mouseLeave() {
+    this.t = setTimeout(() => {
+      this.paragraphElement.nativeElement.classList.add('stop')
+      this.styleForBar = {}
+      clearTimeout(this.t)
+    }, 250)
   }
 
   private setTitle(newTitle: string) {

@@ -1,6 +1,6 @@
 p {
-  margin-top: 1.75rem;
-  margin-bottom: 0.25rem
+  margin-bottom: 0.25rem;
+  margin-top: 1.75rem
 }
 
 p#owl {
@@ -8,9 +8,9 @@ p#owl {
 }
 
 a {
-  text-decoration: none;
+  color: rgb(0, 0, 238);
   cursor: pointer;
-  color: rgb(0, 0, 238)
+  text-decoration: none
 }
 
 a.lang {
@@ -22,7 +22,7 @@ a.selected {
   opacity: 0.75
 }
 
-a.not-allowed:hover {
+a.not-allowed {
   cursor: not-allowed
 }
 
@@ -49,24 +49,24 @@ nav#selection a:hover {
   outline: 2px rgba(216, 229, 250, .4) solid
 }
 
-p#bar {
+div#for-bar p {
+  /*display: inline-block;*/
   /*outline: 1px blue solid;*/
+  /*vertical-align: middle*/
 }
 
-p#bar::before {
+p#bar {
   background-color: brown;
-  content: "";
-  display: block;
-  height: calc(1em + 0px);
+  height: calc(1em + 8px);
   left: -4px;
-  opacity: 0;
-  /*outline: 1px green solid;*/
+  opacity: 1;
   position: absolute;
+  top: calc(1em - 4px);
   transition: transform .25s ease-in-out, opacity .45s ease-in-out;
   width: 2px
 }
 
-p#bar.start::before {
-  opacity: 1;
-  transform: translateY(10em) scaleY(10)
+p.stop {
+  opacity: 0 !important
+  /*transform: translateY(0) scaleY(1)*/
 }

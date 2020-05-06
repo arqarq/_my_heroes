@@ -24,13 +24,19 @@
     <span [class.logged-in]="dbLoggedIn$ | async"
           class="db-check">&bull;</span>
   </nav>
-  <p #paragraphElement
-     id="bar">
-    Wybierz:
-  </p>
+  <div id="for-bar">
+    <p #paragraphElement
+       [ngStyle]="styleForBar"
+       class="stop"
+       id="bar"></p>
+    <p>
+      Wybierz:
+    </p>
+  </div>
   <nav id="selection">
     <ng-container *ngFor="let item of chooserItems">
-      <a (mouseover)="mouseOver($any($event.target).id)"
+      <a (mouseleave)="mouseLeave()"
+         (mouseover)="mouseOver(item.id)"
          [id]="item.id"
          [innerHTML]="item.safe ? (item.data[1] | safeHtml) : item.data[1]"
          [routerLink]="item.data[0]"></a><br>
