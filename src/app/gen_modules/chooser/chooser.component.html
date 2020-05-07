@@ -27,7 +27,6 @@
   <div id="for-bar">
     <p #paragraphElement
        [ngStyle]="styleForBar"
-       class="stop"
        id="bar"></p>
     <p>
       Wybierz:
@@ -35,9 +34,9 @@
   </div>
   <nav id="selection">
     <ng-container *ngFor="let item of chooserItems">
-      <a (mouseleave)="mouseLeave()"
-         (mouseover)="mouseOver(item.id)"
-         [id]="item.id"
+      <a #anchorElement
+         (mouseleave)="mouseLeave()"
+         (mouseover)="mouseOver(item.id, anchorElement, paragraphElement)"
          [innerHTML]="item.safe ? (item.data[1] | safeHtml) : item.data[1]"
          [routerLink]="item.data[0]"></a><br>
     </ng-container>

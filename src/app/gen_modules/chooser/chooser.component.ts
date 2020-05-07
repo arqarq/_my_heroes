@@ -1,4 +1,4 @@
-import { Component, ElementRef, Inject, LOCALE_ID, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { LOCALE_ID_NUMBERS } from '../../../locale/LIDs';
 import { LANG_INIT_STORAGE_KEY, LANG_STORAGE_KEY, LANG_USER_IS_SWITCHING, LocalStorageService } from '../../service/local-storage.service';
@@ -6,6 +6,8 @@ import { LangChangeRelayService } from '../../service/lang-change-relay.service'
 import { WoratorService } from '../../service/worator.service';
 import { CloudFirebaseService } from '../../service/cloud-firebase.service'
 import { CHOOSER_ITEMS } from '../../../locale/chooser-items'
+
+const defaultStyleForBar = {opacity: '0', transform: 'translateY(0) scaleY(1)'}
 
 @Component({
   selector: 'app-chooser',
@@ -18,9 +20,8 @@ export class ChooserComponent implements OnInit {
   readonly browserLocaleID: string;
   readonly langStoredCode: string;
   readonly dbLoggedIn$
-  styleForBar
+  styleForBar = defaultStyleForBar
   t
-  @ViewChild('paragraphElement') private paragraphElement: ElementRef
   private title = 'Wybór';
 
   constructor(
@@ -64,24 +65,14 @@ export class ChooserComponent implements OnInit {
     }
   }
 
-  mouseOver(id) {
+  mouseOver(id: number, el: HTMLAnchorElement, el2: HTMLParagraphElement) {
     clearTimeout(this.t)
-    // if (this.flag) {
-    //   this.paragraphElement.nativeElement.classList.remove('start')
-    //   this.flag = !this.flag
-    //   return
-    // }
-    // this.paragraphElement.nativeElement.classList.add('start')
-    // this.flag = !this.flag
-    // return
-    this.styleForBar = {transform: 'translateY(calc(' + id + 'em + ' + id * 4 + 'px))'}
-    this.paragraphElement.nativeElement.classList.remove('stop')
+    this.styleForBar = {opacity: '1', transform: 'translateY(' + (el.offsetTop - el2.offsetTop - 2) + 'px)'}
   }
 
   mouseLeave() {
     this.t = setTimeout(() => {
-      this.paragraphElement.nativeElement.classList.add('stop')
-      this.styleForBar = {}
+      this.styleForBar = defaultStyleForBar
       clearTimeout(this.t)
     }, 250)
   }
