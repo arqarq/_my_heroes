@@ -57,12 +57,12 @@ div#for-bar p {
 
 p#bar {
   background-color: brown;
-  height: calc(1em + 5px);
+  /*height: calc(1em + 5px);*/
   /*height: calc(1em + 8px);*/
   left: -4px;
   position: absolute;
   top: calc(1em - 2px);
   /*top: calc(1em - 4px);*/
-  transition: transform .25s ease-in-out, opacity .45s ease-in-out;
+  transition: transform .25s ease-in-out, opacity .45s ease-in-out, height .125s ease-out;
   width: 2px
 }

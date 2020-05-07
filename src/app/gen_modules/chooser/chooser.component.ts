@@ -7,7 +7,9 @@ import { WoratorService } from '../../service/worator.service';
 import { CloudFirebaseService } from '../../service/cloud-firebase.service'
 import { CHOOSER_ITEMS } from '../../../locale/chooser-items'
 
-const defaultStyleForBar = {opacity: '0', transform: 'translateY(0) scaleY(1)'}
+const DEFAULT_OPACITY = '0'
+const DEFAULT_TRANSFORM = 'translateY(0)'
+const DEFAULT_HEIGHT = 'calc(1em + 5px)'
 
 @Component({
   selector: 'app-chooser',
@@ -20,8 +22,13 @@ export class ChooserComponent implements OnInit {
   readonly browserLocaleID: string;
   readonly langStoredCode: string;
   readonly dbLoggedIn$
-  styleForBar = defaultStyleForBar
+  styleForBar = {
+    opacity: DEFAULT_OPACITY,
+    transform: DEFAULT_TRANSFORM,
+    height: DEFAULT_HEIGHT
+  }
   t
+  f = false
   private title = 'Wybór';
 
   constructor(
@@ -67,14 +74,25 @@ export class ChooserComponent implements OnInit {
 
   mouseOver(id: number, el: HTMLAnchorElement, el2: HTMLParagraphElement) {
     clearTimeout(this.t)
-    this.styleForBar = {opacity: '1', transform: 'translateY(' + (el.offsetTop - el2.offsetTop - 2) + 'px)'}
+    this.styleForBar.opacity = '1'
+    this.styleForBar.transform = 'translateY(' + (el.offsetTop - el2.offsetTop - 2) + 'px)'
+    if (!this.f) {
+      this.f = true
+      this.styleForBar.height = 'calc((1em +  5px) * ' + (id + 1) + ')'
+      const t = setTimeout(() => {
+        this.styleForBar.height = DEFAULT_HEIGHT
+        clearTimeout(t)
+      }, 125)
+    }
   }
 
   mouseLeave() {
     this.t = setTimeout(() => {
-      this.styleForBar = defaultStyleForBar
+      this.styleForBar.opacity = DEFAULT_OPACITY
+      this.styleForBar.transform = DEFAULT_TRANSFORM
+      this.f = false
       clearTimeout(this.t)
-    }, 250)
+    }, 375)
   }
 
   private setTitle(newTitle: string) {
