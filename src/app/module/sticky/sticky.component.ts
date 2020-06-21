@@ -24,11 +24,11 @@ export class StickyComponent implements OnInit, OnDestroy {
         console.log('!!', this.offset = this.divElement.offsetTop, 'onscroll:', this.divElement.getBoundingClientRect().top);
       }
       if (window.pageYOffset >= this.offset + 33 - TOP_STICKY) {
-        // tslint:disable-next-line:no-unused-expression
+        // eslint-disable-line @typescript-eslint/no-unused-expressions
         !this.flag && this.setSticky();
         return;
       }
-      // tslint:disable-next-line:no-unused-expression
+      // eslint-disable-line @typescript-eslint/no-unused-expressions
       this.flag && this.setRelative();
     };
   }
@@ -50,7 +50,7 @@ export class StickyComponent implements OnInit, OnDestroy {
     document.onmousemove = (event2: MouseEvent) => {
       event2.preventDefault();
       // console.log('tick ----');
-      // tslint:disable-next-line:no-conditional-assignment
+      // eslint-disable-line no-cond-assign
       if ((flag = !flag) && (flag2 = !flag2)) {
         // console.log('tick tock');
         this.divElement2.style.top = (this.divElement2.offsetTop - pos4 + event2.clientY) + 'px';
@@ -106,9 +106,9 @@ export class StickyComponent implements OnInit, OnDestroy {
             console.log('fired! Y');
             this.flag4 = true;
           }
-          // tslint:disable-next-line:no-unused-expression
+          // eslint-disable-line @typescript-eslint/no-unused-expressions
           this.flag3 || this.flag4 || console.log('nothing! X: ok, Y: ok');
-          // tslint:disable-next-line:no-unused-expression
+          // eslint-disable-line @typescript-eslint/no-unused-expressions
           this.flag3 && this.flag4 && !(window.onresize = null) && console.log('unset!');
         };
       } else if (window.onresize && this.flag3 && this.flag4) {

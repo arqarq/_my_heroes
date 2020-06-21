@@ -81,7 +81,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy, AfterViewInit
   }
 
   setWithConfirm(nameOfKonfirm: string) {
-    // tslint:disable-next-line:no-conditional-assignment
+    // eslint-disable-line no-cond-assign
     (this.flag = !this.flag) ?
       this.cFRepository.key = this.key = FIELD_NAME_IN_PERSISTENCE2 :
       this.cFRepository.key = this.key = FIELD_NAME_IN_PERSISTENCE;

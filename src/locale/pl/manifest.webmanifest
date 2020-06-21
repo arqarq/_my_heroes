@@ -3,8 +3,7 @@
   "short_name": "heroes",
   "theme_color": "#ff0000",
   "background_color": "#fafafa",
-  "display": "standalone",
-  "orientation": "landscape",
+  "display": "browser",
   "scope": "/",
   "start_url": "/pl",
   "icons": [

@@ -5,7 +5,9 @@
   ],
   "rules": {
     "array-type": false,
-    "arrow-parens": false,
+    "arrow-parens": {
+      "severity": "warn"
+    },
     "component-selector": [
       true,
       "element",
