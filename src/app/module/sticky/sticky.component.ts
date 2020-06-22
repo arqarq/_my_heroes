@@ -9,13 +9,13 @@ const TOP_STICKY = 50;
 })
 export class StickyComponent implements OnInit, OnDestroy {
   private divElement: HTMLDivElement;
-  private divElement2;
+  private divElement2: HTMLElement
   private flag;
   private flag3;
   private flag4;
   private offset;
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.divElement = document.getElementById('handle') as HTMLDivElement;
     this.divElement2 = document.getElementById('handle2');
     console.log('!', this.divElement.offsetTop, 'ngOnInit:', this.divElement.getBoundingClientRect().top);
@@ -24,12 +24,10 @@ export class StickyComponent implements OnInit, OnDestroy {
         console.log('!!', this.offset = this.divElement.offsetTop, 'onscroll:', this.divElement.getBoundingClientRect().top);
       }
       if (window.pageYOffset >= this.offset + 33 - TOP_STICKY) {
-        // eslint-disable-line @typescript-eslint/no-unused-expressions
-        !this.flag && this.setSticky();
+        !this.flag && this.setSticky(); // eslint-disable-line @typescript-eslint/no-unused-expressions
         return;
       }
-      // eslint-disable-line @typescript-eslint/no-unused-expressions
-      this.flag && this.setRelative();
+      this.flag && this.setRelative(); // eslint-disable-line @typescript-eslint/no-unused-expressions
     };
   }
 
@@ -50,7 +48,6 @@ export class StickyComponent implements OnInit, OnDestroy {
     document.onmousemove = (event2: MouseEvent) => {
       event2.preventDefault();
       // console.log('tick ----');
-      // eslint-disable-line no-cond-assign
       if ((flag = !flag) && (flag2 = !flag2)) {
         // console.log('tick tock');
         this.divElement2.style.top = (this.divElement2.offsetTop - pos4 + event2.clientY) + 'px';
@@ -106,9 +103,8 @@ export class StickyComponent implements OnInit, OnDestroy {
             console.log('fired! Y');
             this.flag4 = true;
           }
-          // eslint-disable-line @typescript-eslint/no-unused-expressions
-          this.flag3 || this.flag4 || console.log('nothing! X: ok, Y: ok');
-          // eslint-disable-line @typescript-eslint/no-unused-expressions
+          this.flag3 || this.flag4 || console.log('nothing! X: ok, Y: ok'); // eslint-disable-line @typescript-eslint/no-unused-expressions
+          // eslint-disable-next-line @typescript-eslint/no-unused-expressions
           this.flag3 && this.flag4 && !(window.onresize = null) && console.log('unset!');
         };
       } else if (window.onresize && this.flag3 && this.flag4) {

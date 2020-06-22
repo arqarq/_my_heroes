@@ -118,6 +118,7 @@ Happy linting! 💖
       "error",
       "single"
     ],
+    "@typescript-eslint/restrict-plus-operands": "off",
     "@typescript-eslint/triple-slash-reference": [
       "error",
       {
