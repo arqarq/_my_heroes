@@ -1,3 +1,4 @@
+/* eslint-disable */
 const fse = require('fs-extra');
 const P = 'package.json';
 const N = 'ngsw-config.json';
